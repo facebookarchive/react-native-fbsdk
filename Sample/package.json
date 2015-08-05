@@ -1,0 +1,14 @@
+{
+  "name": "NHSample",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "react-native": "^0.8.0",
+    "react-native-fbsdklogin": "file:../react-native-fbsdklogin/",
+    "react-native-fbsdkcore": "file:../react-native-fbsdkcore/",
+    "react-native-fbsdkshare": "file:../react-native-fbsdkshare/"
+  }
+}
