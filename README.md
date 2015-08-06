@@ -27,7 +27,7 @@ Examples for using various components can be found in the readme files for the i
 - Drag the folders prefixed with react-native-fbsdk from node_modules into the XCode project navigator.
 
 ### Troubleshooting
-- If you get a build error stating that one of the Facebook SDK files was not found -- eg. `FBSDKCoreKit/FBSDKCoreKit.h` -- check two things:x:
+- If you get a build error stating that one of the Facebook SDK files was not found -- eg. `FBSDKCoreKit/FBSDKCoreKit.h` -- check two things\:
   - Ensure that the Facebook SDK frameworks have been added to the project.
   - Add the folder where the Facebook SDK was to the project's framework search path in Xcode. See Apple's [documentation on including frameworks](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/IncludingFrameworks.html).
 
