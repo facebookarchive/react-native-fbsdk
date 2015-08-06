@@ -50,7 +50,7 @@ var Login = React.createClass({
           }}
           onLogoutFinished={() => alert('Logged out.')}
           readPermissions={[]}
-          publishPermissions={['publish_actions']}/>
+          publishPermissions={[]}/>
       </View>
     );
   }
