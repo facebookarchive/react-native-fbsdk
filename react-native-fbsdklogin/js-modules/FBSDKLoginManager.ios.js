@@ -94,12 +94,10 @@ class FBSDKLoginManager {
   }
 
   /**
-   * Attempt a logout.
-   *
-   * @param (() => void) callback - Called upon successful logout.
+   * Logs out.
    */
-  static logOut(callback: () => void): void {
-    FBSDKLoginManagerInterface.logOut(callback);
+  static logOut(): void {
+    FBSDKLoginManagerInterface.logOut();
   }
 
   /**

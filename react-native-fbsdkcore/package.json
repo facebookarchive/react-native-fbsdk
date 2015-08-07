@@ -1,6 +1,6 @@
 {
   "name": "react-native-fbsdkcore",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "iOS FBSDKCoreKit support for React Native apps.",
   "main": "FBSDKCore.ios.js",
   "author": {

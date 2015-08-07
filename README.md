@@ -6,8 +6,159 @@ Functionality is provided through three separate npm packages so you never have 
 - `react-native-fbsdkshare`
 - `react-native-fbsdklogin`
 
-# Usage
-Examples for using various components can be found in the readme files for the individual npm packages.
+## Usage
+### react-native-fbsdkcore
+#### Graph Requests
+```js
+var FBSDKCore = require('react-native-fbsdkcore');
+var {
+  FBSDKGraphRequest,
+} = FBSDKCore;
+
+// ...
+
+// Create a graph request asking for friends with a callback to handle the response.
+var fetchFriendsRequest = new FBSDKGraphRequest((error, result) => {
+  if (error) {
+    alert('Error making request.');
+  } else {
+    // Data from request is in result
+  }
+}, '/me/friends');
+// Start the graph request.
+fetchFriendsRequest.start();
+
+// ...
+```
+
+#### App events
+```js
+var FBSDKCore = require('react-native-fbsdkcore');
+var {
+  FBSDKAppEvents,
+} = FBSDKCore;
+
+// ...
+
+// Log a $15 purchase.
+FBSDKAppEvents.logPurchase(15, 'USD', null, null)
+
+// ...
+```
+### react-native-fbsdklogin
+#### Login Button
+```js
+var FBSDKLogin = require('react-native-fbsdklogin');
+var {
+  FBSDKLoginButton,
+} = FBSDKLogin;
+
+var Login = React.createClass({
+  render: function() {
+    return (
+      <View>
+        <FBSDKLoginButton
+          onLoginFinished={(error, result) => {
+            if (error) {
+              alert('Error logging in.');
+            } else {
+              if (result.isCanceled) {
+                alert('Login cancelled.');
+              } else {
+                alert('Logged in.');
+              }
+            }
+          }}
+          onLogoutFinished={() => alert('Logged out.')}
+          readPermissions={[]}
+          publishPermissions={['publish_actions']}/>
+      </View>
+    );
+  }
+});
+```
+
+#### Login Manager
+```js
+var FBSDKLogin = require('react-native-fbsdklogin');
+var {
+  FBSDKLoginManager,
+} = FBSDKLogin;
+
+// ...
+
+// Attempt a login using the native login dialog asking for default permissions.
+FBSDKLoginManager.setLoginBehavior(GlobalStore.getItem('behavior', 'native'));
+FBSDKLoginManager.logInWithReadPermissions([], (error, result) => {
+  if (error) {
+    alert('Error logging in.');
+  } else {
+    if (result.isCanceled) {
+      alert('Login cancelled.');
+    } else {
+      alert('Logged in.');
+    }
+  }
+});
+
+// ...
+```
+### react-native-fbsdkshare
+#### Share dialogs
+All of the dialogs included are used in a similar way, with differing content types.
+```js
+var FBSDKShare = require('react-native-fbsdkshare');
+var {
+  FBSDKShareDialog,
+  FBSDKShareLinkContent,
+} = FBSDKShare;
+
+// ...
+
+// Build up a shareable link.
+var linkContent = new FBSDKShareLinkContent('https://facebook.com', 'Wow, check out this great site!', 'Facebook.com', null);
+// Share the link using the native share dialog.
+FBSDKShareDialog.show(linkContent, (error, result) => {
+  if (!error) {
+    if (result.isCancelled) {
+      alert('Share canceled.');
+    } else {
+      alert('Thanks for sharing!');
+    }
+  } else {
+    alert('Error sharing.');
+  }
+});
+
+// ..
+```
+
+#### Share API
+Your app must have the publish_actions permission approved to share through the share API.
+```js
+var FBSDKShare = require('react-native-fbsdkshare');
+var {
+  FBSDKShareAPI,
+  FBSDKSharePhoto,
+  FBSDKSharePhotoContent,
+} = FBSDKShare;
+
+// ...
+
+// Build up a shareable photo, where 'cat.png' is included in the project. A data URI encoding the image can also be passed.
+var photo = new FBSDKSharePhoto('cat.png', true);
+var photoContent = new FBSDKSharePhotoContent([photo]);
+// Share using the share API.
+FBSDKShareAPI.share(photoContent, "/me", "Check out this cat!", (error, result) => {
+  if (error) {
+    alert('Error sharing');
+  } else {
+    alert('Shared successfully');
+  }
+});
+
+// ...
+```
 
 ## Running the Sample App
 - From the Sample folder, run `npm install`

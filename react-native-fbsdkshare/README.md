@@ -67,7 +67,7 @@ A sample app is available from the [GitHub repository](https://github.com/facebo
 - Follow the [getting started guide](https://developers.facebook.com/docs/ios/getting-started/) to link your project with the Facebook SDK frameworks and set up the app delegate. `FBSDKCoreKit.framework` and `FBSDKShareKit.framework` must be added to the project.
 - run `npm install react-native-fbsdkshare`
 - Open the Xcode project for your app.
-- From Finder, drag the 'react-native-fbsdkcore' folder from node_modules into the XCode project navigator.
+- From Finder, drag the 'react-native-fbsdkshare' folder from node_modules into the XCode project navigator.
 
 ## License
 See the LICENSE file.
