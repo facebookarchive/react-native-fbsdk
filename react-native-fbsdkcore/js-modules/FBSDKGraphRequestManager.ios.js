@@ -25,7 +25,7 @@
 
 var invariant = require('invariant');
 
-var FBSDKNativeGraphRequestManager = require('NativeModules').FBSDKGraphRequestManager;
+var FBSDKNativeGraphRequestManager = require('react-native').NativeModules.FBSDKGraphRequestManager;
 
 import type * as FBSDKGraphRequest from './FBSDKGraphRequest.ios.js';
 
