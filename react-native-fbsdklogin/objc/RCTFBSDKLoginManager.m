@@ -104,6 +104,7 @@ static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *resu
     @"isCancelled": @(result.isCancelled),
     @"grantedPermissions": result.isCancelled ? [NSNull null] : result.grantedPermissions.allObjects,
     @"declinedPermissions": result.isCancelled ? [NSNull null] : result.declinedPermissions.allObjects,
+    @"token": result.isCancelled ? [NSNull null] : result.token.tokenString,
   };
 }
 
