@@ -19,6 +19,7 @@
 #import <RCTConvert.h>
 
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface RCTConvert (FBSDKLogin)
 
