@@ -162,24 +162,23 @@ FBSDKShareAPI.share(photoContent, "/me", "Check out this cat!", (error, result) 
 
 ## Running the Sample App
 - From the Sample folder, run `npm install`
-- Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios).
+- Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios). The XCode projects assume that they're installed in the standard location at ~/Documents/FacebookSDK.
 - Open NHSample.xcodeproj
-- Drag `FBSDKCoreKit.framework`, `FBSDKLoginKit.framework`, and `FBSDKShareKit.framework` from the ~/Documents/FacebookSDK folder into the Frameworks group in the XCode project navigator.
 - Build and run the app to try it out.
 
 ## Installation
-- Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios).
+- Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios). The XCode projects assume that they're installed in the standard location at ~/Documents/FacebookSDK.
 - Follow the [getting started guide](https://developers.facebook.com/docs/ios/getting-started/) to link your project with the Facebook SDK frameworks and set up the app delegate.
 - Depending on what functionality you're looking to integrate, run any combination of the following:
-  - `npm install react-native-fbsdkcore` for graph requests, app events, etc. `FBSDKCoreKit.framework` must be added to the project.
-  - `npm install react-native-fbsdkshare` for share buttons, dialogs, etc. `FBSDKCoreKit.framework` and `FBSDKShareKit.framework` must be added to the project.
-  - `npm install react-native-fbsdklogin` for login button and manager. `FBSDKCoreKit.framework` and `FBSDKLoginKit.framework` must be added to the project.
+  - `npm install react-native-fbsdkcore` for graph requests, app events, etc.
+  - `npm install react-native-fbsdkshare` for share buttons, dialogs, etc.
+  - `npm install react-native-fbsdklogin` for login button and manager.
 - Open the Xcode project for your app.
-- Drag the folders prefixed with react-native-fbsdk from node_modules into the XCode project navigator.
+- Drag the XCode projects from `node_modules/react-native-sdk...` into your XCode project navigator.
 
 ### Troubleshooting
 - If you get a build error stating that one of the Facebook SDK files was not found -- eg. `FBSDKCoreKit/FBSDKCoreKit.h` -- check two things\:
-  - Ensure that the Facebook SDK frameworks have been added to the project.
+  - Ensure that the Facebook SDK frameworks are installed and in the right place.
   - Add the folder where the Facebook SDK was to the project's framework search path in Xcode. See Apple's [documentation on including frameworks](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/IncludingFrameworks.html).
 
 ## License
