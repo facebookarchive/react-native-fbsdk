@@ -102,7 +102,7 @@ RCT_EXPORT_METHOD(addConnection:(RCTResponseSenderBlock)callback)
   callback(@[connectionID]);
 }
 
-RCT_EXPORT_METHOD(addRequestToConnection:(NSNumber *)connectionID request:(FBSDKGraphRequest *)request batchParameters:(NSDictionary *)batchParameters callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(addRequestToConnection:(nonnull NSNumber *)connectionID request:(FBSDKGraphRequest *)request batchParameters:(NSDictionary *)batchParameters callback:(RCTResponseSenderBlock)callback)
 {
   RCTFBSDKGraphRequestConnectionContainer *connectionContainer = _activeConnections[connectionID];
   if (connectionContainer) {
@@ -116,7 +116,7 @@ RCT_EXPORT_METHOD(addRequestToConnection:(NSNumber *)connectionID request:(FBSDK
   }
 }
 
-RCT_EXPORT_METHOD(startConnection:(NSNumber *)connectionID timeout:(NSNumber *)timeout callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(startConnection:(nonnull NSNumber *)connectionID timeout:(nonnull NSNumber *)timeout callback:(RCTResponseSenderBlock)callback)
 {
   RCTFBSDKGraphRequestConnectionContainer *connectionContainer = _activeConnections[connectionID];
   if (connectionContainer) {
