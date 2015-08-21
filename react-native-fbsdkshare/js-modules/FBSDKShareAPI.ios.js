@@ -23,33 +23,34 @@
 
 'use strict';
 
-import type * as FBSDKSharingContent from '../js-models/FBSDKSharingContent.ios.js';
-import type * as FBSDKShareOpenGraphObject from '../js-models/FBSDKShareOpenGraphObject.ios.js';
-
 var FBSDKShareAPIInterface = require('react-native').NativeModules.FBSDKShareAPI;
 
-class FBSDKShareAPI {
+import type * as FBSDKSharingContent from '../js-models/FBSDKSharingContent.ios.js';
+import type * as FBSDKShareOpenGraphObject from '../js-models/FBSDKShareOpenGraphObject.ios.js';
+type FBSDKShareAPICallback = (error: ?Object, result: ?Object) => void;
+
+module.exports = {
   /**
    * Shares the specified content.
    * NOTE: Only one share action can be performed at a time.
-   *
-   * @param (FBSDKSharingContent) content                        - The content to be shared.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion or error of the request.
    */
-  static share(content: FBSDKSharingContent, graphNode: string, message: string, callback: (error: Object, result: Object) => void): void {
+  share(
+    content: FBSDKSharingContent,
+    graphNode: string,
+    message: string,
+    callback: FBSDKShareAPICallback
+  ) {
     FBSDKShareAPIInterface.share(content, graphNode, message, callback);
-  }
+  },
 
   /**
    * Creates a User Owned Open Graph object without an action.
    * NOTE: Only one share action can be performed at a time.
-   *
-   * @param (FBSDKShareOpenGraphObject) openGraphObject          - The open graph object to create.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion or error of the request.
    */
-  static createOpenGraphObject(openGraphObject: FBSDKShareOpenGraphObject, callback: (couldSend: boolean) => void): void {
+  createOpenGraphObject(
+    openGraphObject: FBSDKShareOpenGraphObject,
+    callback: FBSDKShareAPICallback
+  ) {
     FBSDKShareAPIInterface.createOpenGraphObject(openGraphObject, callback);
-  }
-}
-
-module.exports = FBSDKShareAPI;
+  },
+};

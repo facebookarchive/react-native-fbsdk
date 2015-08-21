@@ -34,8 +34,6 @@ class FBSDKShareVideo {
 
   /**
    * Constructs an FBSDKShareVideo object.
-   *
-   * @param (string) videoURL - The URL to the video. Must be an asset URL.
    */
   constructor(videoURL: string) {
     this.videoURL = videoURL;

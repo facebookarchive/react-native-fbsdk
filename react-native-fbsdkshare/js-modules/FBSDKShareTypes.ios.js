@@ -17,27 +17,17 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *
-* @providesModule FBSDKShareOpenGraphAction
+* @provides FBSDKShareTypes
 * @flow
 */
 
 'use strict';
 
-var FBSDKShareOpenGraphValueContainer = require('./FBSDKShareOpenGraphValueContainer.ios.js');
+export type FBSDKShareDialogResult = {
+  isCancelled?: boolean;
+};
 
-/**
- * Represents an open graph action.
- */
-class FBSDKShareOpenGraphAction extends FBSDKShareOpenGraphValueContainer {
-  /**
-   * The action type.
-   */
-  actionType: string;
-
-  constructor(actionType: string) {
-    super(null);
-    this.actionType = actionType;
-  }
-}
-
-module.exports = FBSDKShareOpenGraphAction;
+export type FBSDKDialogCallback = (
+  error: ?Object,
+  result: ?FBSDKShareDialogResult
+) => void;

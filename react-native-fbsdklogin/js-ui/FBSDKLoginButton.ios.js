@@ -29,10 +29,32 @@ var {
   StyleSheet,
 } = React;
 
+import type {
+  FBSDKLoginCallback,
+  FBSDKLoginBehavior,
+  FBSDKDefaultAudience,
+} from '../js-modules/FBSDKLoginManager.ios.js';
+
+type FBSDKLoginButtonProps = {
+  readPermissions: Array<string>;
+  publishPermissions: Array<string>;
+  onLoginFinished: FBSDKLoginCallback;
+  onLogoutFinished: () => void;
+  loginBehavior: FBSDKLoginBehavior,
+  defaultAudience: FBSDKDefaultAudience,
+  tooltipBehavior: $Enum<{
+    'auto': string;
+    'force-display': string;
+    'disable': string;
+  }>;
+};
+
 /**
  * A button that initiates a log in or log out flow upon tapping.
  */
 class FBSDKLoginButton extends React.Component {
+  props: FBSDKLoginButtonProps;
+
   _eventHandler(event: Object) {
     var eventDict = event.nativeEvent;
     if (eventDict.type === 'loginFinished') {
@@ -59,28 +81,24 @@ class FBSDKLoginButton extends React.Component {
 
 FBSDKLoginButton.propTypes = {
   /**
-   * Represents the read permissions to request when
-   * the login button is pressed.
+   * Represents the read permissions to request when the login button
+   * is pressed.
    */
   readPermissions: React.PropTypes.array,
 
   /**
-   * Represents the publish permissions to request when
-   * the login button is pressed.
+   * Represents the publish permissions to request when the login
+   * button is pressed.
    */
   publishPermissions: React.PropTypes.array,
 
   /**
-   * The callback invoked upon error/completion of a
-   * login request.
-   * Expects a function of the form (error: ?Object, result: ?Object) => void
+   * The callback invoked upon error/completion of a login request.
    */
   onLoginFinished: React.PropTypes.func.isRequired,
 
   /**
-   * The callback invoked upon completion of a
-   * logout request.
-   * Expects a function of the form () => void
+   * The callback invoked upon completion of a logout request.
    */
   onLogoutFinished: React.PropTypes.func.isRequired,
 
@@ -123,5 +141,8 @@ var styles = StyleSheet.create({
   },
 });
 
-var RCTFBSDKLoginButton = requireNativeComponent('RCTFBSDKLoginButton', FBSDKLoginButton);
+var RCTFBSDKLoginButton = requireNativeComponent(
+  'RCTFBSDKLoginButton',
+  FBSDKLoginButton
+);
 module.exports = FBSDKLoginButton;

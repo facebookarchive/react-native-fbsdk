@@ -37,8 +37,6 @@ class FBSDKSharePhotoContent extends FBSDKSharingContent {
 
   /**
    * Constructs an FBSDKSharePhotoContent object.
-   *
-   * @param (Array<FBSDKSharePhoto>) photos - Photos to be shared.
    */
   constructor(photos: Array<FBSDKSharePhoto>) {
     super('photo');

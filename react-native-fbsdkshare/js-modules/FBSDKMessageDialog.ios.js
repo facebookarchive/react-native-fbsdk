@@ -26,29 +26,23 @@
 var FBSDKMessageDialogInterface = require('react-native').NativeModules.FBSDKMessageDialog;
 
 import type * as FBSDKSharingContent from '../js-models/FBSDKSharingContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
-/**
- * A dialog for sharing content through Messenger.
- */
-class FBSDKMessageDialog {
+module.exports = {
   /**
    * Shows the dialog using the specified content.
-   *
-   * @param (FBSDKSharingContent) content                        - The content to be shared.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion, error or cancellation of the dialog.
    */
-  static show(content: FBSDKSharingContent, callback: (error: ?Object, result: ?Object) => void): void {
+  show(content: FBSDKSharingContent, callback: FBSDKDialogCallback) {
     FBSDKMessageDialogInterface.show(content, callback);
-  }
+  },
 
   /**
-   * Sets whether or not the native share dialog should fail when it encounters a data error.
-   *
-   * @param (boolean) shouldFailOnDataError - Set to true if the dialog should fail on data error, otherwise false
+   * Sets whether or not the native share dialog should fail when it
+   * encounters a data error.
    */
-  static setShouldFailOnDataError(shouldFailOnDataError: boolean): void {
+  setShouldFailOnDataError(shouldFailOnDataError: boolean) {
     FBSDKMessageDialogInterface.shouldFailOnDataError(shouldFailOnDataError);
-  }
-}
-
-module.exports = FBSDKMessageDialog;
+  },
+};

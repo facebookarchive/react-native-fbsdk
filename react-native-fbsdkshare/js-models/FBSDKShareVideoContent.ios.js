@@ -43,8 +43,6 @@ class FBSDKShareVideoContent extends FBSDKSharingContent {
 
   /**
    * Constructs an FBSDKShareVideoContent object.
-   *
-   * @param (FBSDKShareVideo) video - Video to be shared.
    */
   constructor(video: FBSDKShareVideo) {
     super('video');

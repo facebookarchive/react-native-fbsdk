@@ -87,10 +87,8 @@ class FBSDKGameRequestContent {
 
   /**
    * Constructs a new FBSDKGameRequestContent object with required parameters.
-   *
-   * @param (string) message - A plain-text message to be sent as part of the request.
    */
-  constructor (message: string) {
+  constructor(message: string) {
     this.message = message;
   }
 }

@@ -62,6 +62,9 @@ var styles = StyleSheet.create({
   },
 });
 
-var RCTFBSDKShareButton = requireNativeComponent('RCTFBSDKShareButton', FBSDKShareButton);
+var RCTFBSDKShareButton = requireNativeComponent(
+  'RCTFBSDKShareButton',
+  FBSDKShareButton
+);
 
 module.exports = FBSDKShareButton;

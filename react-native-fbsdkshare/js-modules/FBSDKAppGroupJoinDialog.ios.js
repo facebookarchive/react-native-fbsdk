@@ -25,19 +25,15 @@
 
 var FBSDKAppGroupJoinDialogInterface = require('react-native').NativeModules.FBSDKAppGroupJoinDialog;
 
-/**
- * A dialog for joining app groups.
- */
-class FBSDKAppGroupJoinDialog {
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
+
+module.exports = {
   /**
    * Shows the dialog using the specified group ID.
-   *
-   * @param (string) groupID                                     - ID of the group to join.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion, error or cancellation of the dialog.
    */
-  static show(groupID: string, callback: (error: ?Object, result: ?Object) => void): void {
+  show(groupID: string, callback: FBSDKDialogCallback) {
     FBSDKAppGroupJoinDialogInterface.show(groupID, callback);
-  }
-}
-
-module.exports = FBSDKAppGroupJoinDialog;
+  },
+};

@@ -48,15 +48,15 @@ class FBSDKShareLinkContent extends FBSDKSharingContent {
 
   /**
    * Constructs a new FBSDKShareLinkContent object.
-   *
-   * @param (string) URL                 - The URL of the link to share.
-   * @param (?string) contentDescription - The Description of the link.
-   * @param (?string) contentTitle       - The title to display for this link.
-   * @param (?string) imageURL           - The URL of a picture to attach to this content.
    */
-  constructor(URL: string, contentDescription: ?string, contentTitle: ?string, imageURL: ?string) {
+  constructor(
+    contentURL: string,
+    contentDescription: ?string,
+    contentTitle: ?string,
+    imageURL: ?string
+  ) {
     super('link');
-    this.contentURL = URL;
+    this.contentURL = contentURL;
     this.contentDescription = contentDescription;
     this.contentTitle = contentTitle;
     this.imageURL = imageURL;

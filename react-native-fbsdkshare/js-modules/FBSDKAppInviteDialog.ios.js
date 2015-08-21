@@ -25,21 +25,13 @@
 
 var FBSDKAppInviteDialogInterface = require('react-native').NativeModules.FBSDKAppInviteDialog;
 
-import type * as FBSDKAppInviteContent from '../js-models/FBSDKAppInviteContent.ios.js';
+import type * as FBSDKAppInviteContent from '../js-models/FBSDKAppInviteContent.ios.js'
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
-/**
- * A dialog for sending App Invites.
- */
-class FBSDKAppInviteDialog {
-  /**
-   * Shows the dialog with the specified content.
-   *
-   * @param (FBSDKAppInviteContent) content                      - Content containing information about the app invite.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion, error or cancellation of the dialog.
-   */
-  static show(content: FBSDKAppInviteContent, callback: (error: ?Object, result: ?Object) => void): void {
+module.exports = {
+  show(content: FBSDKAppInviteContent, callback: FBSDKDialogCallback) {
     FBSDKAppInviteDialogInterface.show(content, callback);
-  }
-}
-
-module.exports = FBSDKAppInviteDialog;
+  },
+};

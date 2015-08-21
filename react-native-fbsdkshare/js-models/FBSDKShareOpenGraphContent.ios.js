@@ -26,25 +26,25 @@
 var FBSDKSharingContent = require('./FBSDKSharingContent.ios.js');
 import type * as FBSDKShareOpenGraphAction from './FBSDKShareOpenGraphAction.ios.js';
 
-/*
+/**
  * Represents a content object containing information about an Open Graph Action.
  */
 class FBSDKShareOpenGraphContent extends FBSDKSharingContent {
-  /*
+  /**
    * Open Graph Action to be shared.
    */
   action: FBSDKShareOpenGraphAction;
 
-  /*
+  /**
    * Property name that points to the primary Open Graph Object in the action.
    */
   previewPropertyName: string;
 
-  /*
+  /**
    * Constructs a content object representing an Open Graph Action for sharing.
    *
-   * @param (FBSDKShareOpenGraphAction) action - Open Graph Action to be shared.
-   * @param (string) previewPropertyName       - Property name that points to the primary Open Graph Object in the action.
+   * The `previewPropertyName` parameter is a property name that
+   * points to the primary Open Graph Object in the action.
    */
   constructor(action: FBSDKShareOpenGraphAction, previewPropertyName: string) {
     super('open-graph');

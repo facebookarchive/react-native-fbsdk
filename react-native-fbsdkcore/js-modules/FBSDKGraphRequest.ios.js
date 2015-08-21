@@ -23,63 +23,66 @@
 
 'use strict';
 
-/*
+var FBSDKGraphRequestManager = require('./FBSDKGraphRequestManager.ios.js');
+
+type FBSDKGraphRequestCallback = (error: ?Object, result: ?Object) => void;
+type FBSDKGraphRequestParameters = {[key: string]: Object};
+
+/**
  * Represents a Graph API request and provides batch request supports.
  */
 class FBSDKGraphRequest {
-  /*
+  /**
    * Called upon completion or failure of the request.
    */
-  callback: (error: ?Object, result: ?Object) => void;
+  callback: FBSDKGraphRequestCallback;
 
-  /*
+  /**
    * The Graph API endpoint to use for the request, for example "me".
    */
   graphPath: string;
 
-  /*
+  /**
    * The request parameters.
    */
-  parameters: Object;
+  parameters: FBSDKGraphRequestParameters;
 
-  /*
+  /**
    * The access token used by the request.
    */
   tokenString: ?string;
 
-  /*
+  /**
    * The Graph API version to use (e.g., "v2.0")
    */
   version: ?string;
 
-  /*
+  /**
    * The HTTPMethod to use for the request, for example "GET" or "POST".
    */
   HTTPMethod: ?string;
 
-  /*
+  /**
    * If set, disables the automatic error recovery mechanism.
    */
   graphErrorRecoveryDisabled: boolean;
 
-  /*
+  /**
    * The optional dictionary of parameters to include for this request.
    */
    batchParameters: ?Object;
 
-  /*
+  /**
    * Constructs a new Graph API request.
-   *
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion or failure of the request.
-   * @param (string) graphPath    - The Graph API endpoint to use for the request, for example "me".
-   * @param (Object) parameters   - The request parameters, which can be objects of the following forms:
-   *                                  { string: '...' }:   A simple JS string.
-   *                                  { uri: 'data:...' }: A data URI string.
-   * @param (string) tokenString  - The access token used by the request.
-   * @param (string) version      - The Graph API version to use (e.g., "v2.0")
-   * @param (string) HTTPMethod   - The HTTPMethod to use for the request, for example "GET" or "POST".
    */
-  constructor(callback: (error: ?Object, result: ?Object) => void, graphPath: string, parameters: ?Object, tokenString: ?string, version: ?string, HTTPMethod: ?string) {
+  constructor(
+    callback: FBSDKGraphRequestCallback,
+    graphPath: string,
+    parameters: ?FBSDKGraphRequestParameters,
+    tokenString: ?string,
+    version: ?string,
+    HTTPMethod: ?string
+  ) {
     this.callback = callback;
     this.graphPath = graphPath;
     this.parameters = parameters ? parameters : {};
@@ -91,9 +94,6 @@ class FBSDKGraphRequest {
 
   /**
    * Adds a string parameter to the request.
-   *
-   * @param (string) paramString - String to add.
-   * @param (string) key         - Key to associate with the given string.
    */
   addStringParameter(paramString: string, key: string) {
     this.parameters[key] = { string: paramString };
@@ -101,23 +101,15 @@ class FBSDKGraphRequest {
 
   /**
    * Adds a data parameter to the request.
-   *
-   * @param (string) mimeType   - MIME type of the data being added.
-   * @param (string) dataString - String encoding the data being added.
-   * @param (string) key        - Key to associate with the given data.
    */
   addDataParameter(mimeType: string, dataString: string, key: string) {
     this.parameters[key] = { uri: ('data:' + mimeType + ';base64,' + dataString) };
   }
 
-  /*
+  /**
    * Starts the Graph API request.
-   *
-   * @param (number) timeout - Optional timeout for the request given in seconds.
    */
   start(timeout: ?number) {
-    // FBSDKGraphRequestManager required here to prevent circular dependency issues.
-    var FBSDKGraphRequestManager = require('./FBSDKGraphRequestManager.ios.js');
     FBSDKGraphRequestManager.batchRequests([this], null, timeout);
   }
 }

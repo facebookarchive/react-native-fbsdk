@@ -62,8 +62,6 @@ class FBSDKSharingContent {
 
   /**
    * Constructs an FBSDKSharingContent object.
-   *
-   * @param (FBSDKShareContentType) contentType - The type of content to be shared.
    */
   constructor(contentType: FBSDKShareContentType) {
     this.contentType = contentType;

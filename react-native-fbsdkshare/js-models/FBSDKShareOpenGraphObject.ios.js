@@ -25,22 +25,10 @@
 
 var FBSDKShareOpenGraphValueContainer = require('./FBSDKShareOpenGraphValueContainer.ios.js');
 
-/*
+/**
  * Represents an open graph object.
  */
 class FBSDKShareOpenGraphObject extends FBSDKShareOpenGraphValueContainer {
-  /*
-   * Constructs an open graph object with the given properties.
-   *
-   * @param (Object) properties - An object containing the properties to intialize with. Elements should be of format:
-   * {
-   *   type: oneOf(['array', 'number', 'open-graph-object', 'photo', 'string', 'url'],
-   *   value: ...
-   * }
-   */
-  constructor(properties: Object) {
-    super(properties);
-  }
 }
 
 module.exports = FBSDKShareOpenGraphObject;

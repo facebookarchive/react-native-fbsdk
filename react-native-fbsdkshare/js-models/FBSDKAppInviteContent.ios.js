@@ -41,8 +41,11 @@ class FBSDKAppInviteContent {
   /**
    * Constructs a new app invite content object.
    *
-   * @param (string) appLinkURL - An app link target that will be used as a target when the user accepts the invite.
-   * @param (string) appInvitePreviewImageURL - A URL to a preview image that will be displayed with the app invite.
+   * The `appLinkURL` parameter specifies an app link target that will
+   * be used as a target when the user accepts the invite.
+   *
+   * The `appInvitePreviewImageURL` specifies a URL to a preview image
+   * that will be displayed with the app invite.
    */
   constructor(appLinkURL: string, appInvitePreviewImageURL: string) {
     this.appInvitePreviewImageURL = appInvitePreviewImageURL;

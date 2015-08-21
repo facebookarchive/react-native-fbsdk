@@ -26,6 +26,9 @@
 var FBSDKShareDialogInterface = require('react-native').NativeModules.FBSDKShareDialog;
 
 import type * as FBSDKSharingContent from '../js-models/FBSDKSharingContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
 /**
  * Modes for the FBSDKShareDialog.
@@ -47,37 +50,25 @@ type FBSDKShareDialogMode = $Enum<{
   'feed-web': string,
 }>;
 
-/**
- * A dialog for sharing content on Facebook.
- */
-class FBSDKShareDialog {
+module.exports = {
   /**
    * Shows the dialog using the specified content.
-   *
-   * @param (FBSDKSharingContent) content                        - The content to be shared.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion, error or cancellation of the dialog.
    */
-  static show(content: FBSDKSharingContent, callback: (error: ?Object, result: ?Object) => void): void {
+  show(content: FBSDKSharingContent, callback: FBSDKDialogCallback) {
     FBSDKShareDialogInterface.show(content, callback);
-  }
+  },
 
   /**
    * Sets the mode with which to display the dialog.
-   *
-   * @param (FBSDKShareDialogMode) mode - The mode to set the dialog to use when shown.
    */
-  static setMode(mode: FBSDKShareDialogMode): void {
+  setMode(mode: FBSDKShareDialogMode) {
     FBSDKShareDialogInterface.setMode(mode);
-  }
+  },
 
   /**
    * Sets whether or not the native share dialog should fail when it encounters a data error.
-   *
-   * @param (boolean) shouldFailOnDataError - Set to true if the dialog should fail on data error, otherwise false
    */
-  static setShouldFailOnDataError(shouldFailOnDataError: boolean): void {
+  setShouldFailOnDataError(shouldFailOnDataError: boolean) {
     FBSDKShareDialogInterface.shouldFailOnDataError(shouldFailOnDataError);
-  }
-}
-
-module.exports = FBSDKShareDialog;
+  },
+};

@@ -62,6 +62,9 @@ var styles = StyleSheet.create({
   },
 });
 
-var RCTFBSDKSendButton = requireNativeComponent('RCTFBSDKSendButton', FBSDKSendButton);
+var RCTFBSDKSendButton = requireNativeComponent(
+  'RCTFBSDKSendButton',
+  FBSDKSendButton
+);
 
 module.exports = FBSDKSendButton;

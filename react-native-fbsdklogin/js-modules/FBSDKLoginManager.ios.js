@@ -25,10 +25,17 @@
 
 var FBSDKLoginManagerInterface = require('react-native').NativeModules.FBSDKLoginManager;
 
+type FBSDKLoginResult = {
+  isCancelled: boolean;
+  grantedPermissions: Array<string>;
+  declinedPermissions: Array<string>;
+};
+export type FBSDKLoginCallback = (error: ?Object, result: ?FBSDKLoginResult) => void;
+
 /**
  * Indicate how Facebook Login should be attempted.
  */
-type FBSDKLoginBehavior = $Enum<{
+export type FBSDKLoginBehavior = $Enum<{
   // Attempts log in through the native Facebook app.
   'native': string,
   // Attempts log in through the Safari browser.
@@ -42,7 +49,7 @@ type FBSDKLoginBehavior = $Enum<{
 /**
  * Indicates which default audience to use for sessions that post data to Facebook.
  */
-type FBSDKDefaultAudience = $Enum<{
+export type FBSDKDefaultAudience = $Enum<{
   // Indicates that the user's friends are able to see posts made by the application.
   'friends': string,
   // Indicates that all Facebook users are able to see posts made by the application.
@@ -51,63 +58,52 @@ type FBSDKDefaultAudience = $Enum<{
   'only-me': string,
 }>;
 
-/**
- * Provides methods for logging the user in and out.
- */
-class FBSDKLoginManager {
+module.exports = {
   /**
    * Sets the behavior for login attempts.
-   *
-   * @param (FBSDKLoginBehavior) loginBehavior - The login behavior to use.
    */
-  static setLoginBehavior(loginBehavior: FBSDKLoginBehavior): void {
+  setLoginBehavior(loginBehavior: FBSDKLoginBehavior) {
     FBSDKLoginManagerInterface.setLoginBehavior(loginBehavior);
-  }
+  },
 
   /**
    * Sets the default audience.
-   *
-   * @param (FBSDKDefaultAudience) defaultAudience - the Default audience to use.
    */
-  static setDefaultAudience(defaultAudience: FBSDKDefaultAudience): void {
+  setDefaultAudience(defaultAudience: FBSDKDefaultAudience) {
     FBSDKLoginManagerInterface.setDefaultAudience(defaultAudience);
-  }
+  },
 
   /**
    * Attempts a login with the specified read permissions.
-   *
-   * @param (Array<string>) permissions - An array of read permissions to request.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon error or completion of the login.
    */
-  static logInWithReadPermissions(permissions: Array<string>, callback: (error: ?Object, result: ?Object) => void): void {
+  logInWithReadPermissions(
+    permissions: Array<string>,
+    callback: FBSDKLoginCallback
+  ) {
     FBSDKLoginManagerInterface.logInWithReadPermissions(permissions, callback);
-  }
+  },
 
   /**
    * Attempts a login with the specified publish permissions.
-   *
-   * @param (Array<string>) permissions - An array of publish permissions to request.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon error or completion of the login.
    */
-  static logInWithPublishPermissions(permissions: Array<string>, callback: (error: ?Object, result: ?Object) => void): void {
+  logInWithPublishPermissions(
+    permissions: Array<string>,
+    callback: FBSDKLoginCallback
+  ) {
     FBSDKLoginManagerInterface.logInWithPublishPermissions(permissions, callback);
-  }
+  },
 
   /**
    * Logs out.
    */
-  static logOut(): void {
+  logOut() {
     FBSDKLoginManagerInterface.logOut();
-  }
+  },
 
   /**
    * Attempts to renew the credentials for system account login.
-   *
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon error or completion of credential renewal.
    */
-  static renewSystemCredentials(callback: (error: ?Object, result: ?Object) => void): void {
+  renewSystemCredentials(callback: FBSDKLoginCallback) {
     FBSDKLoginManagerInterface.renewSystemCredentials(callback);
-  }
-}
-
-module.exports = FBSDKLoginManager;
+  },
+};

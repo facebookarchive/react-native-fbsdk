@@ -26,20 +26,12 @@
 var FBSDKAppGroupAddDialogInterface = require('react-native').NativeModules.FBSDKAppGroupAddDialog;
 
 import type * as FBSDKAppGroupAddContent from '../js-models/FBSDKAppGroupAddContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
-/**
- * A dialog for creating app groups.
- */
-class FBSDKAppGroupAddDialog {
-  /**
-   * Shows the dialog using the specified content object.
-   *
-   * @param (FBSDKAppGroupAddContent) content                    - Content containing information for the new group.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion, error or cancellation of the dialog.
-   */
-  static show(content: FBSDKAppGroupAddContent, callback: (error: ?Object, result: ?Object) => void): void {
+module.exports = {
+  show(content: FBSDKAppGroupAddContent, callback: FBSDKDialogCallback) {
     FBSDKAppGroupAddDialogInterface.show(content, callback);
-  }
-}
-
-module.exports = FBSDKAppGroupAddDialog;
+  },
+};

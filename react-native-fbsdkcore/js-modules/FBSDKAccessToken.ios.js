@@ -35,31 +35,31 @@ type AccessTokenDict = {
   _refreshDate: number;
 };
 
-/*
+/**
  * Represents an immutable access token for using Facebook services.
  */
 class FBSDKAccessToken {
-  /*
+  /**
    * The opaque token string.
    */
   tokenString: string;
 
-  /*
+  /**
    * The known granted permissions.
    */
   permissions: Array<string>;
 
-  /*
+  /**
    * The known declined permissions.
    */
   declinedPermissions: Array<string>;
 
-  /*
+  /**
    * The app ID.
    */
   appID: string;
 
-  /*
+  /**
    * The user ID.
    */
   userID: string;
@@ -68,7 +68,7 @@ class FBSDKAccessToken {
   _expirationDate: number;
   _refreshDate: number;
 
-  /*
+  /**
    * Constructs a new FBSDKAccessToken object.
    */
   constructor(tokenDict: AccessTokenDict) {
@@ -83,39 +83,29 @@ class FBSDKAccessToken {
     Object.freeze(this);
   }
 
-  /*
+  /**
    * Gets the expiration date.
-   *
-   * @returns - Expiration date of the token.
    */
   getExpirationDate(): Date {
     return new Date(this._expirationDate);
   }
 
-  /*
+  /**
    * Gets the the date the token was last refreshed.
-   *
-   * @returns - Refresh date of the token.
    */
   getRefreshDate(): Date {
     return new Date(this._refreshDate);
   }
 
-  /*
+  /**
    * Indicates whether the specified permission has been granted.
-   *
-   * @param (string) permission - The permissions to check the status of.
-   *
-   * @returns - true if permission has been granted, otherwise false
    */
   hasGrantedPermission(permission: string): boolean {
     return this.permissions.some((perm) => perm === permission);
   }
 
-  /*
+  /**
    * Makes a request to retrieve the current access token.
-   *
-   * @param ((token: FBSDKAccessToken) => void) callback - Called with the current access token.
    */
   static getCurrentAccessToken(callback: (token: ?FBSDKAccessToken) => void) {
     FBSDKAccessTokenInterface.getCurrentAccessToken((tokenDict) => {
@@ -123,10 +113,8 @@ class FBSDKAccessToken {
     });
   }
 
-  /*
+  /**
    * Sets the current access token to the one provided.
-   *
-   * @param (FBSDKAccessToken) token  - An access token.
    */
   static setCurrentAccessToken(token: FBSDKAccessToken) {
     FBSDKAccessTokenInterface.setCurrentAccessToken(token);

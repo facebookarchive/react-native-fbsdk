@@ -54,13 +54,9 @@ class FBSDKAppGroupAddContent {
 
   /**
    * Construct a new FBSDKAppGroupAddContent object.
-   *
-   * @param (string) groupDescription      - The description of the group.
-   * @param (string) name                  - The name of the group.
-   * @param (FBSDKAppGroupPrivacy) privacy - The privacy for the group.
    */
-  constructor(groupDescription: string, name: string, privacy: FBSDKAppGroupPrivacy) {
-    this.groupDescription = groupDescription;
+  constructor(groupDescr: string, name: string, privacy: FBSDKAppGroupPrivacy) {
+    this.groupDescription = groupDescr;
     this.name = name;
     this.privacy = privacy;
   }

@@ -27,40 +27,43 @@ var FBSDKNativeGraphRequestManager = require('react-native').NativeModules.FBSDK
 
 import type * as FBSDKGraphRequest from './FBSDKGraphRequest.ios.js';
 
-/*
- * Represents a Graph API request and provides batch request supports.
- */
-class FBSDKGraphRequestManager {
-  /*
-   * Starts a batch of Graph API requests using the same connection.
-   *
-   * @param (Array<FBSDKGraphRequest>) requests   - An array of Graph API requests to make.
-   * @param (?(error: ?Object) => void) callback  - Called upon completion or failure of the connection attempt.
-   * @param (number) timeout                      - Optional timeout for the batch request given in seconds.
-   */
-  static batchRequests(requests: Array<FBSDKGraphRequest>, callback: ?(error: ?Object) => void, timeout: ?number) {
-    FBSDKNativeGraphRequestManager.addConnection((connectionID) => {
-      for (var i = 0, il = requests.length; i < il; i++) {
-        var request = requests[i];
-        this._verifyParameters(request);
-        FBSDKNativeGraphRequestManager.addRequestToConnection(connectionID, request, request.batchParameters, request.callback);
-      }
-      FBSDKNativeGraphRequestManager.startConnection(connectionID, timeout, callback);
-    });
-  }
-
-  static _verifyParameters(request: FBSDKGraphRequest): void {
-    for (var key in request.parameters) {
-      var param = request.parameters[key];
-      if (typeof param === 'object' && (param.string || param.uri)) {
-        continue;
-      }
-      throw new Error(
-        'Unexpected value for parameter \'' + key + '\'. Request parameters ' +
-        'need to be objects with either a \'string\' or \'uri\' field.'
-      );
+function _verifyParameters(request: FBSDKGraphRequest) {
+  for (var key in request.parameters) {
+    var param = request.parameters[key];
+    if (typeof param === 'object' && (param.string || param.uri)) {
+      continue;
     }
+    throw new Error(
+      'Unexpected value for parameter \'' + key + '\'. Request parameters ' +
+        'need to be objects with either a \'string\' or \'uri\' field.'
+    );
   }
 }
 
-module.exports = FBSDKGraphRequestManager;
+module.exports = {
+  /**
+   * Starts a batch of Graph API requests using the same connection.
+   */
+  batchRequests(
+    requests: Array<FBSDKGraphRequest>,
+    callback: ?(error: ?Object) => void,
+    timeout: ?number
+  ) {
+    FBSDKNativeGraphRequestManager.addConnection((connectionID) => {
+      requests.forEach((request) => {
+        _verifyParameters(request);
+        FBSDKNativeGraphRequestManager.addRequestToConnection(
+          connectionID,
+          request,
+          request.batchParameters,
+          request.callback
+        );
+      });
+      FBSDKNativeGraphRequestManager.startConnection(
+        connectionID,
+        timeout,
+        callback
+      );
+    });
+  },
+};

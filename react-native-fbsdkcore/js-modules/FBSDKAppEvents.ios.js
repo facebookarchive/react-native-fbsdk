@@ -34,59 +34,60 @@ type FBSDKAppEventsFlushBehavior = $Enum<{
   'explicity-only': string,
 }>;
 
-/**
- * Client-side event logging for specialized application analytics.
- */
-class FBSDKAppEvents {
+module.exports = {
   /**
    * Logs an event.
-   *
-   * @param (string) eventName              - The name of the event to record.
-   * @param (?number) valueToSum            - Amount to be aggregated into all events of this eventName.
-   * @param (?Object) parameters            - Arbitrary parameter dictionary of characteristics.
-   * @param (?FBSDKAccessToken) accessToken - The optional access token to log the event as.
    */
-  static logEvent(eventName: string, valueToSum: ?number, parameters: ?Object, accessToken: ?FBSDKAccessToken) {
-    FBSDKAppEventsInterface.logEvent(eventName, valueToSum, parameters, accessToken);
-  }
+  logEvent(
+    eventName: string,
+    valueToSum: ?number,
+    parameters: ?Object,
+    accessToken: ?FBSDKAccessToken
+  ) {
+    FBSDKAppEventsInterface.logEvent(
+      eventName,
+      valueToSum,
+      parameters,
+      accessToken
+    );
+  },
 
   /**
    * Logs a purchase.
-   *
-   * @param (number) purchaseAmount         - Purchase amount to be logged, as expressed in the specified currency.
-   * @param (string) currency               - Currency, is denoted as, e.g. "USD", "EUR", "GBP". See ISO-4217 for
-   *                                          specific values.
-   * @param (?Object) parameters            - Arbitrary parameter dictionary of characteristics.
-   * @param (?FBSDKAccessToken) accessToken - The optional access token to log the event as.
    */
-  static logPurchase(purchaseAmount: number, currency: string, parameters: ?Object, accessToken: ?FBSDKAccessToken) {
-    FBSDKAppEventsInterface.logPurchase(purchaseAmount, currency, parameters, accessToken);
-  }
+  logPurchase(
+    purchaseAmount: number,
+    currency: string,
+    parameters: ?Object,
+    accessToken: ?FBSDKAccessToken
+  ) {
+    FBSDKAppEventsInterface.logPurchase(
+      purchaseAmount,
+      currency,
+      parameters,
+      accessToken
+    );
+  },
 
   /**
-   * Sets the current event flushing behavior specifying when events are sent back to Facebook servers.
-   *
-   * @param (FBSDKAppEventsFlushBehavior) flushBehavior - The desired behavior to use.
+   * Sets the current event flushing behavior specifying when events
+   * are sent back to Facebook servers.
    */
-  static setFlushBehavior(flushBehavior: FBSDKAppEventsFlushBehavior) {
+  setFlushBehavior(flushBehavior: FBSDKAppEventsFlushBehavior) {
     FBSDKAppEventsInterface.setFlushBehavior(flushBehavior);
-  }
+  },
 
   /**
    * Sets the override app ID for app event logging.
-   *
-   * @param (string) appID - The Facebook app ID to be used for App Event logging.
    */
-  static setLoggingOverrideAppID(appID: string) {
+  setLoggingOverrideAppID(appID: string) {
     FBSDKAppEventsInterface.setLoggingOverrideAppID(appID);
-  }
+  },
 
   /**
    * Explicitly kicks off flushing of events to Facebook.
    */
-  static flush() {
+  flush() {
     FBSDKAppEventsInterface.flush();
-  }
-}
-
-module.exports = FBSDKAppEvents;
+  },
+};

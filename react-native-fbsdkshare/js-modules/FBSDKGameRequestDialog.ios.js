@@ -26,29 +26,22 @@
 var FBSDKGameRequestDialogInterface = require('react-native').NativeModules.FBSDKGameRequestDialog;
 
 import type * as FBSDKGameRequestContent from '../js-models/FBSDKGameRequestContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
-/**
- * A dialog for sending game requests.
- */
-class FBSDKGameRequestDialog {
+module.exports = {
   /**
    * Shows the dialog using the specified content.
-   *
-   * @param (FBSDKGameRequestContent) content                    - The content to be shared.
-   * @param ((error: ?Object, result: ?Object) => void) callback - Called upon completion, error or cancellation of the dialog.
    */
-  static show(content: FBSDKGameRequestContent, callback: (error: ?Object, result: ?Object) => void): void {
+  show(content: FBSDKGameRequestContent, callback: FBSDKDialogCallback) {
     FBSDKGameRequestDialogInterface.show(content, callback);
-  }
+  },
 
   /**
    * Sets whether or not frictionless requests should be enabled.
-   *
-   * @param (boolean) frictionlessRequestsEnabled - Set to true if frictionless requests should be used, otherwise false
    */
-  static setFrictionlessRequestsEnabled(frictionlessRequestsEnabled: boolean): void {
-    FBSDKGameRequestDialogInterface.setFrictionlessRequestsEnabled(frictionlessRequestsEnabled);
-  }
-}
-
-module.exports = FBSDKGameRequestDialog;
+  setFrictionlessRequestsEnabled(enabled: boolean){
+    FBSDKGameRequestDialogInterface.setFrictionlessRequestsEnabled(enabled);
+  },
+};

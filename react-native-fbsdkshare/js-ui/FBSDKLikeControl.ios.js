@@ -105,5 +105,8 @@ var styles = StyleSheet.create({
   },
 });
 
-var RCTFBSDKLikeControl = requireNativeComponent('RCTFBSDKLikeControl', FBSDKLikeControl);
+var RCTFBSDKLikeControl = requireNativeComponent(
+  'RCTFBSDKLikeControl',
+  FBSDKLikeControl
+);
 module.exports = FBSDKLikeControl;
