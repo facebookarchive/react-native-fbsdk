@@ -45,11 +45,10 @@ FBSDKAppEvents.logPurchase(15, 'USD', null, null)
 A sample app is available from the [GitHub repository](https://github.com/facebook/react-native-fbsdk) for React Native FBSDK.
 
 ## Installation
-- Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios).
-- Follow the [getting started guide](https://developers.facebook.com/docs/ios/getting-started/) to link your project with the Facebook SDK frameworks and set up the app delegate. `FBSDKCoreKit.framework` must be added to the project.
-- run `npm install react-native-fbsdkcore`
-- Open the Xcode project for your app.
-- From Finder, drag the 'react-native-fbsdkcore' folder from node_modules into the XCode project navigator.
+- Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios). The Xcode project assumes that it's installed in the standard location at `~/Documents/FacebookSDK`.
+- Follow the [getting started guide](https://developers.facebook.com/docs/ios/getting-started/) to link your project with the Facebook SDK frameworks and set up the app delegate. `FBSDKCoreKit.framework` must be added to your app's Xcode project.
+- Add the `react-native-fbsdkcore` package to your app's dependencies in `package.json` and run `npm install`.
+- Add `RCTFBSDKCore.xcodeproj` from `node_modules/react-native-fbsdkcore` to your Xcode project navigator.
 
 ## License
 See the LICENSE file.

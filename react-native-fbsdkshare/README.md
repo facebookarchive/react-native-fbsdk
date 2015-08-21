@@ -1,4 +1,4 @@
-# react-native-fbsdkcore
+# react-native-fbsdkshare
 A wrapper around the functionality from FBSDKShareKit in the iOS Facebook SDK, supporting the share button, share dialogs, etc.
 
 ## Usage
@@ -64,10 +64,9 @@ A sample app is available from the [GitHub repository](https://github.com/facebo
 
 ## Installation
 - Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios).
-- Follow the [getting started guide](https://developers.facebook.com/docs/ios/getting-started/) to link your project with the Facebook SDK frameworks and set up the app delegate. `FBSDKCoreKit.framework` and `FBSDKShareKit.framework` must be added to the project.
-- run `npm install react-native-fbsdkshare`
-- Open the Xcode project for your app.
-- From Finder, drag the 'react-native-fbsdkshare' folder from node_modules into the XCode project navigator.
+- Follow the [getting started guide](https://developers.facebook.com/docs/ios/getting-started/) to link your app's project with the Facebook SDK frameworks and set up the app delegate. `FBSDKCoreKit.framework` and `FBSDKShareKit.framework` must be added to your app's Xcode project.
+- Add the `react-native-fbsdkcore` package to your app's dependencies in `package.json` and run `npm install`.
+- Add `RCTFBSDKShare.xcodeproj` from `node_modules/react-native-fbsdkshare` to your Xcode project navigator.
 
 ## License
 See the LICENSE file.
