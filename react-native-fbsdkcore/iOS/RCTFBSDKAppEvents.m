@@ -41,7 +41,7 @@ RCT_EXPORT_MODULE();
 #pragma mark - React Native Methods
 
 RCT_EXPORT_METHOD(logEvent:(NSString *)eventName
-                valueToSum:(NSNumber *)valueToSum
+                valueToSum:(nonnull NSNumber *)valueToSum
                 parameters:(NSDictionary *)parameters
                accessToken:(FBSDKAccessToken *)accessToken)
 {
