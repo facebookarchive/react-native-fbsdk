@@ -25,6 +25,16 @@
 
 var FBSDKAccessTokenInterface = require('react-native').NativeModules.FBSDKAccessToken;
 
+type AccessTokenDict = {
+  tokenString: string;
+  permissions: Array<string>;
+  declinedPermissions: Array<string>;
+  appID: string;
+  userID: string;
+  _expirationDate: number;
+  _refreshDate: number;
+};
+
 /*
  * Represents an immutable access token for using Facebook services.
  */
@@ -60,23 +70,15 @@ class FBSDKAccessToken {
 
   /*
    * Constructs a new FBSDKAccessToken object.
-   *
-   * @param (string) tokenString                - The opaque token string.
-   * @param (Array<string>) permissions         - The known granted permissions
-   * @param (Array<string>) declinedPermissions - The known declined permissions
-   * @param (string) appID                      - The app ID.
-   * @param (string) userID                     - The user ID.
-   * @param (Date) expirationDate               - The expiration date.
-   * @param (Date) refreshDate                  - The date the token was last refreshed.
    */
-  constructor(tokenString: string, permissions: Array<string>, declinedPermissions: Array<string>, appID: string, userID: string, expirationDate: Date, refreshDate: Date) {
-    this.tokenString = tokenString;
-    this.permissions = permissions;
-    this.declinedPermissions = declinedPermissions;
-    this.appID = appID;
-    this.userID = userID;
-    this._expirationDate = expirationDate.getTime();
-    this._refreshDate = refreshDate.getTime();
+  constructor(tokenDict: AccessTokenDict) {
+    this.tokenString = tokenDict.tokenString;
+    this.permissions = tokenDict.permissions;
+    this.declinedPermissions = tokenDict.declinedPermissions;
+    this.appID = tokenDict.appID;
+    this.userID = tokenDict.userID;
+    this._expirationDate = tokenDict._expirationDate;
+    this._refreshDate = tokenDict._refreshDate;
     // This object should be immutable after creation.
     Object.freeze(this);
   }
@@ -86,7 +88,7 @@ class FBSDKAccessToken {
    *
    * @returns - Expiration date of the token.
    */
-  expirationDate(): Date {
+  getExpirationDate(): Date {
     return new Date(this._expirationDate);
   }
 
@@ -95,7 +97,7 @@ class FBSDKAccessToken {
    *
    * @returns - Refresh date of the token.
    */
-  refreshDate(): Date {
+  getRefreshDate(): Date {
     return new Date(this._refreshDate);
   }
 
@@ -107,12 +109,7 @@ class FBSDKAccessToken {
    * @returns - true if permission has been granted, otherwise false
    */
   hasGrantedPermission(permission: string): boolean {
-    for (var i = 0; i < this.permissions.length; i++) {
-      if (this.permissions[i] === permission) {
-        return true;
-      }
-    }
-    return false;
+    return this.permissions.some((perm) => perm === permission);
   }
 
   /*
@@ -122,19 +119,7 @@ class FBSDKAccessToken {
    */
   static getCurrentAccessToken(callback: (token: ?FBSDKAccessToken) => void) {
     FBSDKAccessTokenInterface.getCurrentAccessToken((tokenDict) => {
-      if (tokenDict) {
-        var convertedToken = new FBSDKAccessToken(
-          tokenDict.tokenString,
-          tokenDict.permissions,
-          tokenDict.declinedPermissions,
-          tokenDict.appID,
-          tokenDict.userID,
-          new Date(tokenDict._expirationDate),
-          new Date(tokenDict._refreshDate));
-        callback(convertedToken);
-      } else {
-        callback(null);
-      }
+      callback(tokenDict ? new FBSDKAccessToken(tokenDict) : null);
     });
   }
 
@@ -142,7 +127,6 @@ class FBSDKAccessToken {
    * Sets the current access token to the one provided.
    *
    * @param (FBSDKAccessToken) token  - An access token.
-   * @param (() => void) callback     - Called upon setting of the access token.
    */
   static setCurrentAccessToken(token: FBSDKAccessToken) {
     FBSDKAccessTokenInterface.setCurrentAccessToken(token);

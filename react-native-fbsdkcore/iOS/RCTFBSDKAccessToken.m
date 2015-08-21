@@ -36,19 +36,8 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(getCurrentAccessToken:(RCTResponseSenderBlock)callback)
 {
   FBSDKAccessToken *currentToken = [FBSDKAccessToken currentAccessToken];
-  NSDictionary *token = nil;
-  if (currentToken) {
-    token = @{
-      @"tokenString": currentToken.tokenString,
-      @"permissions": currentToken.permissions.allObjects,
-      @"declinedPermissions": currentToken.declinedPermissions.allObjects,
-      @"appID": currentToken.appID,
-      @"userID": currentToken.userID,
-      @"_expirationDate": @(currentToken.expirationDate.timeIntervalSince1970 * 1000),
-      @"_refreshDate": @(currentToken.refreshDate.timeIntervalSince1970 * 1000),
-    };
-  }
-  callback(@[RCTNullIfNil(token)]);
+  NSDictionary *tokenDict = RCTBuildAccessTokenDict(currentToken);
+  callback(@[RCTNullIfNil(tokenDict)]);
 }
 
 RCT_EXPORT_METHOD(setCurrentAccessToken:(FBSDKAccessToken *)token)
@@ -64,6 +53,22 @@ RCT_EXPORT_METHOD(refreshCurrentAccessToken:(RCTResponseSenderBlock)callback)
 }
 
 #pragma mark - Helper Functions
+
+static NSDictionary *RCTBuildAccessTokenDict(FBSDKAccessToken *token)
+{
+  if (!token) {
+    return nil;
+  }
+  return @{
+    @"tokenString": token.tokenString,
+    @"permissions": token.permissions.allObjects,
+    @"declinedPermissions": token.declinedPermissions.allObjects,
+    @"appID": token.appID,
+    @"userID": token.userID,
+    @"_expirationDate": @(token.expirationDate.timeIntervalSince1970 * 1000),
+    @"_refreshDate": @(token.refreshDate.timeIntervalSince1970 * 1000),
+  };
+}
 
 static NSDictionary *RCTBuildResponseDictionary(NSError *error, id results)
 {
