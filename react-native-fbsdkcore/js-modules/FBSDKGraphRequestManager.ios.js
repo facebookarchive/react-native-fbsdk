@@ -23,8 +23,6 @@
 
 'use strict';
 
-var invariant = require('invariant');
-
 var FBSDKNativeGraphRequestManager = require('react-native').NativeModules.FBSDKGraphRequestManager;
 
 import type * as FBSDKGraphRequest from './FBSDKGraphRequest.ios.js';
@@ -53,17 +51,14 @@ class FBSDKGraphRequestManager {
 
   static _verifyParameters(request: FBSDKGraphRequest): void {
     for (var key in request.parameters) {
-      var parameter = request.parameters[key];
-      invariant(
-        typeof parameter === 'object',
-        'Expected parameter ' + JSON.stringify(parameter) + ' to be an object.'
-      );
-      if (typeof parameter === 'object') {
-        invariant(
-          parameter.string || parameter.uri,
-          'Expected parameter ' + JSON.stringify(parameter) + ' to have string or uri fields.'
-        );
+      var param = request.parameters[key];
+      if (typeof param === 'object' && (param.string || param.uri)) {
+        continue;
       }
+      throw new Error(
+        'Unexpected value for parameter \'' + key + '\'. Request parameters ' +
+        'need to be objects with either a \'string\' or \'uri\' field.'
+      );
     }
   }
 }
