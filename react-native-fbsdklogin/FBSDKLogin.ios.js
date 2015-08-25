@@ -23,7 +23,7 @@
 'use strict';
 
 // Login UI components
-exports.FBSDKLoginButton = require('./js-ui/FBSDKLoginButton.ios.js');
+exports.FBSDKLoginButton = require('./js/FBSDKLoginButton.ios.js');
 
 // Login native modules
-exports.FBSDKLoginManager = require('./js-modules/FBSDKLoginManager.ios.js');
+exports.FBSDKLoginManager = require('./js/FBSDKLoginManager.ios.js');

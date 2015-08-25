@@ -22,26 +22,15 @@
 
 'use strict';
 
-var FBSDKMessageDialogInterface = require('react-native').NativeModules.FBSDKMessageDialog;
+var FBSDKAppInviteDialogInterface = require('react-native').NativeModules.FBSDKAppInviteDialog;
 
-import type * as FBSDKSharingContent from '../js-models/FBSDKSharingContent.ios.js';
+import type * as FBSDKAppInviteContent from './models/FBSDKAppInviteContent.ios.js'
 import type {
   FBSDKDialogCallback,
 } from './FBSDKShareTypes.ios.js';
 
 module.exports = {
-  /**
-   * Shows the dialog using the specified content.
-   */
-  show(content: FBSDKSharingContent, callback: FBSDKDialogCallback) {
-    FBSDKMessageDialogInterface.show(content, callback);
-  },
-
-  /**
-   * Sets whether or not the native share dialog should fail when it
-   * encounters a data error.
-   */
-  setShouldFailOnDataError(shouldFailOnDataError: boolean) {
-    FBSDKMessageDialogInterface.shouldFailOnDataError(shouldFailOnDataError);
+  show(content: FBSDKAppInviteContent, callback: FBSDKDialogCallback) {
+    FBSDKAppInviteDialogInterface.show(content, callback);
   },
 };

@@ -22,48 +22,15 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
-  requireNativeComponent,
-  StyleSheet,
-} = React;
+var FBSDKAppGroupAddDialogInterface = require('react-native').NativeModules.FBSDKAppGroupAddDialog;
 
-var FBSDKSharingContent = require('../js-models/FBSDKSharingContent.ios.js');
+import type * as FBSDKAppGroupAddContent from './models/FBSDKAppGroupAddContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
-/**
- * A button to share content.
- */
-class FBSDKShareButton extends React.Component {
-  render() {
-    return (
-      <RCTFBSDKShareButton
-        {...this.props}
-        style={this.props.style || styles.fbsdkShareButton}
-      />
-    );
-  }
-}
-
-FBSDKShareButton.propTypes = {
-  /**
-   * The content to be shared.
-   */
-  shareContent: React.PropTypes.instanceOf(FBSDKSharingContent),
-};
-
-var styles = StyleSheet.create({
-  /**
-   * Default styling for the share button
-   */
-  fbsdkShareButton: {
-    width: 100,
-    height: 25,
+module.exports = {
+  show(content: FBSDKAppGroupAddContent, callback: FBSDKDialogCallback) {
+    FBSDKAppGroupAddDialogInterface.show(content, callback);
   },
-});
-
-var RCTFBSDKShareButton = requireNativeComponent(
-  'RCTFBSDKShareButton',
-  FBSDKShareButton
-);
-
-module.exports = FBSDKShareButton;
+};

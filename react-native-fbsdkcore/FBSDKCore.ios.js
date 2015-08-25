@@ -23,7 +23,7 @@
 'use strict';
 
 // Core modules
-exports.FBSDKAccessToken = require('./js-modules/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js-modules/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js-modules/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js-modules/FBSDKGraphRequestManager.ios.js');
+exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
+exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
+exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
+exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');

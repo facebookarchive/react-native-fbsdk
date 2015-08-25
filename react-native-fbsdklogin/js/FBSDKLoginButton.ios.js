@@ -32,7 +32,7 @@ import type {
   FBSDKLoginCallback,
   FBSDKLoginBehavior,
   FBSDKDefaultAudience,
-} from '../js-modules/FBSDKLoginManager.ios.js';
+} from './FBSDKLoginManager.ios.js';
 
 type FBSDKLoginButtonProps = {
   readPermissions: Array<string>;

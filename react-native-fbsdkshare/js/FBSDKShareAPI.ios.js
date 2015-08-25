@@ -22,15 +22,34 @@
 
 'use strict';
 
-var FBSDKAppInviteDialogInterface = require('react-native').NativeModules.FBSDKAppInviteDialog;
+var FBSDKShareAPIInterface = require('react-native').NativeModules.FBSDKShareAPI;
 
-import type * as FBSDKAppInviteContent from '../js-models/FBSDKAppInviteContent.ios.js'
-import type {
-  FBSDKDialogCallback,
-} from './FBSDKShareTypes.ios.js';
+import type * as FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
+import type * as FBSDKShareOpenGraphObject from './models/FBSDKShareOpenGraphObject.ios.js';
+type FBSDKShareAPICallback = (error: ?Object, result: ?Object) => void;
 
 module.exports = {
-  show(content: FBSDKAppInviteContent, callback: FBSDKDialogCallback) {
-    FBSDKAppInviteDialogInterface.show(content, callback);
+  /**
+   * Shares the specified content.
+   * NOTE: Only one share action can be performed at a time.
+   */
+  share(
+    content: FBSDKSharingContent,
+    graphNode: string,
+    message: string,
+    callback: FBSDKShareAPICallback
+  ) {
+    FBSDKShareAPIInterface.share(content, graphNode, message, callback);
+  },
+
+  /**
+   * Creates a User Owned Open Graph object without an action.
+   * NOTE: Only one share action can be performed at a time.
+   */
+  createOpenGraphObject(
+    openGraphObject: FBSDKShareOpenGraphObject,
+    callback: FBSDKShareAPICallback
+  ) {
+    FBSDKShareAPIInterface.createOpenGraphObject(openGraphObject, callback);
   },
 };

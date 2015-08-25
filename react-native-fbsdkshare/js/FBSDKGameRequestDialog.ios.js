@@ -22,48 +22,25 @@
 
 'use strict';
 
-var React = require('react-native');
-var {
-  requireNativeComponent,
-  StyleSheet,
-} = React;
+var FBSDKGameRequestDialogInterface = require('react-native').NativeModules.FBSDKGameRequestDialog;
 
-var FBSDKSharingContent = require('../js-models/FBSDKSharingContent.ios.js');
+import type * as FBSDKGameRequestContent from './models/FBSDKGameRequestContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
-/**
- * A button to send content through Messenger.
- */
-class FBSDKSendButton extends React.Component {
-  render() {
-    return (
-      <RCTFBSDKSendButton
-        {...this.props}
-        style={[styles.fbsdkSendButton, this.props.style]}
-      />
-    );
-  }
-}
-
-FBSDKSendButton.propTypes = {
+module.exports = {
   /**
-   * The content to be shared.
+   * Shows the dialog using the specified content.
    */
-  shareContent: React.PropTypes.instanceOf(FBSDKSharingContent),
-};
-
-var styles = StyleSheet.create({
-  /**
-   * Default styling for the send button
-   */
-  fbsdkSendButton: {
-    width: 100,
-    height: 25,
+  show(content: FBSDKGameRequestContent, callback: FBSDKDialogCallback) {
+    FBSDKGameRequestDialogInterface.show(content, callback);
   },
-});
 
-var RCTFBSDKSendButton = requireNativeComponent(
-  'RCTFBSDKSendButton',
-  FBSDKSendButton
-);
-
-module.exports = FBSDKSendButton;
+  /**
+   * Sets whether or not frictionless requests should be enabled.
+   */
+  setFrictionlessRequestsEnabled(enabled: boolean){
+    FBSDKGameRequestDialogInterface.setFrictionlessRequestsEnabled(enabled);
+  },
+};

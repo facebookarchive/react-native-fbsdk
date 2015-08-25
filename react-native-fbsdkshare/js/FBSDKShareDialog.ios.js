@@ -24,7 +24,7 @@
 
 var FBSDKShareDialogInterface = require('react-native').NativeModules.FBSDKShareDialog;
 
-import type * as FBSDKSharingContent from '../js-models/FBSDKSharingContent.ios.js';
+import type * as FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
 import type {
   FBSDKDialogCallback,
 } from './FBSDKShareTypes.ios.js';

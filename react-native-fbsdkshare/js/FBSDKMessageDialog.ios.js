@@ -22,34 +22,26 @@
 
 'use strict';
 
-var FBSDKShareAPIInterface = require('react-native').NativeModules.FBSDKShareAPI;
+var FBSDKMessageDialogInterface = require('react-native').NativeModules.FBSDKMessageDialog;
 
-import type * as FBSDKSharingContent from '../js-models/FBSDKSharingContent.ios.js';
-import type * as FBSDKShareOpenGraphObject from '../js-models/FBSDKShareOpenGraphObject.ios.js';
-type FBSDKShareAPICallback = (error: ?Object, result: ?Object) => void;
+import type * as FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
 
 module.exports = {
   /**
-   * Shares the specified content.
-   * NOTE: Only one share action can be performed at a time.
+   * Shows the dialog using the specified content.
    */
-  share(
-    content: FBSDKSharingContent,
-    graphNode: string,
-    message: string,
-    callback: FBSDKShareAPICallback
-  ) {
-    FBSDKShareAPIInterface.share(content, graphNode, message, callback);
+  show(content: FBSDKSharingContent, callback: FBSDKDialogCallback) {
+    FBSDKMessageDialogInterface.show(content, callback);
   },
 
   /**
-   * Creates a User Owned Open Graph object without an action.
-   * NOTE: Only one share action can be performed at a time.
+   * Sets whether or not the native share dialog should fail when it
+   * encounters a data error.
    */
-  createOpenGraphObject(
-    openGraphObject: FBSDKShareOpenGraphObject,
-    callback: FBSDKShareAPICallback
-  ) {
-    FBSDKShareAPIInterface.createOpenGraphObject(openGraphObject, callback);
+  setShouldFailOnDataError(shouldFailOnDataError: boolean) {
+    FBSDKMessageDialogInterface.shouldFailOnDataError(shouldFailOnDataError);
   },
 };
