@@ -72,7 +72,7 @@ Run `npm install --save react-native-fbsdklogin` to add the package to your app'
 You'll then also have to add the native iOS code to your app's Xcode project:
 - Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios). The Xcode project assumes that it's installed in the standard location at `~/Documents/FacebookSDK`.
 - Follow the [Getting Started guide](https://developers.facebook.com/docs/ios/getting-started/) to link your project with the Facebook SDK frameworks and set up the app delegate. `FBSDKLoginKit.framework` must be added to your app's Xcode project.
-- Add `RCTFBSDKLogin.xcodeproj` from `node_modules/react-native-fbsdklogin` to your Xcode project navigator.
+- Add `RCTFBSDKLogin.xcodeproj` from `node_modules/react-native-fbsdklogin` to your app's Xcode project. Follow the [Linking Libraries (iOS) guide](http://facebook.github.io/react-native/docs/linking-libraries-ios.html) to make sure it's added correctly to your project's build targets.
 
 ### CocoaPods
 
