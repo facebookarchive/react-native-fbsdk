@@ -161,10 +161,19 @@ FBSDKShareAPI.share(photoContent, "/me", "Check out this cat!", (error, result) 
 ```
 
 ## Running the Sample App
-- From the Sample folder, run `npm install`
+
+### Without CocoaPods
+
+- From the `Sample/` folder, run `npm install`
 - Download and install the [Facebook SDK for iOS](https://developers.facebook.com/docs/ios). The Xcode projects assume that they're installed in the standard location at `~/Documents/FacebookSDK`.
 - Open `NHSample.xcodeproj`
 - Build and run the app to try it out.
+
+### With CocoaPods
+
+- From the `Sample/` folder, run `npm install` followed by `pod install`
+- Open `NHSample-CocoaPods.xcworkspace`
+- Build an run the app to try it out. Ensure the target you're building is the `NHSample` app and not just one of the libraries.
 
 ## Installation
 
