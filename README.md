@@ -204,7 +204,7 @@ Download and install the [Facebook SDK for iOS](https://developers.facebook.com/
 Add any of the following Xcode projects to your app's Xcode project:
 - `node_modules/react-native-fbsdkcore/RCTFBSDKCore.xcodeproj`
 - `node_modules/react-native-fbsdklogin/RCTFBSDKLogin.xcodeproj`
-- `node_modules/react-native-fbsdkshare/RCTFBSDKShare.xcodeproj`]
+- `node_modules/react-native-fbsdkshare/RCTFBSDKShare.xcodeproj`
 Follow the [Linking Libraries (iOS) guide](http://facebook.github.io/react-native/docs/linking-libraries-ios.html) for each of them to make sure they're added correctly to your project's build targets.
 
 #### Option: Manually add files to Xcode
