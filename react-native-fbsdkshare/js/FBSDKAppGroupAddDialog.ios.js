@@ -22,8 +22,15 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKAppGroupAddDialogInterface = require('react-native').NativeModules.FBSDKAppGroupAddDialog;
+
+import type * as FBSDKAppGroupAddContent from './models/FBSDKAppGroupAddContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
+
+module.exports = {
+  show(content: FBSDKAppGroupAddContent, callback: FBSDKDialogCallback) {
+    FBSDKAppGroupAddDialogInterface.show(content, callback);
+  },
+};

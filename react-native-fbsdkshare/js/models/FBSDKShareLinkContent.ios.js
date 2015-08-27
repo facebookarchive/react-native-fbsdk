@@ -22,8 +22,44 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKSharingContent = require('./FBSDKSharingContent.ios.js');
+
+/**
+ * A model for status and link content to be shared.
+ */
+class FBSDKShareLinkContent extends FBSDKSharingContent {
+  /**
+   * The Description of the link.
+   * If not specified, this field is automatically populated by information scraped
+   * from the contentURL,  typically the title of the page.
+   */
+  contentDescription: ?string;
+
+  /**
+   * The title to display for this link.
+   */
+  contentTitle: ?string;
+
+  /**
+   * The URL of a picture to attach to this comment.
+   */
+  imageURL: ?string;
+
+  /**
+   * Constructs a new FBSDKShareLinkContent object.
+   */
+  constructor(
+    contentURL: string,
+    contentDescription: ?string,
+    contentTitle: ?string,
+    imageURL: ?string
+  ) {
+    super('link');
+    this.contentURL = contentURL;
+    this.contentDescription = contentDescription;
+    this.contentTitle = contentTitle;
+    this.imageURL = imageURL;
+  }
+}
+
+module.exports = FBSDKShareLinkContent;

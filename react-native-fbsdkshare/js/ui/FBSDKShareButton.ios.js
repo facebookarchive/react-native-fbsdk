@@ -22,8 +22,48 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var React = require('react-native');
+var {
+  requireNativeComponent,
+  StyleSheet,
+} = React;
+
+var FBSDKSharingContent = require('../models/FBSDKSharingContent.ios.js');
+
+/**
+ * A button to share content.
+ */
+class FBSDKShareButton extends React.Component {
+  render() {
+    return (
+      <RCTFBSDKShareButton
+        {...this.props}
+        style={this.props.style || styles.fbsdkShareButton}
+      />
+    );
+  }
+}
+
+FBSDKShareButton.propTypes = {
+  /**
+   * The content to be shared.
+   */
+  shareContent: React.PropTypes.instanceOf(FBSDKSharingContent),
+};
+
+var styles = StyleSheet.create({
+  /**
+   * Default styling for the share button
+   */
+  fbsdkShareButton: {
+    width: 100,
+    height: 25,
+  },
+});
+
+var RCTFBSDKShareButton = requireNativeComponent(
+  'RCTFBSDKShareButton',
+  FBSDKShareButton
+);
+
+module.exports = FBSDKShareButton;

@@ -22,8 +22,34 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+/**
+ * A model for app invites.
+ */
+class FBSDKAppInviteContent {
+  /**
+   * A URL to a preview image that will be displayed with the app invite.
+   * This is optional. If you don't include it, a fallback image will be used.
+   */
+  appInvitePreviewImageURL: string;
+
+  /**
+   * An app link target that will be used as a target when the user accepts the invite.
+   */
+  appLinkURL: string;
+
+  /**
+   * Constructs a new app invite content object.
+   *
+   * The `appLinkURL` parameter specifies an app link target that will
+   * be used as a target when the user accepts the invite.
+   *
+   * The `appInvitePreviewImageURL` specifies a URL to a preview image
+   * that will be displayed with the app invite.
+   */
+  constructor(appLinkURL: string, appInvitePreviewImageURL: string) {
+    this.appInvitePreviewImageURL = appInvitePreviewImageURL;
+    this.appLinkURL = appLinkURL;
+  }
+}
+
+module.exports = FBSDKAppInviteContent;

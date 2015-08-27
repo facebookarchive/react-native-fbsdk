@@ -17,13 +17,23 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *
+* @provides FBSDKAppGroupJoinDialog
 * @flow
 */
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKAppGroupJoinDialogInterface = require('react-native').NativeModules.FBSDKAppGroupJoinDialog;
+
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
+
+module.exports = {
+  /**
+   * Shows the dialog using the specified group ID.
+   */
+  show(groupID: string, callback: FBSDKDialogCallback) {
+    FBSDKAppGroupJoinDialogInterface.show(groupID, callback);
+  },
+};

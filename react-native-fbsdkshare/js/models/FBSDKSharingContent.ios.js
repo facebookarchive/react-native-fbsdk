@@ -22,8 +22,44 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+type FBSDKShareContentType = 'link' | 'photo' | 'video' | 'open-graph';
+
+/**
+ * A base interface for content to be shared.
+ */
+class FBSDKSharingContent {
+  /**
+   * The type of content to be shared. eg. linkContent, photoContent, etc.
+   */
+  contentType: FBSDKShareContentType;
+
+  /**
+   * URL for the content being shared.
+   */
+  contentURL: string;
+
+  /**
+   * List of IDs for taggable people to tag with this content.
+   */
+  peopleIDs: Array<string>;
+
+  /**
+   * The ID for a place to tag with this content.
+   */
+  placeID: string;
+
+  /**
+   * A value to be added to the referrer URL when a person follows a link from
+   * this shared content on feed.
+   */
+  ref: string;
+
+  /**
+   * Constructs an FBSDKSharingContent object.
+   */
+  constructor(contentType: FBSDKShareContentType) {
+    this.contentType = contentType;
+  }
+}
+
+module.exports = FBSDKSharingContent;

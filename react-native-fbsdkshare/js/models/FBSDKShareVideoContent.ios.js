@@ -22,8 +22,31 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKSharingContent = require('./FBSDKSharingContent.ios.js');
+import type * as FBSDKShareVideo from './FBSDKShareVideo.ios.js';
+import type * as FBSDKSharePhoto from './FBSDKSharePhoto.ios.js';
+
+/**
+ * A model for video content to be shared.
+ */
+class FBSDKShareVideoContent extends FBSDKSharingContent {
+  /**
+   * Video to be shared.
+   */
+  video: FBSDKShareVideo;
+
+  /**
+   * The photo that represents the video.
+   */
+  previewPhoto: FBSDKSharePhoto;
+
+  /**
+   * Constructs an FBSDKShareVideoContent object.
+   */
+  constructor(video: FBSDKShareVideo) {
+    super('video');
+    this.video = video;
+  }
+}
+
+module.exports = FBSDKShareVideoContent;

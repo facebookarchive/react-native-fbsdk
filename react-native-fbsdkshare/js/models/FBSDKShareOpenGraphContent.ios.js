@@ -22,8 +22,34 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKSharingContent = require('./FBSDKSharingContent.ios.js');
+import type * as FBSDKShareOpenGraphAction from './FBSDKShareOpenGraphAction.ios.js';
+
+/**
+ * Represents a content object containing information about an Open Graph Action.
+ */
+class FBSDKShareOpenGraphContent extends FBSDKSharingContent {
+  /**
+   * Open Graph Action to be shared.
+   */
+  action: FBSDKShareOpenGraphAction;
+
+  /**
+   * Property name that points to the primary Open Graph Object in the action.
+   */
+  previewPropertyName: string;
+
+  /**
+   * Constructs a content object representing an Open Graph Action for sharing.
+   *
+   * The `previewPropertyName` parameter is a property name that
+   * points to the primary Open Graph Object in the action.
+   */
+  constructor(action: FBSDKShareOpenGraphAction, previewPropertyName: string) {
+    super('open-graph');
+    this.action = action;
+    this.previewPropertyName = previewPropertyName;
+  }
+}
+
+module.exports = FBSDKShareOpenGraphContent;

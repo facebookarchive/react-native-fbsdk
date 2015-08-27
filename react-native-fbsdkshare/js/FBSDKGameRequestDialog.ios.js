@@ -22,8 +22,25 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKGameRequestDialogInterface = require('react-native').NativeModules.FBSDKGameRequestDialog;
+
+import type * as FBSDKGameRequestContent from './models/FBSDKGameRequestContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
+
+module.exports = {
+  /**
+   * Shows the dialog using the specified content.
+   */
+  show(content: FBSDKGameRequestContent, callback: FBSDKDialogCallback) {
+    FBSDKGameRequestDialogInterface.show(content, callback);
+  },
+
+  /**
+   * Sets whether or not frictionless requests should be enabled.
+   */
+  setFrictionlessRequestsEnabled(enabled: boolean){
+    FBSDKGameRequestDialogInterface.setFrictionlessRequestsEnabled(enabled);
+  },
+};

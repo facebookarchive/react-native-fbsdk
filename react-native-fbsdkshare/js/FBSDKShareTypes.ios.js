@@ -17,13 +17,17 @@
 * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *
+* @provides FBSDKShareTypes
 * @flow
 */
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+export type FBSDKShareDialogResult = {
+  isCancelled?: boolean;
+};
+
+export type FBSDKDialogCallback = (
+  error: ?Object,
+  result: ?FBSDKShareDialogResult
+) => void;

@@ -22,8 +22,26 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKMessageDialogInterface = require('react-native').NativeModules.FBSDKMessageDialog;
+
+import type * as FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
+import type {
+  FBSDKDialogCallback,
+} from './FBSDKShareTypes.ios.js';
+
+module.exports = {
+  /**
+   * Shows the dialog using the specified content.
+   */
+  show(content: FBSDKSharingContent, callback: FBSDKDialogCallback) {
+    FBSDKMessageDialogInterface.show(content, callback);
+  },
+
+  /**
+   * Sets whether or not the native share dialog should fail when it
+   * encounters a data error.
+   */
+  setShouldFailOnDataError(shouldFailOnDataError: boolean) {
+    FBSDKMessageDialogInterface.shouldFailOnDataError(shouldFailOnDataError);
+  },
+};

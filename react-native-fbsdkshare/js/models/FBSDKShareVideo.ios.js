@@ -22,8 +22,21 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+/**
+ * A video for sharing.
+ */
+class FBSDKShareVideo {
+  /**
+   * The URL to the video, must be an asset URL.
+   */
+  videoURL: string;
+
+  /**
+   * Constructs an FBSDKShareVideo object.
+   */
+  constructor(videoURL: string) {
+    this.videoURL = videoURL;
+  }
+}
+
+module.exports = FBSDKShareVideo;

@@ -22,8 +22,48 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var React = require('react-native');
+var {
+  requireNativeComponent,
+  StyleSheet,
+} = React;
+
+var FBSDKSharingContent = require('../models/FBSDKSharingContent.ios.js');
+
+/**
+ * A button to send content through Messenger.
+ */
+class FBSDKSendButton extends React.Component {
+  render() {
+    return (
+      <RCTFBSDKSendButton
+        {...this.props}
+        style={[styles.fbsdkSendButton, this.props.style]}
+      />
+    );
+  }
+}
+
+FBSDKSendButton.propTypes = {
+  /**
+   * The content to be shared.
+   */
+  shareContent: React.PropTypes.instanceOf(FBSDKSharingContent),
+};
+
+var styles = StyleSheet.create({
+  /**
+   * Default styling for the send button
+   */
+  fbsdkSendButton: {
+    width: 100,
+    height: 25,
+  },
+});
+
+var RCTFBSDKSendButton = requireNativeComponent(
+  'RCTFBSDKSendButton',
+  FBSDKSendButton
+);
+
+module.exports = FBSDKSendButton;

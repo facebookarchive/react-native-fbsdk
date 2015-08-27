@@ -22,8 +22,21 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKShareOpenGraphValueContainer = require('./FBSDKShareOpenGraphValueContainer.ios.js');
+
+/**
+ * Represents an open graph action.
+ */
+class FBSDKShareOpenGraphAction extends FBSDKShareOpenGraphValueContainer {
+  /**
+   * The action type.
+   */
+  actionType: string;
+
+  constructor(actionType: string) {
+    super(null);
+    this.actionType = actionType;
+  }
+}
+
+module.exports = FBSDKShareOpenGraphAction;

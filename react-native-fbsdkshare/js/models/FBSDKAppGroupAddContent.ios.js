@@ -22,8 +22,42 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+/**
+ * Specifies the privacy of a group.
+ */
+type FBSDKAppGroupPrivacy =
+  // Anyone can see the group, who's in in and what members post.
+  'open' |
+  // Anyone can see the group and who's in it, but only members can see posts.
+  'closed';
+
+/**
+ * A model for creating an app group.
+ */
+class FBSDKAppGroupAddContent {
+  /**
+   * The description of the group.
+   */
+  groupDescription: string;
+
+  /**
+   * The name of the group.
+   */
+  name: string;
+
+  /**
+   * The privacy for the group.
+   */
+  privacy: FBSDKAppGroupPrivacy;
+
+  /**
+   * Construct a new FBSDKAppGroupAddContent object.
+   */
+  constructor(groupDescr: string, name: string, privacy: FBSDKAppGroupPrivacy) {
+    this.groupDescription = groupDescr;
+    this.name = name;
+    this.privacy = privacy;
+  }
+}
+
+module.exports = FBSDKAppGroupAddContent;

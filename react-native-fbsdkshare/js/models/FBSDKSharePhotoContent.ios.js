@@ -22,8 +22,25 @@
 
 'use strict';
 
-// Core modules
-exports.FBSDKAccessToken = require('./js/FBSDKAccessToken.ios.js');
-exports.FBSDKAppEvents = require('./js/FBSDKAppEvents.ios.js');
-exports.FBSDKGraphRequest = require('./js/FBSDKGraphRequest.ios.js');
-exports.FBSDKGraphRequestManager = require('./js/FBSDKGraphRequestManager.ios.js');
+var FBSDKSharingContent = require('./FBSDKSharingContent.ios.js');
+import type * as FBSDKSharePhoto from './FBSDKSharePhoto.ios.js';
+
+/**
+ * A model for photo content to be shared.
+ */
+class FBSDKSharePhotoContent extends FBSDKSharingContent {
+  /**
+   * Photos to be shared.
+   */
+  photos: Array<FBSDKSharePhoto>;
+
+  /**
+   * Constructs an FBSDKSharePhotoContent object.
+   */
+  constructor(photos: Array<FBSDKSharePhoto>) {
+    super('photo');
+    this.photos = photos;
+  }
+}
+
+module.exports = FBSDKSharePhotoContent;
