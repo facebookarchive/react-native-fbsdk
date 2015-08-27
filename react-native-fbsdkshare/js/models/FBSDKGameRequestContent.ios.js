@@ -30,16 +30,15 @@ class FBSDKGameRequestContent {
    * Used when defining additional context about the nature of the request.
    * The parameter 'objectID' is required if the action type is either 'send' or 'ask-for'.
    */
-  actionType: $Enum<{
+  actionType:
     // No action type.
-    'none': string,
+    'none' |
     // The user is sending an object to their friends.
-    'send': string,
+    'send' |
     // The user is asking for an object from friends.
-    'ask-for': string,
+    'ask-for' |
     // It is the turn of the friends to play against the user in a match.
-    'turn': string,
-  }>;
+    'turn';
 
   /**
    * Additional freeform data you may pass for tracking. The maximum length is 255 characters.
@@ -49,14 +48,13 @@ class FBSDKGameRequestContent {
   /**
    * Controls the set of friends someone sees if a multi-friend selector is shown.
    */
-  filters: $Enum<{
+  filters:
     // No filter, all friends can be displayed.
-    'none': string,
+    'none' |
     // Friends using the app can be displayed.
-    'app-users': string,
+    'app-users' |
     // Friends not using the app can be displayed.
-    'app-non-users': string,
-  }>;
+    'app-non-users';
 
   /**
    * A plain-text message to be sent as part of the request.  Required.

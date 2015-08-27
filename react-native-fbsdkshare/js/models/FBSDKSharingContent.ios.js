@@ -22,12 +22,7 @@
 
 'use strict';
 
-type FBSDKShareContentType = $Enum<{
-  'link': string,
-  'photo': string,
-  'video': string,
-  'open-graph': string,
-}>;
+type FBSDKShareContentType = 'link' | 'photo' | 'video' | 'open-graph';
 
 /**
  * A base interface for content to be shared.

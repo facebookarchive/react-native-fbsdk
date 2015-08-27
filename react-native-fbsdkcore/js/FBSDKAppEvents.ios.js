@@ -28,10 +28,7 @@ var FBSDKAccessToken = require('./FBSDKAccessToken.ios.js');
 /**
  * Specifies when events are sent to the server.
  */
-type FBSDKAppEventsFlushBehavior = $Enum<{
-  'auto': string,
-  'explicity-only': string,
-}>;
+type FBSDKAppEventsFlushBehavior = 'auto' | 'explicity-only';
 
 module.exports = {
   /**

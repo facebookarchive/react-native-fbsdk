@@ -41,11 +41,7 @@ type FBSDKLoginButtonProps = {
   onLogoutFinished: () => void;
   loginBehavior: FBSDKLoginBehavior,
   defaultAudience: FBSDKDefaultAudience,
-  tooltipBehavior: $Enum<{
-    'auto': string;
-    'force-display': string;
-    'disable': string;
-  }>;
+  tooltipBehavior: 'auto' | 'force-display' | 'disable',
 };
 
 /**

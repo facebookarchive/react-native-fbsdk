@@ -24,14 +24,13 @@
 
 import type * as FBSDKSharePhoto from './FBSDKSharePhoto.ios.js';
 import type * as FBSDKShareOpenGraphObject from './FBSDKShareOpenGraphObject.ios.js';
-type FBSDKOpenGraphValueType = $Enum<{
-  'array': string;
-  'number': string;
-  'open-graph-object': string;
-  'photo': string;
-  'string': string;
-  'url': string;
-}>;
+type FBSDKOpenGraphValueType =
+  'array' |
+  'number' |
+  'open-graph-object' |
+  'photo' |
+  'string' |
+  'url';
 type FBSDKOpenGraphValue = {
   type: FBSDKOpenGraphValueType;
   value: any;

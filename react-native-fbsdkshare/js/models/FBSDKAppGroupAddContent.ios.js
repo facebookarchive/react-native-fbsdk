@@ -25,12 +25,11 @@
 /**
  * Specifies the privacy of a group.
  */
-type FBSDKAppGroupPrivacy = $Enum<{
+type FBSDKAppGroupPrivacy =
   // Anyone can see the group, who's in in and what members post.
-  'open': string,
+  'open' |
   // Anyone can see the group and who's in it, but only members can see posts.
-  'closed': string,
-}>;
+  'closed';
 
 /**
  * A model for creating an app group.

@@ -34,28 +34,26 @@ export type FBSDKLoginCallback = (error: ?Object, result: ?FBSDKLoginResult) => 
 /**
  * Indicate how Facebook Login should be attempted.
  */
-export type FBSDKLoginBehavior = $Enum<{
+export type FBSDKLoginBehavior =
   // Attempts log in through the native Facebook app.
-  'native': string,
+  'native' |
   // Attempts log in through the Safari browser.
-  'browser': string,
+  'browser' |
   // Attempts log in through the Facebook account currently signed in through Settings.
-  'system-account': string,
+  'system-account' |
   // Attempts log in through a modal UIWebView pop-up.
-  'web': string,
-}>;
+  'web';
 
 /**
  * Indicates which default audience to use for sessions that post data to Facebook.
  */
-export type FBSDKDefaultAudience = $Enum<{
+export type FBSDKDefaultAudience =
   // Indicates that the user's friends are able to see posts made by the application.
-  'friends': string,
+  'friends' |
   // Indicates that all Facebook users are able to see posts made by the application.
-  'everyone': string,
+  'everyone' |
   // Indicates that only the user is able to see posts made by the application.
-  'only-me': string,
-}>;
+  'only-me';
 
 module.exports = {
   /**
