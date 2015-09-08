@@ -20,7 +20,7 @@ var linkContent = new FBSDKShareLinkContent('https://facebook.com', 'Wow, check 
 FBSDKShareDialog.show(linkContent, (error, result) => {
   if (!error) {
     if (result.isCancelled) {
-      alert('Share canceled.');
+      alert('Share cancelled.');
     } else {
       alert('Thanks for sharing!');
     }

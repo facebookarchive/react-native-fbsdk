@@ -100,7 +100,7 @@ class Feed extends React.Component {
     FBSDKShareDialog.show(linkContent, (error, result) => {
       if (!error) {
         if (result.isCancelled) {
-          alert('So sad, you canceled. :(');
+          alert('So sad, you cancelled. :(');
         } else {
           alert('You shared Pluto!');
         }
