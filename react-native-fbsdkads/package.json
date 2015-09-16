@@ -1,11 +1,11 @@
 {
-  "name": "react-native-fbsdkcore",
-  "version": "0.0.5",
-  "description": "iOS FBSDKCoreKit support for React Native apps.",
-  "main": "FBSDKCore.ios.js",
+  "name": "react-native-fbsdkads",
+  "version": "0.0.1",
+  "description": "iOS FBAudienceNetwork support for React Native apps.",
+  "main": "FBSDKAds.ios.js",
   "author": {
-    "name": "Chris Hackmann",
-    "url": "http://github.com/cphackm"
+    "name": "Rishab Hegde",
+    "url": "http://github.com/reparadocs"
   },
   "peerDependencies": {
     "react-native": ">=0.11.0-rc"
@@ -17,7 +17,7 @@
     "react-component",
     "ios",
     "facebook",
-    "core"
+    "ads"
   ],
   "license": "Facebook Platform License"
 }

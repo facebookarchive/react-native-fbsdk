@@ -6,6 +6,7 @@ pod 'React', :subspecs => ['Core', 'RCTImage', 'RCTNetwork', 'RCTText', 'RCTWebS
 pod 'react-native-fbsdkcore', :path => 'node_modules/react-native-fbsdkcore'
 pod 'react-native-fbsdklogin', :path => 'node_modules/react-native-fbsdklogin'
 pod 'react-native-fbsdkshare', :path => 'node_modules/react-native-fbsdkshare'
+pod 'react-native-fbsdkads', :path => 'node_modules/react-native-fbsdkads'
 
 # Start the React Native JS packager server when running the project in Xcode.
 post_install do |installer|

@@ -6,9 +6,10 @@
     "start": "node_modules/react-native/packager/packager.sh"
   },
   "dependencies": {
-    "react-native": "^0.9.0",
-    "react-native-fbsdklogin": "file:../react-native-fbsdklogin/",
-    "react-native-fbsdkcore": "file:../react-native-fbsdkcore/",
-    "react-native-fbsdkshare": "file:../react-native-fbsdkshare/"
+    "react-native": "^0.11.0-rc",
+    "react-native-fbsdkads": "file:../react-native-fbsdkads",
+    "react-native-fbsdkcore": "file:../react-native-fbsdkcore",
+    "react-native-fbsdklogin": "file:../react-native-fbsdklogin",
+    "react-native-fbsdkshare": "file:../react-native-fbsdkshare"
   }
 }
