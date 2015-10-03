@@ -109,7 +109,7 @@ class FBSDKGraphRequest {
    * Starts the Graph API request.
    */
   start(timeout: ?number) {
-    FBSDKGraphRequestManager.batchRequests([this], null, timeout);
+    FBSDKGraphRequestManager.batchRequests([this], function(){}, 60);
   }
 }
 
