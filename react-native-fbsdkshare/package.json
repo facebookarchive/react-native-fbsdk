@@ -8,7 +8,7 @@
     "url": "http://github.com/cphackm"
   },
   "peerDependencies": {
-    "react-native": ">=0.8.0"
+    "react-native": "^v0.12.0-rc"
   },
   "homepage": "https://github.com/facebook/react-native-fbsdk/",
   "keywords": [
