@@ -77,7 +77,11 @@ RCT_EXPORT_METHOD(show:(FBSDKAppInviteContent *)content callback:(RCTResponseSen
   if ([results[@"completionGesture"] isEqualToString:@"cancel"]) {
     _showCallback(@[[NSNull null], @{@"isCancelled": @YES}]);
   } else {
-    _showCallback(@[[NSNull null], results]);
+    if (results == NULL) {
+        _showCallback(@[[NSNull null], [NSNull null]]);
+    } else {
+        _showCallback(@[[NSNull null], results]);
+    }
   }
   _showCallback = nil;
 }
