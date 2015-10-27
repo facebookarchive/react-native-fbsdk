@@ -20,7 +20,7 @@ var Login = React.createClass({
             if (error) {
               alert('Error logging in.');
             } else {
-              if (result.isCanceled) {
+              if (result.isCancelled) {
                 alert('Login cancelled.');
               } else {
                 alert('Logged in.');
