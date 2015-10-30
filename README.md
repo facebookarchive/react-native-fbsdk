@@ -177,9 +177,16 @@ FBSDKShareAPI.share(photoContent, "/me", "Check out this cat!", (error, result) 
 
 ## Installation
 
+### Create React Native project
+
+To use React Native SDK, first create a React Native project:
+```ruby
+react-native init YourApp
+```
+
 ### JavaScript packages
 
-Depending on what functionality you're looking to integrate, install any of the following packages as npm dependencies:
+Install at least the react-native-fbsdkcore package because it's a dependency for other packages. Depending on what other functionality you're looking to integrate, install the other packages as well:
   - `npm install --save react-native-fbsdkcore` for graph requests, app events, etc.
   - `npm install --save react-native-fbsdkshare` for share buttons, dialogs, etc.
   - `npm install --save react-native-fbsdklogin` for login button and manager.
@@ -192,19 +199,33 @@ Note: Any of the options below assume you've already installed the npm packages 
 
 #### Option: Using [CocoaPods](https://cocoapods.org)
 
-Assuming you have [CocoaPods](https://cocoapods.org) installed, create a `PodFile` like this in your app's project directory. You can leave out the modules you don't need.
+Assuming you have [CocoaPods](https://cocoapods.org) installed, do the following steps:
 
+In `<project name>/ios` directory, create a `PodFile` by runing:
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-pod 'React', :subspecs => ['Core', 'RCTImage', 'RCTNetwork', 'RCTText', 'RCTWebSocket'], :path => 'node_modules/react-native'
-pod 'react-native-fbsdkcore', :path => 'node_modules/react-native-fbsdkcore'
-pod 'react-native-fbsdklogin', :path => 'node_modules/react-native-fbsdklogin'
-pod 'react-native-fbsdkshare', :path => 'node_modules/react-native-fbsdkshare'
+pod init
+
 ```
 
-Now run `pod install`. This will automatically download the Facebook SDK for iOS and create an Xcode workspace containing all native files. From now on open `YourApp.xcworkspace` instead of `YourApp.xcodeproject` in Xcode. Because React Native's iOS code is now pulled in via CocoaPods, you also need to remove the `React`, `RCTImage`, etc. subprojects from your app's Xcode project.
+Open the generated `PodFile` and add the following code:
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+pod 'React', :subspecs => ['Core', 'RCTImage', 'RCTNetwork', 'RCTText', 'RCTWebSocket'], :path => '../node_modules/react-native'
+pod 'react-native-fbsdkcore', :path => '../node_modules/react-native-fbsdkcore'
+pod 'react-native-fbsdklogin', :path => '../node_modules/react-native-fbsdklogin'
+pod 'react-native-fbsdkshare', :path => '../node_modules/react-native-fbsdkshare'
+```
 
-Follow the [Getting Started guide](https://developers.facebook.com/docs/ios/getting-started/) to set up a Facebook app, configure your Xcode project, and set up the app delegate. You can skip the steps that talk about downloading and linking the Facebook SDK frameworks -- that's already taken care of by CocoaPods.
+Note: You can only add the SDK Kits that are already installed in the JavaScript package section.
+
+Make sure the react native project can be run in Xcode and remove all the subprojects under `Libraries/` in Xcode. This is because React Native's iOS code will be pulled in via CocoaPods.
+
+Run `pod install`. This will automatically download the Facebook SDK for iOS and create an Xcode workspace containing all native files. From now on open `YourApp.xcworkspace` instead of `YourApp.xcodeproj` in Xcode.
+
+Note: When doing 'pod install', warnings like `The 'YourApp [Debug]' target overrides the 'OTHER_LDFLAGS' build setting ...` may show up. To solve this, go to Xcode's target **Build Setting** section, find `Other linker flags` and add `$(inherited)` in it.
+
+Run the project in Xcode. Follow the [Getting Started guide](https://developers.facebook.com/docs/ios/getting-started/) to set up a Facebook app, configure your Xcode project, and set up the app delegate. You can skip the steps that talk about downloading and linking the Facebook SDK frameworks -- that's already taken care of by CocoaPods.
+
 
 #### Option: Using the provided Xcode projects
 

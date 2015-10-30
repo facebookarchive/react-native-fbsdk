@@ -3,10 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node_modules/react-native/packager/packager.sh"
+    "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "^v0.12.0-rc",
+    "react-native": "^v0.13.0",
     "react-native-fbsdkcore": "file:../react-native-fbsdkcore/",
     "react-native-fbsdklogin": "file:../react-native-fbsdklogin/",
     "react-native-fbsdkshare": "file:../react-native-fbsdkshare/"

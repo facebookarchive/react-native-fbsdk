@@ -57,7 +57,6 @@
                                                initialProperties:nil
                                                    launchOptions:launchOptions];
 
-
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [[UIViewController alloc] init];
   rootViewController.view = rootView;

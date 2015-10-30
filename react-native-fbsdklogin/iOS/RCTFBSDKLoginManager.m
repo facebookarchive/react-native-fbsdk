@@ -31,6 +31,11 @@ RCT_EXPORT_MODULE();
 
 #pragma mark - Object Lifecycle
 
+- (dispatch_queue_t)methodQueue
+{
+  return dispatch_get_main_queue();
+}
+
 - (instancetype)init
 {
   if ((self = [super init])) {
@@ -63,7 +68,7 @@ RCT_EXPORT_METHOD(logInWithPublishPermissions:(NSStringArray *)permissions callb
 
 RCT_EXPORT_METHOD(logOut)
 {
-  [self->_loginManager logOut];
+  [_loginManager logOut];
 };
 
 RCT_EXPORT_METHOD(renewSystemCredentials:(RCTResponseSenderBlock)callback)
@@ -88,14 +93,14 @@ RCT_EXPORT_METHOD(renewSystemCredentials:(RCTResponseSenderBlock)callback)
         error ? [NSNull null] : RCTBuildResultDictionary(result)
       ]);
   };
-  // Dispatch to main queue to support web and system account login
-  dispatch_async(dispatch_get_main_queue(), ^{
-    if (isRead) {
-      [self->_loginManager logInWithReadPermissions:permissions handler:requestHandler];
-    } else {
-      [self->_loginManager logInWithPublishPermissions:permissions handler:requestHandler];
-    }
-  });
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+  if (isRead) {
+    [_loginManager logInWithReadPermissions:permissions handler:requestHandler];
+  } else {
+    [_loginManager logInWithPublishPermissions:permissions handler:requestHandler];
+  }
+#pragma clang diagnostic pop
 }
 
 static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *result)

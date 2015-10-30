@@ -20,8 +20,42 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+  <key>LSApplicationQueriesSchemes</key>
+  <array>
+    <string>fbapi</string>
+    <string>fb-messenger-api</string>
+    <string>fbauth2</string>
+    <string>fbshareextension</string>
+  </array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSExceptionDomains</key>
+    <dict>
+      <key>facebook.com</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>fbcdn.net</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+      <key>akamaihd.net</key>
+      <dict>
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+        <false/>
+      </dict>
+    </dict>
+  </dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -56,51 +90,5 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-  
-  
-  
-  <!-- Step 2 Whitelist facebook servers -->
-  
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <key>NSExceptionDomains</key>
-    <dict>
-      <key>facebook.com</key>
-      <dict>
-        <key>NSIncludesSubdomains</key> <true/>
-        <key>NSExceptionRequiresForwardSecrecy</key> <false/>
-      </dict>
-      <key>fbcdn.net</key>
-      <dict>
-        <key>NSIncludesSubdomains</key> <true/>
-        <key>NSExceptionRequiresForwardSecrecy</key>  <false/>
-      </dict>
-      <key>akamaihd.net</key>
-      <dict>
-        <key>NSIncludesSubdomains</key> <true/>
-        <key>NSExceptionRequiresForwardSecrecy</key> <false/>
-      </dict>
-    </dict>
-  </dict>
-  
-  <!-- Step 3 Whitelist Facebook Apps -->
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-    <string>fbapi</string>
-    <string>fb-messenger-api</string>
-    <string>fbauth2</string>
-    <string>fbshareextension</string>
-  </array>
-  
-  <!-- Enable http connections -->
-  
-  <key>NSAppTransportSecurity</key>
-  <dict>
-    <key>NSAllowsArbitraryLoads</key>
-    <true/>
-  </dict>
-
-
-
 </dict>
 </plist>

@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = "react-native-fbsdklogin"
-  s.version          = "0.0.5"
+  s.version          = "0.0.6"
   s.summary          = "iOS FBSDKLoginKit support for React Native apps."
   s.requires_arc = true
-  s.author       = { 'philikon' => 'philikon@fb.com' }
+  s.author       = { 'dzhuowen' => 'dzhuowen@fb.com' }
   s.license      = 'Facebook Platform License'
   s.homepage     = 'n/a'
   s.source       = { :git => "https://github.com/facebook/react-native-fbsdk.git" }
