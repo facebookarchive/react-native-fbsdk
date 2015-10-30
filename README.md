@@ -62,7 +62,7 @@ var Login = React.createClass({
             if (error) {
               alert('Error logging in.');
             } else {
-              if (result.isCanceled) {
+              if (result.isCancelled) {
                 alert('Login cancelled.');
               } else {
                 alert('Logged in.');
@@ -93,7 +93,7 @@ FBSDKLoginManager.logInWithReadPermissions([], (error, result) => {
   if (error) {
     alert('Error logging in.');
   } else {
-    if (result.isCanceled) {
+    if (result.isCancelled) {
       alert('Login cancelled.');
     } else {
       alert('Logged in.');
@@ -121,7 +121,7 @@ var linkContent = new FBSDKShareLinkContent('https://facebook.com', 'Wow, check 
 FBSDKShareDialog.show(linkContent, (error, result) => {
   if (!error) {
     if (result.isCancelled) {
-      alert('Share canceled.');
+      alert('Share cancelled.');
     } else {
       alert('Thanks for sharing!');
     }
