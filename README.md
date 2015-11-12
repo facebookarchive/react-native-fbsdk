@@ -88,7 +88,6 @@ var {
 // ...
 
 // Attempt a login using the native login dialog asking for default permissions.
-FBSDKLoginManager.setLoginBehavior(GlobalStore.getItem('behavior', 'native'));
 FBSDKLoginManager.logInWithReadPermissions([], (error, result) => {
   if (error) {
     alert('Error logging in.');

@@ -6,7 +6,7 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "^v0.13.0",
+    "react-native": ">=v0.13.0",
     "react-native-fbsdkcore": "file:../react-native-fbsdkcore/",
     "react-native-fbsdklogin": "file:../react-native-fbsdklogin/",
     "react-native-fbsdkshare": "file:../react-native-fbsdkshare/"
