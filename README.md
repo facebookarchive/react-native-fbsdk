@@ -200,7 +200,7 @@ Note: Any of the options below assume you've already installed the npm packages 
 
 Assuming you have [CocoaPods](https://cocoapods.org) installed, do the following steps:
 
-In `<project name>/ios` directory, create a `PodFile` by runing:
+In `<project name>/ios` directory, create a `PodFile` by running:
 ```ruby
 pod init
 
