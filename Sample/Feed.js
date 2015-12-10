@@ -54,7 +54,7 @@ class Feed extends React.Component {
       '/495164637280739/photos',
       {
         type: { string: 'uploaded' },
-        fields: { string: 'images' }
+        fields: { string: 'images,link' }
       }
     );
     feedRequest.start();
@@ -95,7 +95,7 @@ class Feed extends React.Component {
    */
   _sharePhoto(photo) {
     // Build up a shareable link to the photo.
-    var linkContent = new FBSDKShareLinkContent(photo.source, 'A picture from New Horizons.', 'New Horizons', photo.source);
+    var linkContent = new FBSDKShareLinkContent(photo.link, 'A picture from New Horizons.', 'New Horizons');
     // Share the link using the native share dialog.
     FBSDKShareDialog.show(linkContent, (error, result) => {
       if (!error) {
@@ -118,7 +118,7 @@ class Feed extends React.Component {
       for (var i = 0, il = photos.length; i < il; i++) {
         var photo = photos[i];
         if (photo.images && photo.images.length > 0) {
-          renderedPhotos.push(this._renderPhoto(photo.images[0]));
+          renderedPhotos.push(this._renderPhoto({link:photo.link, ...photo.images[0]}));
         }
       }
       this.setState({ photos: renderedPhotos });
