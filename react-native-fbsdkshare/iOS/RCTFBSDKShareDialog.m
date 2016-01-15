@@ -57,16 +57,25 @@ RCT_EXPORT_MODULE();
 
 #pragma mark - React Native Methods
 
-RCT_EXPORT_METHOD(show:(RCTFBSDKSharingContent)content callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(canShow:(RCTResponseSenderBlock)callback)
+{
+  callback(@[@([_shareDialog canShow])]);
+}
+
+RCT_EXPORT_METHOD(show:(RCTResponseSenderBlock)callback)
 {
   _showCallback = callback;
-  _shareDialog.shareContent = content;
   if (!_shareDialog.fromViewController) {
     _shareDialog.fromViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
   }
   dispatch_async(dispatch_get_main_queue(), ^{
     [_shareDialog show];
   });
+}
+
+RCT_EXPORT_METHOD(setContent:(RCTFBSDKSharingContent)content)
+{
+  _shareDialog.shareContent = content;
 }
 
 RCT_EXPORT_METHOD(setMode:(FBSDKShareDialogMode)mode)
@@ -77,6 +86,13 @@ RCT_EXPORT_METHOD(setMode:(FBSDKShareDialogMode)mode)
 RCT_EXPORT_METHOD(setShouldFailOnDataError:(BOOL)shouldFailOnDataError)
 {
   _shareDialog.shouldFailOnDataError = shouldFailOnDataError;
+}
+
+RCT_EXPORT_METHOD(validateWithError:(RCTResponseSenderBlock)callback)
+{
+  NSError *error = [[NSError alloc] init];
+  [_shareDialog validateWithError:&error];
+  callback(@[error ? RCTJSErrorFromNSError(error) : [NSNull null]]);
 }
 
 #pragma mark - FBSDKSharingDelegate

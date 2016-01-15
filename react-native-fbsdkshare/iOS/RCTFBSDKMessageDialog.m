@@ -51,11 +51,27 @@ RCT_EXPORT_MODULE();
 
 #pragma mark - React Native Methods
 
-RCT_EXPORT_METHOD(show:(RCTFBSDKSharingContent)content callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(canShow:(RCTResponseSenderBlock)callback)
+{
+  callback(@[@([_dialog canShow])]);
+}
+
+RCT_EXPORT_METHOD(show:(RCTResponseSenderBlock)callback)
 {
   _showCallback = callback;
-  _dialog.shareContent = content;
   [_dialog show];
+}
+
+RCT_EXPORT_METHOD(setContent:(RCTFBSDKSharingContent)content)
+{
+  _dialog.shareContent = content;
+}
+
+RCT_EXPORT_METHOD(validateWithError:(RCTResponseSenderBlock)callback)
+{
+  NSError *error = [[NSError alloc] init];
+  [_dialog validateWithError:&error];
+  callback(@[error ? RCTJSErrorFromNSError(error) : [NSNull null]]);
 }
 
 RCT_EXPORT_METHOD(setShouldFailOnDataError:(BOOL)shouldFailOnDataError)

@@ -25,6 +25,7 @@
 var React = require('react-native');
 var {
   requireNativeComponent,
+  NativeModules,
   StyleSheet,
 } = React;
 
@@ -43,6 +44,8 @@ type FBSDKLoginButtonProps = {
   defaultAudience: FBSDKDefaultAudience,
   tooltipBehavior: 'auto' | 'force-display' | 'disable',
 };
+
+type Event = Object;
 
 /**
  * A button that initiates a log in or log out flow upon tapping.
@@ -64,11 +67,22 @@ class FBSDKLoginButton extends React.Component {
   }
 
   render() {
+    var onWillLogin = this.props.onWillLogin && ((event: Event) => {
+      var willLogin = this.props.onWillLogin &&
+        this.props.onWillLogin(event.nativeEvent);
+      if (typeof willLogin === 'undefined') {
+        willLogin = true; // default to true if no value returned
+      }
+      NativeModules.FBSDKLoginButtonManager
+        .resumeLoginWithResult(!!willLogin, event.nativeEvent.lockIdentifier);
+    });
+    
     return (
       <RCTFBSDKLoginButton
         {...this.props}
         style={this.props.style || styles.fbsdkLoginButton}
         onChange={this._eventHandler.bind(this)}
+        onWillLogin={onWillLogin}
       />
     );
   }
@@ -96,6 +110,12 @@ FBSDKLoginButton.propTypes = {
    * The callback invoked upon completion of a logout request.
    */
   onLogoutFinished: React.PropTypes.func.isRequired,
+  
+  /**
+   * The callback invoked when login button is pressed. Return true
+   * or false from this method to accept or cancel the login.
+   */
+  onWillLogin: React.PropTypes.func,
 
   /**
    * The behavior to use when attempting a login.

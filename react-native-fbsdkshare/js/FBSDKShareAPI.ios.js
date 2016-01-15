@@ -24,8 +24,8 @@
 
 var FBSDKShareAPIInterface = require('react-native').NativeModules.FBSDKShareAPI;
 
-import type * as FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
-import type * as FBSDKShareOpenGraphObject from './models/FBSDKShareOpenGraphObject.ios.js';
+import type FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
+import type FBSDKShareOpenGraphObject from './models/FBSDKShareOpenGraphObject.ios.js';
 type FBSDKShareAPICallback = (error: ?Object, result: ?Object) => void;
 
 module.exports = {

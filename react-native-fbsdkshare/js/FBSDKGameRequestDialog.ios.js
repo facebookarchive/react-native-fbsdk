@@ -24,17 +24,38 @@
 
 var FBSDKGameRequestDialogInterface = require('react-native').NativeModules.FBSDKGameRequestDialog;
 
-import type * as FBSDKGameRequestContent from './models/FBSDKGameRequestContent.ios.js';
+import type FBSDKGameRequestContent from './models/FBSDKGameRequestContent.ios.js';
 import type {
   FBSDKDialogCallback,
 } from './FBSDKShareTypes.ios.js';
 
 module.exports = {
   /**
-   * Shows the dialog using the specified content.
+   * Check if the dialog can be shown
    */
-  show(content: FBSDKGameRequestContent, callback: FBSDKDialogCallback) {
-    FBSDKGameRequestDialogInterface.show(content, callback);
+  canShow(callback: (canShow:boolean) => void): void {
+    FBSDKGameRequestDialogInterface.canShow(callback);
+  },
+
+  /**
+   * Shows the game request dialog.
+   */
+  show(callback: FBSDKDialogCallback) {
+    FBSDKGameRequestDialogInterface.show(callback);
+  },
+
+  /**
+   * Set the content describing the game request.
+   */
+   setContent(content: FBSDKGameRequestContent) {
+     FBSDKGameRequestDialogInterface.setContent(content);
+   },
+
+  /**
+   * Validates the content set on the dialog.
+   */
+  validateWithError(callback: (error: ?Object) => void) {
+    FBSDKGameRequestDialogInterface.validateWithError(callback);
   },
 
   /**

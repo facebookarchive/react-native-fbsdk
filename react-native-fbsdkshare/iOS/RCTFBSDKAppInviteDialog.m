@@ -63,11 +63,27 @@ RCT_EXPORT_MODULE();
 
 #pragma mark - React Native Methods
 
-RCT_EXPORT_METHOD(show:(FBSDKAppInviteContent *)content callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(canShow:(RCTResponseSenderBlock)callback)
+{
+  callback(@[@([_dialog canShow])]);
+}
+
+RCT_EXPORT_METHOD(show:(RCTResponseSenderBlock)callback)
 {
   _showCallback = callback;
-  _dialog.content = content;
   [_dialog show];
+}
+
+RCT_EXPORT_METHOD(setContent:(FBSDKAppInviteContent *)content)
+{
+  _dialog.content = content;
+}
+
+RCT_EXPORT_METHOD(validateWithError:(RCTResponseSenderBlock)callback)
+{
+  NSError *error = [[NSError alloc] init];
+  [_dialog validateWithError:&error];
+  callback(@[error ? RCTJSErrorFromNSError(error) : [NSNull null]]);
 }
 
 #pragma mark - FBSDKAppInviteDialogDelegate

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "react-native-fbsdkcore"
-  s.version          = "0.0.7"
+  s.version          = "0.0.8"
   s.summary          = "iOS FBSDKCoreKit support for React Native apps."
   s.requires_arc = true
   s.author       = { 'dzhuowen' => 'dzhuowen@fb.com' }

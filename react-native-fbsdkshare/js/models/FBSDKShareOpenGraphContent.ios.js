@@ -23,7 +23,7 @@
 'use strict';
 
 var FBSDKSharingContent = require('./FBSDKSharingContent.ios.js');
-import type * as FBSDKShareOpenGraphAction from './FBSDKShareOpenGraphAction.ios.js';
+import type FBSDKShareOpenGraphAction from './FBSDKShareOpenGraphAction.ios.js';
 
 /**
  * Represents a content object containing information about an Open Graph Action.

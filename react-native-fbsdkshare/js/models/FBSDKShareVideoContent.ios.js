@@ -23,8 +23,8 @@
 'use strict';
 
 var FBSDKSharingContent = require('./FBSDKSharingContent.ios.js');
-import type * as FBSDKShareVideo from './FBSDKShareVideo.ios.js';
-import type * as FBSDKSharePhoto from './FBSDKSharePhoto.ios.js';
+import type FBSDKShareVideo from './FBSDKShareVideo.ios.js';
+import type FBSDKSharePhoto from './FBSDKSharePhoto.ios.js';
 
 /**
  * A model for video content to be shared.

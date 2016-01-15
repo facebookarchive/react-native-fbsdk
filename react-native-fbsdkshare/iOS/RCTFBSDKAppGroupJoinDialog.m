@@ -41,13 +41,29 @@ RCT_EXPORT_MODULE();
 
 #pragma mark - React Native Methods
 
-RCT_EXPORT_METHOD(show:(NSString *)groupID callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(canShow:(RCTResponseSenderBlock)callback)
+{
+  callback(@[@([_dialog canShow])]);
+}
+
+RCT_EXPORT_METHOD(show:(RCTResponseSenderBlock)callback)
 {
   _showCallback = callback;
-  _dialog.groupID = groupID;
   dispatch_async(dispatch_get_main_queue(), ^{
     [_dialog show];
   });
+}
+
+RCT_EXPORT_METHOD(setGroupID:(NSString *)groupID)
+{
+  _dialog.groupID = groupID;
+}
+
+RCT_EXPORT_METHOD(validateWithError:(RCTResponseSenderBlock)callback)
+{
+  NSError *error = [[NSError alloc] init];
+  [_dialog validateWithError:&error];
+  callback(@[error ? RCTJSErrorFromNSError(error) : [NSNull null]]);
 }
 
 #pragma mark - FBSDKAppGroupJoinDialogDelegate

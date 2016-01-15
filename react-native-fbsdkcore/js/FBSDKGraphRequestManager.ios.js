@@ -24,7 +24,7 @@
 
 var FBSDKNativeGraphRequestManager = require('react-native').NativeModules.FBSDKGraphRequestManager;
 
-import type * as FBSDKGraphRequest from './FBSDKGraphRequest.ios.js';
+import type FBSDKGraphRequest from './FBSDKGraphRequest.ios.js';
 
 function _verifyParameters(request: FBSDKGraphRequest) {
   for (var key in request.parameters) {

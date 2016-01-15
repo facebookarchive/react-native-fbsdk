@@ -24,17 +24,38 @@
 
 var FBSDKMessageDialogInterface = require('react-native').NativeModules.FBSDKMessageDialog;
 
-import type * as FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
+import type FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
 import type {
   FBSDKDialogCallback,
 } from './FBSDKShareTypes.ios.js';
 
 module.exports = {
   /**
-   * Shows the dialog using the specified content.
+   * Check if the dialog can be shown
    */
-  show(content: FBSDKSharingContent, callback: FBSDKDialogCallback) {
-    FBSDKMessageDialogInterface.show(content, callback);
+  canShow(callback: (canShow:boolean) => void): void {
+    FBSDKMessageDialogInterface.canShow(callback);
+  },
+
+  /**
+   * Shows the message dialog.
+   */
+  show(callback: FBSDKDialogCallback) {
+    FBSDKMessageDialogInterface.show(callback);
+  },
+
+  /**
+   * Sets the message content.
+   */
+  setContent(content: FBSDKSharingContent): void {
+    FBSDKMessageDialogInterface.setContent(content);
+  },
+
+  /**
+   * Validates the content set on the dialog.
+   */
+  validateWithError(callback: (error: ?Object) => void) {
+    FBSDKMessageDialogInterface.validateWithError(callback);
   },
 
   /**

@@ -31,9 +31,30 @@ import type {
 
 module.exports = {
   /**
-   * Shows the dialog using the specified group ID.
+   * Check if the dialog can be shown
    */
-  show(groupID: string, callback: FBSDKDialogCallback) {
-    FBSDKAppGroupJoinDialogInterface.show(groupID, callback);
+  canShow(callback: (canShow:boolean) => void): void {
+    FBSDKAppGroupJoinDialogInterface.canShow(callback);
+  },
+
+  /**
+   * Shows the app group join dialog.
+   */
+  show(callback: FBSDKDialogCallback) {
+    FBSDKAppGroupJoinDialogInterface.show(callback);
+  },
+
+  /**
+   * Sets the group id
+   */
+  setGroupID(groupID: string) {
+    FBSDKAppGroupJoinDialogInterface.setGroupID(groupID);
+  },
+
+  /**
+   * Validates the content set on the dialog.
+   */
+  validateWithError(callback: (error: ?Object) => void) {
+    FBSDKAppGroupJoinDialogInterface.validateWithError(callback);
   },
 };

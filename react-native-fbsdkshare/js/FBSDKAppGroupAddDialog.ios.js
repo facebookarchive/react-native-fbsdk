@@ -24,13 +24,37 @@
 
 var FBSDKAppGroupAddDialogInterface = require('react-native').NativeModules.FBSDKAppGroupAddDialog;
 
-import type * as FBSDKAppGroupAddContent from './models/FBSDKAppGroupAddContent.ios.js';
+import type FBSDKAppGroupAddContent from './models/FBSDKAppGroupAddContent.ios.js';
 import type {
   FBSDKDialogCallback,
 } from './FBSDKShareTypes.ios.js';
 
 module.exports = {
-  show(content: FBSDKAppGroupAddContent, callback: FBSDKDialogCallback) {
-    FBSDKAppGroupAddDialogInterface.show(content, callback);
+  /**
+   * Check if the dialog can be shown
+   */
+  canShow(callback: (canShow:boolean) => void): void {
+    FBSDKAppGroupAddDialogInterface.canShow(callback);
+  },
+
+  /**
+   * Shows the app group add dialog.
+   */
+  show(callback: FBSDKDialogCallback) {
+    FBSDKAppGroupAddDialogInterface.show(callback);
+  },
+
+  /**
+   * Sets the dialog content.
+   */
+  setContent(content: FBSDKAppGroupAddContent) {
+    FBSDKAppGroupAddDialogInterface.setContent(content);
+  },
+
+  /**
+   * Validates the content set on the dialog.
+   */
+  validateWithError(callback: (error: ?Object) => void) {
+    FBSDKAppGroupAddDialogInterface.validateWithError(callback);
   },
 };

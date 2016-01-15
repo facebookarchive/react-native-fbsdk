@@ -54,7 +54,7 @@ class Feed extends React.Component {
       '/495164637280739/photos',
       {
         type: { string: 'uploaded' },
-        fields: { string: 'images,link' }
+        fields: { string: 'images, link' }
       }
     );
     feedRequest.start();
@@ -91,19 +91,21 @@ class Feed extends React.Component {
   }
 
   /**
-   * Shares a photo to Facebook using the native share dialog.
+   * Shares a photo to Facebook using the share dialog.
    */
   _sharePhoto(photo) {
     // Build up a shareable link to the photo.
     var linkContent = new FBSDKShareLinkContent(photo.link, 'A picture from New Horizons.', 'New Horizons');
-    // Share the link using the native share dialog.
-    FBSDKShareDialog.show(linkContent, (error, result) => {
+    FBSDKShareDialog.setContent(linkContent);
+    FBSDKShareDialog.validateWithError((error) => {
       if (!error) {
-        if (result.isCancelled) {
-          alert('So sad, you cancelled. :(');
-        } else {
-          alert('You shared Pluto!');
-        }
+        FBSDKShareDialog.show((sError, result) => {
+          if (!sError) {
+            alert('You shared Pluto!');
+          } else {
+            alert('Sharing failed.');
+          }
+        });
       }
     });
   }

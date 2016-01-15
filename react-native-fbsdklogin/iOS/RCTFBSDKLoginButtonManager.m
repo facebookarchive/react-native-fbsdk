@@ -18,6 +18,8 @@
 
 #import "RCTFBSDKLoginButtonManager.h"
 
+#import <objc/runtime.h>
+
 #import <RCTBridge.h>
 #import <RCTEventDispatcher.h>
 #import <RCTUtils.h>
@@ -25,7 +27,26 @@
 
 #import "RCTConvert+FBSDKLogin.h"
 
+@implementation FBSDKLoginButton (RCTFBSDK)
+
+- (RCTDirectEventBlock)onWillLogin
+{
+  return objc_getAssociatedObject(self, @selector(onWillLogin));
+}
+
+- (void)setOnWillLogin:(RCTDirectEventBlock)onWillLogin
+{
+  objc_setAssociatedObject(self, @selector(onWillLogin),
+                           onWillLogin, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+@end
+
 @implementation RCTFBSDKLoginButtonManager
+{
+  NSConditionLock *_willLoginLock;
+  BOOL _willLogin;
+}
 
 RCT_EXPORT_MODULE()
 
@@ -47,6 +68,8 @@ RCT_EXPORT_VIEW_PROPERTY(publishPermissions, NSStringArray)
 RCT_EXPORT_VIEW_PROPERTY(loginBehavior, FBSDKLoginBehavior)
 
 RCT_EXPORT_VIEW_PROPERTY(defaultAudience, FBSDKDefaultAudience)
+
+RCT_EXPORT_VIEW_PROPERTY(onWillLogin, RCTDirectEventBlock)
 
 RCT_EXPORT_VIEW_PROPERTY(tooltipBehavior, FBSDKLoginButtonTooltipBehavior)
 
@@ -74,6 +97,40 @@ RCT_EXPORT_VIEW_PROPERTY(tooltipBehavior, FBSDKLoginButtonTooltipBehavior)
     @"type": @"logoutFinished",
   };
   [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
+}
+
+- (BOOL)loginButtonWillLogin:(FBSDKLoginButton *)loginButton
+{
+  if (!loginButton.onWillLogin) {
+    return YES;
+  }
+
+  static NSInteger condition = 0;
+  _willLoginLock = [[NSConditionLock alloc] initWithCondition:condition++];
+  _willLogin = YES;
+  loginButton.onWillLogin(@{@"lockIdentifier": @(_willLoginLock.condition)});
+
+  // Block the main thread for a maximum of 250ms until the JS thread returns
+  if ([_willLoginLock lockWhenCondition:0 beforeDate:[NSDate dateWithTimeIntervalSinceNow:0.25]]) {
+    BOOL returnValue = _willLogin;
+    [_willLoginLock unlock];
+    _willLoginLock = nil;
+    return returnValue;
+  } else {
+    RCTLogWarn(@"Did not receive response to onWillLogin in time, defaulting to YES");
+    return YES;
+  }
+}
+
+RCT_EXPORT_METHOD(resumeLoginWithResult:(BOOL)result lockIdentifier:(NSInteger)lockIdentifier)
+{
+  if ([_willLoginLock tryLockWhenCondition:lockIdentifier]) {
+    _willLogin = result;
+    [_willLoginLock unlockWithCondition:0];
+  } else {
+    RCTLogWarn(@"resumeLoginWithResult invoked with invalid lockIdentifier: "
+               "got %zd, expected %zd", lockIdentifier, _willLoginLock.condition);
+  }
 }
 
 @end

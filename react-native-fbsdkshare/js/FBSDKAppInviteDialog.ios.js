@@ -24,13 +24,37 @@
 
 var FBSDKAppInviteDialogInterface = require('react-native').NativeModules.FBSDKAppInviteDialog;
 
-import type * as FBSDKAppInviteContent from './models/FBSDKAppInviteContent.ios.js'
+import type FBSDKAppInviteContent from './models/FBSDKAppInviteContent.ios.js'
 import type {
   FBSDKDialogCallback,
 } from './FBSDKShareTypes.ios.js';
 
 module.exports = {
-  show(content: FBSDKAppInviteContent, callback: FBSDKDialogCallback) {
-    FBSDKAppInviteDialogInterface.show(content, callback);
+  /**
+   * Check if the dialog can be shown
+   */
+  canShow(callback: (canShow:boolean) => void): void {
+    FBSDKAppInviteDialogInterface.canShow(callback);
+  },
+
+  /**
+   * Shows app invite dialog.
+   */
+  show(callback: FBSDKDialogCallback) {
+    FBSDKAppInviteDialogInterface.show(callback);
+  },
+
+  /**
+   * Sets app invite content.
+   */
+  setContent(content: FBSDKAppInviteContent) {
+    FBSDKAppInviteDialogInterface.setContent(content);
+  },
+
+  /**
+   * Validates the content set on the dialog.
+   */
+  validateWithError(callback: (error: ?Object) => void) {
+    FBSDKAppInviteDialogInterface.validateWithError(callback);
   },
 };

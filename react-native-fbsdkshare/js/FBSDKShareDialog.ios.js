@@ -24,7 +24,7 @@
 
 var FBSDKShareDialogInterface = require('react-native').NativeModules.FBSDKShareDialog;
 
-import type * as FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
+import type FBSDKSharingContent from './models/FBSDKSharingContent.ios.js';
 import type {
   FBSDKDialogCallback,
 } from './FBSDKShareTypes.ios.js';
@@ -51,10 +51,24 @@ type FBSDKShareDialogMode = $Enum<{
 
 module.exports = {
   /**
+   * Check if the dialog can be shown
+   */
+  canShow(callback: (canShow:boolean) => void): void {
+    FBSDKShareDialogInterface.canShow(callback);
+  },
+
+  /**
    * Shows the dialog using the specified content.
    */
-  show(content: FBSDKSharingContent, callback: FBSDKDialogCallback) {
-    FBSDKShareDialogInterface.show(content, callback);
+  show(callback: FBSDKDialogCallback) {
+    FBSDKShareDialogInterface.show(callback);
+  },
+
+  /**
+   * Sets the content to be shared.
+   */
+  setContent(content: FBSDKSharingContent) {
+    FBSDKShareDialogInterface.setContent(content);
   },
 
   /**
@@ -69,5 +83,12 @@ module.exports = {
    */
   setShouldFailOnDataError(shouldFailOnDataError: boolean) {
     FBSDKShareDialogInterface.shouldFailOnDataError(shouldFailOnDataError);
+  },
+
+  /**
+   * Validates the content set on the dialog.
+   */
+  validateWithError(callback: (error: ?Object) => void) {
+    FBSDKShareDialogInterface.validateWithError(callback);
   },
 };

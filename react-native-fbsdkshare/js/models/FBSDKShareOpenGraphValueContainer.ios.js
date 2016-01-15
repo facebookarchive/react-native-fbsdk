@@ -22,8 +22,8 @@
 
 'use strict';
 
-import type * as FBSDKSharePhoto from './FBSDKSharePhoto.ios.js';
-import type * as FBSDKShareOpenGraphObject from './FBSDKShareOpenGraphObject.ios.js';
+import type FBSDKSharePhoto from './FBSDKSharePhoto.ios.js';
+import type FBSDKShareOpenGraphObject from './FBSDKShareOpenGraphObject.ios.js';
 type FBSDKOpenGraphValueType =
   'array' |
   'number' |

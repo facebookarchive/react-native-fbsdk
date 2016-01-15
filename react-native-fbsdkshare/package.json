@@ -1,6 +1,6 @@
 {
   "name": "react-native-fbsdkshare",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "iOS FBSDKShareKit support for React Native apps.",
   "main": "FBSDKShare.ios.js",
   "author": {

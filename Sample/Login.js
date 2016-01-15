@@ -30,6 +30,10 @@ var FBSDKLogin = require('react-native-fbsdklogin');
 var {
   FBSDKLoginButton,
 } = FBSDKLogin;
+var FBSDKCore = require('react-native-fbsdkcore');
+var {
+  FBSDKAccessToken,
+} = FBSDKCore;
 
 var Login = React.createClass({
   render: function() {
@@ -37,6 +41,16 @@ var Login = React.createClass({
       <View style={this.props.style}>
         <FBSDKLoginButton
           style={styles.loginButton}
+          onWillLogin={() => {
+            FBSDKAccessToken.getCurrentAccessToken((result) => {
+              if (result == null) {
+                alert('Start logging in.');
+              } else {
+                alert('Start logging out.');
+              }
+            });
+            return true;
+          }}
           onLoginFinished={(error, result) => {
             if (error) {
               alert('Error logging in.');
