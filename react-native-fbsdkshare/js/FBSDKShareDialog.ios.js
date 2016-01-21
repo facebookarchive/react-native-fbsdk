@@ -82,7 +82,7 @@ module.exports = {
    * Sets whether or not the native share dialog should fail when it encounters a data error.
    */
   setShouldFailOnDataError(shouldFailOnDataError: boolean) {
-    FBSDKShareDialogInterface.shouldFailOnDataError(shouldFailOnDataError);
+    FBSDKShareDialogInterface.setShouldFailOnDataError(shouldFailOnDataError);
   },
 
   /**
