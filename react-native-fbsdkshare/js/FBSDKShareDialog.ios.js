@@ -35,7 +35,7 @@ import type {
 type FBSDKShareDialogMode = $Enum<{
   // Acts with the most appropriate mode that is available.
   'automatic': string,
-  // Displays teh dialog in the main native Facebook app.
+  // Displays the dialog in the main native Facebook app.
   'native': string,
   // Displays the dialog in the iOS integrated share sheet.
   'share-sheet': string,
