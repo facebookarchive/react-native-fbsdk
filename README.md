@@ -117,7 +117,8 @@ var {
 // Build up a shareable link.
 var linkContent = new FBSDKShareLinkContent('https://facebook.com', 'Wow, check out this great site!', 'Facebook.com', null);
 // Share the link using the native share dialog.
-FBSDKShareDialog.show(linkContent, (error, result) => {
+FBSDKShareDialog.setContent(linkContent);
+FBSDKShareDialog.show((error, result) => {
   if (!error) {
     if (result.isCancelled) {
       alert('Share cancelled.');
