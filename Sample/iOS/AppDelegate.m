@@ -24,6 +24,9 @@
 {
   NSURL *jsCodeLocation;
 
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                                  didFinishLaunchingWithOptions:launchOptions]
+
   /**
    * Loading JavaScript code - uncomment the one you want.
    *
@@ -63,8 +66,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
 
-  return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                  didFinishLaunchingWithOptions:launchOptions];
+  return YES;
 }
 
 - (BOOL)application:(UIApplication *)application
