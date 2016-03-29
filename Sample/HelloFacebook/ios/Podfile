@@ -1,0 +1,17 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '8.0'
+# Uncomment this line if you're using Swift
+# use_frameworks!
+
+target 'HelloFacebook' do
+  source 'https://github.com/CocoaPods/Specs.git'
+  pod 'React', :subspecs => ['Core', 'RCTImage', 'RCTNetwork', 'RCTText', 'RCTWebSocket'], :path => '../node_modules/react-native'
+  pod 'react-native-fbsdkcore', :path => '../node_modules/react-native-fbsdk/iOS/core'
+  pod 'react-native-fbsdklogin', :path => '../node_modules/react-native-fbsdk/iOS/login'
+  pod 'react-native-fbsdkshare', :path => '../node_modules/react-native-fbsdk/iOS/share'
+end
+
+target 'HelloFacebookTests' do
+
+end
+
