@@ -51,6 +51,7 @@ FBSDKAppEvents.logPurchase(15, 'USD', null, null)
 var FBSDKLogin = require('react-native-fbsdklogin');
 var {
   FBSDKLoginButton,
+  View,
 } = FBSDKLogin;
 
 var Login = React.createClass({
