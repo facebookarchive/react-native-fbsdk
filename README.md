@@ -159,7 +159,7 @@ var Login = React.createClass({
               }
             }
           }
-          onLogoutFinished={() => show("logout.")}/>
+          onLogoutFinished={() => alert("logout.")}/>
       </View>
     );
   }
