@@ -75,8 +75,8 @@ public final class Utility {
     public static WritableMap accessTokenToReactMap(AccessToken accessToken) {
         WritableMap map = Arguments.createMap();
         map.putString("accessToken", accessToken.getToken());
-        map.putString("applicationId", accessToken.getApplicationId());
-        map.putString("userId", accessToken.getUserId());
+        map.putString("applicationID", accessToken.getApplicationId());
+        map.putString("userID", accessToken.getUserId());
         map.putArray("permissions",
                 Arguments.fromJavaArgs(setToStringArray(accessToken.getPermissions())));
         map.putArray("declinedPermissions",
