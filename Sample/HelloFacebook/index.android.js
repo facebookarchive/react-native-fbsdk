@@ -1,4 +1,6 @@
 /**
+ * Copyright 2004-present Facebook. All Rights Reserved.
+ *
  * Sample React Native App
  * https://github.com/facebook/react-native
  */

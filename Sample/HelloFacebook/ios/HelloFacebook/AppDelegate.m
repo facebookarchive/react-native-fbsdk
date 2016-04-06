@@ -8,10 +8,12 @@
  */
 
 #import "AppDelegate.h"
+#import "RCTRootView.h"
+//Added import statement
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import "RCTRootView.h"
 
+//Added code
 @implementation AppDelegate
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   [FBSDKAppEvents activateApp];
@@ -21,6 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+  //Added code
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
   /**
@@ -62,6 +65,7 @@
   return YES;
 }
 
+//Added code
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication

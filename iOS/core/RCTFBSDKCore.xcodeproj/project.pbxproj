@@ -11,7 +11,6 @@
 		35A66BAF1B7E7E4C00D5542D /* RCTFBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A66BA61B7E7E4C00D5542D /* RCTFBSDKAccessToken.m */; };
 		35A66BB01B7E7E4C00D5542D /* RCTFBSDKAppEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A66BA81B7E7E4C00D5542D /* RCTFBSDKAppEvents.m */; };
 		35A66BB11B7E7E4C00D5542D /* RCTFBSDKCoreInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A66BA91B7E7E4C00D5542D /* RCTFBSDKCoreInitializer.m */; };
-		35A66BB21B7E7E4C00D5542D /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A66BAB1B7E7E4C00D5542D /* RCTFBSDKGraphRequestConnectionContainer.m */; };
 		35A66BB31B7E7E4C00D5542D /* RCTFBSDKGraphRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A66BAD1B7E7E4C00D5542D /* RCTFBSDKGraphRequestManager.m */; };
 		35A66CB31B7EAF8100D5542D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A66CB21B7EAF8100D5542D /* FBSDKCoreKit.framework */; };
 /* End PBXBuildFile section */
@@ -37,8 +36,6 @@
 		35A66BA71B7E7E4C00D5542D /* RCTFBSDKAppEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppEvents.h; path = iOS/RCTFBSDKAppEvents.h; sourceTree = "<group>"; };
 		35A66BA81B7E7E4C00D5542D /* RCTFBSDKAppEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppEvents.m; path = iOS/RCTFBSDKAppEvents.m; sourceTree = "<group>"; };
 		35A66BA91B7E7E4C00D5542D /* RCTFBSDKCoreInitializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKCoreInitializer.m; path = iOS/RCTFBSDKCoreInitializer.m; sourceTree = "<group>"; };
-		35A66BAA1B7E7E4C00D5542D /* RCTFBSDKGraphRequestConnectionContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKGraphRequestConnectionContainer.h; path = iOS/RCTFBSDKGraphRequestConnectionContainer.h; sourceTree = "<group>"; };
-		35A66BAB1B7E7E4C00D5542D /* RCTFBSDKGraphRequestConnectionContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKGraphRequestConnectionContainer.m; path = iOS/RCTFBSDKGraphRequestConnectionContainer.m; sourceTree = "<group>"; };
 		35A66BAC1B7E7E4C00D5542D /* RCTFBSDKGraphRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKGraphRequestManager.h; path = iOS/RCTFBSDKGraphRequestManager.h; sourceTree = "<group>"; };
 		35A66BAD1B7E7E4C00D5542D /* RCTFBSDKGraphRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKGraphRequestManager.m; path = iOS/RCTFBSDKGraphRequestManager.m; sourceTree = "<group>"; };
 		35A66CB21B7EAF8100D5542D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "~/Documents/FacebookSDK/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
@@ -82,8 +79,6 @@
 				35A66BA71B7E7E4C00D5542D /* RCTFBSDKAppEvents.h */,
 				35A66BA81B7E7E4C00D5542D /* RCTFBSDKAppEvents.m */,
 				35A66BA91B7E7E4C00D5542D /* RCTFBSDKCoreInitializer.m */,
-				35A66BAA1B7E7E4C00D5542D /* RCTFBSDKGraphRequestConnectionContainer.h */,
-				35A66BAB1B7E7E4C00D5542D /* RCTFBSDKGraphRequestConnectionContainer.m */,
 				35A66BAC1B7E7E4C00D5542D /* RCTFBSDKGraphRequestManager.h */,
 				35A66BAD1B7E7E4C00D5542D /* RCTFBSDKGraphRequestManager.m */,
 				35A66CB11B7EAF6900D5542D /* Frameworks */,
@@ -150,7 +145,6 @@
 				35A66BB11B7E7E4C00D5542D /* RCTFBSDKCoreInitializer.m in Sources */,
 				35A66BB31B7E7E4C00D5542D /* RCTFBSDKGraphRequestManager.m in Sources */,
 				35A66BB01B7E7E4C00D5542D /* RCTFBSDKAppEvents.m in Sources */,
-				35A66BB21B7E7E4C00D5542D /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */,
 				35A66BAF1B7E7E4C00D5542D /* RCTFBSDKAccessToken.m in Sources */,
 				35A66BAE1B7E7E4C00D5542D /* RCTConvert+FBSDKAccessToken.m in Sources */,
 			);

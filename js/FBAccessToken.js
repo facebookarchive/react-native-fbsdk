@@ -72,11 +72,13 @@ class FBAccessToken {
 
   /**
    * The expiration time of the access token.
+   * The value is the number of milliseconds since Jan. 1, 1970, midnight GMT.
    */
   expirationTime: number;
 
   /**
    * The last refresh time of the access token.
+   * The value is the number of milliseconds since Jan. 1, 1970, midnight GMT.
    */
   lastRefreshTime: number;
 

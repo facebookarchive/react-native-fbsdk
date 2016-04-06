@@ -48,7 +48,20 @@ class FBGraphRequestManager {
    */
   addRequest(request: GraphRequest): FBGraphRequestManager {
     _verifyParameters(request);
-    NativeGraphRequestManager.addToConnection(request, request.callback);
+    NativeGraphRequestManager.addToConnection(
+      request,
+      (error, result) => {
+        if (request.callback) {
+          if (typeof result === 'string') {
+            try {
+              result = JSON.parse(result);
+            } catch (e) {
+              return request.callback(e);
+            }
+          }
+          return request.callback(error, result);
+        }
+      });
     return this;
   }
 

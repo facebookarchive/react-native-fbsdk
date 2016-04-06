@@ -1,5 +1,6 @@
 package com.hellofacebook;
 
+//Added import statement
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends ReactActivity {
+    //Added code
     CallbackManager mCallbackManager;
     /**
      * Returns the name of the main component registered from JavaScript.
@@ -39,6 +41,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected List<ReactPackage> getPackages() {
+        //Added code
         mCallbackManager = new CallbackManager.Factory().create();
         ReactPackage packages[] = new ReactPackage[]{
                 new MainReactPackage(),
@@ -47,12 +50,14 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(packages);
     }
 
+    //Added code
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
+    //Added code
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         mCallbackManager.onActivityResult(requestCode, resultCode, data);

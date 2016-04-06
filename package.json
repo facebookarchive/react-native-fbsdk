@@ -1,6 +1,6 @@
 {
   "name": "react-native-fbsdk",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0-alpha.1",
   "description": "Facebook SDK support for React Native apps.",
   "main": "./js/index.js",
   "author": {
@@ -15,6 +15,7 @@
     "react-native",
     "react-component",
     "ios",
+    "android",
     "facebook",
     "core"
   ],

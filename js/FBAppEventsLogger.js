@@ -35,6 +35,7 @@ type AppEventsFlushBehavior =
    * Only flush when AppEventsLogger.flush() is explicitly invoked.
    */
   'explicity-only';
+type Params = {[key: string]: string | number};
 
 module.exports = {
   /**
@@ -61,17 +62,30 @@ module.exports = {
   },
 
   /**
-   * Logs an event.
+   * Logs an event with eventName and optional arguments.
+   * This function supports the following usage:
+   * logEvent(eventName: string);
+   * logEvent(eventName: string, valueToSum: number);
+   * logEvent(eventName: string, parameters: {[key:string]:string|number});
+   * logEvent(eventName: string, valueToSum: number, parameters: {[key:string]:string|number});
    * See https://developers.facebook.com/docs/app-events/android for detail.
    */
-  logEvent(eventName: string, valueToSum: Number, parameters?: Object) {
+  logEvent(eventName: string, ...args: Array<number | Params>) {
+    let valueToSum = 0;
+    if (typeof args[0] === 'number') {
+      valueToSum = args.shift();
+    }
+    let parameters = null;
+    if (typeof args[0] === 'object') {
+      parameters = args[0];
+    }
     AppEventsLogger.logEvent(eventName, valueToSum, parameters);
   },
 
   /**
    * Logs a purchase. See http://en.wikipedia.org/wiki/ISO_4217 for currencyCode.
    */
-  logPurchase(purchaseAmount: Number, currencyCode: string, parameters: ?Object) {
+  logPurchase(purchaseAmount: number, currencyCode: string, parameters: ?Object) {
     AppEventsLogger.logPurchase(purchaseAmount, currencyCode, parameters);
   },
 

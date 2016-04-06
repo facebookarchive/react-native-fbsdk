@@ -62,8 +62,8 @@ public final class Utility {
         Date lastRefreshTime = new Date((long)accessTokenMap.getDouble("lastRefreshTime"));
         return new AccessToken(
                 accessTokenMap.getString("accessToken"),
-                accessTokenMap.getString("applicationId"),
-                accessTokenMap.getString("userId"),
+                accessTokenMap.getString("applicationID"),
+                accessTokenMap.getString("userID"),
                 reactArrayToStringList(accessTokenMap.getArray("permissions")),
                 reactArrayToStringList(accessTokenMap.getArray("declinedPermissions")),
                 accessTokenSource,
@@ -75,8 +75,8 @@ public final class Utility {
     public static WritableMap accessTokenToReactMap(AccessToken accessToken) {
         WritableMap map = Arguments.createMap();
         map.putString("accessToken", accessToken.getToken());
-        map.putString("applicationId", accessToken.getApplicationId());
-        map.putString("userId", accessToken.getUserId());
+        map.putString("applicationID", accessToken.getApplicationId());
+        map.putString("userID", accessToken.getUserId());
         map.putArray("permissions",
                 Arguments.fromJavaArgs(setToStringArray(accessToken.getPermissions())));
         map.putArray("declinedPermissions",
@@ -290,7 +290,6 @@ public final class Utility {
         }
         return list;
     }
-
 
     public static WritableArray listToReactArray(List<String> list) {
         WritableArray array = Arguments.createArray();

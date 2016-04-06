@@ -27,8 +27,8 @@ Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) 
 In `settings.gradle`, include the sdk subproject and specify the subproject path.
 ```ruby
 //...
-include ':Android'
-project(':Android').projectDir = new File(settingsDir, '../node_modules/react-native-fbsdk/Android')
+include ':react-native-fbsdk'
+project(':react-native-fbsdk').projectDir = new File(settingsDir, '../node_modules/react-native-fbsdk/Android')
 ```
 
 In `app/build.gradle`, enable multiDex support and add sdk to dependencies.
@@ -40,14 +40,22 @@ defaultConfig {
 //...
 dependencies {
     //...
-    compile project(":Android")
+    compile project(":react-native-fbsdk")
 }
 ```
 
 Go to `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
+Note that packages must be imported to use.
 
 Add an instance variable of type `CallbackManager` in class.
 ```java
+import android.content.Intent;     // <--- import
+import android.os.Bundle;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+
 public class MainActivity extends ReactActivity {
     CallbackManager mCallbackManager;
     //...
@@ -81,6 +89,8 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 ```
 To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add method call to `activateApp`, `deactivateApp` and `onContextStop` in the corresponding life cycle events.
 ```java
+import com.facebook.appevents.AppEventsLogger;     // <--- import
+
 @Override
 protected void onResume() {
     super.onResume();

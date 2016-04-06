@@ -36,6 +36,8 @@ export type LoginBehaviorAndroid =
 
 export type LoginBehaviorIOS =
   // Attempts log in through the native Facebook app.
+  // The SDK may still use Safari instead.
+  // See details in https://developers.facebook.com/blog/post/2015/10/29/Facebook-Login-iOS9/
   'native' |
   // Attempts log in through the Safari browser.
   'browser' |
