@@ -323,6 +323,33 @@ const infoRequest = new GraphRequest(
 // Start the graph request.
 new GraphRequestManager().addRequest(infoRequest).start();
 ```
+
+### [App Invites](https://developers.facebook.com/docs/app-invites)
+#### App Invite Dialog
+Your url must contain [App Links](http://applinks.org) meta tags in order to send app invites.
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  AppInviteDialog
+} = FBSDK;
+
+// ...
+
+AppInviteDialog.show({
+    previewImageUrl: 'http://optionalimageurl.png',
+    applinkUrl: 'http://urlwithapplinks.com'
+}).then(
+    function(result) {
+        if(result.didComplete) {
+            console.log('successfully invited your friends');
+        }
+    },
+    function(error) {
+      console.log('error with app invites ', error);
+    }
+);
+
+```
 ## License
 See the LICENSE file.
 
