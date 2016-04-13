@@ -1,0 +1,5 @@
+rootProject.name = 'HelloFacebook'
+
+include ':app'
+include ':react-native-fbsdk'
+project(':react-native-fbsdk').projectDir = new File(settingsDir, '../node_modules/react-native-fbsdk/Android')  //Added config

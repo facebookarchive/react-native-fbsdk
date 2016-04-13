@@ -1,0 +1,5 @@
+<resources>
+    <!-- Added resources -->
+    <string name="app_name">HelloFacebook</string>
+    <string name="facebook_app_id">950110338385665</string>
+</resources>
