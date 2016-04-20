@@ -307,7 +307,7 @@ const {
 // ...
 
 //Create response callback.
-_responseCallback(error: ?Object, result: ?Object) {
+_responseInfoCallback(error: ?Object, result: ?Object) {
   if (error) {
     alert('Error posting data: ' + error.toString());
   } else {
