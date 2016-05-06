@@ -112,7 +112,7 @@ protected void onStop() {
 ```
 
 #### 3.2 iOS project
-Assuming you have [CocoaPods](https://cocoapods.org) installed, complete the following steps:
+Assuming you have [CocoaPods](https://cocoapods.org) (it's recommended to use v.1.0+ `gem install cocoapods --pre`) installed, complete the following steps:
 
 In `<project name>/ios` directory, create a `Podfile` by running:
 ```ruby
