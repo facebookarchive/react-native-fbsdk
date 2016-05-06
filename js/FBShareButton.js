@@ -23,7 +23,10 @@
 'use strict';
 
 import React, {
- PropTypes,
+  PropTypes,
+} from 'react';
+
+import {
  requireNativeComponent,
  StyleSheet,
  View,
