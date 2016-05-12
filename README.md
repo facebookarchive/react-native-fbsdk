@@ -95,13 +95,7 @@ import com.facebook.appevents.AppEventsLogger;     // <--- import
 @Override
 protected void onResume() {
     super.onResume();
-    AppEventsLogger.activateApp(getApplicationContext());
-}
-
-@Override
-protected void onPause() {
-    super.onPause();
-    AppEventsLogger.deactivateApp(getApplicationContext());
+    AppEventsLogger.activateApp(getApplication());
 }
 
 @Override
