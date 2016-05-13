@@ -90,14 +90,14 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add the activateApp method call on your Application's `onCreate` method:
-```diff
-+ import com.facebook.appevents.AppEventsLogger;     // <--- import
+```java
+import com.facebook.appevents.AppEventsLogger;     // <--- import
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     FacebookSdk.sdkInitialize(getApplicationContext());
-+   AppEventsLogger.activateApp(getApplication());
+    AppEventsLogger.activateApp(getApplication());     // <--- add
 }
 ```
 
