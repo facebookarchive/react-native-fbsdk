@@ -97,7 +97,7 @@ To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add t
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     FacebookSdk.sdkInitialize(getApplicationContext());
-+    AppEventsLogger.activateApp(getApplication());
++   AppEventsLogger.activateApp(getApplication());
 }
 ```
 
