@@ -78,6 +78,7 @@ Initialize sdk in method `onCreate()`.
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     FacebookSdk.sdkInitialize(getApplicationContext());
+    AppEventsLogger.activateApp(this);
 } 
 ```
 Override `onActivityResult()`.
@@ -88,20 +89,15 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     mCallbackManager.onActivityResult(requestCode, resultCode, data);
 }
 ```
-To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add method call to `activateApp`, `deactivateApp` and `onContextStop` in the corresponding life cycle events.
-```java
-import com.facebook.appevents.AppEventsLogger;     // <--- import
+To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add method call on your Application's `onCreate` method:
+```diff
++ import com.facebook.appevents.AppEventsLogger;     // <--- import
 
 @Override
-protected void onResume() {
-    super.onResume();
-    AppEventsLogger.activateApp(getApplication());
-}
-
-@Override
-protected void onStop() {
-    super.onStop();
-    AppEventsLogger.onContextStop();
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    FacebookSdk.sdkInitialize(getApplicationContext());
++    AppEventsLogger.activateApp(getApplication());
 }
 ```
 
