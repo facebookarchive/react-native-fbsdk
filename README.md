@@ -315,7 +315,7 @@ _responseInfoCallback(error: ?Object, result: ?Object) {
   }
 }
 
-// Create a graph request asking for user informations with a callback to handle the response.
+// Create a graph request asking for user information with a callback to handle the response.
 const infoRequest = new GraphRequest(
   '/me',
   null,
