@@ -176,6 +176,41 @@ var Login = React.createClass({
   }
 });
 ```
+#### Requesting access token after successful login with Login Button 
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginButton,
+  AccessToken
+} = FBSDK;
+
+var Login = React.createClass({
+  render: function() {
+    return (
+      <View>
+        <LoginButton
+          publishPermissions={["publish_actions"]}
+          onLoginFinished={
+            (error, result) => {
+              if (error) {
+                alert("login has error: " + result.error);
+              } else if (result.isCancelled) {
+                alert("login is cancelled.");
+              } else {
+                AccessToken.getCurrentAccessToken().then(data => {
+                  const { accessToken } = data
+                  console.log('access token: ', accessToken)
+                  console.log('login has finished with permissions: ', result.grantedPermissions)
+                })
+              }
+            }
+          }
+          onLogoutFinished={() => alert("logout.")}/>
+      </View>
+    );
+  }
+});
+```
 #### Requesting additional permissions with Login Manager
 You can also use the Login Manager with custom UI to perform Login.
 ```js
