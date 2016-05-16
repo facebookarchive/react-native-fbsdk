@@ -146,37 +146,7 @@ If you get a build error stating that one of the Facebook SDK files was not foun
 
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)
-#### Login Button
-```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-} = FBSDK;
-
-var Login = React.createClass({
-  render: function() {
-    return (
-      <View>
-        <LoginButton
-          publishPermissions={["publish_actions"]}
-          onLoginFinished={
-            (error, result) => {
-              if (error) {
-                alert("login has error: " + result.error);
-              } else if (result.isCancelled) {
-                alert("login is cancelled.");
-              } else {
-                alert("login has finished with permissions: " + result.grantedPermissions)
-              }
-            }
-          }
-          onLogoutFinished={() => alert("logout.")}/>
-      </View>
-    );
-  }
-});
-```
-#### Requesting access token after successful login with Login Button 
+#### Login Button + Access Token
 ```js
 const FBSDK = require('react-native-fbsdk');
 const {
