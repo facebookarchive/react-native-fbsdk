@@ -38,10 +38,6 @@ import type {
   LoginResult,
 } from './FBLoginManager';
 
-type LoginResultCallback = {
-  error: Object;
-  result: LoginResult;
-};
 type TooltipBehaviorIOS = 'auto' | 'force_display' | 'disable';
 type Event = Object;
 
@@ -69,7 +65,7 @@ class LoginButton extends React.Component {
     /**
      * The callback invoked upon error/completion of a login request.
      */
-    onLoginFinished: (callback: LoginResultCallback) => void;
+    onLoginFinished: (error: Object, result: LoginResult) => void;
 
     /**
      * The callback invoked upon completion of a logout request.
