@@ -130,7 +130,15 @@ target 'YourApp' do
 end
 ```
 
-Remove all the subprojects under `Libraries/` in Xcode. This is because React Native's iOS code will be pulled in via CocoaPods.
+Remove these libraries from `Libraries` in Xcode :
+* React.xcodeproj
+* RCTImage.xcodeproj
+* RCTNetwork.xcodeproj
+* RCTText.xcodeproj
+* RCTWebSocket.xcodeproj
+
+This is because React Native's iOS code (Core, RCTImage, RCTNetwork, RCTText and RCTWebSocket) will be pulled in via CocoaPods.
+Others libraries that are included in `../node_modules/react-native/Libraries` must be kept in Libraries folder in Xcode because they're not pulled with CocoaPods.
 
 Run `pod install`. This will automatically download the Facebook SDK for iOS and create an Xcode workspace containing all native files. From now on open `YourApp.xcworkspace` instead of `YourApp.xcodeproj` in Xcode.
 
