@@ -167,11 +167,11 @@ var Login = React.createClass({
               } else if (result.isCancelled) {
                 alert("login is cancelled.");
               } else {
-                AccessToken.getCurrentAccessToken().then(data => {
-                  const { accessToken } = data
-                  console.log('access token: ', accessToken)
-                  console.log('login has finished with permissions: ', result.grantedPermissions)
-                })
+                AccessToken.getCurrentAccessToken().then(
+                  (data) => {
+                    alert(data.accessToken.toString())
+                  }
+                )
               }
             }
           }
