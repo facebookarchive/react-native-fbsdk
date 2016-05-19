@@ -88,26 +88,15 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     mCallbackManager.onActivityResult(requestCode, resultCode, data);
 }
 ```
-To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add method call to `activateApp`, `deactivateApp` and `onContextStop` in the corresponding life cycle events.
+To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add the activateApp method call on your MainActivity `onCreate` method like this:
 ```java
 import com.facebook.appevents.AppEventsLogger;     // <--- import
 
 @Override
-protected void onResume() {
-    super.onResume();
-    AppEventsLogger.activateApp(getApplicationContext());
-}
-
-@Override
-protected void onPause() {
-    super.onPause();
-    AppEventsLogger.deactivateApp(getApplicationContext());
-}
-
-@Override
-protected void onStop() {
-    super.onStop();
-    AppEventsLogger.onContextStop();
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    FacebookSdk.sdkInitialize(getApplicationContext());
+    AppEventsLogger.activateApp(getApplication());     // <--- add
 }
 ```
 
