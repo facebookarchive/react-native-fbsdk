@@ -16,10 +16,33 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#import "RCTViewManager.h"
+#import <RCTBridgeModule.h>
 
-@interface RCTFBSDKLoginButtonManager : RCTViewManager <FBSDKLoginButtonDelegate>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+@interface FBSDKSettings (UserAgent)
+
++ (void)setUserAgentSuffix:(NSString *)suffix;
+
+@end
+
+
+@interface RCTFBSDKInitializer: NSObject <RCTBridgeModule>
+@end
+
+@implementation RCTFBSDKInitializer
+
+#pragma mark - Object Lifecycle
+
+RCT_EXPORT_MODULE();
+
+- (instancetype)init
+{
+  if ((self = [super init])) {
+    [FBSDKSettings setUserAgentSuffix:@"ReactNative-v0.2.0"];
+  }
+  return self;
+}
 
 @end

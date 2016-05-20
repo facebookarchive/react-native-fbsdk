@@ -123,31 +123,6 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     }
 
     /**
-     * Notifies the events system that the app has launched & logs an activatedApp event. Should be
-     * called whenever your app becomes active, typically in the onResume() method of each
-     * long-running Activity of your app. Use HostStateModule in JS
-     * to listen to host life cycle event.
-     * Use this method if your application ID is stored in application metadata.
-     */
-    @ReactMethod
-    public void activateApp() {
-        AppEventsLogger.activateApp(mReactContext);
-    }
-
-    /**
-     * Notifies the events system that the app has been deactivated (put in the background) and
-     * tracks the application session information. Should be called whenever your app becomes
-     * inactive, typically in the onPause() method of each long-running Activity of your app.
-     * Use HostStateModule in JS to listen to host life cycle event.
-     * Use this method if your application ID is stored in application metadata.
-     * @param applicationId The specific applicationId to track session information for.
-     */
-    @ReactMethod
-    public void deactivateApp(@Nullable String applicationId) {
-        AppEventsLogger.deactivateApp(mReactContext, applicationId);
-    }
-
-    /**
      * Set the behavior that this AppEventsLogger uses to determine when to flush logged events to
      * the server. This setting applies to all instances of AppEventsLogger.
      * @param flushBehavior the desired behavior.

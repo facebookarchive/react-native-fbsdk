@@ -53,7 +53,8 @@
 {
   NSDictionary *contentData = [self NSDictionary:json];
   if (contentData) {
-    return RCTBuildOpenGraphObject(contentData[@"_properties"]);
+    NSString *contentDataKey = contentData[@"_properties"] ? @"_properties" : @"$ShareOpenGraphValueContainer_properties";
+    return RCTBuildOpenGraphObject(contentData[contentDataKey]);
   }
   return nil;
 }
@@ -136,7 +137,8 @@ static FBSDKShareOpenGraphAction *RCTBuildOpenGraphAction(NSDictionary *actionDa
   FBSDKShareOpenGraphAction *action = nil;
   if (actionData) {
     action = [[FBSDKShareOpenGraphAction alloc] init];
-    NSDictionary *properties = [RCTConvert NSDictionary:actionData[@"_properties"]];
+    NSString *actionDataKey = actionData[@"_properties"] ? @"_properties" : @"$ShareOpenGraphValueContainer_properties";
+    NSDictionary *properties = [RCTConvert NSDictionary:actionData[actionDataKey]];
     for (NSString *key in properties.allKeys) {
       NSDictionary *element = [RCTConvert NSDictionary:properties[key]];
       RCTAddElementToOpenGraph(key, element, action);
@@ -156,7 +158,9 @@ static void RCTAddElementToOpenGraph(NSString *key, NSDictionary *element, FBSDK
   } else if ([type isEqualToString:@"photo"]) {
     [container setPhoto:RCTBuildPhoto(element[@"value"]) forKey:key];
   } else if ([type isEqualToString:@"open-graph-object"]) {
-    NSDictionary *properties = [RCTConvert NSDictionary:([RCTConvert NSDictionary:element[@"value"]])[@"_properties"]];
+    NSDictionary *dictionary = [RCTConvert NSDictionary:element[@"value"]];
+    NSString *dictionaryKey = dictionary[@"_properties"] ? @"_properties" : @"$ShareOpenGraphValueContainer_properties";
+    NSDictionary *properties = [RCTConvert NSDictionary:dictionary[dictionaryKey]];
     [container setObject:RCTBuildOpenGraphObject(properties) forKey:key];
   }
 }

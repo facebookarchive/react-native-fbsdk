@@ -16,7 +16,10 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "RCTBridgeModule.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface RCTFBSDKLoginManager : NSObject <RCTBridgeModule>
+#import <RCTViewManager.h>
+
+@interface RCTFBSDKLoginButtonManager : RCTViewManager <FBSDKLoginButtonDelegate>
+
 @end

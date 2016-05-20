@@ -39,21 +39,6 @@ type Params = {[key: string]: string | number};
 
 module.exports = {
   /**
-   * Notifies the events system that the app has launched & logs an activatedApp event.
-   */
-  activateApp() {
-    AppEventsLogger.activateApp();
-  },
-
-  /**
-   * Notifies the events system that the app has been deactivated (put in the background)
-   * and tracks the application session information.
-   */
-  deactivateApp() {
-    AppEventsLogger.deactivateApp();
-  },
-
-  /**
    * Sets the current event flushing behavior specifying when events
    * are sent back to Facebook servers.
    */

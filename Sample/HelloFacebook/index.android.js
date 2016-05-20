@@ -5,9 +5,9 @@
  * https://github.com/facebook/react-native
  */
 
-import React, {
+import React, { Component } from 'react';
+import {
   AppRegistry,
-  Component,
   StyleSheet,
   Text,
   TouchableHighlight,
@@ -44,10 +44,10 @@ class HelloFacebook extends Component {
     ).then(
       function(result) {
         if (result.isCancelled) {
-          alert('Share cancelled');           
+          alert('Share cancelled');
         } else {
           alert('Share success');
-        }           
+        }
       },
       function(error) {
         alert('Share fail with error: ' + error);

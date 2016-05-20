@@ -34,7 +34,7 @@ import java.util.List;
 
 public class FBSDKPackage implements ReactPackage {
 
-    public static String VERSION_TO_RELEASE = "ReactNative-v0.1.0";
+    public static String VERSION_TO_RELEASE = "ReactNative-v0.2.0";
 
     private CallbackManager mCallbackManager;
     public FBSDKPackage(CallbackManager callbackManager) {

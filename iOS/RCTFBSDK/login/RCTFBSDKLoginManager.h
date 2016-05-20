@@ -16,32 +16,7 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
 #import <RCTBridgeModule.h>
 
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-
-@interface FBSDKSettings (UserAgent)
-
-+ (void)setUserAgentSuffix:(NSString *)suffix;
-
-@end
-
-@interface RCTFBSDKCoreInitializer : NSObject <RCTBridgeModule>
-@end
-
-@implementation RCTFBSDKCoreInitializer
-
-#pragma mark - Object Lifecycle
-
-RCT_EXPORT_MODULE();
-
-- (instancetype)init
-{
-  if ((self = [super init])) {
-    [FBSDKSettings setUserAgentSuffix:@"ReactNative-v0.1.0"];
-  }
-  return self;
-}
-
+@interface RCTFBSDKLoginManager : NSObject <RCTBridgeModule>
 @end

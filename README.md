@@ -1,10 +1,10 @@
 # React Native FBSDK
-React Native FBSDK is a wrapper around the iOS Facebook SDK and Android Facebook SDK, allowing for Facebook integration in [React Native](https://facebook.github.io/react-native/) apps.  Access to native components, from login to sharing, is provided entirely through documented JavaScript modules so you don't have to call a single native function directly.
+React Native FBSDK is a wrapper around the iOS Facebook SDK and Android Facebook SDK, allowing for Facebook integration in [React Native](https://facebook.github.io/react-native/) apps. Access to native components, from login to sharing, is provided entirely through documented JavaScript modules so you don't have to call a single native function directly.
 
-Functionality is provided through one single npm package so you can use it for both platforms without downloading any extra packages.  Follow this guide to use react-native-fbsdk in your react-native app.
+Functionality is provided through one single npm package so you can use it for both platforms without downloading any extra packages. Follow this guide to use react-native-fbsdk in your react-native app. You can also visit https://developers.facebook.com/docs/react-native for tutorials and reference documentation.
 
 ## Installation
-You need to install the sdk with [npm](https://www.npmjs.com/) and configure native Android/iOS project in the react native project. 
+You need to install the sdk with [npm](https://www.npmjs.com/) and configure native Android/iOS project in the react native project.
 ### 1. Create React Native project
 
 First create a React Native project:
@@ -14,36 +14,19 @@ react-native init YourApp
 
 ### 2. Install JavaScript packages
 
-Install the react-native-fbsdk package:
+Install [rnpm](https://github.com/rnpm/rnpm):
 ```ruby
-npm install --save react-native-fbsdk
+npm install rnpm -g
+```
+
+Use rnpm to install and link the react-native-fbsdk package:
+```ruby
+rnpm install react-native-fbsdk
 ```
 ### 3. Configure native projects
-You can configure the iOS project and Android project both if you want to build a cross-platform app, or configure either side.
 
 #### 3.1 Android project
-Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) installed, open the project with Android Studio and update the following files to build project with [Gradle](http://gradle.org/).
-
-In `settings.gradle`, include the sdk subproject and specify the subproject path.
-```ruby
-//...
-include ':react-native-fbsdk'
-project(':react-native-fbsdk').projectDir = new File(settingsDir, '../node_modules/react-native-fbsdk/Android')
-```
-
-In `app/build.gradle`, enable multiDex support and add sdk to dependencies.
-```ruby
-defaultConfig {
-    //...
-    multiDexEnabled true
-}
-//...
-dependencies {
-    //...
-    compile project(":react-native-fbsdk")
-}
-```
-
+Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) installed, open the project with Android Studio.
 Go to `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
 Note that packages must be imported to use.
 
@@ -72,14 +55,6 @@ protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(packages);
 }
 ```
-Initialize sdk in method `onCreate()`.
-```java
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    FacebookSdk.sdkInitialize(getApplicationContext());
-} 
-```
 Override `onActivityResult()`.
 ```java
 @Override
@@ -88,61 +63,27 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     mCallbackManager.onActivityResult(requestCode, resultCode, data);
 }
 ```
-To use [AppEventsLogger](https://developers.facebook.com/docs/app-events), add method call to `activateApp`, `deactivateApp` and `onContextStop` in the corresponding life cycle events.
-```java
-import com.facebook.appevents.AppEventsLogger;     // <--- import
-
-@Override
-protected void onResume() {
-    super.onResume();
-    AppEventsLogger.activateApp(getApplicationContext());
-}
-
-@Override
-protected void onPause() {
-    super.onPause();
-    AppEventsLogger.deactivateApp(getApplicationContext());
-}
-
-@Override
-protected void onStop() {
-    super.onStop();
-    AppEventsLogger.onContextStop();
-}
-```
+Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but ***make sure*** you follows the rest of the steps such as calling `FacebookSdk.sdkInitialize` and updating `strings.xml` and `AndroidManifest.xml`. Note that react-native project doesn't have the Application class, so you'll need to create an implementation of the Application class yourself.
 
 #### 3.2 iOS project
-Assuming you have [CocoaPods](https://cocoapods.org) (it's recommended to use v.1.0+ `gem install cocoapods`) installed, complete the following steps:
+The react-native-fbsdk has been linked by rnpm, the next step will be downloading and linking the native Facebook SDK for iOS.
+Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow ***all the steps*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS.
 
-In `<project name>/ios` directory, create a `Podfile` by running:
-```ruby
-pod init
-```
+#### 3.3 Troubleshooting
+1. I cannot run the Android project.
 
-Open the generated `Podfile` and add the following code inside the **project target**:
-```ruby
-target 'YourApp' do
-  source 'https://github.com/CocoaPods/Specs.git'
-  pod 'React', :subspecs => ['Core', 'RCTImage', 'RCTNetwork', 'RCTText', 'RCTWebSocket'], :path => '../node_modules/react-native'
-  pod 'react-native-fbsdkcore', :path => '../node_modules/react-native-fbsdk/iOS/core'
-  pod 'react-native-fbsdklogin', :path => '../node_modules/react-native-fbsdk/iOS/login'
-  pod 'react-native-fbsdkshare', :path => '../node_modules/react-native-fbsdk/iOS/share'
-end
-```
+  - Make sure you added the code snippet in step 3.1.
+  - Make sure you set up a Facebook app and updated the `AndroidManifest.xml` and `res/values/strings.xml` with Facebook app settings.
 
-Remove all the subprojects under `Libraries/` in Xcode. This is because React Native's iOS code will be pulled in via CocoaPods.
+2. I get a build error stating that one of the Facebook SDK files was not found -- eg. `FBSDKLoginKit/FBSDKLoginKit.h file not found`.
 
-Run `pod install`. This will automatically download the Facebook SDK for iOS and create an Xcode workspace containing all native files. From now on open `YourApp.xcworkspace` instead of `YourApp.xcodeproj` in Xcode.
+  - Make sure that the Facebook SDK frameworks are installed in `~/Documents/FacebookSDK`.
+  - Make sure that `FBSDK[Core, Login, Share]Kit.framework` show up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
+  - Make sure that `~/Documents/FacebookSDK` is in the **Framework Search Path** of your build target's **Build Settings**.
 
-Note: When doing 'pod install', warnings like `The 'YourApp [Debug]' target overrides the 'OTHER_LDFLAGS' build setting ...` may show up. To solve this, go to Xcode's target **Build Setting** section, find `Other linker flags` and add `$(inherited)` in it.
+3. I get build errors like `Warning: Native component for "RCTFBLikeView" does not exist`:
 
-### 3.3 Configure native sdk
-After you configure the native project in 3.1 and/or 3.2, follow the Getting Started guide for [Android](https://developers.facebook.com/docs/android/getting-started/) and [iOS](https://developers.facebook.com/docs/ios/getting-started/) sdk to set up a Facebook app. You can skip the steps that talk about downloading and linking the Facebook SDK frameworks, -- that's already taken care of by the steps above.
-
-### 3.4 Troubleshooting
-If you get a build error stating that one of the Facebook SDK files was not found -- eg. `FBSDKCoreKit/FBSDKCoreKit.h` -- check two things\:
-- Ensure that the Facebook SDK frameworks are installed and show up in your xcode workspace.
-- Ensure the [schemes](https://developer.apple.com/library/ios/recipes/xcode_help-scheme_editor/Articles/SchemeDialog.html) (react-native-fbsdkcore, react-native-fbsdklogin, and react-native-fbsdkshare) can be run successfully.
+  - Make sure that `libRCTFBSDK.a` shows up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
 
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)
@@ -314,9 +255,9 @@ const {
 //Create response callback.
 _responseInfoCallback(error: ?Object, result: ?Object) {
   if (error) {
-    alert('Error posting data: ' + error.toString());
+    alert('Error fetching data: ' + error.toString());
   } else {
-    alert('Success posting data: ' + result.toString());
+    alert('Success fetching data: ' + result.toString());
   }
 }
 

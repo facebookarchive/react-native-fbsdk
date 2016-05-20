@@ -29,7 +29,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.WritableMap;
@@ -42,7 +41,7 @@ import java.util.Set;
  * A Log In/Log Out button that maintains login state and logs in/out for the app.
  * This control requires the app ID to be specified in the AndroidManifest.xml.
  */
-public class RCTLoginButton extends LoginButton implements ActivityEventListener {
+public class RCTLoginButton extends LoginButton {
 
     private CallbackManager mCallbackManager;
     private AccessTokenTracker mAccessTokenTracker;
@@ -125,11 +124,6 @@ public class RCTLoginButton extends LoginButton implements ActivityEventListener
                         event);
             }
         });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private String[] setToStringArray(Set<String> set) {
