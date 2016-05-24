@@ -37,6 +37,8 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.bridge.WritableMap;
 
+import java.util.HashMap;
+
 /**
  * FBGraphRequestModule holds a list of Request objects and send them to Facebook in a single
  * round-trip.
@@ -45,9 +47,11 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
 
     private class GraphRequestBatchCallback implements GraphRequestBatch.Callback {
 
+        private int mBatchId;
         private Callback mCallback;
 
-        public GraphRequestBatchCallback(Callback callback) {
+        public GraphRequestBatchCallback(int batchId, Callback callback) {
+            mBatchId = batchId;
             mCallback = callback;
         }
 
@@ -56,8 +60,9 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
             if (mCallback != null) {
                 mCallback.invoke(null, "success");
             }
-            mGraphRequestBatch = null;
-            mBatchCallback = null;
+            mBatchLookup.remove(mBatchId);
+            mBatchCallbacks.remove(mBatchId);
+            mCallback = null;
         }
     }
 
@@ -80,6 +85,8 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
 
     public FBGraphRequestModule(ReactApplicationContext reactContext) {
         super(reactContext);
+        mBatchLookup = new HashMap<>();
+        mBatchCallbacks = new HashMap<>();
     }
 
     @Override
@@ -87,49 +94,53 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
         return "FBGraphRequest";
     }
 
-    private GraphRequestBatch mGraphRequestBatch;
-    private GraphRequestBatchCallback mBatchCallback;
+    private HashMap<Integer, GraphRequestBatch> mBatchLookup;
+    private HashMap<Integer, Callback> mBatchCallbacks;
 
     /**
      * Add a single {@link GraphRequest} to current batch.
+     * @param batchId which indicates the GraphRequestBatch on which to apply this method.
      * @param graphRequestMap must contain a valid {@link GraphRequest} object.
      * @param callback Use Callback to pass result of the single request back to JS.
      */
     @ReactMethod
-    public void addToConnection(ReadableMap graphRequestMap, Callback callback) {
+    public void addToConnection(int batchId, ReadableMap graphRequestMap, Callback callback) {
         GraphRequest graphRequest = buildRequest(graphRequestMap, callback);
-        if (mGraphRequestBatch == null) {
-            mGraphRequestBatch = new GraphRequestBatch();
+        GraphRequestBatch graphRequestBatch = mBatchLookup.get(batchId);
+        if (graphRequestBatch == null) {
+            graphRequestBatch = new GraphRequestBatch();
+            mBatchLookup.put(batchId, graphRequestBatch);
         }
-        mGraphRequestBatch.add(graphRequest);
+        graphRequestBatch.add(graphRequest);
     }
 
     /**
      * Adds a batch-level callback which will be called when all requests in the batch have finished
      * executing.
+     * @param batchId which indicates the GraphRequestBatch on which to apply this method.
      * @param callback Use Callback to pass result of the batch back to JS.
      */
     @ReactMethod
-    public void addBatchCallback(Callback callback) {
-        mBatchCallback = new GraphRequestBatchCallback(callback);
+    public void addBatchCallback(int batchId, Callback callback) {
+        mBatchCallbacks.put(batchId, callback);
     }
 
     /**
      * Executes this batch asynchronously. This function will return immediately, and the batch will
      * be processed on a separate thread. In order to process results of a request, or determine
      * whether a request succeeded or failed, a callback must be specified when creating the request.
+     * @param batchId which indicates the GraphRequestBatch on which to apply this method.
      * @param timeout Sets the timeout to wait for responses from the server before a timeout error occurs.
      *                The default input is 0, which means no timeout.
      */
     @ReactMethod
-    public void start(int timeout) {
-        if (mGraphRequestBatch != null) {
-            mGraphRequestBatch.setTimeout(timeout);
-            mGraphRequestBatch.addCallback(
-                    mBatchCallback != null
-                            ? mBatchCallback
-                            : new GraphRequestBatchCallback(null));
-            mGraphRequestBatch.executeAsync();
+    public void start(int batchId, int timeout) {
+        GraphRequestBatch graphRequestBatch = mBatchLookup.get(batchId);
+        if (graphRequestBatch != null) {
+            graphRequestBatch.setTimeout(timeout);
+            graphRequestBatch.addCallback(
+                     new GraphRequestBatchCallback(batchId, mBatchCallbacks.get(batchId)));
+            graphRequestBatch.executeAsync();
         }
     }
 
