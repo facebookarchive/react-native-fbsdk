@@ -318,7 +318,7 @@ LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
   }
 );
 ```
-You'll need to enable the Remote JS Debug to see the `console.log()` output.
+You'll need to enable the [Debug JS Remotely](https://facebook.github.io/react-native/docs/debugging.html#chrome-developer-tools) to see the `console.log()` output.
 
 ## License
 See the LICENSE file.
