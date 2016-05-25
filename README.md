@@ -253,7 +253,7 @@ const {
 // ...
 
 //Create response callback.
-_responseInfoCallback(error: ?Object, result: ?Object) {
+_responseInfoCallback(error, result) {
   if (error) {
     alert('Error fetching data: ' + error.toString());
   } else {
