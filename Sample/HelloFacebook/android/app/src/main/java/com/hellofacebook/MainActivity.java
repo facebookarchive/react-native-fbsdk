@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.react.ReactActivity;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -48,13 +49,6 @@ public class MainActivity extends ReactActivity {
                 new FBSDKPackage(mCallbackManager),
         };
         return Arrays.<ReactPackage>asList(packages);
-    }
-
-    //Added code
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
     //Added code
