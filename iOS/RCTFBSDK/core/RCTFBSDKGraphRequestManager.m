@@ -54,13 +54,28 @@ static NSDictionary *RCTPrepareParameters(NSDictionary *parameters)
 
 @end
 
+@interface SelfManagedGraphRequestConnection: FBSDKGraphRequestConnection
+@property (nonatomic) NSNumber* batchId;
+@property (nonatomic) RCTResponseSenderBlock finalCallback;
+@end
+
+@implementation SelfManagedGraphRequestConnection
+@end
+
 @implementation RCTFBSDKGraphRequestManager
 {
-  FBSDKGraphRequestConnection *_connection;
-  RCTResponseSenderBlock _connectionCallback;
+  NSMutableDictionary *_connectionLookup;
 }
 
 RCT_EXPORT_MODULE(FBGraphRequest);
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        _connectionLookup = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
 
 - (dispatch_queue_t)methodQueue
 {
@@ -69,28 +84,33 @@ RCT_EXPORT_MODULE(FBGraphRequest);
 
 #pragma mark - React Native Methods
 
-RCT_EXPORT_METHOD(addToConnection:(FBSDKGraphRequest *)request callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(addToConnection:(nonnull NSNumber *)batchRequestId request:(FBSDKGraphRequest *)request callback:(RCTResponseSenderBlock)callback)
 {
-  if (_connection == nil) {
-    _connection = [[FBSDKGraphRequestConnection alloc] init];
-    _connection.delegate = self;
+  SelfManagedGraphRequestConnection *connection = [_connectionLookup objectForKey:batchRequestId];
+  if (connection == nil) {
+    connection = [[SelfManagedGraphRequestConnection alloc] init];
+    connection.delegate = self;
+    connection.batchId = batchRequestId;
+    [_connectionLookup setObject:connection forKey:batchRequestId];
   }
   FBSDKGraphRequestHandler completionHandler = ^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
     NSDictionary *errorDict = error ? RCTJSErrorFromNSError(error) : nil;
     callback(@[RCTNullIfNil(errorDict), RCTNullIfNil(result)]);
   };
-  [_connection addRequest:request completionHandler:completionHandler];
+  [connection addRequest:request completionHandler:completionHandler];
 }
 
-RCT_REMAP_METHOD(addBatchCallback, addConnectionCallback:(RCTResponseSenderBlock)callback)
+RCT_REMAP_METHOD(addBatchCallback, addConnectionCallback:(nonnull NSNumber *)batchRequestId request:(RCTResponseSenderBlock)callback)
 {
-  _connectionCallback = callback;
+  SelfManagedGraphRequestConnection *connection = [_connectionLookup objectForKey:batchRequestId];
+  connection.finalCallback = callback;
 }
 
-RCT_EXPORT_METHOD(start:(nonnull NSNumber *)timeout)
+RCT_EXPORT_METHOD(start:(nonnull NSNumber *)batchRequestId timeout:(nonnull NSNumber *)timeout)
 {
-  if (_connection != nil) {
-    [_connection start];
+  FBSDKGraphRequestConnection *connection = [_connectionLookup objectForKey:batchRequestId];
+  if (connection != nil) {
+    [connection start];
   } else {
     RCTLogError(@"No connection found");
   }
@@ -100,20 +120,22 @@ RCT_EXPORT_METHOD(start:(nonnull NSNumber *)timeout)
 
 - (void)requestConnectionDidFinishLoading:(FBSDKGraphRequestConnection *)connection
 {
-  if (_connectionCallback) {
-    _connectionCallback(@[[NSNull null], @{@"result": @"success"}]);
-    _connectionCallback = nil;
+  RCTResponseSenderBlock callback = ((SelfManagedGraphRequestConnection *)connection).finalCallback;
+  if (callback) {
+    callback(@[[NSNull null], @{@"result": @"success"}]);
   }
-  _connection = nil;
+  NSNumber *batchId = ((SelfManagedGraphRequestConnection *)connection).batchId;
+  [_connectionLookup removeObjectForKey:batchId];
 }
 
 - (void)requestConnection:(FBSDKGraphRequestConnection *)connection didFailWithError:(NSError *)error
 {
-  if (_connectionCallback) {
-    _connectionCallback(@[error.localizedDescription ?: @"Unknown error", [NSNull null]]);
-    _connectionCallback = nil;
+  RCTResponseSenderBlock callback = ((SelfManagedGraphRequestConnection *)connection).finalCallback;
+  if (callback) {
+    callback(@[error.localizedDescription ?: @"Unknown error", [NSNull null]]);
   }
-  _connection = nil;
+  NSNumber *batchId = ((SelfManagedGraphRequestConnection *)connection).batchId;
+  [_connectionLookup removeObjectForKey:batchId];
 }
 
 @end

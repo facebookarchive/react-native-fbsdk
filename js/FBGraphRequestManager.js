@@ -41,7 +41,14 @@ function _verifyParameters(request: GraphRequest) {
   }
 }
 
+var batchRequestIdCounter = 0;
+
 class FBGraphRequestManager {
+  batchRequestId: number; // A unique ID for internal book-keeping inside NativeGraphRequestManager
+
+   constructor() {
+    this.batchRequestId = batchRequestIdCounter++;
+  }
 
   /**
    * Add a graph request.
@@ -49,6 +56,7 @@ class FBGraphRequestManager {
   addRequest(request: GraphRequest): FBGraphRequestManager {
     _verifyParameters(request);
     NativeGraphRequestManager.addToConnection(
+      this.batchRequestId,
       request,
       (error, result) => {
         if (request.callback) {
@@ -69,7 +77,7 @@ class FBGraphRequestManager {
    * Add call back to the GraphRequestManager. Only one callback can be added.
    */
   addBatchCallback(callback: (error: ?Object, result: ?Object) => void): FBGraphRequestManager {
-    NativeGraphRequestManager.addBatchCallback(callback);
+    NativeGraphRequestManager.addBatchCallback(this.batchRequestId, callback);
     return this;
   }
 
@@ -77,7 +85,7 @@ class FBGraphRequestManager {
    * Executes requests in a batch.
    */
   start(timeout: ?number) {
-    NativeGraphRequestManager.start(timeout || 0);
+    NativeGraphRequestManager.start(this.batchRequestId, timeout || 0);
   }
 }
 
