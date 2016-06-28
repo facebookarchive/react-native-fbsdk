@@ -40,7 +40,7 @@ RCT_EXPORT_MODULE();
 - (instancetype)init
 {
   if ((self = [super init])) {
-    [FBSDKSettings setUserAgentSuffix:@"ReactNative-v0.2.1"];
+    [FBSDKSettings setUserAgentSuffix:@"ReactNative-v0.2.2"];
   }
   return self;
 }
