@@ -85,6 +85,9 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 
   - Make sure that `libRCTFBSDK.a` shows up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
 
+## GIVE FEEDBACK
+Please report bugs or issues to https://developers.facebook.com/bugs/
+
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)
 #### Login Button + Access Token
