@@ -77,6 +77,8 @@ In `MainApplication.java`,
 Add an instance variable of type `CallbackManager` and its getter.
 ```java
 import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 ...
 
 public class MainApplication extends Application implements ReactApplication {
@@ -122,11 +124,15 @@ In `MainActivity.java`
 
 Override `onActivityResult()` method
 ```java
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
-}
+import android.content.Intent;
+
+public class MainActivity extends ReactActivity {
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
+    }
 ```
 
 Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, and the step of calling `FacebookSdk.sdkInitialize`. But **make sure** you follow the rest of the steps such as updating `strings.xml` and `AndroidManifest.xml`.
