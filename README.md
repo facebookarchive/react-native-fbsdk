@@ -133,6 +133,7 @@ public class MainActivity extends ReactActivity {
         super.onActivityResult(requestCode, resultCode, data);
         MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
     }
+    //...
 ```
 
 Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, and the step of calling `FacebookSdk.sdkInitialize`. But **make sure** you follow the rest of the steps such as updating `strings.xml` and `AndroidManifest.xml`.
