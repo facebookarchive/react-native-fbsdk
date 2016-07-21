@@ -104,7 +104,7 @@ public void onCreate() {
 
 Register sdk package in method `getPackages()`.
 ```java
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     protected boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -117,7 +117,7 @@ Register sdk package in method `getPackages()`.
           new FBSDKPackage(mCallbackManager)
       );
     }
-  };
+};
 ```
 
 In `MainActivity.java`
