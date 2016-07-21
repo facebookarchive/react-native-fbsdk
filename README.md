@@ -27,6 +27,9 @@ rnpm install react-native-fbsdk
 
 #### 3.1 Android project
 Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) installed, open the project with Android Studio.
+
+**If your react-native version is below 0.29.0**
+
 Go to `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
 Note that packages must be imported to use.
 
@@ -64,6 +67,69 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but ***make sure*** you follow the rest of the steps such as calling `FacebookSdk.sdkInitialize` and updating `strings.xml` and `AndroidManifest.xml`. Note that react-native project doesn't have the Application class, so you'll need to create an implementation of the Application class yourself.
+
+**If your react-native version is 0.29.+**
+
+Go to `MainApplication.java` and `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
+
+In `MainApplication.java`,
+
+Add an instance variable of type `CallbackManager` and its getter.
+```java
+import com.facebook.CallbackManager;
+...
+
+public class MainApplication extends Application implements ReactApplication {
+
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+  
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
+    //...
+```
+
+Override `onCreate()` method
+```java
+@Override
+public void onCreate() {
+  super.onCreate();
+  FacebookSdk.sdkInitialize(getApplicationContext());
+  // If you want to use AppEventsLogger to log events.
+  AppEventsLogger.activateApp(this);
+}
+```
+
+Register sdk package in method `getPackages()`.
+```java
+  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+    @Override
+    protected boolean getUseDeveloperSupport() {
+      return BuildConfig.DEBUG;
+    }
+
+    @Override
+    protected List<ReactPackage> getPackages() {
+      return Arrays.<ReactPackage>asList(
+          new MainReactPackage(),
+          new FBSDKPackage(mCallbackManager)
+      );
+    }
+  };
+```
+
+In `MainActivity.java`
+
+Override `onActivityResult()` method
+```java
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
+}
+```
+
+Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, and the step of calling `FacebookSdk.sdkInitialize`. But **make sure** you follow the rest of the steps such as updating `strings.xml` and `AndroidManifest.xml`.
 
 #### 3.2 iOS project
 The react-native-fbsdk has been linked by rnpm, the next step will be downloading and linking the native Facebook SDK for iOS.
