@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93B905C21D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B905C11D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.m */; };
 		93E0043A1CE3C33F000598E3 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E004371CE3C33F000598E3 /* FBSDKCoreKit.framework */; };
 		93E0043B1CE3C33F000598E3 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E004381CE3C33F000598E3 /* FBSDKLoginKit.framework */; };
 		93E0043C1CE3C33F000598E3 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E004391CE3C33F000598E3 /* FBSDKShareKit.framework */; };
@@ -46,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		9350E0F11CE3B0920041D815 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTFBSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		93B905C01D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKGraphRequestConnectionContainer.h; path = core/RCTFBSDKGraphRequestConnectionContainer.h; sourceTree = "<group>"; };
+		93B905C11D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKGraphRequestConnectionContainer.m; path = core/RCTFBSDKGraphRequestConnectionContainer.m; sourceTree = "<group>"; };
 		93E004371CE3C33F000598E3 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		93E004381CE3C33F000598E3 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		93E004391CE3C33F000598E3 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 		93E004DA1CE3D286000598E3 /* core */ = {
 			isa = PBXGroup;
 			children = (
+				93B905C01D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.h */,
+				93B905C11D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.m */,
 				93E005301CE3D63D000598E3 /* RCTFBSDKInitializer.m */,
 				93E004DB1CE3D292000598E3 /* RCTConvert+FBSDKAccessToken.h */,
 				93E004DC1CE3D292000598E3 /* RCTConvert+FBSDKAccessToken.m */,
@@ -277,6 +282,7 @@
 				93E005131CE3D2D3000598E3 /* RCTFBSDKShareAPI.m in Sources */,
 				93E004F11CE3D2B4000598E3 /* RCTFBSDKLoginManager.m in Sources */,
 				93E005121CE3D2D3000598E3 /* RCTFBSDKSendButtonManager.m in Sources */,
+				93B905C21D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,14 +377,13 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"~/Documents/FacebookSDK",
-					"$(PROJECT_DIR)/../../../ios/**",
+					"$(PROJECT_DIR)/../../../ios/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../react/**",
 					"${SRCROOT}/../../react-native/React/**",
-					"${SRCROOT}/../../../ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -394,14 +399,13 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"~/Documents/FacebookSDK",
-					"$(PROJECT_DIR)/../../../ios/**",
+					"$(PROJECT_DIR)/../../../ios/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../react/**",
 					"${SRCROOT}/../../react-native/React/**",
-					"${SRCROOT}/../../../ios/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";

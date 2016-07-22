@@ -21,6 +21,7 @@
 package com.facebook.reactnative.androidsdk;
 
 import android.os.Bundle;
+import android.util.SparseArray;
 
 import com.facebook.AccessToken;
 import com.facebook.FacebookRequestError;
@@ -33,60 +34,67 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
+import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
- * FBGraphRequestModule holds a list of Request objects and send them to Facebook in a single
+ * FBGraphRequestModule holds a list of request objects and send them to Facebook in a single
  * round-trip.
  */
 public class FBGraphRequestModule extends ReactContextBaseJavaModule {
+    private SparseArray<WritableMap> mResponses;
 
     private class GraphRequestBatchCallback implements GraphRequestBatch.Callback {
 
-        private int mBatchId;
+        private int mBatchID;
         private Callback mCallback;
 
-        public GraphRequestBatchCallback(int batchId, Callback callback) {
-            mBatchId = batchId;
+        public GraphRequestBatchCallback(int batchID, Callback callback) {
+            mBatchID = batchID;
             mCallback = callback;
         }
 
         @Override
         public void onBatchCompleted(GraphRequestBatch batch) {
-            if (mCallback != null) {
-                mCallback.invoke(null, "success");
-            }
-            mBatchLookup.remove(mBatchId);
-            mBatchCallbacks.remove(mBatchId);
-            mCallback = null;
+            WritableMap result = Arguments.createMap();
+            result.putString("result", "batch finished executing or timed out");
+            mCallback.invoke(null, result, mResponses.get(mBatchID));
+            mResponses.remove(mBatchID);
         }
     }
 
     private class GraphRequestCallback implements GraphRequest.Callback {
 
-        private Callback mCallback;
+        private String mIndex;
+        private int mBatchID;
 
-        public GraphRequestCallback(Callback callback) {
-            mCallback = callback;
+        public GraphRequestCallback(int index, int batchID) {
+            mIndex = String.valueOf(index);
+            mBatchID = batchID;
         }
 
         @Override
         public void onCompleted(GraphResponse response) {
-            if (mCallback != null) {
-                mCallback.invoke(buildFacebookRequestError(response.getError()), response.getRawResponse());
-            }
-            mCallback = null;
+            WritableArray responseArray = Arguments.createArray();
+            responseArray.pushMap(buildFacebookRequestError(response.getError()));
+            responseArray.pushMap(buildGraphResponse(response));
+            mResponses.get(mBatchID).putArray(mIndex, responseArray);
         }
     }
 
     public FBGraphRequestModule(ReactApplicationContext reactContext) {
         super(reactContext);
-        mBatchLookup = new HashMap<>();
-        mBatchCallbacks = new HashMap<>();
+        mResponses = new SparseArray<WritableMap>();
     }
 
     @Override
@@ -94,61 +102,38 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
         return "FBGraphRequest";
     }
 
-    private HashMap<Integer, GraphRequestBatch> mBatchLookup;
-    private HashMap<Integer, Callback> mBatchCallbacks;
-
     /**
-     * Add a single {@link GraphRequest} to current batch.
-     * @param batchId which indicates the GraphRequestBatch on which to apply this method.
-     * @param graphRequestMap must contain a valid {@link GraphRequest} object.
-     * @param callback Use Callback to pass result of the single request back to JS.
+     * Send the batch of requests.
+     * @param requestBatch
+     * @param timeout
+     * @param batchCallback
      */
     @ReactMethod
-    public void addToConnection(int batchId, ReadableMap graphRequestMap, Callback callback) {
-        GraphRequest graphRequest = buildRequest(graphRequestMap, callback);
-        GraphRequestBatch graphRequestBatch = mBatchLookup.get(batchId);
-        if (graphRequestBatch == null) {
-            graphRequestBatch = new GraphRequestBatch();
-            mBatchLookup.put(batchId, graphRequestBatch);
+    public void start(ReadableArray requestBatch, int timeout, Callback batchCallback) {
+        GraphRequestBatch batch = new GraphRequestBatch();
+        int potentialID = 0;
+        int batchID = 0;
+        synchronized (this) {
+            do {
+                batchID = potentialID++;
+            } while (mResponses.get(batchID) != null);
+            mResponses.put(batchID, Arguments.createMap());
         }
-        graphRequestBatch.add(graphRequest);
-    }
-
-    /**
-     * Adds a batch-level callback which will be called when all requests in the batch have finished
-     * executing.
-     * @param batchId which indicates the GraphRequestBatch on which to apply this method.
-     * @param callback Use Callback to pass result of the batch back to JS.
-     */
-    @ReactMethod
-    public void addBatchCallback(int batchId, Callback callback) {
-        mBatchCallbacks.put(batchId, callback);
-    }
-
-    /**
-     * Executes this batch asynchronously. This function will return immediately, and the batch will
-     * be processed on a separate thread. In order to process results of a request, or determine
-     * whether a request succeeded or failed, a callback must be specified when creating the request.
-     * @param batchId which indicates the GraphRequestBatch on which to apply this method.
-     * @param timeout Sets the timeout to wait for responses from the server before a timeout error occurs.
-     *                The default input is 0, which means no timeout.
-     */
-    @ReactMethod
-    public void start(int batchId, int timeout) {
-        GraphRequestBatch graphRequestBatch = mBatchLookup.get(batchId);
-        if (graphRequestBatch != null) {
-            graphRequestBatch.setTimeout(timeout);
-            graphRequestBatch.addCallback(
-                     new GraphRequestBatchCallback(batchId, mBatchCallbacks.get(batchId)));
-            graphRequestBatch.executeAsync();
+        for (int i = 0; i < requestBatch.size(); i++) {
+            GraphRequest request = buildRequest(requestBatch.getMap(i));
+            request.setCallback(new GraphRequestCallback(i, batchID));
+            batch.add(request);
         }
+        batch.setTimeout(timeout);
+        GraphRequestBatchCallback callback = new GraphRequestBatchCallback(batchID, batchCallback);
+        batch.addCallback(callback);
+        batch.executeAsync();
     }
 
-    private GraphRequest buildRequest(ReadableMap requestMap, Callback callback) {
+    private GraphRequest buildRequest(ReadableMap requestMap) {
         GraphRequest graphRequest = new GraphRequest();
         graphRequest.setGraphPath(requestMap.getString("graphPath"));
         setConfig(graphRequest, requestMap.getMap("config"));
-        graphRequest.setCallback(new GraphRequestCallback(callback));
         return graphRequest;
     }
 
@@ -175,8 +160,7 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
                 null,
                 null,
                 null,
-                null)
-            );
+                null));
         } else {
             graphRequest.setAccessToken(AccessToken.getCurrentAccessToken());
         }
@@ -195,7 +179,7 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
         return parameters;
     }
 
-    private ReadableMap buildFacebookRequestError(FacebookRequestError error) {
+    private WritableMap buildFacebookRequestError(FacebookRequestError error) {
         if (error == null) {
             return null;
         }
@@ -228,5 +212,66 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
             errorMap.putString("exception", error.getException().toString());
         }
         return errorMap;
+    }
+
+    private WritableMap buildGraphResponse(GraphResponse response) {
+        if (response.getJSONObject() != null) {
+            return convertJSONObject(response.getJSONObject());
+        }
+        return Arguments.createMap();
+    }
+
+    private WritableArray convertJSONArray(JSONArray jsonArray) {
+        WritableArray result = Arguments.createArray();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Object object;
+            try {
+                object = jsonArray.get(i);
+            } catch (JSONException e) {
+                return result;
+            }
+            if (object instanceof JSONObject) {
+                result.pushMap(convertJSONObject((JSONObject) object));
+            } else if (object instanceof JSONArray) {
+                result.pushArray(convertJSONArray((JSONArray) object));
+            } else if (object instanceof String) {
+                result.pushString((String) object);
+            } else if (object instanceof Integer) {
+                result.pushInt((int) object);
+            } else if (object instanceof Boolean) {
+                result.pushBoolean((Boolean) object);
+            } else if (object instanceof Double) {
+                result.pushDouble((Double) object);
+            }
+        }
+        return result;
+    }
+
+    private WritableMap convertJSONObject(JSONObject object) {
+        WritableMap result = Arguments.createMap();
+        Iterator<String> keyIterator = object.keys();
+        while (keyIterator.hasNext()) {
+            String key = keyIterator.next();
+            Object value;
+            try {
+                value = object.get(key);
+            } catch (JSONException e) {
+                return result;
+            }
+            if (value instanceof JSONObject) {
+                result.putMap(key, convertJSONObject((JSONObject) value));
+            } else if (value instanceof JSONArray) {
+                result.putArray(key, convertJSONArray((JSONArray) value));
+            } else if (value instanceof String) {
+                result.putString(key, (String) value);
+            } else if (value instanceof Integer) {
+                result.putInt(key, (int) value);
+            } else if (value instanceof Boolean) {
+                result.putBoolean(key, (Boolean) value);
+            } else if (value instanceof Double) {
+                result.putDouble(key, (Double) value);
+            }
+        }
+        return result;
     }
 }

@@ -27,8 +27,7 @@ import type { ShareContent } from './models/FBShareContent';
 
 module.exports = {
   /**
-   * For Android only, check if the dialog can be shown.
-   * @platform android
+   * Check if the content can be shared via share api.
    */
   canShare(shareContent: ShareContent): Promise<boolean> {
     return ShareApi.canShare(shareContent);
@@ -39,7 +38,7 @@ module.exports = {
    * NOTE: Only one share action can be performed at a time.
    * @platform ios
    */
-  createOpenGraphObject(openGraphObject: ShareOpenGraphObject): Promise {
+  createOpenGraphObject(openGraphObject: ShareOpenGraphObject): Promise<any> {
     return ShareApi.createOpenGraphObject(openGraphObject);
   },
 
@@ -47,7 +46,7 @@ module.exports = {
    * Shares the specified content with a message.
    * NOTE: Only one share action can be performed at a time.
    */
-  share(shareContent: ShareContent, graphNode: string, message: string): Promise {
+  share(shareContent: ShareContent, graphNode: string, message: string): Promise<any> {
     return ShareApi.share(shareContent, graphNode, message);
   },
 };

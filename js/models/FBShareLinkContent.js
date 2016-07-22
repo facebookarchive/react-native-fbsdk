@@ -30,38 +30,38 @@ export type ShareLinkContent = {
   /**
    * The type of content to be shared is link.
    */
-  contentType: 'link';
+  contentType: 'link',
 
   /**
    * Common parameters for share content;
    */
-  commonParameters?: ShareContentCommonParameters;
+  commonParameters?: ShareContentCommonParameters,
 
   /**
    * URL for the content being shared.
    */
-  contentUrl: string;
+  contentUrl: string,
 
   /**
    * The Description of the link.
    * If not specified, this field is automatically populated by information scraped
    * from the contentURL,  typically the title of the page.
    */
-  contentDescription?: string;
+  contentDescription?: string,
 
   /**
    * The title to display for this link.
    */
-  contentTitle?: string;
+  contentTitle?: string,
 
   /**
    * The URL of a picture to attach to this comment.
    */
-  imageUrl?: string;
+  imageUrl?: string,
 
   /**
    * The predefine quote to attacth to this comment.
    * If specified, the quote text will render with custom styling on top of the link.
    */
-  quote?: string;
+  quote?: string,
 };

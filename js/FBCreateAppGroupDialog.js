@@ -28,14 +28,14 @@ module.exports = {
   /**
    * Check if the dialog can be shown.
    */
-  canShow(): Promise {
+  canShow(): Promise<any> {
     return CreateAppGroupDialog.canShow();
   },
 
   /**
    * Shows the dialog using the specified content.
    */
-  show(appGroupCreationContent: AppGroupCreationContent): Promise {
+  show(appGroupCreationContent: AppGroupCreationContent): Promise<any> {
     return CreateAppGroupDialog.show(appGroupCreationContent);
   },
 };

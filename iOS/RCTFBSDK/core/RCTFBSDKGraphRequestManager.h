@@ -20,6 +20,6 @@
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-@interface RCTFBSDKGraphRequestManager : NSObject <RCTBridgeModule, FBSDKGraphRequestConnectionDelegate>
+@interface RCTFBSDKGraphRequestManager : NSObject <RCTBridgeModule>
 
 @end

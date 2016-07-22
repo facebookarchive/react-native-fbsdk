@@ -28,14 +28,14 @@ module.exports = {
   /**
    * Check if the dialog can be shown.
    */
-  canShow(): Promise {
+  canShow(): Promise<any> {
     return GameRequestDialog.canShow();
   },
 
   /**
    * Shows the dialog using the specified content.
    */
-  show(gameRequestContent: GameRequestContent): Promise {
+  show(gameRequestContent: GameRequestContent): Promise<any> {
     return GameRequestDialog.show(gameRequestContent);
   },
 };

@@ -84,7 +84,7 @@ import com.facebook.reactnative.androidsdk.FBSDKPackage;
 public class MainApplication extends Application implements ReactApplication {
 
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
-  
+
   protected static CallbackManager getCallbackManager() {
     return mCallbackManager;
   }
@@ -157,9 +157,6 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 3. I get build errors like `Warning: Native component for "RCTFBLikeView" does not exist`:
 
   - Make sure that `libRCTFBSDK.a` shows up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
-
-## GIVE FEEDBACK
-Please report bugs or issues to https://developers.facebook.com/bugs/
 
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)

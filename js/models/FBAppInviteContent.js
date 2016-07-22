@@ -29,9 +29,9 @@ export type AppInviteContent = {
    * A URL to a preview image that will be displayed with the app invite.
    * This is optional. If you don't include it, a fallback image will be used.
    */
-  previewImageUrl?: string;
+  previewImageUrl?: string,
   /**
    * An app link target that will be used as a target when the user accepts the invite.
    */
-  applinkUrl: string;
+  applinkUrl: string,
 };

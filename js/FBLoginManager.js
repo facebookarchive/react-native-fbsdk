@@ -63,9 +63,9 @@ export type DefaultAudience =
  * Shows the results of a login operation.
  */
 export type LoginResult = {
-  isCancelled: boolean;
-  grantedPermissions?: Array<string>;
-  declinedPermissions?: Array<string>;
+  isCancelled: boolean,
+  grantedPermissions?: Array<string>,
+  declinedPermissions?: Array<string>,
 };
 
 module.exports = {
