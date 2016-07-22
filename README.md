@@ -68,7 +68,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 ```
 Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but ***make sure*** you follow the rest of the steps such as calling `FacebookSdk.sdkInitialize` and updating `strings.xml` and `AndroidManifest.xml`. Note that react-native project doesn't have the Application class, so you'll need to create an implementation of the Application class yourself.
 
-**If your react-native version is 0.29.+**
+**If your react-native version is 0.29 or above**
 
 Go to `MainApplication.java` and `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
 
