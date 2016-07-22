@@ -30,7 +30,7 @@ function _verifyParameters(request: GraphRequest) {
   if (request.config && request.config.parameters) {
     for (var key in request.config.parameters) {
       var param = request.config.parameters[key];
-      if (typeof param === 'object' && param.string) {
+      if (typeof param === 'object' && param.string != null) {
         continue;
       }
       throw new Error(
