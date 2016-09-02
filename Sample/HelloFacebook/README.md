@@ -1,5 +1,5 @@
-# HellopFacebook Sample App
-HellopFacebook is a react-native app using react-native-fbsdk.
+# HelloFacebook Sample App
+HelloFacebook is a react-native app using react-native-fbsdk.
 This app showcases a Facebook login button and a share dialog.
 
 To run the iOS project,
