@@ -25,14 +25,14 @@
 const AccessToken = require('react-native').NativeModules.FBAccessToken;
 
 type AccessTokenMap = {
-  accessToken: string;
-  applicationID: string;
-  userID: string;
-  permissions: Array<string>;
-  declinedPermissions: Array<string>;
-  accessTokenSource?: string;
-  expirationTime: number;
-  lastRefreshTime: number;
+  accessToken: string,
+  applicationID: string,
+  userID: string,
+  permissions: Array<string>,
+  declinedPermissions: Array<string>,
+  accessTokenSource?: string,
+  expirationTime: number,
+  lastRefreshTime: number,
 };
 
 /**
@@ -120,7 +120,7 @@ class FBAccessToken {
    * Updates the current access token with up to date permissions,
    * and extends the expiration date, if extension is possible.
    */
-  static refreshCurrentAccessTokenAsync(): Promise {
+  static refreshCurrentAccessTokenAsync(): Promise<any> {
     return AccessToken.refreshCurrentAccessTokenAsync();
   }
 

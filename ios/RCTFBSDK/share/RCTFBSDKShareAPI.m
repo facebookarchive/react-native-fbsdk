@@ -48,6 +48,17 @@ RCT_EXPORT_MODULE(FBShareApi);
 
 #pragma mark - React Native Methods
 
+RCT_EXPORT_METHOD(canShare:(RCTFBSDKSharingContent)content
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+  if ([_shareAPI canShare]) {
+    resolve(@YES);
+  } else {
+    resolve(@NO);
+  }
+}
+
 RCT_EXPORT_METHOD(share:(RCTFBSDKSharingContent)content
                   graphNode:(NSString *)graphNode
                   message:(NSString *)message

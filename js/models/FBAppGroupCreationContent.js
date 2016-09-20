@@ -37,13 +37,13 @@ export type AppGroupCreationContent = {
   /**
    * The description of the group.
    */
-  description: string;
+  description: string,
   /**
    * The name of the group.
    */
-  name: string;
+  name: string,
   /**
    * The privacy for the group.
    */
-  privacy: AppGroupPrivacy;
+  privacy: AppGroupPrivacy,
 };

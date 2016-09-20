@@ -14,14 +14,9 @@ react-native init YourApp
 
 ### 2. Install JavaScript packages
 
-Install [rnpm](https://github.com/rnpm/rnpm):
+Install and link the react-native-fbsdk package:
 ```ruby
-npm install rnpm -g
-```
-
-Use rnpm to install and link the react-native-fbsdk package:
-```ruby
-rnpm install react-native-fbsdk
+react-native install react-native-fbsdk
 ```
 ### 3. Configure native projects
 
@@ -84,7 +79,7 @@ import com.facebook.reactnative.androidsdk.FBSDKPackage;
 public class MainApplication extends Application implements ReactApplication {
 
   private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
-  
+
   protected static CallbackManager getCallbackManager() {
     return mCallbackManager;
   }

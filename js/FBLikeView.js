@@ -44,44 +44,44 @@ type HorizontalAlignment = 'center' | 'left' | 'right';
  */
 class LikeView extends React.Component {
   static defaultProps: {
-   style: typeof styles.defaultButtonStyle;
+   style: typeof styles.defaultButtonStyle,
   };
 
   props: {
     /**
      * The objectId and type for the object to like.
      */
-    objectIdAndType: ObjectIdAndType;
+    objectIdAndType: ObjectIdAndType,
 
     /**
      * The style to use for the receiver.  Distinct from React styling.
      */
-    likeViewStyle?: LikeViewStyle;
+    likeViewStyle?: LikeViewStyle,
 
     /**
      * The position for the auxiliary view for the receiver.
      */
-    auxiliaryViewPosition?: AuxiliaryViewPosition;
+    auxiliaryViewPosition?: AuxiliaryViewPosition,
 
     /**
      * The text alignment of the social sentence.
      */
-    horizontalAlignment?: HorizontalAlignment;
+    horizontalAlignment?: HorizontalAlignment,
 
     /**
      * The foreground color to use for the content of the receiver.
      */
-    foregroundColor?: number;
+    foregroundColor?: number,
 
     /**
      * If true, a sound is played when the receiver is toggled.
      */
-    soundEnabled?: bool;
+    soundEnabled?: bool,
 
     /**
      * View style, if any.
      */
-    style?: any;
+    style?: any,
   };
 
   render() {

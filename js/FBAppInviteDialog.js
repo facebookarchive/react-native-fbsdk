@@ -28,14 +28,14 @@ module.exports = {
   /**
    * Check if the dialog can be shown.
    */
-  canShow(): Promise {
+  canShow(): Promise<any> {
     return AppInviteDialog.canShow();
   },
 
   /**
    * Shows the dialog using the specified content.
    */
-  show(appInviteContent: AppInviteContent): Promise {
+  show(appInviteContent: AppInviteContent): Promise<any> {
     return AppInviteDialog.show(appInviteContent);
   },
 };

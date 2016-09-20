@@ -33,23 +33,23 @@ export type ShareContentCommonParameters = {
   /**
    * List of IDs for taggable people to tag with this content.
    */
-  peopleIds?: Array<string>;
+  peopleIds?: Array<string>,
 
   /**
    * The ID for a place to tag with this content.
    */
-  placeId?: string;
+  placeId?: string,
 
   /**
    * A value to be added to the referrer URL when a person follows a link from
    * this shared content on feed.
    */
-  ref?: string;
+  ref?: string,
 
   /**
    * A hashtag to be added to the share interface. The hashtag must be 32 characters or less.
    */
-  hashtag?: string;
+  hashtag?: string,
 };
 
 export type ShareContent = ShareLinkContent | SharePhotoContent | ShareVideoContent | ShareOpenGraphContent;

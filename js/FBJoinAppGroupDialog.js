@@ -27,14 +27,14 @@ module.exports = {
   /**
    * Check if the dialog can be shown.
    */
-  canShow(): Promise {
+  canShow(): Promise<any> {
     return JoinAppGroupDialog.canShow();
   },
 
   /**
    * Shows the dialog using the groupId.
    */
-  show(groupId: string): Promise {
+  show(groupId: string): Promise<any> {
     return JoinAppGroupDialog.show(groupId);
   },
 };

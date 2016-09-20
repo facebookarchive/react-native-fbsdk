@@ -69,7 +69,7 @@ module.exports = {
   /**
    * Shows the dialog using the specified content.
    */
-  show(shareContent: ShareContent): Promise {
+  show(shareContent: ShareContent): Promise<any> {
     return ShareDialog.show(shareContent);
   },
 

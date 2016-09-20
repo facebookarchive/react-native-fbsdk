@@ -46,7 +46,7 @@ type Event = Object;
  */
 class LoginButton extends React.Component {
   static defaultProps: {
-    style: typeof styles.defaultButtonStyle;
+    style: typeof styles.defaultButtonStyle,
   };
 
   props: {
@@ -54,51 +54,51 @@ class LoginButton extends React.Component {
      * Represents the read permissions to request when the login button
      * is pressed.
      */
-    readPermissions?: Array<string>;
+    readPermissions?: Array<string>,
 
     /**
      * Represents the publish permissions to request when the login
      * button is pressed.
      */
-    publishPermissions?: Array<string>;
+    publishPermissions?: Array<string>,
 
     /**
      * The callback invoked upon error/completion of a login request.
      */
-    onLoginFinished?: (error: Object, result: LoginResult) => void;
+    onLoginFinished?: (error: Object, result: LoginResult) => void,
 
     /**
      * The callback invoked upon completion of a logout request.
      */
-    onLogoutFinished?: () => void;
+    onLogoutFinished?: () => void,
 
     /**
      * The behavior to use when attempting a login.
      * @platform android
      */
-    loginBehaviorAndroid?: LoginBehaviorAndroid;
+    loginBehaviorAndroid?: LoginBehaviorAndroid,
 
     /**
      * The behavior to use when attempting a login.
      * @platform ios
      */
-    loginBehaviorIOS?: LoginBehaviorIOS;
+    loginBehaviorIOS?: LoginBehaviorIOS,
 
     /**
      * The default audience to target when attempting a login.
      */
-    defaultAudience?: DefaultAudience;
+    defaultAudience?: DefaultAudience,
 
     /**
      * For iOS only, the desired tooltip behavior.
      * @platform ios
      */
-    tooltipBehaviorIOS?: TooltipBehaviorIOS;
+    tooltipBehaviorIOS?: TooltipBehaviorIOS,
 
     /**
      * View style, if any.
      */
-    style?: any;
+    style?: any,
   };
 
   _eventHandler(event: Event) {

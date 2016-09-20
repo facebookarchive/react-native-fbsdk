@@ -31,20 +31,20 @@ export type SharePhotoContent = {
   /**
    * The type of content to be shared is photo.
    */
-  contentType: 'photo';
+  contentType: 'photo',
 
   /**
    * Common parameters for share content;
    */
-  commonParameters?: ShareContentCommonParameters;
+  commonParameters?: ShareContentCommonParameters,
 
   /**
    * URL for the content being shared.
    */
-  contentUrl?: string;
+  contentUrl?: string,
 
   /**
    * Photos to be shared.
    */
-  photos: Array<SharePhoto>;
+  photos: Array<SharePhoto>,
 };
