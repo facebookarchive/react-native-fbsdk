@@ -78,6 +78,8 @@ Add an instance variable of type `CallbackManager` and its getter.
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.facebook.appevents.AppEventsLogger;
+
 ...
 
 public class MainApplication extends Application implements ReactApplication {
