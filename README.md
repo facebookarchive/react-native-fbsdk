@@ -141,7 +141,7 @@ Before you can run the project, follow the [Getting Started Guide](https://devel
 
 #### 3.2 iOS project
 The react-native-fbsdk has been linked by rnpm, the next step will be downloading and linking the native Facebook SDK for iOS.
-Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow ***all the steps*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS. Along with `FBSDKCoreKit.framework`, don't forget to import `FBSDKShareKit.framework` and `FBSDKLoginKit.framework` into your Xcode project.
+Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) **8.0+** installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow ***all the steps*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS. Along with `FBSDKCoreKit.framework`, don't forget to import `FBSDKShareKit.framework` and `FBSDKLoginKit.framework` into your Xcode project.
 
 #### 3.3 Troubleshooting
 1. I cannot run the Android project.
@@ -158,6 +158,11 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 3. I get build errors like `Warning: Native component for "RCTFBLikeView" does not exist`:
 
   - Make sure that `libRCTFBSDK.a` shows up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
+
+4. I get this build error: `no type or protocol named UIApplicationOpenURLOptionsKey`
+
+  - Your XCode version is too old, upgrade to XCode 8.0+ or use [an older version of the framework](https://origincache.facebook.com/developers/resources/?id=FacebookSDKs-iOS-4.14.0.zip) instead.
+  [(source)](http://stackoverflow.com/questions/40201207/getting-an-error-in-fbsdkapplicationdelegate-class)
 
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)
