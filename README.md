@@ -3,6 +3,10 @@ React Native FBSDK is a wrapper around the iOS Facebook SDK and Android Facebook
 
 Functionality is provided through one single npm package so you can use it for both platforms without downloading any extra packages. Follow this guide to use react-native-fbsdk in your react-native app. You can also visit https://developers.facebook.com/docs/react-native for tutorials and reference documentation.
 
+## GIVE FEEDBACK
+Please post question on sdk set up to stackoverflow for quick response.
+Report bugs or issues to https://developers.facebook.com/bugs/
+
 ## Installation
 You need to install the sdk with [npm](https://www.npmjs.com/) and configure native Android/iOS project in the react native project.
 ### 1. Create React Native project
@@ -152,9 +156,6 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 3. I get build errors like `Warning: Native component for "RCTFBLikeView" does not exist`:
 
   - Make sure that `libRCTFBSDK.a` shows up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
-
-## GIVE FEEDBACK
-Please report bugs or issues to https://developers.facebook.com/bugs/
 
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)
