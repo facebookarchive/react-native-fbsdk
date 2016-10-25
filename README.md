@@ -4,7 +4,7 @@ React Native FBSDK is a wrapper around the iOS Facebook SDK and Android Facebook
 Functionality is provided through one single npm package so you can use it for both platforms without downloading any extra packages. Follow this guide to use react-native-fbsdk in your react-native app. You can also visit https://developers.facebook.com/docs/react-native for tutorials and reference documentation.
 
 ## GIVE FEEDBACK
-Please post question on sdk set up to stackoverflow for quick response.
+Please post questions on sdk set up to stackoverflow for quicker response. Besides it's easier for others searching for similar questions.
 Report bugs or issues to https://developers.facebook.com/bugs/
 
 ## Installation
