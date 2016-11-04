@@ -23,7 +23,6 @@
 'use strict';
 
 type GraphRequestCallback = (error: ?Object, result: ?Object) => void;
-type GraphRequestParameters = {[key: string]: Object};
 type GraphRequestConfig = {
   /**
    * The httpMethod to use for the request, for example "GET" or "POST".
@@ -42,6 +41,7 @@ type GraphRequestConfig = {
    */
   accessToken?: string
 };
+type GraphRequestParameters = {[key: string]: Object};
 
 /**
  * Represents a Graph API request and provides batch request supports.

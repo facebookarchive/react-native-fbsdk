@@ -22,10 +22,11 @@
 'use strict';
 
 import type { ShareLinkContent } from './FBShareLinkContent';
+import type { ShareOpenGraphContent } from './FBShareOpenGraphContent';
 import type { SharePhotoContent } from './FBSharePhotoContent';
 import type { ShareVideoContent } from './FBShareVideoContent';
-import type { ShareOpenGraphContent } from './FBShareOpenGraphContent';
 
+export type ShareContent = ShareLinkContent | SharePhotoContent | ShareVideoContent | ShareOpenGraphContent;
 /**
  * A base interface for content to be shared.
  */
@@ -51,5 +52,3 @@ export type ShareContentCommonParameters = {
    */
   hashtag?: string,
 };
-
-export type ShareContent = ShareLinkContent | SharePhotoContent | ShareVideoContent | ShareOpenGraphContent;

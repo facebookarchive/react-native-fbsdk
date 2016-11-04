@@ -19,8 +19,6 @@
 		93E004F01CE3D2B4000598E3 /* RCTFBSDKLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004EC1CE3D2B4000598E3 /* RCTFBSDKLoginButtonManager.m */; };
 		93E004F11CE3D2B4000598E3 /* RCTFBSDKLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004EE1CE3D2B4000598E3 /* RCTFBSDKLoginManager.m */; };
 		93E0050B1CE3D2D3000598E3 /* RCTConvert+FBSDKSharingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004F41CE3D2D3000598E3 /* RCTConvert+FBSDKSharingContent.m */; };
-		93E0050C1CE3D2D3000598E3 /* RCTFBSDKAppGroupAddDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004F61CE3D2D3000598E3 /* RCTFBSDKAppGroupAddDialog.m */; };
-		93E0050D1CE3D2D3000598E3 /* RCTFBSDKAppGroupJoinDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004F81CE3D2D3000598E3 /* RCTFBSDKAppGroupJoinDialog.m */; };
 		93E0050E1CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004FA1CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.m */; };
 		93E0050F1CE3D2D3000598E3 /* RCTFBSDKGameRequestDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004FC1CE3D2D3000598E3 /* RCTFBSDKGameRequestDialog.m */; };
 		93E005101CE3D2D3000598E3 /* RCTFBSDKLikeControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004FE1CE3D2D3000598E3 /* RCTFBSDKLikeControlManager.m */; };
@@ -68,10 +66,6 @@
 		93E004EE1CE3D2B4000598E3 /* RCTFBSDKLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKLoginManager.m; path = login/RCTFBSDKLoginManager.m; sourceTree = "<group>"; };
 		93E004F31CE3D2D3000598E3 /* RCTConvert+FBSDKSharingContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RCTConvert+FBSDKSharingContent.h"; path = "share/RCTConvert+FBSDKSharingContent.h"; sourceTree = "<group>"; };
 		93E004F41CE3D2D3000598E3 /* RCTConvert+FBSDKSharingContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RCTConvert+FBSDKSharingContent.m"; path = "share/RCTConvert+FBSDKSharingContent.m"; sourceTree = "<group>"; };
-		93E004F51CE3D2D3000598E3 /* RCTFBSDKAppGroupAddDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppGroupAddDialog.h; path = share/RCTFBSDKAppGroupAddDialog.h; sourceTree = "<group>"; };
-		93E004F61CE3D2D3000598E3 /* RCTFBSDKAppGroupAddDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppGroupAddDialog.m; path = share/RCTFBSDKAppGroupAddDialog.m; sourceTree = "<group>"; };
-		93E004F71CE3D2D3000598E3 /* RCTFBSDKAppGroupJoinDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppGroupJoinDialog.h; path = share/RCTFBSDKAppGroupJoinDialog.h; sourceTree = "<group>"; };
-		93E004F81CE3D2D3000598E3 /* RCTFBSDKAppGroupJoinDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppGroupJoinDialog.m; path = share/RCTFBSDKAppGroupJoinDialog.m; sourceTree = "<group>"; };
 		93E004F91CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKAppInviteDialog.h; path = share/RCTFBSDKAppInviteDialog.h; sourceTree = "<group>"; };
 		93E004FA1CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RCTFBSDKAppInviteDialog.m; path = share/RCTFBSDKAppInviteDialog.m; sourceTree = "<group>"; };
 		93E004FB1CE3D2D3000598E3 /* RCTFBSDKGameRequestDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCTFBSDKGameRequestDialog.h; path = share/RCTFBSDKGameRequestDialog.h; sourceTree = "<group>"; };
@@ -180,10 +174,6 @@
 			children = (
 				93E004F31CE3D2D3000598E3 /* RCTConvert+FBSDKSharingContent.h */,
 				93E004F41CE3D2D3000598E3 /* RCTConvert+FBSDKSharingContent.m */,
-				93E004F51CE3D2D3000598E3 /* RCTFBSDKAppGroupAddDialog.h */,
-				93E004F61CE3D2D3000598E3 /* RCTFBSDKAppGroupAddDialog.m */,
-				93E004F71CE3D2D3000598E3 /* RCTFBSDKAppGroupJoinDialog.h */,
-				93E004F81CE3D2D3000598E3 /* RCTFBSDKAppGroupJoinDialog.m */,
 				93E004F91CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.h */,
 				93E004FA1CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.m */,
 				93E004FB1CE3D2D3000598E3 /* RCTFBSDKGameRequestDialog.h */,
@@ -232,7 +222,7 @@
 		9350E0E91CE3B0920041D815 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 730;
 				ORGANIZATIONNAME = "Facebook,Inc";
 				TargetAttributes = {
 					9350E0F01CE3B0920041D815 = {
@@ -270,7 +260,6 @@
 				93E005111CE3D2D3000598E3 /* RCTFBSDKMessageDialog.m in Sources */,
 				93E0050F1CE3D2D3000598E3 /* RCTFBSDKGameRequestDialog.m in Sources */,
 				93E005311CE3D63D000598E3 /* RCTFBSDKInitializer.m in Sources */,
-				93E0050D1CE3D2D3000598E3 /* RCTFBSDKAppGroupJoinDialog.m in Sources */,
 				93E004E31CE3D292000598E3 /* RCTConvert+FBSDKAccessToken.m in Sources */,
 				93E004F01CE3D2B4000598E3 /* RCTFBSDKLoginButtonManager.m in Sources */,
 				93E0050E1CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.m in Sources */,
@@ -278,7 +267,6 @@
 				93E005101CE3D2D3000598E3 /* RCTFBSDKLikeControlManager.m in Sources */,
 				93E005161CE3D2D3000598E3 /* RCTFBSDKShareHelper.m in Sources */,
 				93E005141CE3D2D3000598E3 /* RCTFBSDKShareButtonManager.m in Sources */,
-				93E0050C1CE3D2D3000598E3 /* RCTFBSDKAppGroupAddDialog.m in Sources */,
 				93E005131CE3D2D3000598E3 /* RCTFBSDKShareAPI.m in Sources */,
 				93E004F11CE3D2B4000598E3 /* RCTFBSDKLoginManager.m in Sources */,
 				93E005121CE3D2D3000598E3 /* RCTFBSDKSendButtonManager.m in Sources */,
@@ -326,7 +314,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -364,7 +352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -386,7 +374,7 @@
 					"${SRCROOT}/../../react-native/React/**",
 					"${SRCROOT}/../../../ios/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -409,7 +397,7 @@
 					"${SRCROOT}/../../react-native/React/**",
 					"${SRCROOT}/../../../ios/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

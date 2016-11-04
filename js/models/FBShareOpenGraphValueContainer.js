@@ -24,16 +24,16 @@
 
 import type { SharePhoto } from './FBSharePhoto';
 
+type OpenGraphProperties = {[key: string]: OpenGraphValue};
+type OpenGraphValue = {
+  type: OpenGraphValueType,
+  value: any,
+};
 type OpenGraphValueType =
   'number' |
   'open-graph-object' |
   'photo' |
   'string';
-type OpenGraphValue = {
-  type: OpenGraphValueType,
-  value: any,
-};
-type OpenGraphProperties = {[key: string]: OpenGraphValue};
 
 /**
  * Represents an interface for adding and retrieving values to open graph objects and actions.

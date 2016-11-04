@@ -24,7 +24,6 @@
 import React, {
   PropTypes,
 } from 'react';
-
 import {
   requireNativeComponent,
   StyleSheet,
@@ -32,12 +31,12 @@ import {
 } from 'react-native';
 
 import type { ObjectIdAndType } from './models/FBObjectIdAndType';
-type LikeViewStyle = 'button'|  //Note 'button' is only available on Android.
-                     'standard' |
-                     'box_count';
 
 type AuxiliaryViewPosition = 'top' | 'bottom' | 'inline';
 type HorizontalAlignment = 'center' | 'left' | 'right';
+type LikeViewStyle = 'button'|  //Note 'button' is only available on Android.
+                     'standard' |
+                     'box_count';
 
 /**
  * UI control to like an object in the Facebook graph.

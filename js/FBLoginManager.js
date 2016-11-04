@@ -22,9 +22,19 @@
 'use strict';
 
 const LoginManager = require('react-native').NativeModules.FBLoginManager;
-
 /**
- * Indicate how Facebook Login should be attempted.
+ * Indicates which default audience to use for sessions that post data to Facebook.
+ */
+export type DefaultAudience =
+  // Indicates that the user's friends are able to see posts made by the application.
+  'friends' |
+  // Indicates that all Facebook users are able to see posts made by the application.
+  'everyone' |
+  // Indicates that only the user is able to see posts made by the application.
+  'only_me';
+export type LoginBehavior = LoginBehaviorIOS | LoginBehaviorAndroid;
+/**
+ * Indicate how Facebook Login should be attempted on Android.
  */
 export type LoginBehaviorAndroid =
   // Attempt login in using the Facebook App, and if that does not work fall back to web dialog auth.
@@ -33,7 +43,9 @@ export type LoginBehaviorAndroid =
   'native_only'|
   // Only the web dialog auth should be used.
   'web_only';
-
+/**
+ * Indicate how Facebook Login should be attempted on iOS.
+ */
 export type LoginBehaviorIOS =
   // Attempts log in through the native Facebook app.
   // The SDK may still use Safari instead.
@@ -45,20 +57,6 @@ export type LoginBehaviorIOS =
   'system_account' |
   // Attempts log in through a modal UIWebView pop-up.
   'web';
-
-export type LoginBehavior = LoginBehaviorIOS | LoginBehaviorAndroid;
-
-/**
- * Indicates which default audience to use for sessions that post data to Facebook.
- */
-export type DefaultAudience =
-  // Indicates that the user's friends are able to see posts made by the application.
-  'friends' |
-  // Indicates that all Facebook users are able to see posts made by the application.
-  'everyone' |
-  // Indicates that only the user is able to see posts made by the application.
-  'only_me';
-
 /**
  * Shows the results of a login operation.
  */

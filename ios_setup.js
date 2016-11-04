@@ -12,12 +12,12 @@
  3. do 'node ios_setup.js <AppID> <AppName>'.
  */
 
- const fs = require('fs');
- const plist = require('plist');
- const path = require('path');
- const spawn = require('child_process').spawn;
- const xcode = require('xcode');
- const AdmZip = require('adm-zip');
+const fs = require('fs');
+const path = require('path');
+const plist = require('plist');
+const spawn = require('child_process').spawn;
+const xcode = require('xcode');
+const AdmZip = require('adm-zip');
 
 const frameworkDir = 'ios/Frameworks/';
 const frameworkUrl = 'https://origincache.facebook.com/developers/resources/?id=facebook-ios-sdk-current.zip';
@@ -115,5 +115,6 @@ plistObject.CFBundleURLTypes = [{CFBundleURLSchemes: ['fb' + appId]}];
 plistObject.FacebookAppID = appId;
 plistObject.FacebookDisplayName = appName;
 plistObject.LSApplicationQueriesSchemes = ['fbapi', 'fb-messenger-api', 'fbauth2', 'fbshareextension'];
+plistObject.NSLocationWhenInUseUsageDescription = '';
 fs.writeFileSync(plistFilePath, plist.build(plistObject));
 console.log('Finished updating ' + plistFilePath);

@@ -34,7 +34,7 @@ import java.util.List;
 
 public class FBSDKPackage implements ReactPackage {
 
-    public static final String VERSION_TO_RELEASE = "ReactNative-v0.3.0";
+    public static final String VERSION_TO_RELEASE = "ReactNative-v0.4.0";
 
     private CallbackManager mCallbackManager;
     public FBSDKPackage(CallbackManager callbackManager) {
@@ -49,10 +49,8 @@ public class FBSDKPackage implements ReactPackage {
                 new FBAccessTokenModule(reactContext),
                 new FBAppEventsLoggerModule(reactContext),
                 new FBAppInviteDialogModule(reactContext, mCallbackManager),
-                new FBCreateAppGroupDialogModule(reactContext, mCallbackManager),
                 new FBGameRequestDialogModule(reactContext, mCallbackManager),
                 new FBGraphRequestModule(reactContext),
-                new FBJoinAppGroupDialogModule(reactContext, mCallbackManager),
                 new FBLoginManagerModule(reactContext, mCallbackManager),
                 new FBMessageDialogModule(reactContext, mCallbackManager),
                 new FBShareAPIModule(reactContext),

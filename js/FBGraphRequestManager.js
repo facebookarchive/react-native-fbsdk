@@ -25,6 +25,7 @@
 const NativeGraphRequestManager = require('react-native').NativeModules.FBGraphRequest;
 
 import type GraphRequest from './FBGraphRequest';
+
 type Callback = (error: ?Object, result: ?Object) => void;
 
 function _verifyParameters(request: GraphRequest) {

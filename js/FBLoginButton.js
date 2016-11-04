@@ -24,7 +24,6 @@
 import React, {
   PropTypes,
 } from 'react';
-
 import {
   requireNativeComponent,
   StyleSheet,
@@ -38,8 +37,8 @@ import type {
   LoginResult,
 } from './FBLoginManager';
 
-type TooltipBehaviorIOS = 'auto' | 'force_display' | 'disable';
 type Event = Object;
+type TooltipBehaviorIOS = 'auto' | 'force_display' | 'disable';
 
 /**
  * A button that initiates a log in or log out flow upon tapping.

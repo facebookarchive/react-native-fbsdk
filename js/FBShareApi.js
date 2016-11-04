@@ -23,6 +23,7 @@
 
 const ShareApi = require('react-native').NativeModules.FBShareApi;
 const ShareOpenGraphObject = require('./models/FBShareOpenGraphObject');
+
 import type { ShareContent } from './models/FBShareContent';
 
 module.exports = {
