@@ -54,7 +54,11 @@ type ShareDialogModeIOS =
   /*
    * Displays the dialog in a UIWebView within the app.
    */
-  'webview';
+  'webview'|
+  /*
+   * The feed dialog is used.
+   */
+  'feed';
 
 module.exports = {
   /**
