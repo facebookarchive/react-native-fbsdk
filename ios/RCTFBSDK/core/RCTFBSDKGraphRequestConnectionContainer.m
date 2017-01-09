@@ -18,8 +18,8 @@
 
 #import "RCTFBSDKGraphRequestConnectionContainer.h"
 
-#import <RCTConvert.h>
-#import <RCTUtils.h>
+#import <React/RCTConvert.h>
+#import <React/RCTUtils.h>
 
 #pragma mark - Helper Functions
 

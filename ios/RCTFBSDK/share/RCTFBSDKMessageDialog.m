@@ -18,7 +18,7 @@
 
 #import "RCTFBSDKMessageDialog.h"
 
-#import <RCTUtils.h>
+#import <React/RCTUtils.h>
 
 #import "RCTConvert+FBSDKSharingContent.h"
 
