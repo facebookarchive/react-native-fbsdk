@@ -15,7 +15,9 @@ Now you can run the iOS app.
 
 To run the Android project,
 ```java
-  npm install  #install react-native
-  rnpm install react-native-fbsdk
+  npm install react
+  npm install react-native #install react-native
+  react-native install react-native-fbsdk
+  react-native link react-native-fbsdk
 ```
 Now you can run the Android app.

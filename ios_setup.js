@@ -11,6 +11,7 @@
  2. npm install the packages: plist, xcode, adm-zip.
  3. do 'node ios_setup.js <AppID> <AppName>'.
  */
+'use strict';
 
 const fs = require('fs');
 const path = require('path');

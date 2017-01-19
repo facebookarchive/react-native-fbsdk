@@ -21,6 +21,7 @@ react-native init YourApp
 Install and link the react-native-fbsdk package:
 ```ruby
 react-native install react-native-fbsdk
+react-native link react-native-fbsdk
 ```
 ### 3. Configure native projects
 
@@ -65,7 +66,7 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     mCallbackManager.onActivityResult(requestCode, resultCode, data);
 }
 ```
-Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but ***make sure*** you follow the rest of the steps such as calling `FacebookSdk.sdkInitialize` and updating `strings.xml` and `AndroidManifest.xml`. Note that react-native project doesn't have the Application class, so you'll need to create an implementation of the Application class yourself.
+Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but ***make sure*** you follow the rest of the steps such as calling `FacebookSdk.sdkInitialize` and updating `strings.xml` and `AndroidManifest.xml`. Note that react-native project ***doesn't have*** the Application class, so you'll need to create an implementation of the Application class yourself.
 
 **If your react-native version is 0.29 or above**
 
@@ -79,7 +80,6 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.appevents.AppEventsLogger;
-
 ...
 
 public class MainApplication extends Application implements ReactApplication {
@@ -158,6 +158,10 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 3. I get build errors like `Warning: Native component for "RCTFBLikeView" does not exist`:
 
   - Make sure that `libRCTFBSDK.a` shows up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
+
+4. I get this build error: `no type or protocol named UIApplicationOpenURLOptionsKey`:
+
+  - Your XCode version is too old, upgrade to XCode 8.0+.
 
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)
