@@ -80,4 +80,20 @@ module.exports = {
   flush() {
     AppEventsLogger.flush();
   },
+
+  /*
+    Logs an event of Add to Cart
+  */
+  addToCart(parameters: ?Object) {
+    var params = parameters || {};
+    AppEventsLogger.logAddedToCartEvent(params.contentId, params.contentType, params.currency, params.price);
+  }
+
+  /*
+    Logs an event of search
+  */
+  searchEvent(parameters: ?Object) {
+    var params = parameters || {};
+    AppEventsLogger.logSearchedEvent(params.contentType, params.searchString, params.success || true);
+  }
 };
