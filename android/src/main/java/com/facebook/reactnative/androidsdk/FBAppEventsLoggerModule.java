@@ -179,6 +179,15 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     }
 
     /**
+     * Sets and sends registration id to register the current app for push notifications.
+     * @param registrationId RegistrationId received from GCM.
+     */
+    @ReactMethod
+    public static void setPushNotificationsRegistrationId(String registrationId) {
+        AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
+    }
+
+    /**
      * Explicitly flush any stored events to the server.  Implicit flushes may happen depending on
      * the value of getFlushBehavior.  This method allows for explicit, app invoked flushing.
      */
