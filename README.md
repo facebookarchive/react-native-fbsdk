@@ -318,6 +318,9 @@ const {
 
 // Log a $15 purchase.
 AppEventsLogger.logPurchase(15, 'USD', {'param': 'value'})
+
+// Sets and sends registration id to register the current app for push notifications.
+AppEventsLogger.setPushNotificationsRegistrationId('<registration id>')
 ```
 ### [Graph API](https://developers.facebook.com/docs/graph-api)
 #### Graph Requests
