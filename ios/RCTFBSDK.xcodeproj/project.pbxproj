@@ -29,24 +29,14 @@
 		93E005151CE3D2D3000598E3 /* RCTFBSDKShareDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005081CE3D2D3000598E3 /* RCTFBSDKShareDialog.m */; };
 		93E005161CE3D2D3000598E3 /* RCTFBSDKShareHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E0050A1CE3D2D3000598E3 /* RCTFBSDKShareHelper.m */; };
 		93E005311CE3D63D000598E3 /* RCTFBSDKInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005301CE3D63D000598E3 /* RCTFBSDKInitializer.m */; };
-		A3A196FC1EA65799003F3282 /* RCTFBSDKShareDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005081CE3D2D3000598E3 /* RCTFBSDKShareDialog.m */; };
 		A3A196FD1EA65799003F3282 /* RCTFBSDKAppEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004E01CE3D292000598E3 /* RCTFBSDKAppEvents.m */; };
 		A3A196FE1EA65799003F3282 /* RCTFBSDKGraphRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004E21CE3D292000598E3 /* RCTFBSDKGraphRequestManager.m */; };
 		A3A196FF1EA65799003F3282 /* RCTConvert+FBSDKSharingContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004F41CE3D2D3000598E3 /* RCTConvert+FBSDKSharingContent.m */; };
 		A3A197001EA65799003F3282 /* RCTFBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004DE1CE3D292000598E3 /* RCTFBSDKAccessToken.m */; };
-		A3A197011EA65799003F3282 /* RCTFBSDKMessageDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005001CE3D2D3000598E3 /* RCTFBSDKMessageDialog.m */; };
-		A3A197021EA65799003F3282 /* RCTFBSDKGameRequestDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004FC1CE3D2D3000598E3 /* RCTFBSDKGameRequestDialog.m */; };
 		A3A197031EA65799003F3282 /* RCTFBSDKInitializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005301CE3D63D000598E3 /* RCTFBSDKInitializer.m */; };
 		A3A197041EA65799003F3282 /* RCTConvert+FBSDKAccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004DC1CE3D292000598E3 /* RCTConvert+FBSDKAccessToken.m */; };
-		A3A197051EA65799003F3282 /* RCTFBSDKLoginButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004EC1CE3D2B4000598E3 /* RCTFBSDKLoginButtonManager.m */; };
-		A3A197061EA65799003F3282 /* RCTFBSDKAppInviteDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004FA1CE3D2D3000598E3 /* RCTFBSDKAppInviteDialog.m */; };
-		A3A197071EA65799003F3282 /* RCTConvert+FBSDKLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004EA1CE3D2B4000598E3 /* RCTConvert+FBSDKLogin.m */; };
-		A3A197081EA65799003F3282 /* RCTFBSDKLikeControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004FE1CE3D2D3000598E3 /* RCTFBSDKLikeControlManager.m */; };
 		A3A197091EA65799003F3282 /* RCTFBSDKShareHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E0050A1CE3D2D3000598E3 /* RCTFBSDKShareHelper.m */; };
-		A3A1970A1EA65799003F3282 /* RCTFBSDKShareButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005061CE3D2D3000598E3 /* RCTFBSDKShareButtonManager.m */; };
 		A3A1970B1EA65799003F3282 /* RCTFBSDKShareAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005041CE3D2D3000598E3 /* RCTFBSDKShareAPI.m */; };
-		A3A1970C1EA65799003F3282 /* RCTFBSDKLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E004EE1CE3D2B4000598E3 /* RCTFBSDKLoginManager.m */; };
-		A3A1970D1EA65799003F3282 /* RCTFBSDKSendButtonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E005021CE3D2D3000598E3 /* RCTFBSDKSendButtonManager.m */; };
 		A3A1970E1EA65799003F3282 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B905C11D2D987F0013CC92 /* RCTFBSDKGraphRequestConnectionContainer.m */; };
 		A3A197101EA65799003F3282 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E004371CE3C33F000598E3 /* FBSDKCoreKit.framework */; };
 		A3A197111EA65799003F3282 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93E004381CE3C33F000598E3 /* FBSDKLoginKit.framework */; };
@@ -339,24 +329,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3A196FC1EA65799003F3282 /* RCTFBSDKShareDialog.m in Sources */,
 				A3A196FD1EA65799003F3282 /* RCTFBSDKAppEvents.m in Sources */,
 				A3A196FE1EA65799003F3282 /* RCTFBSDKGraphRequestManager.m in Sources */,
 				A3A196FF1EA65799003F3282 /* RCTConvert+FBSDKSharingContent.m in Sources */,
 				A3A197001EA65799003F3282 /* RCTFBSDKAccessToken.m in Sources */,
-				A3A197011EA65799003F3282 /* RCTFBSDKMessageDialog.m in Sources */,
-				A3A197021EA65799003F3282 /* RCTFBSDKGameRequestDialog.m in Sources */,
 				A3A197031EA65799003F3282 /* RCTFBSDKInitializer.m in Sources */,
 				A3A197041EA65799003F3282 /* RCTConvert+FBSDKAccessToken.m in Sources */,
-				A3A197051EA65799003F3282 /* RCTFBSDKLoginButtonManager.m in Sources */,
-				A3A197061EA65799003F3282 /* RCTFBSDKAppInviteDialog.m in Sources */,
-				A3A197071EA65799003F3282 /* RCTConvert+FBSDKLogin.m in Sources */,
-				A3A197081EA65799003F3282 /* RCTFBSDKLikeControlManager.m in Sources */,
 				A3A197091EA65799003F3282 /* RCTFBSDKShareHelper.m in Sources */,
-				A3A1970A1EA65799003F3282 /* RCTFBSDKShareButtonManager.m in Sources */,
 				A3A1970B1EA65799003F3282 /* RCTFBSDKShareAPI.m in Sources */,
-				A3A1970C1EA65799003F3282 /* RCTFBSDKLoginManager.m in Sources */,
-				A3A1970D1EA65799003F3282 /* RCTFBSDKSendButtonManager.m in Sources */,
 				A3A1970E1EA65799003F3282 /* RCTFBSDKGraphRequestConnectionContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
