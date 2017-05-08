@@ -29,6 +29,7 @@ import {
  requireNativeComponent,
  StyleSheet,
  View,
+ ViewPropTypes
 } from 'react-native';
 
 import type { ShareContent } from './models/FBShareContent';
@@ -60,7 +61,7 @@ class ShareButton extends React.Component {
 }
 
 ShareButton.propTypes = {
-  ...View.propTypes,
+  ...ViewPropTypes,
   shareContent: PropTypes.object,
 };
 
