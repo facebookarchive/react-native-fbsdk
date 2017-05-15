@@ -28,6 +28,7 @@ import {
   requireNativeComponent,
   StyleSheet,
   View,
+  ViewPropTypes
 } from 'react-native';
 
 import type { ObjectIdAndType } from './models/FBObjectIdAndType';
@@ -93,7 +94,7 @@ class LikeView extends React.Component {
 }
 
 LikeView.propTypes = {
-  ...View.propTypes,
+  ...ViewPropTypes,
   objectIdAndType: PropTypes.object.isRequired,
   likeViewStyle: PropTypes.oneOf(['standard', 'button', 'box_count']),
   auxiliaryViewPosition: PropTypes.oneOf(['top', 'bottom', 'inline']),

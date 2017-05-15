@@ -28,6 +28,7 @@ import {
   requireNativeComponent,
   StyleSheet,
   View,
+  ViewPropTypes
 } from 'react-native';
 
 import type {
@@ -124,7 +125,7 @@ class LoginButton extends React.Component {
 }
 
 LoginButton.propTypes = {
-  ...View.propTypes,
+  ...ViewPropTypes,
   readPermissions: PropTypes.arrayOf(PropTypes.string),
   publishPermissions: PropTypes.arrayOf(PropTypes.string),
   onLoginFinished: PropTypes.func,
