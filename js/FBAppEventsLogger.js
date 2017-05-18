@@ -75,6 +75,14 @@ module.exports = {
   },
 
   /**
+   * Sets and sends registration id to register the current app for push notifications.
+   * @param registrationId RegistrationId received from GCM.
+   */
+  setPushNotificationsRegistrationId(registrationId: string) {
+    AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
+  },
+
+  /**
    * Explicitly kicks off flushing of events to Facebook.
    */
   flush() {
