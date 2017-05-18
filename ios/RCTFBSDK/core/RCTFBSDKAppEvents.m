@@ -70,4 +70,36 @@ RCT_EXPORT_METHOD(flush)
   [FBSDKAppEvents flush];
 }
 
+RCT_EXPORT_METHOD(logSearchedEvent:(NSString *)contentType
+                  searchString:(NSString *)searchString
+                  success: (BOOL) success)
+{
+    NSDisctionary *params =
+        [[NSDictionary alloc] initWithObjectsAndKeys:
+         contentType, FBSDKAppEventParameterNameContentType,
+         searchString, FBSDKAppEventParameterNameSearchString,
+         [NSNumber numberWithInt:success ? 1 : 0], FBSDKAppEventParameterNameSuccess, nil
+        ];
+
+    [FBSDKAppEvents logEvent: FBSDKAppEventNameSearched parameters: params];
+}
+
+RCT_EXPORT_METHOD(logAddedToCartEvent :(NSString*)contentId
+    contentType :(NSString*)contentType
+    currency :(NSString*)currency
+    valToSum :(double)price)
+{
+
+    NSDictionary *params =
+        [[NSDictionary alloc] initWithObjectsAndKeys:
+            contentId, FBSDKAppEventParameterNameContentID,
+            contentType, FBSDKAppEventParameterNameContentType,
+            currency, FBSDKAppEventParameterNameCurrency,
+            nil];
+
+    [FBSDKAppEvents logEvent: FBSDKAppEventNameAddedToCart
+        valueToSum: price
+        parameters: params];
+}
+
 @end

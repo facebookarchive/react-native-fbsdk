@@ -186,4 +186,22 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     public void flush() {
         mAppEventLogger.flush();
     }
+
+    @ReactMethod
+    public void logSearchedEvent (String contentType, String searchString, boolean success) {
+      Bundle params = new Bundle();
+      params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, contentType);
+      params.putString(AppEventsConstants.EVENT_PARAM_SEARCH_STRING, searchString);
+      params.putInt(AppEventsConstants.EVENT_PARAM_SUCCESS, success ? 1 : 0);
+      logger.logEvent(AppEventsConstants.EVENT_NAME_SEARCHED, params);
+    }
+
+    @ReactMethod
+    public void logAddedToCartEvent(String contentId, String contentType, String currency, double price) {
+      Bundle params = new Bundle();
+      params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_ID, contentId);
+      params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, contentType);
+      params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, currency);
+      logger.logEvent(AppEventsConstants.EVENT_NAME_ADDED_TO_CART, price, params);
+    }
 }
