@@ -139,7 +139,7 @@ LoginButton.propTypes = {
 const styles = StyleSheet.create({
   defaultButtonStyle: {
     height: 30,
-    width: 180,
+    width: 190,
   },
 });
 
