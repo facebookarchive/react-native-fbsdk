@@ -75,9 +75,33 @@ module.exports = {
   },
 
   /**
+   * Logs an app event that tracks that the application was open via Push Notification.
+   */
+  logPushNotificationOpen(payload: ?Object) {
+    AppEventsLogger.logPushNotificationOpen(payload);
+  },
+
+  /**
    * Explicitly kicks off flushing of events to Facebook.
    */
   flush() {
     AppEventsLogger.flush();
   },
+
+  /**
+   * For iOS only, sets and sends device token to register the current application for push notifications.
+   * @platform ios
+   */
+  setPushNotificationsDeviceToken(deviceToken: string) {
+    AppEventsLogger.setPushNotificationsDeviceToken(deviceToken);
+  },
+
+   /**
+    * For Android only, sets and sends registration id to register the current app for push notifications.
+    * @platform Android
+    */
+  setPushNotificationsRegistrationId(registrationId: string) {
+    AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
+  },
+
 };
