@@ -229,7 +229,7 @@ LoginManager.logInWithReadPermissions(['public_profile']).then(
 You can specify the login behavior with Login Manager
 ```js
 // ...
-LoginManager.setLoginBehavior('web')
+LoginManager.setLoginBehavior('web');
 ```
 ### [Sharing](https://developers.facebook.com/docs/sharing)
 #### Share dialogs
