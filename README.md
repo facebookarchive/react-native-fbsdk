@@ -197,7 +197,7 @@ var Login = React.createClass({
           onLogoutFinished={() => alert("logout.")}/>
       </View>
     );
-  }the 
+  } 
 });
 ```
 #### Requesting additional permissions with Login Manager
