@@ -197,7 +197,7 @@ var Login = React.createClass({
           onLogoutFinished={() => alert("logout.")}/>
       </View>
     );
-  }
+  }the 
 });
 ```
 #### Requesting additional permissions with Login Manager
@@ -224,6 +224,12 @@ LoginManager.logInWithReadPermissions(['public_profile']).then(
     alert('Login fail with error: ' + error);
   }
 );
+```
+#### Changing login behavior
+You can specify the login behavior with Login Manager
+```js
+// ...
+LoginManager.setLoginBehavior('web')
 ```
 ### [Sharing](https://developers.facebook.com/docs/sharing)
 #### Share dialogs
