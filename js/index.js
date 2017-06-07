@@ -22,25 +22,27 @@
 
 'use strict';
 
-//native models
-exports.ShareOpenGraphAction = require('./models/FBShareOpenGraphAction');
-exports.ShareOpenGraphObject = require('./models/FBShareOpenGraphObject');
-exports.ShareOpenGraphValueContainer = require('./models/FBShareOpenGraphValueContainer');
+module.exports = {
+  //native models
+  get ShareOpenGraphAction() { return require('./models/FBShareOpenGraphAction'); },
+  get ShareOpenGraphObject() { return require('./models/FBShareOpenGraphObject'); },
+  get ShareOpenGraphValueContainer() { return require('./models/FBShareOpenGraphValueContainer'); },
 
-//native modules
-exports.AccessToken = require('./FBAccessToken');
-exports.AppEventsLogger = require('./FBAppEventsLogger');
-exports.AppInviteDialog = require('./FBAppInviteDialog');
-exports.GameRequestDialog = require('./FBGameRequestDialog');
-exports.GraphRequest = require('./FBGraphRequest');
-exports.GraphRequestManager = require('./FBGraphRequestManager');
-exports.LoginManager = require('./FBLoginManager');
-exports.MessageDialog = require('./FBMessageDialog');
-exports.ShareApi = require('./FBShareApi');
-exports.ShareDialog = require('./FBShareDialog');
+  //native modules
+  get AccessToken() { return require('./FBAccessToken'); },
+  get AppEventsLogger() { return require('./FBAppEventsLogger'); },
+  get AppInviteDialog() { return require('./FBAppInviteDialog'); },
+  get GameRequestDialog() { return require('./FBGameRequestDialog'); },
+  get GraphRequest() { return require('./FBGraphRequest'); },
+  get GraphRequestManager() { return require('./FBGraphRequestManager'); },
+  get LoginManager() { return require('./FBLoginManager'); },
+  get MessageDialog() { return require('./FBMessageDialog'); },
+  get ShareApi() { return require('./FBShareApi'); },
+  get ShareDialog() { return require('./FBShareDialog'); },
 
-//native components
-exports.LikeView = require('./FBLikeView');
-exports.LoginButton = require('./FBLoginButton');
-exports.SendButton = require('./FBSendButton');
-exports.ShareButton = require('./FBShareButton');
+  //native components
+  get LikeView() { return require('./FBLikeView'); },
+  get LoginButton() { return require('./FBLoginButton'); },
+  get SendButton() { return require('./FBSendButton'); },
+  get ShareButton() { return require('./FBShareButton'); },
+};
