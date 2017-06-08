@@ -163,6 +163,11 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 
   - Your XCode version is too old, upgrade to XCode 8.0+.
 
+5. I get a build error stating that one of the React framework files was not found .. eg. `Lexical or Preprocessor issue`, `React/RCTBridgeModule.h file not found`.  This is because you are using react-native-fbsdk 0.5.0 with a React Native version < 0.40. If this is the case you can:
+
+  - Update to RN 0.40+
+  - Downgrade react-native-fbsdk to 0.4.0, don't forget to unlink and re-link
+
 ## Usage
 ### [Login](https://developers.facebook.com/docs/facebook-login)
 #### Login Button + Access Token
