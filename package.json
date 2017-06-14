@@ -21,6 +21,7 @@
   ],
   "license": "Facebook Platform License",
   "peerDependencies": {
-    "react-native": ">=0.44.0"
+    "react-native": ">=0.44.0",
+    "prop-types": "15.x.x"
   }
 }
