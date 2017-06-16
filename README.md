@@ -306,7 +306,7 @@ ShareApi.canShare(this.state.shareLinkContent).then(
   }
 );
 ```
-### [Analytics for Apps](https://developers.facebook.com/docs/app-events)
+### [Analytics](https://developers.facebook.com/docs/app-events)
 #### App events
 ```js
 const FBSDK = require('react-native-fbsdk');

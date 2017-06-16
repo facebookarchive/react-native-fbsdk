@@ -21,13 +21,12 @@
  */
 'use strict';
 
-import React, {
-  PropTypes,
-} from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
   requireNativeComponent,
   StyleSheet,
-  View,
+  ViewPropTypes,
 } from 'react-native';
 
 import type {
@@ -123,8 +122,10 @@ class LoginButton extends React.Component {
   }
 }
 
+/* $FlowFixMe(>=0.43.0) - Remove this comment to see errors found when Flow
+ * v0.43.0 was deployed */
 LoginButton.propTypes = {
-  ...View.propTypes,
+  ...ViewPropTypes,
   readPermissions: PropTypes.arrayOf(PropTypes.string),
   publishPermissions: PropTypes.arrayOf(PropTypes.string),
   onLoginFinished: PropTypes.func,
@@ -138,7 +139,7 @@ LoginButton.propTypes = {
 const styles = StyleSheet.create({
   defaultButtonStyle: {
     height: 30,
-    width: 180,
+    width: 190,
   },
 });
 

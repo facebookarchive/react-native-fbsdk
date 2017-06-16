@@ -29,6 +29,8 @@
   FBSDKAppInviteContent *content = [[FBSDKAppInviteContent alloc] init];
   content.appInvitePreviewImageURL = [RCTConvert NSURL:RCTNilIfNull(contentData[@"previewImageUrl"])];
   content.appLinkURL = [RCTConvert NSURL:contentData[@"applinkUrl"]];
+  content.promotionCode = [RCTConvert NSString:RCTNilIfNull(contentData[@"promotionCode"])];
+  content.promotionText = [RCTConvert NSString:RCTNilIfNull(contentData[@"promotionText"])];
   return content;
 }
 
@@ -66,7 +68,7 @@ RCT_EXPORT_MODULE(FBAppInviteDialog);
 
 RCT_EXPORT_METHOD(canShow:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  resolve([NSNumber numberWithBool:[_dialog canShow]]);
+  resolve(@([_dialog canShow]));
 }
 
 RCT_EXPORT_METHOD(show:(FBSDKAppInviteContent *)content

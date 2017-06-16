@@ -75,9 +75,6 @@ static FBSDKShareLinkContent *RCTBuildLinkContent(NSDictionary *contentData)
 {
   FBSDKShareLinkContent *linkContent = [[FBSDKShareLinkContent alloc] init];
   linkContent.contentURL = [RCTConvert NSURL:contentData[@"contentUrl"]];
-  linkContent.contentDescription = [RCTConvert NSString:contentData[@"contentDescription"]];
-  linkContent.contentTitle = [RCTConvert NSString:contentData[@"contentTitle"]];
-  linkContent.imageURL = [RCTConvert NSURL:contentData[@"imageUrl"]];
   linkContent.quote = [RCTConvert NSString:contentData[@"quote"]];
   return linkContent;
 }
