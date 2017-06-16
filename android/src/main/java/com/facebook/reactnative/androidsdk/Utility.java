@@ -59,8 +59,8 @@ public final class Utility {
     public static AccessToken buildAccessToken(ReadableMap accessTokenMap) {
         AccessTokenSource accessTokenSource = AccessTokenSource
                 .valueOf(accessTokenMap.getString("accessTokenSource"));
-        Date expirationTime = new Date((long) accessTokenMap.getDouble("expirationTime"));
-        Date lastRefreshTime = new Date((long) accessTokenMap.getDouble("lastRefreshTime"));
+        Date expirationTime = new Date((long)accessTokenMap.getDouble("expirationTime"));
+        Date lastRefreshTime = new Date((long)accessTokenMap.getDouble("lastRefreshTime"));
         return new AccessToken(
                 accessTokenMap.getString("accessToken"),
                 accessTokenMap.getString("applicationID"),
@@ -78,12 +78,10 @@ public final class Utility {
         map.putString("accessToken", accessToken.getToken());
         map.putString("applicationID", accessToken.getApplicationId());
         map.putString("userID", accessToken.getUserId());
-        map.putArray(
-            "permissions",
-            Arguments.fromJavaArgs(setToStringArray(accessToken.getPermissions())));
-        map.putArray(
-            "declinedPermissions",
-            Arguments.fromJavaArgs(setToStringArray(accessToken.getDeclinedPermissions())));
+        map.putArray("permissions",
+                Arguments.fromJavaArgs(setToStringArray(accessToken.getPermissions())));
+        map.putArray("declinedPermissions",
+                Arguments.fromJavaArgs(setToStringArray(accessToken.getDeclinedPermissions())));
         map.putString("accessTokenSource", accessToken.getSource().name());
         map.putDouble("expirationTime", (double) accessToken.getExpires().getTime());
         map.putDouble("lastRefreshTime", (double) accessToken.getLastRefresh().getTime());
@@ -113,11 +111,6 @@ public final class Utility {
         if (appInviteContentMap.hasKey("previewImageUrl")) {
             appInviteContentBuilder.setPreviewImageUrl(appInviteContentMap.getString("previewImageUrl"));
         }
-        String promotionText = getValueOrNull(appInviteContentMap, "promotionText");
-        String promotionCode = getValueOrNull(appInviteContentMap, "promotionCode");
-        if (promotionText != null && promotionCode != null) {
-            appInviteContentBuilder.setPromotionDetails(promotionText, promotionCode);
-        }
         return appInviteContentBuilder.build();
     }
 
@@ -126,9 +119,11 @@ public final class Utility {
         appGroupCreationContentBuilder.setName(appGroupCreationContenMap.getString("name"));
         appGroupCreationContentBuilder.setDescription(appGroupCreationContenMap.getString("description"));
         appGroupCreationContentBuilder.setAppGroupPrivacy(
-                AppGroupCreationContent.AppGroupPrivacy.valueOf(appGroupCreationContenMap.getString("privacy")));
+                AppGroupCreationContent.AppGroupPrivacy.valueOf(appGroupCreationContenMap.getString("privacy"))
+        );
         return appGroupCreationContentBuilder.build();
     }
+
 
     public static GameRequestContent buildGameRequestContent(ReadableMap gameRequestContentMap) {
         GameRequestContent.Builder gameRequestContentBuilder = new GameRequestContent.Builder();
@@ -188,6 +183,7 @@ public final class Utility {
         return photoBuilder.build();
     }
 
+
     public static ShareContent buildShareVideoContent(ReadableMap shareVideoContent) {
         ShareVideoContent.Builder contentBuilder = new ShareVideoContent.Builder();
         String url = getValueOrNull(shareVideoContent, "contentUrl");
@@ -235,7 +231,7 @@ public final class Utility {
         while (keySetIterator.hasNextKey()) {
             String key = keySetIterator.nextKey();
             ReadableMap subEntry = value.getMap(key);
-            switch (subEntry.getString("type")) {
+            switch (subEntry.getString("type")){
                 case "number":
                     contentBuilder.putDouble(key, subEntry.getDouble("value"));
                     break;

@@ -46,22 +46,16 @@ export type ShareLinkContent = {
    * The Description of the link.
    * If not specified, this field is automatically populated by information scraped
    * from the contentURL,  typically the title of the page.
-   * @deprecated `contentDescription` is deprecated from Graph API 2.9.
-   * For more information, see https://developers.facebook.com/docs/apps/changelog#v2_9_deprecations.
    */
   contentDescription?: string,
 
   /**
    * The title to display for this link.
-   * @deprecated `contentTitle` is deprecated from Graph API 2.9.
-   * For more information, see https://developers.facebook.com/docs/apps/changelog#v2_9_deprecations.
    */
   contentTitle?: string,
 
   /**
    * The URL of a picture to attach to this comment.
-   * @deprecated `imageUrl` is deprecated from Graph API 2.9.
-   * For more information, see https://developers.facebook.com/docs/apps/changelog#v2_9_deprecations.
    */
   imageUrl?: string,
 

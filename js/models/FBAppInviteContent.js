@@ -34,16 +34,4 @@ export type AppInviteContent = {
    * An app link target that will be used as a target when the user accepts the invite.
    */
   applinkUrl: string,
-  /**
-   * Promotional code to be displayed while sending and receiving the invite.
-   * This is optional. This can be between 0 and 10 characters long and can contain
-   * alphanumeric characters only. To set a promo code, you need to set promo text.
-   */
-   promotionCode?:string,
-   /**
-    * Promotional text to be displayed while sending and receiving the invite.
-    * This is optional. This can be between 0 and 80 characters long and can contain
-    * alphanumeric and spaces only.
-    */
-    promotionText?:string,
 };

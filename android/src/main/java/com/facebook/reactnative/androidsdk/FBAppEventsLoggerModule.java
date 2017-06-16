@@ -171,22 +171,12 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      *                   one purchase event to the next.
      */
     @ReactMethod
-    public void logPurchase(double purchaseAmount, String currencyCode,
-      @Nullable ReadableMap parameters) {
+    public void logPurchase(double purchaseAmount, String currencyCode, @Nullable ReadableMap parameters) {
         mAppEventLogger.logPurchase(
                 BigDecimal.valueOf(purchaseAmount),
                 Currency.getInstance(currencyCode),
                 Arguments.toBundle(parameters));
     }
-
-    /**
-     * Logs an app event that tracks that the application was open via Push Notification.
-     * @param payload Notification payload received.
-     */
-     @ReactMethod
-     public void logPushNotificationOpen(@Nullable ReadableMap payload) {
-         mAppEventLogger.logPushNotificationOpen(Arguments.toBundle(payload));
-     }
 
     /**
      * Explicitly flush any stored events to the server.  Implicit flushes may happen depending on
@@ -195,14 +185,5 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void flush() {
         mAppEventLogger.flush();
-    }
-
-    /**
-     * Sets and sends registration id to register the current app for push notifications.
-     * @param registrationId RegistrationId received from GCM.
-     */
-    @ReactMethod
-    public void setPushNotificationsRegistrationId(String registrationId) {
-        AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
     }
 }
