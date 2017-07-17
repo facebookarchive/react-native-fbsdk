@@ -77,7 +77,19 @@ SendButton.defaultProps = {
 
 const RCTFBSendButton = requireNativeComponent(
   'RCTFBSendButton',
-  SendButton
+  SendButton,
+  {
+    nativeOnly: {
+      onChange: true,
+      onLayout: true,
+      testID: true,
+      importantForAccessibility: true,
+      accessibilityLiveRegion: true,
+      accessibilityComponentType: true,
+      accessibilityLabel: true,
+      renderToHardwareTextureAndroid: true,
+    }
+  },
 );
 
 module.exports = SendButton;
