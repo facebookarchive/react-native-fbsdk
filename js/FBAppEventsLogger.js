@@ -34,7 +34,7 @@ type AppEventsFlushBehavior =
   /**
    * Only flush when AppEventsLogger.flush() is explicitly invoked.
    */
-  'explicity-only';
+  'explicitly-only';
 type Params = {[key: string]: string | number};
 
 module.exports = {
