@@ -331,7 +331,7 @@ const {
 // ...
 
 //Create response callback.
-_responseInfoCallback(error: ?Object, result: ?Object) {
+_responseInfoCallback(error, result) {
   if (error) {
     alert('Error fetching data: ' + error.toString());
   } else {
@@ -348,6 +348,56 @@ const infoRequest = new GraphRequest(
 // Start the graph request.
 new GraphRequestManager().addRequest(infoRequest).start();
 ```
+#### LoginManager + GraphRequest
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  GraphRequest,
+  GraphRequestManager,
+  LoginManager
+} = FBSDK;
+
+// ...
+
+// Attempt a login using the Facebook login dialog asking for default permissions and email.
+LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
+  function(result) {
+    if (result.isCancelled) {
+      alert('Login cancelled');
+    } else {
+      // Create response callback.
+      const responseInfoCallback = function(error, result) {
+        if (error) {
+          console.log(error)
+          alert('Error fetching data: ' + error.toString());
+        } else {
+          console.log(result)
+          alert('Success fetching data: ' + result.toString());
+        }
+      }
+      // Create a graph request asking for user email and names with a callback to handle the response.
+      const infoRequest = new GraphRequest(
+        '/me',
+        {
+          parameters: {
+            fields: {
+              string: 'email,name,first_name,middle_name,last_name'
+            }
+          }
+        },
+        responseInfoCallback
+      );
+      // Start the graph request.
+      new GraphRequestManager().addRequest(infoRequest).start()
+    }
+  },
+  function(error) {
+    alert('Login fail with error: ' + error);
+  }
+);
+```
+You'll need to enable the [Debug JS Remotely](https://facebook.github.io/react-native/docs/debugging.html#chrome-developer-tools) to see the `console.log()` output.
+
 ## License
 See the LICENSE file.
 
