@@ -23,6 +23,14 @@ Install and link the react-native-fbsdk package:
 react-native install react-native-fbsdk
 react-native link react-native-fbsdk
 ```
+
+**Note:** If your react-native version is < 0.40 install with this tag instead:
+
+```
+react-native install react-native-fbsdk@0.4.0
+react-native link react-native-fbsdk
+```
+
 ### 3. Configure native projects
 
 #### 3.1 Android project
