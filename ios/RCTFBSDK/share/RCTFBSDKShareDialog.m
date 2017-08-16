@@ -28,6 +28,7 @@ RCT_ENUM_CONVERTER(FBSDKShareDialogMode, (@{
   @"automatic": @(FBSDKShareDialogModeAutomatic),
   @"browser": @(FBSDKShareDialogModeBrowser),
   @"webview": @(FBSDKShareDialogModeWeb),
+  @"feed": @(FBSDKShareDialogModeFeedWeb)
 }), FBSDKShareDialogModeAutomatic, unsignedLongValue)
 
 @end
