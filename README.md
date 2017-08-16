@@ -348,6 +348,20 @@ const infoRequest = new GraphRequest(
 // Start the graph request.
 new GraphRequestManager().addRequest(infoRequest).start();
 ```
+
+The second parameter in GraphRequest is the config object and has the following shape (will override defaults).
+```javascript 
+const config = {
+    accessToken: 'XXXX',
+    parameters: {
+        fields: {
+            string: 'id'
+        }
+    },
+    httpMethod: 'POST',
+    version: 'v2.0',
+}
+```
 ## License
 See the LICENSE file.
 
