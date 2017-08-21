@@ -189,6 +189,19 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      }
 
     /**
+     * Sets a user id to associate with all app events. This can be used to associate your own
+     * user id with the app events logged from this instance of an application.
+     *
+     * The user ID will be persisted between application instantces.
+     *
+     * @param userID A User ID
+     */
+    @ReactMethod
+    public void setUserID(final String userID) {
+       mAppEventLogger.setUserID(userID);
+    }
+
+    /**
      * Explicitly flush any stored events to the server.  Implicit flushes may happen depending on
      * the value of getFlushBehavior.  This method allows for explicit, app invoked flushing.
      */
