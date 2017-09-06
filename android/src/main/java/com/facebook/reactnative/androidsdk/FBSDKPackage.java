@@ -57,7 +57,12 @@ public class FBSDKPackage implements ReactPackage {
                 new FBShareDialogModule(reactContext, mCallbackManager)
         );
     }
-
+    
+    @Override
+    public List<Class<? extends JavaScriptModule>> createJSModules() {
+        return Collections.emptyList();
+    }
+  
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Arrays.<ViewManager>asList(
@@ -66,10 +71,5 @@ public class FBSDKPackage implements ReactPackage {
                 new FBSendButtonManager(),
                 new FBShareButtonManager()
         );
-    }
-
-    // Deprecated in RN 0.47.0
-    public List<Class<? extends JavaScriptModule>> createJSModules() {
-        return Collections.emptyList();
     }
 }
