@@ -9,6 +9,10 @@
   "contributors": {
     "name": "Chris Hackmann"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facebook/react-native-fbsdk.git"
+  },
   "homepage": "https://github.com/facebook/react-native-fbsdk/",
   "keywords": [
     "react",
