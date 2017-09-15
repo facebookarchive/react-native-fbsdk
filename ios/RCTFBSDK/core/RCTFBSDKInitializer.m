@@ -17,7 +17,7 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-#import <React/RCTBridgeModule.h>
+#import <RCTBridgeModule.h>
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
@@ -40,7 +40,7 @@ RCT_EXPORT_MODULE();
 - (instancetype)init
 {
   if ((self = [super init])) {
-    [FBSDKSettings setUserAgentSuffix:@"ReactNative-v0.6.1"];
+    [FBSDKSettings setUserAgentSuffix:@"ReactNative-v0.4.0"];
   }
   return self;
 }

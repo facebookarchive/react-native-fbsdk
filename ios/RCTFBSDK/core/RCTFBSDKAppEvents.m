@@ -60,11 +60,6 @@ RCT_EXPORT_METHOD(logPurchase:(double)purchaseAmount
                   accessToken:nil];
 }
 
-RCT_EXPORT_METHOD(logPushNotificationOpen:(NSDictionary *)payload)
-{
-  [FBSDKAppEvents logPushNotificationOpen:payload];
-}
-
 RCT_EXPORT_METHOD(setFlushBehavior:(FBSDKAppEventsFlushBehavior)flushBehavior)
 {
   [FBSDKAppEvents setFlushBehavior:flushBehavior];
@@ -73,11 +68,6 @@ RCT_EXPORT_METHOD(setFlushBehavior:(FBSDKAppEventsFlushBehavior)flushBehavior)
 RCT_EXPORT_METHOD(flush)
 {
   [FBSDKAppEvents flush];
-}
-
-RCT_EXPORT_METHOD(setPushNotificationsDeviceToken:(NSString *)deviceToken)
-{
-  [FBSDKAppEvents setPushNotificationsDeviceToken:[RCTConvert NSData:deviceToken]];
 }
 
 @end
