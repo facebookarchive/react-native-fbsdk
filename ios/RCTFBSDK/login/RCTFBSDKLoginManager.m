@@ -36,12 +36,13 @@ RCT_EXPORT_MODULE(FBLoginManager);
   return dispatch_get_main_queue();
 }
 
-- (instancetype)init
+- (FBSDKLoginManager *)loginManager
 {
-  if ((self = [super init])) {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
     _loginManager = [[FBSDKLoginManager alloc] init];
-  }
-  return self;
+  });
+  return _loginManager;
 }
 
 + (BOOL)requiresMainQueueSetup
@@ -53,22 +54,22 @@ RCT_EXPORT_MODULE(FBLoginManager);
 
 RCT_EXPORT_METHOD(setLoginBehavior:(FBSDKLoginBehavior)behavior)
 {
-  _loginManager.loginBehavior = behavior;
+  [self loginManager].loginBehavior = behavior;
 }
 
 RCT_EXPORT_METHOD(setDefaultAudience:(FBSDKDefaultAudience)audience)
 {
-  _loginManager.defaultAudience = audience;
+  [self loginManager].defaultAudience = audience;
 }
 
 RCT_REMAP_METHOD(getLoginBehavior, getLoginBehavior_resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  resolve(LoginBehaviorToString([_loginManager loginBehavior]));
+  resolve(LoginBehaviorToString([[self loginManager] loginBehavior]));
 }
 
 RCT_REMAP_METHOD(getDefaultAudience, getDefaultAudience_resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  resolve(DefaultAudienceToString([_loginManager defaultAudience]));
+  resolve(DefaultAudienceToString([[self loginManager] defaultAudience]));
 }
 
 RCT_EXPORT_METHOD(logInWithReadPermissions:(NSStringArray *)permissions
@@ -87,7 +88,7 @@ RCT_EXPORT_METHOD(logInWithPublishPermissions:(NSStringArray *)permissions
 
 RCT_EXPORT_METHOD(logOut)
 {
-  [_loginManager logOut];
+  [[self loginManager] logOut];
 };
 
 #pragma mark - Helper Methods
@@ -107,9 +108,9 @@ RCT_EXPORT_METHOD(logOut)
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
   if (isRead) {
-    [_loginManager logInWithReadPermissions:permissions handler:requestHandler];
+    [[self loginManager] logInWithReadPermissions:permissions handler:requestHandler];
   } else {
-    [_loginManager logInWithPublishPermissions:permissions handler:requestHandler];
+    [[self loginManager] logInWithPublishPermissions:permissions handler:requestHandler];
   }
 #pragma clang diagnostic pop
 }

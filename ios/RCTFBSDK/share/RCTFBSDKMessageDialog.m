@@ -41,13 +41,14 @@ RCT_EXPORT_MODULE(FBMessageDialog);
 
 #pragma mark - Object Lifecycle
 
-- (instancetype)init
+- (FBSDKMessageDialog *)dialog
 {
-  if ((self = [super init])) {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
     _dialog = [[FBSDKMessageDialog alloc] init];
     _dialog.delegate = self;
-  }
-  return self;
+  });
+  return _dialog;
 }
 
 + (BOOL)requiresMainQueueSetup
@@ -59,10 +60,10 @@ RCT_EXPORT_MODULE(FBMessageDialog);
 
 RCT_EXPORT_METHOD(canShow:(RCTFBSDKSharingContent)content resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  _dialog.shareContent = content;
-  if ([_dialog canShow]) {
+  [self dialog].shareContent = content;
+  if ([[self dialog] canShow]) {
     NSError *error;
-    if ([_dialog validateWithError:&error]) {
+    if ([[self dialog] validateWithError:&error]) {
       resolve(@YES);
     } else {
       reject(@"FacebookSDK", @"SharingContent is invalid", error);
@@ -76,13 +77,13 @@ RCT_EXPORT_METHOD(show:(RCTFBSDKSharingContent)content resolver:(RCTPromiseResol
 {
   _showResolve = resolve;
   _showReject = reject;
-  _dialog.shareContent = content;
-  [_dialog show];
+  [self dialog].shareContent = content;
+  [[self dialog] show];
 }
 
 RCT_EXPORT_METHOD(setShouldFailOnDataError:(BOOL)shouldFailOnDataError)
 {
-  _dialog.shouldFailOnDataError = shouldFailOnDataError;
+  [self dialog].shouldFailOnDataError = shouldFailOnDataError;
 }
 
 #pragma mark - FBSDKSharingDelegate
