@@ -65,6 +65,11 @@ RCT_EXPORT_METHOD(logPushNotificationOpen:(NSDictionary *)payload)
   [FBSDKAppEvents logPushNotificationOpen:payload];
 }
 
+RCT_EXPORT_METHOD(setUserID:(NSString *)userID)
+{
+  [FBSDKAppEvents setUserID:userID];
+}
+
 RCT_EXPORT_METHOD(setFlushBehavior:(FBSDKAppEventsFlushBehavior)flushBehavior)
 {
   [FBSDKAppEvents setFlushBehavior:flushBehavior];

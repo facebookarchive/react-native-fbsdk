@@ -1,0 +1,103 @@
+if THIS_IS_FBOBJC:
+  ios_library(
+      name = 'RNSDKCoreKit',
+      inherited_buck_flags = STATIC_LIBRARY_IOS_FLAGS,
+      configs = fbobjc_configs(
+          FBOBJC_STATIC_LIBRARY,
+          extra_target_config={
+              'HEADER_SEARCH_PATHS': '$(inherited) $(REPO_ROOT)/ios-sdk/FBSDKCoreKit/** \
+              $(REPO_ROOT)/Libraries/FBReactKit/js/react-native-github/React/**',
+          },
+      ),
+      preprocessor_flags = OBJC_ARC_PREPROCESSOR_FLAGS + DEBUG_PREPROCESSOR_FLAGS,
+      compiler_flags = ['-w'],
+      srcs = glob([
+          'RCTFBSDK/core/*.m',
+      ]),
+      exported_headers = glob([
+          'RCTFBSDK/core/*.h'
+      ]),
+      frameworks = [
+          '$SDKROOT/System/Library/Frameworks/Foundation.framework',
+      ],
+      deps = [
+          '//Libraries/FBReactKit:RCTNetwork',
+          '//Libraries/FBReactKit:RCTText',
+          '//Libraries/FBReactKit:React',
+          '//ios-sdk:FacebookSDK',
+      ],
+      visibility = [ 'PUBLIC' ],
+  )
+
+  ios_library(
+    name = 'RNSDKLoginKit',
+    inherited_buck_flags = STATIC_LIBRARY_IOS_FLAGS,
+    configs = fbobjc_configs(FBOBJC_STATIC_LIBRARY),
+    preprocessor_flags = OBJC_ARC_PREPROCESSOR_FLAGS + DEBUG_PREPROCESSOR_FLAGS,
+    compiler_flags = ['-w'],
+    srcs = glob([
+        'RCTFBSDK/login/*.m'
+    ]),
+    exported_headers = glob([
+        'RCTFBSDK/login/*.h',
+    ]),
+    frameworks = [
+        '$SDKROOT/System/Library/Frameworks/Foundation.framework',
+    ],
+    deps = [
+        ':RNSDKCoreKit',
+    ],
+    visibility = [ 'PUBLIC' ],
+  )
+
+  ios_library(
+    name = 'RNSDKShareKit',
+    inherited_buck_flags = STATIC_LIBRARY_IOS_FLAGS,
+    configs = fbobjc_configs(FBOBJC_STATIC_LIBRARY),
+    preprocessor_flags = OBJC_ARC_PREPROCESSOR_FLAGS + DEBUG_PREPROCESSOR_FLAGS,
+    compiler_flags = ['-w'],
+    srcs = glob([
+        'RCTFBSDK/share/*.m',
+    ]),
+    exported_headers = glob([
+        'RCTFBSDK/share/*.h',
+    ]),
+    frameworks = [
+        '$SDKROOT/System/Library/Frameworks/Foundation.framework',
+    ],
+    deps = [
+        ':RNSDKCoreKit',
+    ],
+    visibility = [ 'PUBLIC' ],
+  )
+
+  ios_library(
+    name = 'RNSDK',
+    inherited_buck_flags = STATIC_LIBRARY_IOS_FLAGS,
+    configs = fbobjc_configs(FBOBJC_STATIC_LIBRARY),
+    preprocessor_flags = OBJC_ARC_PREPROCESSOR_FLAGS + DEBUG_PREPROCESSOR_FLAGS,
+    compiler_flags = ['-w'],
+    srcs = [],
+    frameworks = [
+          '$SDKROOT/System/Library/Frameworks/Foundation.framework',
+    ],
+    deps = [
+          ':RNSDKCoreKit',
+          ':RNSDKLoginKit',
+          ':RNSDKShareKit',
+      ],
+    visibility = [ 'PUBLIC' ],
+  )
+
+elif THIS_IS_FBANDROID:
+  android_library(
+    name = 'RNSDK',
+    srcs = [],
+    provided_deps = [
+    ],
+    deps = [
+    ],
+    visibility = [
+      'PUBLIC',
+    ],
+  )
