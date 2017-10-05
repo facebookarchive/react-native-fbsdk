@@ -63,16 +63,18 @@ RCT_EXPORT_MODULE(FBShareDialog);
 RCT_EXPORT_METHOD(canShow:(RCTFBSDKSharingContent)content resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
   [self shareDialog].shareContent = content;
-  if ([[self shareDialog] canShow]) {
-    NSError *error;
-    if ([[self shareDialog] validateWithError:&error]) {
-      resolve(@YES);
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if ([[self shareDialog] canShow]) {
+      NSError *error;
+      if ([[self shareDialog] validateWithError:&error]) {
+        resolve(@YES);
+      } else {
+        reject(@"FacebookSDK", @"SharingContent is invalid", error);
+      }
     } else {
-      reject(@"FacebookSDK", @"SharingContent is invalid", error);
+      resolve(@NO);
     }
-  } else {
-    resolve(@NO);
-  }
+  });
 }
 
 RCT_EXPORT_METHOD(show:(RCTFBSDKSharingContent)content
