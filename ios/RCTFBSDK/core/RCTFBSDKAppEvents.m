@@ -24,7 +24,7 @@
 
 RCT_ENUM_CONVERTER(FBSDKAppEventsFlushBehavior, (@{
   @"auto": @(FBSDKAppEventsFlushBehaviorAuto),
-  @"explicit-only": @(FBSDKAppEventsFlushBehaviorExplicitOnly),
+  @"explicit_only": @(FBSDKAppEventsFlushBehaviorExplicitOnly),
 }), FBSDKAppEventsFlushBehaviorAuto, unsignedIntegerValue)
 
 @end
@@ -68,6 +68,17 @@ RCT_EXPORT_METHOD(logPushNotificationOpen:(NSDictionary *)payload)
 RCT_EXPORT_METHOD(setUserID:(NSString *)userID)
 {
   [FBSDKAppEvents setUserID:userID];
+}
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getUserID)
+{
+  return [FBSDKAppEvents userID];
+}
+
+RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters)
+{
+  [FBSDKAppEvents updateUserProperties:parameters
+                               handler:nil];
 }
 
 RCT_EXPORT_METHOD(setFlushBehavior:(FBSDKAppEventsFlushBehavior)flushBehavior)

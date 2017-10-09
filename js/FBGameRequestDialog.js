@@ -18,11 +18,13 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
-const GameRequestDialog = require('react-native').NativeModules.FBGameRequestDialog;
-import type { GameRequestContent } from './models/FBGameRequestContent';
+const GameRequestDialog = require('react-native').NativeModules
+  .FBGameRequestDialog;
+import type {GameRequestContent} from './models/FBGameRequestContent';
 
 module.exports = {
   /**

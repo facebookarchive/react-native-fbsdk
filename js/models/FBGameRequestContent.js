@@ -18,22 +18,23 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 
 'use strict';
 
 type ActionType =
   // The user is sending an object to their friends.
-  'send' |
+  | 'send'
   // The user is asking for an object from friends.
-  'askfor' |
+  | 'askfor'
   // It is the turn of the friends to play against the user in a match.
-  'turn';
+  | 'turn';
 type Filters =
   // Friends using the app can be displayed.
-  'app_users' |
+  | 'app_users'
   // Friends not using the app can be displayed.
-  'app_non_users';
+  | 'app_non_users';
 
 /**
  * A model for a game request.

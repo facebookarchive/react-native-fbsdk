@@ -16,12 +16,14 @@
  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @format
  */
 'use strict';
 
 const FBSDK = require('react-native-fbsdk');
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -29,10 +31,7 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-const {
-  LoginButton,
-  ShareDialog,
-} = FBSDK;
+const {LoginButton, ShareDialog} = FBSDK;
 
 class HelloFacebook extends Component {
   constructor(props) {
@@ -49,31 +48,32 @@ class HelloFacebook extends Component {
 
   shareLinkWithShareDialog() {
     var tmp = this;
-    ShareDialog.canShow(this.state.shareLinkContent).then(
-      function(canShow) {
+    ShareDialog.canShow(this.state.shareLinkContent)
+      .then(function(canShow) {
         if (canShow) {
           return ShareDialog.show(tmp.state.shareLinkContent);
         }
-      }
-    ).then(
-      function(result) {
-        if (result.isCancelled) {
-          alert('Share cancelled');
-        } else {
-          alert('Share success');
-        }
-      },
-      function(error) {
-        alert('Share fail with error: ' + error);
-      }
-    );
+      })
+      .then(
+        function(result) {
+          if (result.isCancelled) {
+            alert('Share cancelled');
+          } else {
+            alert('Share success');
+          }
+        },
+        function(error) {
+          alert('Share fail with error: ' + error);
+        },
+      );
   }
 
   render() {
     return (
       <View style={styles.container}>
         <LoginButton />
-        <TouchableHighlight style={styles.share}
+        <TouchableHighlight
+          style={styles.share}
           onPress={this.shareLinkWithShareDialog.bind(this)}>
           <Text style={styles.shareText}>Share link with ShareDialog</Text>
         </TouchableHighlight>

@@ -18,12 +18,13 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 
 'use strict';
 
 const MessageDialog = require('react-native').NativeModules.FBMessageDialog;
-import type { ShareContent } from './models/FBShareContent';
+import type {ShareContent} from './models/FBShareContent';
 
 module.exports = {
   /**

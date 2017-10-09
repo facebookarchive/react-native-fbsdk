@@ -18,22 +18,19 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *
 * @flow
+* @format
 */
 
 'use strict';
 
-import type { SharePhoto } from './FBSharePhoto';
+import type {SharePhoto} from './FBSharePhoto';
 
 type OpenGraphProperties = {[key: string]: OpenGraphValue};
 type OpenGraphValue = {
   type: OpenGraphValueType,
   value: any,
 };
-type OpenGraphValueType =
-  'number' |
-  'open-graph-object' |
-  'photo' |
-  'string';
+type OpenGraphValueType = 'number' | 'open-graph-object' | 'photo' | 'string';
 
 /**
  * Represents an interface for adding and retrieving values to open graph objects and actions.
@@ -49,36 +46,36 @@ class ShareOpenGraphValueContainer {
    * Sets a number for the specified key.
    */
   putNumber(key: string, number: number) {
-    this._properties[key] = { type: 'number', value: number};
+    this._properties[key] = {type: 'number', value: number};
   }
 
   /**
    * Sets an open graph object for the specified key.
    */
   putObject(key: string, object: ShareOpenGraphValueContainer) {
-    this._properties[key] = { type: 'open-graph-object', value: object };
+    this._properties[key] = {type: 'open-graph-object', value: object};
   }
 
   /**
    * Sets a photo for the specified key.
    */
   putPhoto(key: string, photo: SharePhoto) {
-    this._properties[key] = { type: 'photo', value: photo };
+    this._properties[key] = {type: 'photo', value: photo};
   }
 
   /**
    * Sets a string for the specified key.
    */
   putString(key: string, string: string) {
-    this._properties[key] = { type: 'string', value: string };
+    this._properties[key] = {type: 'string', value: string};
   }
 
   /**
    * Gets an entry for the given key.
    */
-   getEntry(key: string): OpenGraphValue {
-     return this._properties[key];
-   }
+  getEntry(key: string): OpenGraphValue {
+    return this._properties[key];
+  }
 }
 
 module.exports = ShareOpenGraphValueContainer;

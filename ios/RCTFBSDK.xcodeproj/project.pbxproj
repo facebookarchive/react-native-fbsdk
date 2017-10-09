@@ -364,9 +364,10 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"~/Documents/FacebookSDK",
 					"$(PROJECT_DIR)/../../../ios/Frameworks",
-					"$(inherited)",
+					"$(PROJECT_DIR)/../../../ios/Pods",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -388,9 +389,10 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
 					"~/Documents/FacebookSDK",
 					"$(PROJECT_DIR)/../../../ios/Frameworks",
-					"$(inherited)",
+					"$(PROJECT_DIR)/../../../ios/Pods",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

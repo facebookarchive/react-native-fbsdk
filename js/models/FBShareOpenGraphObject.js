@@ -18,6 +18,7 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *
 * @flow
+* @format
 */
 
 'use strict';
@@ -27,7 +28,6 @@ const ShareOpenGraphValueContainer = require('./FBShareOpenGraphValueContainer')
 /**
  * Represents an open graph object.
  */
-class ShareOpenGraphObject extends ShareOpenGraphValueContainer {
-}
+class ShareOpenGraphObject extends ShareOpenGraphValueContainer {}
 
 module.exports = ShareOpenGraphObject;

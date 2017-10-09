@@ -18,11 +18,12 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
-import type { ShareContentCommonParameters } from './FBShareContent';
-import type { SharePhoto } from './FBSharePhoto';
+import type {ShareContentCommonParameters} from './FBShareContent';
+import type {SharePhoto} from './FBSharePhoto';
 
 /**
  * A model for photo content to be shared.

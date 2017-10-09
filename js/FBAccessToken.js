@@ -18,6 +18,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 
 'use strict';
@@ -99,7 +100,7 @@ class FBAccessToken {
    */
   static getCurrentAccessToken(): Promise<?FBAccessToken> {
     return new Promise((resolve, reject) => {
-      AccessToken.getCurrentAccessToken((tokenMap) => {
+      AccessToken.getCurrentAccessToken(tokenMap => {
         if (tokenMap) {
           resolve(new FBAccessToken(tokenMap));
         } else {
@@ -128,7 +129,7 @@ class FBAccessToken {
    * Gets the date at which the access token expires. The value is the number of
    * milliseconds since Jan. 1, 1970, midnight GMT.
    */
-  getExpires():number {
+  getExpires(): number {
     return this.expirationTime;
   }
 
@@ -168,7 +169,6 @@ class FBAccessToken {
   getApplicationId(): string {
     return this.applicationID;
   }
-
 
   /**
    * Gets user ID associated with this access token.

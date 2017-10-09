@@ -18,17 +18,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
- 'use strict';
+'use strict';
 
 /**
  * Specifies the privacy of a group.
  */
 type AppGroupPrivacy =
   // Anyone can see the group, who's in in and what members post.
-  'Open' |
+  | 'Open'
   // Anyone can see the group and who's in it, but only members can see posts.
-  'Closed';
+  | 'Closed';
 
 /**
  * A model for app invites.

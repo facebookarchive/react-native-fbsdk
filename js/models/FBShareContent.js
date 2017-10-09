@@ -18,15 +18,20 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
-import type { ShareLinkContent } from './FBShareLinkContent';
-import type { ShareOpenGraphContent } from './FBShareOpenGraphContent';
-import type { SharePhotoContent } from './FBSharePhotoContent';
-import type { ShareVideoContent } from './FBShareVideoContent';
+import type {ShareLinkContent} from './FBShareLinkContent';
+import type {ShareOpenGraphContent} from './FBShareOpenGraphContent';
+import type {SharePhotoContent} from './FBSharePhotoContent';
+import type {ShareVideoContent} from './FBShareVideoContent';
 
-export type ShareContent = ShareLinkContent | SharePhotoContent | ShareVideoContent | ShareOpenGraphContent;
+export type ShareContent =
+  | ShareLinkContent
+  | SharePhotoContent
+  | ShareVideoContent
+  | ShareOpenGraphContent;
 /**
  * A base interface for content to be shared.
  */

@@ -18,43 +18,34 @@
 * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *
 * @flow
+* @format
 */
 
 'use strict';
 
 import PropTypes from 'prop-types';
-import React from 'react';
-import {
- requireNativeComponent,
- StyleSheet,
- ViewPropTypes,
-} from 'react-native';
+import * as React from 'react';
+import {requireNativeComponent, StyleSheet, ViewPropTypes} from 'react-native';
 
-import type { ShareContent } from './models/FBShareContent';
+import type {ShareContent} from './models/FBShareContent';
 
-class ShareButton extends React.Component {
+class ShareButton extends React.Component<{
+  /**
+   * Content to be shared.
+   */
+  shareContent: ShareContent,
+
+  /**
+   * View style, if any.
+   */
+  style?: any,
+}> {
   static defaultProps: {
     style: typeof styles.defaultButtonStyle,
   };
 
-  props: {
-    /**
-     * Content to be shared.
-     */
-    shareContent: ShareContent,
-
-    /**
-     * View style, if any.
-     */
-    style?: any,
-  };
-
   render() {
-    return (
-      <RCTFBShareButton
-        {...this.props}
-      />
-    );
+    return <RCTFBShareButton {...this.props} />;
   }
 }
 
@@ -78,7 +69,7 @@ ShareButton.defaultProps = {
 
 const RCTFBShareButton = requireNativeComponent(
   'RCTFBShareButton',
-  ShareButton
+  ShareButton,
 );
 
 module.exports = ShareButton;

@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 25
     }
     buildTypes {
         release {
@@ -19,5 +19,5 @@ android {
 dependencies {
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
-    compile('com.facebook.android:facebook-android-sdk:4.22.1')
+    compile('com.facebook.android:facebook-android-sdk:4.+')
 }

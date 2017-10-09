@@ -196,10 +196,45 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      *
      * @param userID A User ID
      */
-    @ReactMethod
-    public void setUserID(final String userID) {
+     @ReactMethod
+     public void setUserID(final String userID) {
+         mAppEventLogger.setUserID(userID);
+     }
+
+     /**
+      * Sets a user id to associate with all app events. This can be used to associate your own
+      * user id with the app events logged from this instance of an application.
+      *
+      * The user ID will be persisted between application instances.
+      *
+      * @param userID A User ID or null to reset
+      */
+     @ReactMethod
+     public void setUserID(@Nullable String userID) {
        mAppEventLogger.setUserID(userID);
-    }
+     }
+
+     /**
+      * Returns the set user id or null if not set
+      *
+      * @return The set User ID or null
+      */
+     @ReactMethod(isBlockingSynchronousMethod = true)
+     @Nullable
+     public String getUserID() {
+       return mAppEventLogger.getUserID();
+     }
+
+     /**
+      * Sends a request to update the properties for the current user, set by
+      * setUserID. You must call setUserID before making this call.
+      *
+      * @param parameters Key-value pairs representing user properties and their values.
+      */
+     @ReactMethod
+     public void updateUserProperties(ReadableMap parameters) {
+       mAppEventLogger.updateUserProperties(Arguments.toBundle(parameters), null);
+     }
 
     /**
      * Explicitly flush any stored events to the server.  Implicit flushes may happen depending on

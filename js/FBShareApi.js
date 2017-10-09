@@ -18,13 +18,14 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
 const ShareApi = require('react-native').NativeModules.FBShareApi;
 const ShareOpenGraphObject = require('./models/FBShareOpenGraphObject');
 
-import type { ShareContent } from './models/FBShareContent';
+import type {ShareContent} from './models/FBShareContent';
 
 module.exports = {
   /**
@@ -47,7 +48,11 @@ module.exports = {
    * Shares the specified content with a message.
    * NOTE: Only one share action can be performed at a time.
    */
-  share(shareContent: ShareContent, graphNode: string, message: string): Promise<any> {
+  share(
+    shareContent: ShareContent,
+    graphNode: string,
+    message: string,
+  ): Promise<any> {
     return ShareApi.share(shareContent, graphNode, message);
   },
 };

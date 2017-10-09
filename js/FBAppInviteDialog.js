@@ -18,11 +18,12 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
 const AppInviteDialog = require('react-native').NativeModules.FBAppInviteDialog;
-import type { AppInviteContent } from './models/FBAppInviteContent';
+import type {AppInviteContent} from './models/FBAppInviteContent';
 
 module.exports = {
   /**

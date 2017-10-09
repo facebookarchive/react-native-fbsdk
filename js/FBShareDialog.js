@@ -18,43 +18,44 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
 const ShareDialog = require('react-native').NativeModules.FBShareDialog;
-import type { ShareContent } from './models/FBShareContent';
+import type {ShareContent} from './models/FBShareContent';
 
 type ShareDialogMode = ShareDialogModeIOS | ShareDialogModeAndroid;
 type ShareDialogModeAndroid =
   /**
    * The mode is determined automatically.
    */
-  "automatic"|
+  | 'automatic'
   /**
    * The native dialog is used.
    */
-  "native"|
+  | 'native'
   /**
    * The web dialog is used.
    */
-  "web"|
+  | 'web'
   /**
    * The feed dialog is used.
    */
-  "feed";
+  | 'feed';
 type ShareDialogModeIOS =
   /*
    * Acts with the most appropriate mode that is available.
    */
-  'automatic'|
+  | 'automatic'
   /*
    * Displays the dialog in Safari.
    */
-  'browser'|
+  | 'browser'
   /*
    * Displays the dialog in a UIWebView within the app.
    */
-  'webview';
+  | 'webview';
 
 module.exports = {
   /**
