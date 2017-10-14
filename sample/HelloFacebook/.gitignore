@@ -20,15 +20,13 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
+HelloFacebook.xcworkspace
 
-# Cocoapods
+# Android/IJ
 #
-Pods/
-
-# Editor
-#
-.idea/
+.idea
+.gradle
+local.properties
 
 # node.js
 #
