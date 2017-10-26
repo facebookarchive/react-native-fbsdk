@@ -46,6 +46,11 @@ RCT_EXPORT_MODULE(FBShareApi);
   return self;
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;
+}
+
 #pragma mark - React Native Methods
 
 RCT_EXPORT_METHOD(canShare:(RCTFBSDKSharingContent)content

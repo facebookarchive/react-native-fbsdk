@@ -50,6 +50,11 @@ RCT_EXPORT_MODULE(FBMessageDialog);
   return self;
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+  return YES;
+}
+
 #pragma mark - React Native Methods
 
 RCT_EXPORT_METHOD(canShow:(RCTFBSDKSharingContent)content resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
