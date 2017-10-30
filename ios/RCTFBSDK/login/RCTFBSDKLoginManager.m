@@ -38,10 +38,9 @@ RCT_EXPORT_MODULE(FBLoginManager);
 
 - (FBSDKLoginManager *)loginManager
 {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
+  if (_loginManager == nil) {
     _loginManager = [[FBSDKLoginManager alloc] init];
-  });
+  }
   return _loginManager;
 }
 

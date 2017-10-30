@@ -45,11 +45,10 @@ RCT_EXPORT_MODULE(FBShareDialog);
 
 - (FBSDKShareDialog *)shareDialog
 {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
+  if (_shareDialog == nil) {
     _shareDialog = [[FBSDKShareDialog alloc] init];
     _shareDialog.delegate = self;
-  });
+  }
   return _shareDialog;
 }
 

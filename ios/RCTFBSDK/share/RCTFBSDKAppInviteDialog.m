@@ -57,11 +57,10 @@ RCT_EXPORT_MODULE(FBAppInviteDialog);
 
 - (FBSDKAppInviteDialog *)dialog
 {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
+  if (_dialog == nil) {
     _dialog = [[FBSDKAppInviteDialog alloc] init];
     _dialog.delegate = self;
-  });
+  }
   return _dialog;
 }
 
