@@ -62,8 +62,9 @@ RCT_EXPORT_MODULE(FBShareDialog);
 
 RCT_EXPORT_METHOD(canShow:(RCTFBSDKSharingContent)content resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
 {
-  _shareDialog.shareContent = content;
+  _shareDialog.shareContent = nil;
   if ([_shareDialog canShow]) {
+    _shareDialog.shareContent = content;
     NSError *error;
     if ([_shareDialog validateWithError:&error]) {
       resolve(@YES);
