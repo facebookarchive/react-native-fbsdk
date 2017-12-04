@@ -142,6 +142,26 @@ Before you can run the project, follow the [Getting Started Guide](https://devel
 The react-native-fbsdk has been linked by rnpm, the next step will be downloading and linking the native Facebook SDK for iOS.
 Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow ***all the steps*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS. Along with `FBSDKCoreKit.framework`, don't forget to import `FBSDKShareKit.framework` and `FBSDKLoginKit.framework` into your Xcode project.
 
+**If you're using react native's RCTLinkingManager**
+
+The `AppDelegate.m` file can only have one method for `openUrl`. If you're also using `RCTLinkingManager` to handle deep links, you should handle both results in your `openUrl` method.
+
+```
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url 
+    sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+
+  BOOL handledFB = [[FBSDKApplicationDelegate sharedInstance] application:application
+    openURL:url
+    sourceApplication:sourceApplication
+    annotation:annotation
+  ];
+
+  BOOL handledRCT = [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+
+  return handledFB || handledRCT;
+}
+```
+
 #### 3.3 Troubleshooting
 1. I cannot run the Android project.
 
