@@ -52,7 +52,7 @@ RCT_EXPORT_MODULE(FBMessageDialog);
 
 + (BOOL)requiresMainQueueSetup
 {
-  return YES;
+  return NO;
 }
 
 #pragma mark - React Native Methods

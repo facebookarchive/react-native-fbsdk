@@ -46,7 +46,7 @@ RCT_EXPORT_MODULE(FBLoginManager);
 
 + (BOOL)requiresMainQueueSetup
 {
-  return YES;
+  return NO;
 }
 
 #pragma mark - React Native Methods

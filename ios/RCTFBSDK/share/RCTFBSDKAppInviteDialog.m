@@ -66,7 +66,7 @@ RCT_EXPORT_MODULE(FBAppInviteDialog);
 
 + (BOOL)requiresMainQueueSetup
 {
-  return YES;
+  return NO;
 }
 
 #pragma mark - React Native Methods

@@ -54,7 +54,7 @@ RCT_EXPORT_MODULE(FBShareDialog);
 
 + (BOOL)requiresMainQueueSetup
 {
-  return YES;
+  return NO;
 }
 
 #pragma mark - React Native Methods
