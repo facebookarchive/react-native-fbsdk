@@ -83,14 +83,7 @@ RCT_EXPORT_METHOD(show:(RCTFBSDKSharingContent)content
   _shareDialog.shareContent = content;
   dispatch_async(dispatch_get_main_queue(), ^{
     if (!_shareDialog.fromViewController) {
-      UIViewController *viewController = [UIApplication sharedApplication].delegate.window.rootViewController;
-
-      // get the view controller closest to the foreground
-      while (viewController.presentedViewController && !viewController.isBeingDismissed) {
-        viewController = viewController.presentedViewController;
-      }
-
-      _shareDialog.fromViewController = viewController;
+      _shareDialog.fromViewController = RCTPresentedViewController();
     }
     [_shareDialog show];
   });
