@@ -17,7 +17,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
     compile('com.facebook.android:facebook-android-sdk:4.+')
 }
