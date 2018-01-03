@@ -125,9 +125,9 @@ module.exports = {
   },
 
   /**
-    * For Android only, sets and sends registration id to register the current app for push notifications.
-    * @platform Android
-    */
+   * For Android only, sets and sends registration id to register the current app for push notifications.
+   * @platform Android
+   */
   setPushNotificationsRegistrationId(registrationId: string) {
     AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
   },

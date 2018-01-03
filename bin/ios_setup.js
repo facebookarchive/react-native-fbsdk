@@ -20,7 +20,7 @@
 const AdmZip = require('adm-zip');
 const ProgressBar = require('progress');
 
-const fall = require('fastfall')();
+const fall = require('fastfall');
 const fs = require('fs');
 const got = require('got');
 const path = require('path');
@@ -139,7 +139,7 @@ function updatePlist (files, next) {
   plistObject.CFBundleURLTypes = [{CFBundleURLSchemes: ['fb' + appId]}];
   plistObject.FacebookAppID = appId;
   plistObject.FacebookDisplayName = appName;
-  plistObject.LSApplicationQueriesSchemes = ['fbapi', 'fb-messenger-api', 'fbauth2', 'fbshareextension'];
+  plistObject.LSApplicationQueriesSchemes = ['fbapi', 'fb-messenger-share-api', 'fbauth2', 'fbshareextension'];
   plistObject.NSLocationWhenInUseUsageDescription = '';
   fs.writeFileSync(plistFilePath, plist.build(plistObject));
   console.log('Finished updating ' + plistFilePath);

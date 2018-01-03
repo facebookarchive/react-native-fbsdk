@@ -42,9 +42,9 @@ export type AppInviteContent = {
    */
   promotionCode?: string,
   /**
-    * Promotional text to be displayed while sending and receiving the invite.
-    * This is optional. This can be between 0 and 80 characters long and can contain
-    * alphanumeric and spaces only.
-    */
+   * Promotional text to be displayed while sending and receiving the invite.
+   * This is optional. This can be between 0 and 80 characters long and can contain
+   * alphanumeric and spaces only.
+   */
   promotionText?: string,
 };
