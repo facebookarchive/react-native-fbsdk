@@ -1,3 +1,37 @@
+# Please enable issues or document where bugs should be filed.
+
+# Also, please document how
+
+```
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 26
+    }
+ ```
+ 
+# is supposed to work with react-native where compileSdkVersion template says:
+
+```
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.helloworld"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+    }
+ ```
+ 
+ # what are the requirements for this library?
+
 # React Native FBSDK
 React Native FBSDK is a wrapper around the iOS Facebook SDK and Android Facebook SDK, allowing for Facebook integration in [React Native](https://facebook.github.io/react-native/) apps. Access to native components, from login to sharing, is provided entirely through documented JavaScript modules so you don't have to call a single native function directly.
 
