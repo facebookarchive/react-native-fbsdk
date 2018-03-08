@@ -36,7 +36,7 @@ type AppEventsFlushBehavior =
    * Only flush when AppEventsLogger.flush() is explicitly invoked.
    */
   | 'explicit_only';
-type Params = {[key: string]: string | number};
+type Params = { [key: string]: string | number };
 
 module.exports = {
   /**
@@ -66,6 +66,13 @@ module.exports = {
       parameters = args[0];
     }
     AppEventsLogger.logEvent(eventName, valueToSum, parameters);
+  },
+
+  /**
+   * Logs a completed registration event
+   */
+  logCompletedRegistrationEvent(registrationMethod: string) {
+    AppEventsLogger.logCompletedRegistrationEvent(registrationMethod);
   },
 
   /**
