@@ -20,7 +20,7 @@ react-native init YourApp
 
 Install and link the react-native-fbsdk package:
 ```ruby
-react-native install react-native-fbsdk
+npm install react-native-fbsdk
 react-native link react-native-fbsdk
 ```
 ### 3. Configure native projects
