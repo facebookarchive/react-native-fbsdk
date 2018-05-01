@@ -69,6 +69,13 @@ module.exports = {
   },
 
   /**
+   * Logs a completed registration event
+   */
+  logCompletedRegistrationEvent(registrationMethod: string) {
+    AppEventsLogger.logCompletedRegistrationEvent(registrationMethod);
+  },
+ 
+  /**
    * Logs a purchase. See http://en.wikipedia.org/wiki/ISO_4217 for currencyCode.
    */
   logPurchase(

@@ -20,6 +20,7 @@
 
 package com.facebook.reactnative.androidsdk;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.facebook.appevents.AppEventsConstants;
@@ -155,6 +156,16 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void logEvent(String eventName, double valueToSum, ReadableMap parameters) {
         mAppEventLogger.logEvent(eventName, valueToSum, Arguments.toBundle(parameters));
+    }
+    
+    /**
+     * Logs a completed registration event with Facebook.
+     */
+    @ReactMethod
+    public void logCompletedRegistrationEvent (String registrationMethod) {
+      Bundle params = new Bundle();
+      params.putString(AppEventsConstants.EVENT_PARAM_REGISTRATION_METHOD, registrationMethod);
+      mAppEventLogger.logEvent(AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION, params);
     }
 
     /**
