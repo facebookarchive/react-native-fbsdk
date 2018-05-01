@@ -315,6 +315,9 @@ const {
 
 // ...
 
+// Log a completed registration
+AppEventsLogger.logCompletedRegistrationEvent('Email')
+
 // Log a $15 purchase.
 AppEventsLogger.logPurchase(15, 'USD', {'param': 'value'})
 ```

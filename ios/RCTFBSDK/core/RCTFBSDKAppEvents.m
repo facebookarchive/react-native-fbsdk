@@ -50,6 +50,13 @@ RCT_EXPORT_METHOD(logEvent:(NSString *)eventName
                accessToken:nil];
 }
 
+RCT_EXPORT_METHOD(logCompletedRegistrationEvent:(NSString *)registrationMethod)
+{
+  NSDictionary *params = @{FBSDKAppEventParameterNameRegistrationMethod : registrationMethod};
+  [FBSDKAppEvents logEvent:FBSDKAppEventNameCompletedRegistration
+                parameters:params];
+}
+
 RCT_EXPORT_METHOD(logPurchase:(double)purchaseAmount
                      currency:(NSString *)currency
                    parameters:(NSDictionary *)parameters)
