@@ -375,6 +375,8 @@
 					"${SRCROOT}/../../../ios/Pods/FBSDKCoreKit/FBSDKCoreKit",
 					"${SRCROOT}/../../../ios/Pods/FBSDKLoginKit/FBSDKLoginKit",
 					"${SRCROOT}/../../../ios/Pods/FBSDKShareKit/FBSDKShareKit",
+					"${SRCROOT}/../../../ios/Pods/Headers/Public/React",
+					"${SRCROOT}/../../../ios/Pods/Headers/Public",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -400,6 +402,8 @@
 					"${SRCROOT}/../../../ios/Pods/FBSDKCoreKit/FBSDKCoreKit",
 					"${SRCROOT}/../../../ios/Pods/FBSDKLoginKit/FBSDKLoginKit",
 					"${SRCROOT}/../../../ios/Pods/FBSDKShareKit/FBSDKShareKit",
+					"${SRCROOT}/../../../ios/Pods/Headers/Public/React",
+					"${SRCROOT}/../../../ios/Pods/Headers/Public",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_LDFLAGS = "-ObjC";
