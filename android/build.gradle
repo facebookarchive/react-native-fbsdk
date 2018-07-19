@@ -1,12 +1,18 @@
 apply plugin: 'com.android.library'
 
-android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+def DEFAULT_COMPILE_SDK_VERSION   = 26
+def DEFAULT_BUILD_TOOLS_VERSION   = "26.0.3"
+def DEFAULT_TARGET_SDK_VERSION    = 26
+def DEFAULT_MIN_SDK_VERSION       = 16
+def SUPPORT_LIB_VERSION           = "27.0.2"
 
-    defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 26
+android {
+        compileSdkVersion rootProject.hasProperty('compileSdkVersion') ? rootProject.compileSdkVersion : DEFAULT_COMPILE_SDK_VERSION
+        buildToolsVersion rootProject.hasProperty('buildToolsVersion') ? rootProject.buildToolsVersion : DEFAULT_BUILD_TOOLS_VERSION
+
+  defaultConfig {
+        minSdkVersion rootProject.hasProperty('minSdkVersion') ? rootProject.minSdkVersion : DEFAULT_MIN_SDK_VERSION
+        targetSdkVersion rootProject.hasProperty('targetSdkVersion') ? rootProject.targetSdkVersion : DEFAULT_TARGET_SDK_VERSION
     }
     buildTypes {
         release {
@@ -16,10 +22,12 @@ android {
     }
 }
 
+def supportLibVersion = rootProject.hasProperty('supportLibVersion') ? rootProject.supportLibVersion : SUPPORT_LIB_VERSION
+
 dependencies {
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    implementation 'com.android.support:appcompat-v7:$supportLibVersion'
+    implementation 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
+    implementation 'com.facebook.android:facebook-android-sdk:4.+'
 }
 
 repositories {
