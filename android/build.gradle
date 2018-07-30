@@ -23,9 +23,9 @@ android {
 def supportLibVersion = rootProject.hasProperty('supportLibVersion') ? rootProject.supportLibVersion : SUPPORT_LIB_VERSION
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:${safeExtGet('supportLibVersion', '27.0.2')}'
-    implementation 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
-    implementation 'com.facebook.android:facebook-android-sdk:4.+'
+    implementation "com.android.support:appcompat-v7:${safeExtGet('supportLibVersion', '27.0.2')}"
+    api "com.facebook.react:react-native:+" // support react-native-v0.22-rc+
+    api "com.facebook.android:facebook-android-sdk:4.+"
 }
 
 repositories {
