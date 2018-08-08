@@ -299,6 +299,44 @@ shareLinkWithShareDialog() {
 }
 ```
 
+#### Share Photos
+See [SharePhotoContent](/js/models/FBSharePhotoContent.js) and [SharePhoto](/js/models/FBSharePhoto.js) to refer other options.
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  ShareApi,
+} = FBSDK;
+
+const photoUri = 'file://' + '/path/of/photo.png'
+const sharePhotoContent = {
+  contentType = 'photo',
+  photos: [{ imageUrl: photoUri }],
+}
+
+// ...
+
+ShareDialog.show(tmp.state.sharePhotoContent);
+```
+
+#### Share Videos
+See [ShareVideoContent](/js/models/FBShareVideoContent.js) and [ShareVideo](/js/models/FBShareVideo.js) to refer other options.
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  ShareApi,
+} = FBSDK;
+
+const videoUri = 'file://' + '/path/of/video.mp4'
+const shareVideoContent = {
+  contentType = 'video',
+  video: { localUrl: videoUri },
+}
+
+// ...
+
+ShareDialog.show(tmp.state.shareVideoContent);
+```
+
 #### Share API
 Your app must have the `publish_actions` permission approved to share through the share API. You should prefer to use the Share Dialogs for an easier and more consistent experience.
 ```js
