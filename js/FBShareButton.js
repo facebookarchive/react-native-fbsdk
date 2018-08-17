@@ -67,9 +67,6 @@ ShareButton.defaultProps = {
   style: styles.defaultButtonStyle,
 };
 
-const RCTFBShareButton = requireNativeComponent(
-  'RCTFBShareButton',
-  ShareButton,
-);
+const RCTFBShareButton = requireNativeComponent('RCTFBShareButton');
 
 module.exports = ShareButton;
