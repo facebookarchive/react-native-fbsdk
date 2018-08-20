@@ -82,10 +82,10 @@ RCT_EXPORT_METHOD(show:(RCTFBSDKSharingContent)content
   _showReject = reject;
   _shareDialog.shareContent = content;
   dispatch_async(dispatch_get_main_queue(), ^{
-    if (!_shareDialog.fromViewController) {
-      _shareDialog.fromViewController = RCTPresentedViewController();
+    if (!self->_shareDialog.fromViewController) {
+      self->_shareDialog.fromViewController = RCTPresentedViewController();
     }
-    [_shareDialog show];
+    [self->_shareDialog show];
   });
 }
 
