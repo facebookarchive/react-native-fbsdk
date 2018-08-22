@@ -201,14 +201,12 @@ The `AppDelegate.m` file can only have one method for `openUrl`. If you're also 
 ### [Login](https://developers.facebook.com/docs/facebook-login)
 #### Login Button + Access Token
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-  AccessToken
-} = FBSDK;
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
-var Login = React.createClass({
-  render: function() {
+export default class Login extends Component
+  render() {
     return (
       <View>
         <LoginButton
@@ -216,19 +214,19 @@ var Login = React.createClass({
           onLoginFinished={
             (error, result) => {
               if (error) {
-                alert("login has error: " + result.error);
+                console.log("login has error: " + result.error);
               } else if (result.isCancelled) {
-                alert("login is cancelled.");
+                console.log("login is cancelled.");
               } else {
                 AccessToken.getCurrentAccessToken().then(
                   (data) => {
-                    alert(data.accessToken.toString())
+                    console.log(data.accessToken.toString())
                   }
                 )
               }
             }
           }
-          onLogoutFinished={() => alert("logout.")}/>
+          onLogoutFinished={() => console.log("logout.")}/>
       </View>
     );
   }
@@ -237,10 +235,9 @@ var Login = React.createClass({
 #### Requesting additional permissions with Login Manager
 You can also use the Login Manager with custom UI to perform Login.
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginManager,
-} = FBSDK;
+// ...
+
+import { LoginManager } from 'react-native-fbsdk';
 
 // ...
 
@@ -248,14 +245,14 @@ const {
 LoginManager.logInWithReadPermissions(['public_profile']).then(
   function(result) {
     if (result.isCancelled) {
-      alert('Login cancelled');
+      console.log('Login cancelled');
     } else {
-      alert('Login success with permissions: '
+      console.log('Login success with permissions: '
         +result.grantedPermissions.toString());
     }
   },
   function(error) {
-    alert('Login fail with error: ' + error);
+    console.log('Login fail with error: ' + error);
   }
 );
 ```
@@ -263,10 +260,9 @@ LoginManager.logInWithReadPermissions(['public_profile']).then(
 #### Share dialogs
 All of the dialogs included are used in a similar way, with differing content types. All content types are defined with [Flow](http://flowtype.org/) Type Annotation in js/models directory.
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  ShareDialog,
-} = FBSDK;
+// ...
+
+import { ShareDialog } from 'react-native-fbsdk';
 
 // ...
 
@@ -291,14 +287,14 @@ shareLinkWithShareDialog() {
   ).then(
     function(result) {
       if (result.isCancelled) {
-        alert('Share cancelled');
+        console.log('Share cancelled');
       } else {
-        alert('Share success with postId: '
+        console.log('Share success with postId: '
           + result.postId);
       }
     },
     function(error) {
-      alert('Share fail with error: ' + error);
+      console.log('Share fail with error: ' + error);
     }
   );
 }
@@ -307,10 +303,9 @@ shareLinkWithShareDialog() {
 #### Share API
 Your app must have the `publish_actions` permission approved to share through the share API. You should prefer to use the Share Dialogs for an easier and more consistent experience.
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  ShareApi,
-} = FBSDK;
+// ...
+
+import { ShareApi } from 'react-native-fbsdk';
 
 // ...
 
@@ -333,20 +328,19 @@ ShareApi.canShare(this.state.shareLinkContent).then(
   }
 ).then(
   function(result) {
-    alert('Share with ShareApi success.');
+    console.log('Share with ShareApi success.');
   },
   function(error) {
-    alert('Share with ShareApi failed with error: ' + error);
+    console.log('Share with ShareApi failed with error: ' + error);
   }
 );
 ```
 ### [Analytics](https://developers.facebook.com/docs/app-events)
 #### App events
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  AppEventsLogger,
-} = FBSDK;
+// ...
+
+import { AppEventsLogger } from 'react-native-fbsdk';
 
 // ...
 
@@ -356,20 +350,18 @@ AppEventsLogger.logPurchase(15, 'USD', {'param': 'value'})
 ### [Graph API](https://developers.facebook.com/docs/graph-api)
 #### Graph Requests
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  GraphRequest,
-  GraphRequestManager,
-} = FBSDK;
+// ...
+
+import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
 // ...
 
 //Create response callback.
 _responseInfoCallback(error: ?Object, result: ?Object) {
   if (error) {
-    alert('Error fetching data: ' + error.toString());
+    console.log('Error fetching data: ' + error.toString());
   } else {
-    alert('Success fetching data: ' + result.toString());
+    console.log('Success fetching data: ' + result.toString());
   }
 }
 
