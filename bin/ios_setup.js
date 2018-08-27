@@ -20,7 +20,7 @@
 const AdmZip = require('adm-zip');
 const ProgressBar = require('progress');
 
-const fall = require('fastfall');
+const fall = require('fastfall')();
 const fs = require('fs');
 const got = require('got');
 const path = require('path');
