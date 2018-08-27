@@ -66,6 +66,6 @@ SendButton.defaultProps = {
   style: styles.defaultButtonStyle,
 };
 
-const RCTFBSendButton = requireNativeComponent('RCTFBSendButton', SendButton);
+const RCTFBSendButton = requireNativeComponent('RCTFBSendButton');
 
 module.exports = SendButton;
