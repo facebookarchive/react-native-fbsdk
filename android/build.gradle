@@ -27,9 +27,9 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
-    compile 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
-    compile "com.facebook.android:facebook-android-sdk:${FACEBOOK_SDK_VERSION}"
+    implementation "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
+    api 'com.facebook.react:react-native:+' // support react-native-v0.22-rc+
+    api "com.facebook.android:facebook-android-sdk:${FACEBOOK_SDK_VERSION}"
 }
 
 repositories {
