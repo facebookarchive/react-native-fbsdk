@@ -20,7 +20,7 @@ react-native init YourApp
 
 Install and link the react-native-fbsdk package:
 ```ruby
-react-native install react-native-fbsdk
+npm install react-native-fbsdk
 react-native link react-native-fbsdk
 ```
 ### 3. Configure native projects
@@ -210,7 +210,6 @@ export default class Login extends Component
     return (
       <View>
         <LoginButton
-          publishPermissions={["publish_actions"]}
           onLoginFinished={
             (error, result) => {
               if (error) {
@@ -298,6 +297,44 @@ shareLinkWithShareDialog() {
     }
   );
 }
+```
+
+#### Share Photos
+See [SharePhotoContent](/js/models/FBSharePhotoContent.js) and [SharePhoto](/js/models/FBSharePhoto.js) to refer other options.
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  ShareApi,
+} = FBSDK;
+
+const photoUri = 'file://' + '/path/of/photo.png'
+const sharePhotoContent = {
+  contentType = 'photo',
+  photos: [{ imageUrl: photoUri }],
+}
+
+// ...
+
+ShareDialog.show(tmp.state.sharePhotoContent);
+```
+
+#### Share Videos
+See [ShareVideoContent](/js/models/FBShareVideoContent.js) and [ShareVideo](/js/models/FBShareVideo.js) to refer other options.
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  ShareApi,
+} = FBSDK;
+
+const videoUri = 'file://' + '/path/of/video.mp4'
+const shareVideoContent = {
+  contentType = 'video',
+  video: { localUrl: videoUri },
+}
+
+// ...
+
+ShareDialog.show(tmp.state.shareVideoContent);
 ```
 
 #### Share API
