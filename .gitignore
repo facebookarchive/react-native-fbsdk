@@ -22,6 +22,14 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 
+# Cocoapods
+#
+Pods/
+
+# Editor
+#
+.idea/
+
 # node.js
 #
 node_modules/

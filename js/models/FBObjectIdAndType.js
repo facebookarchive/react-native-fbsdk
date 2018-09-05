@@ -18,6 +18,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
@@ -30,11 +31,11 @@ export type ObjectIdAndType = {
   /**
    * The object ID, this can be a URL or a Facebook ID.
    */
-  objectId: string;
+  objectId: string,
 
   /**
    * Encapsulates the valid values for the facebook:object_type
    * attribute for a LikeView
    */
-  objectType: ActionType;
+  objectType: ActionType,
 };

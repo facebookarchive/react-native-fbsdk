@@ -18,49 +18,40 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
-import React, {
-  PropTypes,
-} from 'react';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import {requireNativeComponent, StyleSheet, ViewPropTypes} from 'react-native';
 
-import {
-  requireNativeComponent,
-  StyleSheet,
-  View,
-} from 'react-native';
+import type {ShareContent} from './models/FBShareContent';
 
-import type { ShareContent } from './models/FBShareContent';
+class SendButton extends React.Component<{
+  /**
+   * Content to be shared.
+   */
+  shareContent: ShareContent,
 
-class SendButton extends React.Component {
+  /**
+   * View style, if any.
+   */
+  style?: any,
+}> {
   static defaultProps: {
-    style: typeof styles.defaultButtonStyle;
-  };
-
-  props: {
-    /**
-     * Content to be shared.
-     */
-    shareContent: ShareContent;
-
-    /**
-     * View style, if any.
-     */
-    style?: any;
+    style: typeof styles.defaultButtonStyle,
   };
 
   render() {
-    return (
-      <RCTFBSendButton
-        {...this.props}
-      />
-    );
+    return <RCTFBSendButton {...this.props} />;
   }
 }
 
+/* $FlowFixMe(>=0.43.0) - Remove this comment to see errors found when Flow
+ * v0.43.0 was deployed */
 SendButton.propTypes = {
-  ...View.propTypes,
+  ...ViewPropTypes,
   shareContent: PropTypes.object,
 };
 
@@ -75,9 +66,6 @@ SendButton.defaultProps = {
   style: styles.defaultButtonStyle,
 };
 
-const RCTFBSendButton = requireNativeComponent(
-  'RCTFBSendButton',
-  SendButton
-);
+const RCTFBSendButton = requireNativeComponent('RCTFBSendButton');
 
 module.exports = SendButton;

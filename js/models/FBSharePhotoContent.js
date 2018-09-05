@@ -18,11 +18,12 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
-import type { ShareContentCommonParameters } from './FBShareContent';
-import type { SharePhoto } from './FBSharePhoto';
+import type {ShareContentCommonParameters} from './FBShareContent';
+import type {SharePhoto} from './FBSharePhoto';
 
 /**
  * A model for photo content to be shared.
@@ -31,20 +32,20 @@ export type SharePhotoContent = {
   /**
    * The type of content to be shared is photo.
    */
-  contentType: 'photo';
+  contentType: 'photo',
 
   /**
    * Common parameters for share content;
    */
-  commonParameters?: ShareContentCommonParameters;
+  commonParameters?: ShareContentCommonParameters,
 
   /**
    * URL for the content being shared.
    */
-  contentUrl?: string;
+  contentUrl?: string,
 
   /**
    * Photos to be shared.
    */
-  photos: Array<SharePhoto>;
+  photos: Array<SharePhoto>,
 };

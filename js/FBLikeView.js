@@ -18,83 +18,75 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
-import React, {
-  PropTypes,
-} from 'react';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import {requireNativeComponent, StyleSheet, ViewPropTypes} from 'react-native';
 
-import {
-  requireNativeComponent,
-  StyleSheet,
-  View,
-} from 'react-native';
-
-import type { ObjectIdAndType } from './models/FBObjectIdAndType';
-type LikeViewStyle = 'button'|  //Note 'button' is only available on Android.
-                     'standard' |
-                     'box_count';
+import type {ObjectIdAndType} from './models/FBObjectIdAndType';
 
 type AuxiliaryViewPosition = 'top' | 'bottom' | 'inline';
 type HorizontalAlignment = 'center' | 'left' | 'right';
+type LikeViewStyle =
+  | 'button' //Note 'button' is only available on Android.
+  | 'standard'
+  | 'box_count';
 
 /**
  * UI control to like an object in the Facebook graph.
  */
-class LikeView extends React.Component {
+class LikeView extends React.Component<{
+  /**
+   * The objectId and type for the object to like.
+   */
+  objectIdAndType: ObjectIdAndType,
+
+  /**
+   * The style to use for the receiver.  Distinct from React styling.
+   */
+  likeViewStyle?: LikeViewStyle,
+
+  /**
+   * The position for the auxiliary view for the receiver.
+   */
+  auxiliaryViewPosition?: AuxiliaryViewPosition,
+
+  /**
+   * The text alignment of the social sentence.
+   */
+  horizontalAlignment?: HorizontalAlignment,
+
+  /**
+   * The foreground color to use for the content of the receiver.
+   */
+  foregroundColor?: number,
+
+  /**
+   * If true, a sound is played when the receiver is toggled.
+   */
+  soundEnabled?: boolean,
+
+  /**
+   * View style, if any.
+   */
+  style?: any,
+}> {
   static defaultProps: {
-   style: typeof styles.defaultButtonStyle;
-  };
-
-  props: {
-    /**
-     * The objectId and type for the object to like.
-     */
-    objectIdAndType: ObjectIdAndType;
-
-    /**
-     * The style to use for the receiver.  Distinct from React styling.
-     */
-    likeViewStyle?: LikeViewStyle;
-
-    /**
-     * The position for the auxiliary view for the receiver.
-     */
-    auxiliaryViewPosition?: AuxiliaryViewPosition;
-
-    /**
-     * The text alignment of the social sentence.
-     */
-    horizontalAlignment?: HorizontalAlignment;
-
-    /**
-     * The foreground color to use for the content of the receiver.
-     */
-    foregroundColor?: number;
-
-    /**
-     * If true, a sound is played when the receiver is toggled.
-     */
-    soundEnabled?: bool;
-
-    /**
-     * View style, if any.
-     */
-    style?: any;
+    style: typeof styles.defaultButtonStyle,
   };
 
   render() {
-   return (
-     <RCTFBLikeView
-       {...this.props}
-     />
-   );
+    return <RCTFBLikeView {...this.props} />;
   }
 }
 
+/* $FlowFixMe(>=0.43.0) - Remove this comment to see errors found when Flow
+ * v0.43.0 was deployed */
 LikeView.propTypes = {
-  ...View.propTypes,
+  ...ViewPropTypes,
   objectIdAndType: PropTypes.object.isRequired,
   likeViewStyle: PropTypes.oneOf(['standard', 'button', 'box_count']),
   auxiliaryViewPosition: PropTypes.oneOf(['top', 'bottom', 'inline']),
@@ -105,16 +97,13 @@ LikeView.propTypes = {
 
 const styles = StyleSheet.create({
   defaultButtonStyle: {
-   height: 65,
-   width: 300,
+    height: 65,
+    width: 300,
   },
 });
 
-LikeView.defaultProps = { style: styles.defaultButtonStyle };
+LikeView.defaultProps = {style: styles.defaultButtonStyle};
 
-const RCTFBLikeView = requireNativeComponent(
-  'RCTFBLikeView',
-  LikeView
-);
+const RCTFBLikeView = requireNativeComponent('RCTFBLikeView');
 
 module.exports = LikeView;

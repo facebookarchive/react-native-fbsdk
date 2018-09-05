@@ -18,24 +18,26 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  * @flow
+ * @format
  */
 'use strict';
 
-const GameRequestDialog = require('react-native').NativeModules.FBGameRequestDialog;
-import type { GameRequestContent } from './models/FBGameRequestContent';
+const GameRequestDialog = require('react-native').NativeModules
+  .FBGameRequestDialog;
+import type {GameRequestContent} from './models/FBGameRequestContent';
 
 module.exports = {
   /**
    * Check if the dialog can be shown.
    */
-  canShow(): Promise {
+  canShow(): Promise<any> {
     return GameRequestDialog.canShow();
   },
 
   /**
    * Shows the dialog using the specified content.
    */
-  show(gameRequestContent: GameRequestContent): Promise {
+  show(gameRequestContent: GameRequestContent): Promise<any> {
     return GameRequestDialog.show(gameRequestContent);
   },
 };
