@@ -1,15 +1,22 @@
 {
   "name": "react-native-fbsdk",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Facebook SDK support for React Native apps.",
   "main": "./js/index.js",
   "author": {
     "name": "Zhuowen Deng"
   },
-  "contributors": {
-    "name": "Chris Hackmann",
-    "name": "Pouya Larjani"
-  },
+  "contributors": [
+    {
+      "name": "Chris Hackmann"
+    },
+    {
+      "name": "Pouya Larjani"
+    },
+    {
+      "name": "Cody Winton"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/facebook/react-native-fbsdk.git"
