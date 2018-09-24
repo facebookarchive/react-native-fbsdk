@@ -45,8 +45,6 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
       super.onCreate();
-      // Initialize the SDK before executing any other operations.
-      FacebookSdk.sdkInitialize(getApplicationContext());
       // Use AppEventsLogger to log custom events.
       AppEventsLogger.activateApp(this);
   }

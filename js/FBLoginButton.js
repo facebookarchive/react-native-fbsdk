@@ -151,10 +151,6 @@ LoginButton.defaultProps = {
   style: styles.defaultButtonStyle,
 };
 
-const RCTFBLoginButton = requireNativeComponent(
-  'RCTFBLoginButton',
-  LoginButton,
-  {nativeOnly: {onChange: true}},
-);
+const RCTFBLoginButton = requireNativeComponent('RCTFBLoginButton');
 
 module.exports = LoginButton;
