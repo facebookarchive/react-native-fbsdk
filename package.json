@@ -39,7 +39,7 @@
     "plist": "^2.1.0",
     "progress": "^2.0.0",
     "pump": "^1.0.2",
-    "xcode": "^0.9.3"
+    "xcode": "^1.0.0"
   },
   "peerDependencies": {
     "react-native": ">=0.44.0",
