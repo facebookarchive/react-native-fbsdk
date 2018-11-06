@@ -20,7 +20,7 @@ react-native init YourApp
 
 Install and link the react-native-fbsdk package:
 ```ruby
-react-native install react-native-fbsdk
+npm install react-native-fbsdk
 react-native link react-native-fbsdk
 ```
 ### 3. Configure native projects
@@ -136,11 +136,46 @@ public class MainActivity extends ReactActivity {
     //...
 ```
 
+Also you need to add in your `settings.gradle`:
+```
+include ':react-native-fbsdk'
+project(':react-native-fbsdk').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbsdk/android')
+```
+
+And add react-native-fbsdk to dependencies in your app `build.gradle`:
+```
+dependencies {
+    ...
+    implementation 'com.facebook.android:facebook-android-sdk:4.34.0'
+    implementation project(':react-native-fbsdk')
+}
+```
+
 Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but **make sure** you follow the rest of the steps such as updating `strings.xml` and `AndroidManifest.xml`.
 
 #### 3.2 iOS project
 The react-native-fbsdk has been linked by rnpm, the next step will be downloading and linking the native Facebook SDK for iOS.
 Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow ***all the steps*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS. Along with `FBSDKCoreKit.framework`, don't forget to import `FBSDKShareKit.framework` and `FBSDKLoginKit.framework` into your Xcode project.
+
+**If you're using react native's RCTLinkingManager**
+
+The `AppDelegate.m` file can only have one method for `openUrl`. If you're also using `RCTLinkingManager` to handle deep links, you should handle both results in your `openUrl` method.
+
+```
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url 
+    sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+
+  BOOL handledFB = [[FBSDKApplicationDelegate sharedInstance] application:application
+    openURL:url
+    sourceApplication:sourceApplication
+    annotation:annotation
+  ];
+
+  BOOL handledRCT = [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+
+  return handledFB || handledRCT;
+}
+```
 
 #### 3.3 Troubleshooting
 1. I cannot run the Android project.
@@ -166,34 +201,31 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 ### [Login](https://developers.facebook.com/docs/facebook-login)
 #### Login Button + Access Token
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-  AccessToken
-} = FBSDK;
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
-var Login = React.createClass({
-  render: function() {
+export default class Login extends Component {
+  render() {
     return (
       <View>
         <LoginButton
-          publishPermissions={["publish_actions"]}
           onLoginFinished={
             (error, result) => {
               if (error) {
-                alert("login has error: " + result.error);
+                console.log("login has error: " + result.error);
               } else if (result.isCancelled) {
-                alert("login is cancelled.");
+                console.log("login is cancelled.");
               } else {
                 AccessToken.getCurrentAccessToken().then(
                   (data) => {
-                    alert(data.accessToken.toString())
+                    console.log(data.accessToken.toString())
                   }
                 )
               }
             }
           }
-          onLogoutFinished={() => alert("logout.")}/>
+          onLogoutFinished={() => console.log("logout.")}/>
       </View>
     );
   }
@@ -202,10 +234,9 @@ var Login = React.createClass({
 #### Requesting additional permissions with Login Manager
 You can also use the Login Manager with custom UI to perform Login.
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginManager,
-} = FBSDK;
+// ...
+
+import { LoginManager } from 'react-native-fbsdk';
 
 // ...
 
@@ -213,14 +244,14 @@ const {
 LoginManager.logInWithReadPermissions(['public_profile']).then(
   function(result) {
     if (result.isCancelled) {
-      alert('Login cancelled');
+      console.log('Login cancelled');
     } else {
-      alert('Login success with permissions: '
+      console.log('Login success with permissions: '
         +result.grantedPermissions.toString());
     }
   },
   function(error) {
-    alert('Login fail with error: ' + error);
+    console.log('Login fail with error: ' + error);
   }
 );
 ```
@@ -228,10 +259,9 @@ LoginManager.logInWithReadPermissions(['public_profile']).then(
 #### Share dialogs
 All of the dialogs included are used in a similar way, with differing content types. All content types are defined with [Flow](http://flowtype.org/) Type Annotation in js/models directory.
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  ShareDialog,
-} = FBSDK;
+// ...
+
+import { ShareDialog } from 'react-native-fbsdk';
 
 // ...
 
@@ -256,26 +286,63 @@ shareLinkWithShareDialog() {
   ).then(
     function(result) {
       if (result.isCancelled) {
-        alert('Share cancelled');
+        console.log('Share cancelled');
       } else {
-        alert('Share success with postId: '
+        console.log('Share success with postId: '
           + result.postId);
       }
     },
     function(error) {
-      alert('Share fail with error: ' + error);
+      console.log('Share fail with error: ' + error);
     }
   );
 }
 ```
 
-#### Share API
-Your app must have the `publish_actions` permission approved to share through the share API. You should prefer to use the Share Dialogs for an easier and more consistent experience.
+#### Share Photos
+See [SharePhotoContent](/js/models/FBSharePhotoContent.js) and [SharePhoto](/js/models/FBSharePhoto.js) to refer other options.
 ```js
 const FBSDK = require('react-native-fbsdk');
 const {
   ShareApi,
 } = FBSDK;
+
+const photoUri = 'file://' + '/path/of/photo.png'
+const sharePhotoContent = {
+  contentType = 'photo',
+  photos: [{ imageUrl: photoUri }],
+}
+
+// ...
+
+ShareDialog.show(tmp.state.sharePhotoContent);
+```
+
+#### Share Videos
+See [ShareVideoContent](/js/models/FBShareVideoContent.js) and [ShareVideo](/js/models/FBShareVideo.js) to refer other options.
+```js
+const FBSDK = require('react-native-fbsdk');
+const {
+  ShareApi,
+} = FBSDK;
+
+const videoUri = 'file://' + '/path/of/video.mp4'
+const shareVideoContent = {
+  contentType = 'video',
+  video: { localUrl: videoUri },
+}
+
+// ...
+
+ShareDialog.show(tmp.state.shareVideoContent);
+```
+
+#### Share API
+Your app must have the `publish_actions` permission approved to share through the share API. You should prefer to use the Share Dialogs for an easier and more consistent experience.
+```js
+// ...
+
+import { ShareApi } from 'react-native-fbsdk';
 
 // ...
 
@@ -298,20 +365,19 @@ ShareApi.canShare(this.state.shareLinkContent).then(
   }
 ).then(
   function(result) {
-    alert('Share with ShareApi success.');
+    console.log('Share with ShareApi success.');
   },
   function(error) {
-    alert('Share with ShareApi failed with error: ' + error);
+    console.log('Share with ShareApi failed with error: ' + error);
   }
 );
 ```
 ### [Analytics](https://developers.facebook.com/docs/app-events)
 #### App events
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  AppEventsLogger,
-} = FBSDK;
+// ...
+
+import { AppEventsLogger } from 'react-native-fbsdk';
 
 // ...
 
@@ -321,20 +387,18 @@ AppEventsLogger.logPurchase(15, 'USD', {'param': 'value'})
 ### [Graph API](https://developers.facebook.com/docs/graph-api)
 #### Graph Requests
 ```js
-const FBSDK = require('react-native-fbsdk');
-const {
-  GraphRequest,
-  GraphRequestManager,
-} = FBSDK;
+// ...
+
+import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
 // ...
 
 //Create response callback.
 _responseInfoCallback(error: ?Object, result: ?Object) {
   if (error) {
-    alert('Error fetching data: ' + error.toString());
+    console.log('Error fetching data: ' + error.toString());
   } else {
-    alert('Success fetching data: ' + result.toString());
+    console.log('Success fetching data: ' + result.toString());
   }
 }
 
