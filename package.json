@@ -32,6 +32,11 @@
     "core"
   ],
   "license": "Facebook Platform License",
+  "scripts": {
+    "flow": "flow",
+    "lint": "eslint .",
+    "prettier": "prettier \"./**/*.js\" --write"
+  },
   "dependencies": {
     "adm-zip": "^0.4.7",
     "fastfall": "^1.5.1",
@@ -42,7 +47,30 @@
     "xcode": "^1.0.0"
   },
   "peerDependencies": {
-    "react-native": ">=0.44.0",
-    "prop-types": "15.x.x"
+    "prop-types": "15.x.x",
+    "react-native": ">=0.44.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "5.1.0",
+    "eslint-config-fb-strict": "22.1.0",
+    "eslint-plugin-babel": "^5.2.1",
+    "eslint-plugin-flowtype": "2.43.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jest": "21.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-prettier": "2.6.0",
+    "eslint-plugin-react": "7.6.1",
+    "eslint-plugin-relay": "0.0.23",
+    "flow-bin": "^0.86.0",
+    "prettier": "^1.15.2"
+  },
+  "prettier": {
+    "requirePragma": true,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": true,
+    "parser": "flow"
   }
 }
