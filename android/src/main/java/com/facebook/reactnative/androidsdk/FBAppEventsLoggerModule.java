@@ -223,6 +223,31 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
        mAppEventLogger.updateUserProperties(Arguments.toBundle(parameters), null);
      }
 
+    private @Nullable String getNullableString(ReadableMap data, String key) {
+      return data.hasKey(key) ? data.getString(key) : null;
+    }
+
+    /**
+     * Set additional data about the user to increase chances of matching a Facebook user.
+     *
+     * @param userData Key-value pairs representing user data and their values.
+     */
+    @ReactMethod
+    public void setUserData(ReadableMap userData) {
+      AppEventsLogger.setUserData(
+        getNullableString(userData, "email"),
+        getNullableString(userData, "firstName"),
+        getNullableString(userData, "lastName"),
+        getNullableString(userData, "phone"),
+        getNullableString(userData, "dateOfBirth"),
+        getNullableString(userData, "gender"),
+        getNullableString(userData, "city"),
+        getNullableString(userData, "state"),
+        getNullableString(userData, "zip"),
+        getNullableString(userData, "country")
+      );
+    }
+
     /**
      * Explicitly flush any stored events to the server.  Implicit flushes may happen depending on
      * the value of getFlushBehavior.  This method allows for explicit, app invoked flushing.
