@@ -178,7 +178,30 @@ Before you can run the project, follow the [Getting Started Guide](https://devel
 #### 3.2 iOS project
 
 The react-native-fbsdk has been linked by rnpm, the next step will be downloading and linking the native Facebook SDK for iOS.
-Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow **_all the steps_** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS. Along with `FBSDKCoreKit.framework`, don't forget to import `FBSDKShareKit.framework` and `FBSDKLoginKit.framework` into your Xcode project.
+Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow **_all the steps_** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS.
+
+**Additional settings**
+
+Your Podfile must contain 3 pods
+
+```bash
+pod 'FacebookSDK'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
+```
+
+And install them
+
+```bash
+cd ios
+pod install
+```
+
+Open the .xcworkspace in Xcode found in the `ios` subfolder from your project's root directory.
+
+Add react-native-fbsdk by draging file node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj into the Libraries in XCode.
+
+In Build Phases -> Link Binary With Libraries of your project add `libRCTFBSDK.a`, `libFBSDKCoreKit.a`, `libFBSDKLoginKit.a` and `libFBSDKShareKit.a`.
 
 **If you're using react native's RCTLinkingManager**
 
