@@ -69,7 +69,8 @@ public final class Utility {
                 reactArrayToStringList(accessTokenMap.getArray("declinedPermissions")),
                 accessTokenSource,
                 expirationTime,
-                lastRefreshTime
+                lastRefreshTime,
+                null
         );
     }
 

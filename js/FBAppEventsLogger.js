@@ -38,6 +38,24 @@ type AppEventsFlushBehavior =
   | 'explicit_only';
 type Params = {[key: string]: string | number};
 
+/**
+ * Info about a user to increase chances of matching a Facebook user.
+ * See https://developers.facebook.com/docs/app-events/advanced-matching for
+ * more info about the expected format of each field.
+ */
+type UserData = $ReadOnly<{|
+  email?: ?string,
+  firstName?: ?string,
+  lastName?: ?string,
+  phone?: ?string,
+  dateOfBirth?: ?string,
+  gender?: ?('m' | 'f'),
+  city?: ?string,
+  state?: ?string,
+  zip?: ?string,
+  country?: ?string,
+|}>;
+
 module.exports = {
   /**
    * Sets the current event flushing behavior specifying when events
@@ -114,6 +132,13 @@ module.exports = {
    */
   updateUserProperties(parameters: Params) {
     AppEventsLogger.updateUserProperties(parameters);
+  },
+
+  /**
+   * Set additional data about the user to increase chances of matching a Facebook user.
+   */
+  setUserData(userData: UserData) {
+    AppEventsLogger.setUserData(userData);
   },
 
   /**
