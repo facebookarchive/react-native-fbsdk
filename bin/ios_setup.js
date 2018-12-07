@@ -43,7 +43,7 @@ if (process.argv.length <= 3) {
 const appId = process.argv[2];
 const appName = process.argv[3];
 
-function downloadFbSdk (next) {
+function downloadFbSdk(next) {
   try {
     fs.accessSync(frameworkDir, fs.F_OK);
   } catch (e) {
@@ -69,7 +69,7 @@ function downloadFbSdk (next) {
   pump(download, writeToFile, next);
 }
 
-function unzipFramework (next) {
+function unzipFramework(next) {
   console.log('Unzipping the framework');
   const zip = new AdmZip(zipFilePath);
   zip.extractAllTo(frameworkDir, true);
@@ -78,12 +78,13 @@ function unzipFramework (next) {
   next();
 }
 
-function correctSearchPaths (next) {
+function correctSearchPaths(next) {
   const rctfbsdkProjectPath = './node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj/project.pbxproj';
   const rctfbsdkProject = xcode.project(rctfbsdkProjectPath);
-  rctfbsdkProject.parse(function (err) {
+  rctfbsdkProject.parse(function(err) {
     if (err) {
-      return next(err);
+      next(err);
+      return;
     }
     rctfbsdkProject.updateBuildProperty('FRAMEWORK_SEARCH_PATHS', '"$(PROJECT_DIR)/../../../ios/Frameworks"');
     fs.writeFileSync(rctfbsdkProjectPath, rctfbsdkProject.writeSync());
@@ -92,25 +93,26 @@ function correctSearchPaths (next) {
   });
 }
 
-function updateFBSDKFrameworks (next) {
+function updateFBSDKFrameworks(next) {
   const files = fs.readdirSync('./ios/');
-  var myProjName = files.filter((f) => { return f.substr(-10) === '.xcodeproj'; })[0];
+  var myProjName = files.filter(f => { return f.substr(-10) === '.xcodeproj'; })[0];
   const myProjPath = path.join('./ios/', myProjName, '/project.pbxproj');
   myProjName = myProjName.replace('.xcodeproj', '');
   console.log('Updating target:' + myProjName + ' at ' + myProjPath + ' ...');
 
   const myProj = xcode.project(myProjPath);
-  myProj.parse(function (err) {
+  myProj.parse(function(err) {
     if (err) {
-      return next(err);
+      next(err);
+      return;
     }
     myProj.pbxCreateGroup('Frameworks', './ios/Frameworks');
 
     // NOTE: Assumes first target is the app.
     const target = myProj.getFirstTarget().uuid;
-    myProj.addFramework('./ios/Frameworks/FBSDKCoreKit.framework', { 'customFramework': true, 'target': target, 'link': true });
-    myProj.addFramework('./ios/Frameworks/FBSDKShareKit.framework', { 'customFramework': true, 'target': target, 'link': true });
-    myProj.addFramework('./ios/Frameworks/FBSDKLoginKit.framework', { 'customFramework': true, 'target': target, 'link': true });
+    myProj.addFramework('./ios/Frameworks/FBSDKCoreKit.framework', {'customFramework': true, target, 'link': true});
+    myProj.addFramework('./ios/Frameworks/FBSDKShareKit.framework', {'customFramework': true, target, 'link': true});
+    myProj.addFramework('./ios/Frameworks/FBSDKLoginKit.framework', {'customFramework': true, target, 'link': true});
 
     // WARNING: this will overwrite any existing search paths
     myProj.updateBuildProperty('FRAMEWORK_SEARCH_PATHS', '"$(PROJECT_DIR)/Frameworks/"');
@@ -121,14 +123,14 @@ function updateFBSDKFrameworks (next) {
   });
 }
 
-function updatePlist (files, next) {
+function updatePlist(files, next) {
   console.dir(files);
   var plistDirPath = '';
-  files.map(function (file) {
+  files.map(function(file) {
     return path.join('./ios/', file);
-  }).filter(function (file) {
+  }).filter(function(file) {
     return fs.statSync(file).isDirectory();
-  }).forEach(function (file) {
+  }).forEach(function(file) {
     if (fs.readdirSync(file).indexOf('Base.lproj') !== -1) {
       plistDirPath = file;
     }
@@ -146,7 +148,7 @@ function updatePlist (files, next) {
   next();
 }
 
-function done (err) {
+function done(err) {
   if (err) {
     console.error(err);
   } else {
