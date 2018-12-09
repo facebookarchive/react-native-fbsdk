@@ -17,11 +17,12 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
 package com.facebook.reactnative.androidsdk;
-
+import android.app.Activity;
+import android.content.Intent;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookException;
+import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
@@ -31,15 +32,19 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.share.Sharer;
 import com.facebook.share.widget.ShareDialog;
-
-public class FBShareDialogModule extends FBSDKDialogBaseJavaModule {
-
+public class FBShareDialogModule extends FBSDKDialogBaseJavaModule implements ActivityEventListener {
+    CallbackManager fbCallbackManager;
+    @Override
+    public void onActivityResult(Activity activity,final int requestCode, final int resultCode, final Intent data) {
+        fbCallbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+    @Override
+    public void onNewIntent(Intent intent) {
+    }
     private class ShareDialogCallback extends ReactNativeFacebookSDKCallback<Sharer.Result> {
-
         public ShareDialogCallback(Promise promise) {
             super(promise);
         }
-
         @Override
         public void onSuccess(Sharer.Result result) {
             if (mPromise != null) {
@@ -50,19 +55,17 @@ public class FBShareDialogModule extends FBSDKDialogBaseJavaModule {
             }
         }
     }
-
     private ShareDialog.Mode mShareDialogMode;
     private boolean mShouldFailOnError;
-
     public FBShareDialogModule(ReactApplicationContext reactContext, CallbackManager callbackManager) {
         super(reactContext, callbackManager);
+        fbCallbackManager = callbackManager;  // add this line
+        reactContext.addActivityEventListener(this); // add this line
     }
-
     @Override
     public String getName() {
         return "FBShareDialog";
     }
-
     @ReactMethod
     public void canShow(ReadableMap shareContent, Promise promise) {
         if (getCurrentActivity() != null) {
@@ -76,7 +79,6 @@ public class FBShareDialogModule extends FBSDKDialogBaseJavaModule {
             promise.reject("No current activity.");
         }
     }
-
     @ReactMethod
     public void show(ReadableMap shareContent, final Promise promise) {
         if (getCurrentActivity() != null) {
@@ -92,12 +94,10 @@ public class FBShareDialogModule extends FBSDKDialogBaseJavaModule {
             promise.reject("No current activity.");
         }
     }
-
     @ReactMethod
     public void setMode(String mode) {
         mShareDialogMode = ShareDialog.Mode.valueOf(mode.toUpperCase());
     }
-
     @ReactMethod
     public void setShouldFailOnError(boolean shouldFailOnError) {
         mShouldFailOnError = shouldFailOnError;
