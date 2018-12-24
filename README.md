@@ -257,7 +257,7 @@ export default class Login extends Component {
       </View>
     );
   }
-});
+};
 ```
 
 #### Requesting additional permissions with Login Manager
