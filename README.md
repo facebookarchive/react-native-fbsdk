@@ -220,7 +220,7 @@ The `AppDelegate.m` file can only have one method for `openUrl`. If you're also 
 
 4. I get this build error: `no type or protocol named UIApplicationOpenURLOptionsKey`:
 
-- Your XCode version is too old, upgrade to XCode 8.0+.
+- Your Xcode version is too old, upgrade to Xcode 8.0+.
 
 ## Usage
 
