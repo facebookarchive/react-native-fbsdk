@@ -7,8 +7,8 @@
 
     If you need help integrating the React Native Facebook SDK wrapper, 
     many members of the community use Stack Overflow to ask and answer questions. 
-    Read through the [existing questions](https://stackoverflow.com/questions/tagged/react-native-fbsdk?sort=frequent) 
-    tagged with **react-native-fbsdk**, or [ask your own](http://stackoverflow.com/questions/ask?tags=react-native-fbsdk)!
+    - Read through the existing questions: https://stackoverflow.com/questions/tagged/react-native-fbsdk?sort=frequent
+    - Ask your own: http://stackoverflow.com/questions/ask?tags=react-native-fbsdk
 
 -->
 
