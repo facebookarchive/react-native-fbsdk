@@ -465,7 +465,6 @@ new GraphRequestManager().addRequest(infoRequest).start();
 
 - Website: https://facebook.github.io/react-native
 - Twitter: https://twitter.com/reactnative
-- Discussion: https://discuss.reactjs.org/
 
 See the [CONTRIBUTING](./CONTRIBUTING.md) file for how to help out.
 
