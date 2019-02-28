@@ -13,7 +13,7 @@ Functionality is provided through one single npm package so you can use it for b
 
 ## Installation
 
-You need to install the sdk with [npm](https://www.npmjs.com/) and configure native Android/iOS project in the react native project.
+You will need either [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com) in order to install the SDK and configure the Android and iOS projects.
 
 ### 1. Create React Native project
 
@@ -25,66 +25,36 @@ react-native init YourApp
 
 ### 2. Install JavaScript packages
 
-Install and link the `react-native-fbsdk` package:
+Run `yarn` (or `npm install`, if using npm) inside your new `YourApp` directory:
+
+```bash
+cd YourApp
+yarn
+```
+
+Then, install the `react-native-fbsdk` package:
+
+```bash
+yarn add react-native-fbsdk
+```
+
+> Or, if using npm:
 
 ```bash
 npm install react-native-fbsdk
+```
+
+Finally, link the SDK to configure the iOS and Android projects:
+
+```bash
 react-native link react-native-fbsdk
 ```
 
-### 3. Configure native projects
+### 3. Configure projects
 
-#### 3.1 Android project
+#### 3.1 Android
 
 Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) installed, open the project with Android Studio.
-
-**If your react-native version is below 0.29.0**
-
-Go to `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
-Note that packages must be imported to use.
-
-Add an instance variable of type `CallbackManager` in class.
-
-```java
-import android.content.Intent;     // <--- import
-import android.os.Bundle;
-
-import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-
-public class MainActivity extends ReactActivity {
-    CallbackManager mCallbackManager;
-    //...
-```
-
-Register sdk package in method `getPackages()`.
-
-```java
-@Override
-protected List<ReactPackage> getPackages() {
-    mCallbackManager = new CallbackManager.Factory().create();
-    ReactPackage packages[] = new ReactPackage[]{
-        new MainReactPackage(),
-        new FBSDKPackage(mCallbackManager),
-    };
-    return Arrays.<ReactPackage>asList(packages);
-}
-```
-
-Override `onActivityResult()`.
-
-```java
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    mCallbackManager.onActivityResult(requestCode, resultCode, data);
-}
-```
-
-Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but **_make sure_** you follow the rest of the steps such as calling `FacebookSdk.sdkInitialize` and updating `strings.xml` and `AndroidManifest.xml`. Note that react-native project **_doesn't have_** the Application class, so you'll need to create an implementation of the Application class yourself.
-
-**If your react-native version is 0.29 or above**
 
 Go to `MainApplication.java` and `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
 
@@ -175,13 +145,13 @@ dependencies {
 
 Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but **make sure** you follow the rest of the steps such as updating `strings.xml` and `AndroidManifest.xml`.
 
-#### 3.2 iOS project
+#### 3.2 iOS
 
-The react-native-fbsdk has been linked by rnpm, the next step will be downloading and linking the native Facebook SDK for iOS.
+The `react-native-fbsdk` has been linked by `react-native link`. The next step will be downloading and linking the native Facebook SDK for iOS.
 
 Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow ***all the steps except the pod install (Step 2)*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS. Along with `FBSDKCoreKit.framework`, don't forget to import `FBSDKShareKit.framework` and `FBSDKLoginKit.framework` into your Xcode project.
 
-**If you're using react native's RCTLinkingManager**
+**If you're using React Native's RCTLinkingManager**
 
 The `AppDelegate.m` file can only have one method for `openUrl`. If you're also using `RCTLinkingManager` to handle deep links, you should handle both results in your `openUrl` method.
 
@@ -201,7 +171,7 @@ The `AppDelegate.m` file can only have one method for `openUrl`. If you're also 
 }
 ```
 
-#### 3.3 Troubleshooting
+### Troubleshooting
 
 1. I cannot run the Android project.
 
@@ -220,7 +190,7 @@ The `AppDelegate.m` file can only have one method for `openUrl`. If you're also 
 
 4. I get this build error: `no type or protocol named UIApplicationOpenURLOptionsKey`:
 
-- Your XCode version is too old, upgrade to XCode 8.0+.
+- Your Xcode version is too old. Upgrade to Xcode 10.0+.
 
 ## Usage
 
