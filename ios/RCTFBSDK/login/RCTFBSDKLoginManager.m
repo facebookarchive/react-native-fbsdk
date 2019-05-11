@@ -130,15 +130,6 @@ static NSString *LoginBehaviorToString(FBSDKLoginBehavior loginBehavior)
     case FBSDKLoginBehaviorBrowser:
       result = @"browser";
       break;
-    case FBSDKLoginBehaviorNative:
-      result = @"native";
-      break;
-    case FBSDKLoginBehaviorSystemAccount:
-      result = @"system-account";
-      break;
-    case FBSDKLoginBehaviorWeb:
-      result = @"web";
-      break;
     default:
       break;
   }
