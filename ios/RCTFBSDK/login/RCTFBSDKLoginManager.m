@@ -75,14 +75,14 @@ RCT_EXPORT_METHOD(logInWithReadPermissions:(NSStringArray *)permissions
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-  [self _loginWithPermissions:permissions resolver:resolve rejecter:reject isRead:YES];
+  [self _loginWithPermissions:permissions resolver:resolve rejecter:reject];
 };
 
 RCT_EXPORT_METHOD(logInWithPublishPermissions:(NSStringArray *)permissions
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 {
-  [self _loginWithPermissions:permissions resolver:resolve rejecter:reject isRead:NO];
+  [self _loginWithPermissions:permissions resolver:resolve rejecter:reject];
 };
 
 RCT_EXPORT_METHOD(logOut)
@@ -95,23 +95,16 @@ RCT_EXPORT_METHOD(logOut)
 - (void)_loginWithPermissions:(NSStringArray *)permissions
                      resolver:(RCTPromiseResolveBlock)resolve
                      rejecter:(RCTPromiseRejectBlock)reject
-                       isRead:(BOOL)isRead
 {
-  FBSDKLoginManagerRequestTokenHandler requestHandler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+  FBSDKLoginManagerLoginResultBlock requestHandler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
     if (error) {
       reject(@"FacebookSDK", @"Login Failed", error);
     } else {
       resolve(RCTBuildResultDictionary(result));
     }
   };
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-  if (isRead) {
-    [_loginManager logInWithReadPermissions:permissions handler:requestHandler];
-  } else {
-    [_loginManager logInWithPublishPermissions:permissions handler:requestHandler];
-  }
-#pragma clang diagnostic pop
+
+  [_loginManager logInWithPermissions:permissions fromViewController:nil handler:requestHandler];
 }
 
 static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *result)
@@ -125,7 +118,15 @@ static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *resu
 
 static NSString *LoginBehaviorToString(FBSDKLoginBehavior loginBehavior)
 {
-  return @"browser";
+  NSString *result = nil;
+  switch (loginBehavior) {
+    case FBSDKLoginBehaviorBrowser:
+      result = @"browser";
+      break;
+    default:
+      break;
+  }
+  return result;
 }
 
 

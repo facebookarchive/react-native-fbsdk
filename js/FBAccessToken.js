@@ -27,13 +27,15 @@ const AccessToken = require('react-native').NativeModules.FBAccessToken;
 
 type AccessTokenMap = {
   accessToken: string,
-  applicationID: string,
-  userID: string,
   permissions: Array<string>,
   declinedPermissions: Array<string>,
-  accessTokenSource?: string,
+  expiredPermissions: Array<string>,
+  applicationID: string,
+  userID: string,
   expirationTime: number,
   lastRefreshTime: number,
+  dataAccessExpirationTime: number,
+  accessTokenSource?: string,
 };
 
 /**
@@ -46,16 +48,6 @@ class FBAccessToken {
   accessToken: string;
 
   /**
-   * The app ID.
-   */
-  applicationID: string;
-
-  /**
-   * The user ID.
-   */
-  userID: string;
-
-  /**
    * The known granted permissions.
    */
   permissions: Array<string>;
@@ -66,10 +58,19 @@ class FBAccessToken {
   declinedPermissions: Array<string>;
 
   /**
-   * The source of access token.
-   * @platform android
+   * The known expired permissions.
    */
-  accessTokenSource: ?string;
+  expiredPermissions: Array<string>;
+
+  /**
+   * The app ID.
+   */
+  applicationID: string;
+
+  /**
+   * The user ID.
+   */
+  userID: string;
 
   /**
    * The expiration time of the access token.
@@ -83,15 +84,29 @@ class FBAccessToken {
    */
   lastRefreshTime: number;
 
+  /**
+   * The data access expiration time of the access token.
+   * The value is the number of milliseconds since Jan. 1, 1970, midnight GMT.
+   */
+  dataAccessExpirationTime: number;
+
+  /**
+   * The source of access token.
+   * @platform android
+   */
+  accessTokenSource: ?string;
+
   constructor(tokenMap: AccessTokenMap) {
     this.accessToken = tokenMap.accessToken;
     this.permissions = tokenMap.permissions;
     this.declinedPermissions = tokenMap.declinedPermissions;
+    this.expiredPermissions = tokenMap.expiredPermissions;
     this.applicationID = tokenMap.applicationID;
-    this.accessTokenSource = tokenMap.accessTokenSource;
     this.userID = tokenMap.userID;
     this.expirationTime = tokenMap.expirationTime;
     this.lastRefreshTime = tokenMap.lastRefreshTime;
+    this.dataAccessExpirationTime = tokenMap.dataAccessExpirationTime;
+    this.accessTokenSource = tokenMap.accessTokenSource;
     Object.freeze(this);
   }
 
@@ -154,6 +169,10 @@ class FBAccessToken {
     return this.declinedPermissions;
   }
 
+  getExpiredPermissions(): Array<string> {
+    return this.expiredPermissions;
+  }
+
   /**
    * Gets the date at which the token was last refreshed. Since tokens expire, the Facebook SDK
    * will attempt to renew them periodically. The value is the number of milliseconds since
@@ -161,6 +180,10 @@ class FBAccessToken {
    */
   getLastRefresh(): number {
     return this.lastRefreshTime;
+  }
+
+  getDataAccessExpiration(): number {
+    return this.dataAccessExpirationTime;
   }
 
   /**

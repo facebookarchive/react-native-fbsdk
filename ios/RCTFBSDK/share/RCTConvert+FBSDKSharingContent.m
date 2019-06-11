@@ -112,10 +112,6 @@ static FBSDKShareVideoContent *RCTBuildVideoContent(NSDictionary *contentData)
   NSURL *videoURL = [RCTConvert NSURL:videoData[@"localUrl"]];
   FBSDKShareVideo *video = [FBSDKShareVideo videoWithVideoURL:videoURL];
   videoContent.video = video;
-  if (contentData[@"previewPhoto"]) {
-    FBSDKSharePhoto *previewPhoto = RCTBuildPhoto([RCTConvert NSDictionary:contentData[@"previewPhoto"]]);
-    videoContent.previewPhoto = previewPhoto;
-  }
   videoContent.contentURL = [RCTConvert NSURL:contentData[@"contentUrl"]];
   return videoContent;
 }
@@ -132,15 +128,16 @@ static FBSDKShareOpenGraphContent *RCTBuildOpenGraphContent(NSDictionary *conten
 static FBSDKShareOpenGraphAction *RCTBuildOpenGraphAction(NSDictionary *actionData)
 {
   FBSDKShareOpenGraphAction *action = nil;
+  NSString *actionType = nil;
   if (actionData) {
-    action = [[FBSDKShareOpenGraphAction alloc] init];
+    actionType = [RCTConvert NSString:actionData[@"actionType"]];
+    action = [[FBSDKShareOpenGraphAction alloc] initWithActionType:actionType];
     NSString *actionDataKey = actionData[@"_properties"] ? @"_properties" : @"$ShareOpenGraphValueContainer_properties";
     NSDictionary *properties = [RCTConvert NSDictionary:actionData[actionDataKey]];
     for (NSString *key in properties.allKeys) {
       NSDictionary *element = [RCTConvert NSDictionary:properties[key]];
       RCTAddElementToOpenGraph(key, element, action);
     }
-    action.actionType = [RCTConvert NSString:actionData[@"actionType"]];
   }
   return action;
 }
