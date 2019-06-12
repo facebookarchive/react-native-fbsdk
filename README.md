@@ -109,6 +109,17 @@ private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 };
 ```
 
+Initialize FacebookSdk on method `OnCreate()`.
+
+```
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    FacebookSdk.sdkInitialize(this.getApplicationContext());
+    SoLoader.init(this, /* native exopackage */ false);
+  }
+```
+
 In `MainActivity.java`
 
 Override `onActivityResult()` method
