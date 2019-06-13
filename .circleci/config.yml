@@ -1,0 +1,33 @@
+version: 2.1
+
+orbs:
+  rn: react-native-community/react-native@1.2.0
+
+jobs:
+  checkout_code:
+    executor: rn/linux_js
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths: .
+  analyze:
+    executor: rn/linux_js
+    steps:
+      - attach_workspace:
+          at: .
+      - rn/yarn_install
+      - run:
+          name: Lint JS Code (ESLint)
+          command: yarn lint
+      - run:
+          name: Flow
+          command: yarn flow
+
+workflows:
+  test:
+    jobs:
+      - checkout_code
+      - analyze:
+          requires:
+            - checkout_code
