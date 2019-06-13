@@ -20,7 +20,7 @@
 
 package com.facebook.reactnative.androidsdk;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.facebook.CallbackManager;
 import com.facebook.login.DefaultAudience;
