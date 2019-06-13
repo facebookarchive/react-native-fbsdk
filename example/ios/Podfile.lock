@@ -1,0 +1,228 @@
+PODS:
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - boost-for-react-native (1.63.0)
+  - DoubleConversion (1.1.6)
+  - FBSDKCoreKit (4.44.1):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.44.1):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.44.1):
+    - FBSDKCoreKit
+  - Folly (2018.10.22.00):
+    - boost-for-react-native
+    - DoubleConversion
+    - Folly/Default (= 2018.10.22.00)
+    - glog
+  - Folly/Default (2018.10.22.00):
+    - boost-for-react-native
+    - DoubleConversion
+    - glog
+  - glog (0.3.5)
+  - React (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+    - React-DevSupport (= 0.60.0-rc.1)
+    - React-RCTActionSheet (= 0.60.0-rc.1)
+    - React-RCTAnimation (= 0.60.0-rc.1)
+    - React-RCTBlob (= 0.60.0-rc.1)
+    - React-RCTImage (= 0.60.0-rc.1)
+    - React-RCTLinking (= 0.60.0-rc.1)
+    - React-RCTNetwork (= 0.60.0-rc.1)
+    - React-RCTSettings (= 0.60.0-rc.1)
+    - React-RCTText (= 0.60.0-rc.1)
+    - React-RCTVibration (= 0.60.0-rc.1)
+    - React-RCTWebSocket (= 0.60.0-rc.1)
+  - React-Core (0.60.0-rc.1):
+    - Folly (= 2018.10.22.00)
+    - React-cxxreact (= 0.60.0-rc.1)
+    - React-jsiexecutor (= 0.60.0-rc.1)
+    - yoga (= 0.60.0-rc.1.React)
+  - React-cxxreact (0.60.0-rc.1):
+    - boost-for-react-native (= 1.63.0)
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React-jsinspector (= 0.60.0-rc.1)
+  - React-DevSupport (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+    - React-RCTWebSocket (= 0.60.0-rc.1)
+  - React-fishhook (0.60.0-rc.1)
+  - React-jsi (0.60.0-rc.1):
+    - boost-for-react-native (= 1.63.0)
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React-jsi/Default (= 0.60.0-rc.1)
+  - React-jsi/Default (0.60.0-rc.1):
+    - boost-for-react-native (= 1.63.0)
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+  - React-jsiexecutor (0.60.0-rc.1):
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React-cxxreact (= 0.60.0-rc.1)
+    - React-jsi (= 0.60.0-rc.1)
+  - React-jsinspector (0.60.0-rc.1)
+  - react-native-fbsdk (0.9.0):
+    - React
+    - react-native-fbsdk/Core (= 0.9.0)
+    - react-native-fbsdk/Login (= 0.9.0)
+    - react-native-fbsdk/Share (= 0.9.0)
+  - react-native-fbsdk/Core (0.9.0):
+    - FBSDKCoreKit
+    - React
+  - react-native-fbsdk/Login (0.9.0):
+    - FBSDKLoginKit
+    - React
+  - react-native-fbsdk/Share (0.9.0):
+    - FBSDKShareKit
+    - React
+  - React-RCTActionSheet (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+  - React-RCTAnimation (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+  - React-RCTBlob (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+    - React-RCTNetwork (= 0.60.0-rc.1)
+    - React-RCTWebSocket (= 0.60.0-rc.1)
+  - React-RCTImage (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+    - React-RCTNetwork (= 0.60.0-rc.1)
+  - React-RCTLinking (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+  - React-RCTNetwork (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+  - React-RCTSettings (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+  - React-RCTText (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+  - React-RCTVibration (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+  - React-RCTWebSocket (0.60.0-rc.1):
+    - React-Core (= 0.60.0-rc.1)
+    - React-fishhook (= 0.60.0-rc.1)
+  - yoga (0.60.0-rc.1.React)
+
+DEPENDENCIES:
+  - DoubleConversion (from `../../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - FBSDKCoreKit (~> 4.0)
+  - FBSDKLoginKit (~> 4.0)
+  - FBSDKShareKit (~> 4.0)
+  - Folly (from `../../node_modules/react-native/third-party-podspecs/Folly.podspec`)
+  - glog (from `../../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - React (from `../../node_modules/react-native/`)
+  - React-Core (from `../../node_modules/react-native/React`)
+  - React-cxxreact (from `../../node_modules/react-native/ReactCommon/cxxreact`)
+  - React-DevSupport (from `../../node_modules/react-native/React`)
+  - React-fishhook (from `../../node_modules/react-native/Libraries/fishhook`)
+  - React-jsi (from `../../node_modules/react-native/ReactCommon/jsi`)
+  - React-jsiexecutor (from `../../node_modules/react-native/ReactCommon/jsiexecutor`)
+  - React-jsinspector (from `../../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-fbsdk (from `../../`)
+  - React-RCTActionSheet (from `../../node_modules/react-native/Libraries/ActionSheetIOS`)
+  - React-RCTAnimation (from `../../node_modules/react-native/Libraries/NativeAnimation`)
+  - React-RCTBlob (from `../../node_modules/react-native/Libraries/Blob`)
+  - React-RCTImage (from `../../node_modules/react-native/Libraries/Image`)
+  - React-RCTLinking (from `../../node_modules/react-native/Libraries/LinkingIOS`)
+  - React-RCTNetwork (from `../../node_modules/react-native/Libraries/Network`)
+  - React-RCTSettings (from `../../node_modules/react-native/Libraries/Settings`)
+  - React-RCTText (from `../../node_modules/react-native/Libraries/Text`)
+  - React-RCTVibration (from `../../node_modules/react-native/Libraries/Vibration`)
+  - React-RCTWebSocket (from `../../node_modules/react-native/Libraries/WebSocket`)
+  - yoga (from `../../node_modules/react-native/ReactCommon/yoga`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bolts
+    - boost-for-react-native
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+
+EXTERNAL SOURCES:
+  DoubleConversion:
+    :podspec: "../../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
+  Folly:
+    :podspec: "../../node_modules/react-native/third-party-podspecs/Folly.podspec"
+  glog:
+    :podspec: "../../node_modules/react-native/third-party-podspecs/glog.podspec"
+  React:
+    :path: "../../node_modules/react-native/"
+  React-Core:
+    :path: "../../node_modules/react-native/React"
+  React-cxxreact:
+    :path: "../../node_modules/react-native/ReactCommon/cxxreact"
+  React-DevSupport:
+    :path: "../../node_modules/react-native/React"
+  React-fishhook:
+    :path: "../../node_modules/react-native/Libraries/fishhook"
+  React-jsi:
+    :path: "../../node_modules/react-native/ReactCommon/jsi"
+  React-jsiexecutor:
+    :path: "../../node_modules/react-native/ReactCommon/jsiexecutor"
+  React-jsinspector:
+    :path: "../../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-fbsdk:
+    :path: "../../"
+  React-RCTActionSheet:
+    :path: "../../node_modules/react-native/Libraries/ActionSheetIOS"
+  React-RCTAnimation:
+    :path: "../../node_modules/react-native/Libraries/NativeAnimation"
+  React-RCTBlob:
+    :path: "../../node_modules/react-native/Libraries/Blob"
+  React-RCTImage:
+    :path: "../../node_modules/react-native/Libraries/Image"
+  React-RCTLinking:
+    :path: "../../node_modules/react-native/Libraries/LinkingIOS"
+  React-RCTNetwork:
+    :path: "../../node_modules/react-native/Libraries/Network"
+  React-RCTSettings:
+    :path: "../../node_modules/react-native/Libraries/Settings"
+  React-RCTText:
+    :path: "../../node_modules/react-native/Libraries/Text"
+  React-RCTVibration:
+    :path: "../../node_modules/react-native/Libraries/Vibration"
+  React-RCTWebSocket:
+    :path: "../../node_modules/react-native/Libraries/WebSocket"
+  yoga:
+    :path: "../../node_modules/react-native/ReactCommon/yoga"
+
+SPEC CHECKSUMS:
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  FBSDKCoreKit: a823ae35bdb60ebb8d7a7e51abe7c5d87d2bfced
+  FBSDKLoginKit: 54ae59987f2a8703021557c90a9aebb9e5c2bef6
+  FBSDKShareKit: 526d4cfb713d24855fa23d0dd74e191accd3a720
+  Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
+  glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  React: 771da41f95c2938a4268d0064dae874efca76d47
+  React-Core: c6be9e64310cda9bded86059005a2be9cfcd83d1
+  React-cxxreact: 17ab2493f0071b3587a2fa8874d374ab6df17d91
+  React-DevSupport: e47afce62e4d32d81df53ec593bf490101954c63
+  React-fishhook: 689293b246ac0d2aa2aae7bac08719d69ff4b6db
+  React-jsi: 6d2a594ad2281e6646fa3ac665b95554d0e3c0b1
+  React-jsiexecutor: 418cedeadc8ae5096574e6b199a6b025734397d5
+  React-jsinspector: 3d54eec4e664fad1fe6ecf3fb2554b53d379fb9f
+  react-native-fbsdk: 1f3653582707ed39611007d85ffafdc44833aa48
+  React-RCTActionSheet: 37f59304f286148e9bf0fdd8683e6d959998bd58
+  React-RCTAnimation: 43948fbaed6ac32285130d0bf6543d685d271d01
+  React-RCTBlob: f7614a4b3631c8c0048516972cb48ab21e3229f7
+  React-RCTImage: 0af567e4ecc3fe76469ccd93e25f8403aa953917
+  React-RCTLinking: c26bd5665a0226654e7d33f674bb0083a5f8822b
+  React-RCTNetwork: 467aab0787fb8d940be0767de88f18c6d3fbda24
+  React-RCTSettings: 79d28ecf44cf144432c1001bbca2e93d4d7a4e7f
+  React-RCTText: 1b3e71979b7de522c797d5c437107897f0f8aa48
+  React-RCTVibration: d3a10d7c6c55df9021432a0a33507331757a302b
+  React-RCTWebSocket: ea37aa224c6c3dab458b142c0d17c42b3f80e989
+  yoga: 6cc9ed1b0509efe6b6519dc5f44af3c7b9dfb7a5
+
+PODFILE CHECKSUM: 5828b1e7c5245e771ab7714ab62b40e005620e62
+
+COCOAPODS: 1.6.1

@@ -431,6 +431,21 @@ const infoRequest = new GraphRequest(
 new GraphRequestManager().addRequest(infoRequest).start();
 ```
 
+## Example app
+
+- Run `yarn start` in the repo root to start the packager for the example app
+
+### iOS
+
+- Run `pod install` in `example/ios`
+- Open `example/ios/RNFBSDKExample.xcworkspace` with xcode
+- Run the example app
+
+### Android
+
+- Start a simulator
+- Run `./gradlew installDebug` in `example/android`
+
 ## Join the React Native community
 
 - Website: https://facebook.github.io/react-native

@@ -125,24 +125,7 @@ static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *resu
 
 static NSString *LoginBehaviorToString(FBSDKLoginBehavior loginBehavior)
 {
-  NSString *result = nil;
-  switch (loginBehavior) {
-    case FBSDKLoginBehaviorBrowser:
-      result = @"browser";
-      break;
-    case FBSDKLoginBehaviorNative:
-      result = @"native";
-      break;
-    case FBSDKLoginBehaviorSystemAccount:
-      result = @"system-account";
-      break;
-    case FBSDKLoginBehaviorWeb:
-      result = @"web";
-      break;
-    default:
-      break;
-  }
-  return result;
+  return @"browser";
 }
 
 
