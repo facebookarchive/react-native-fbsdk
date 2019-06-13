@@ -366,6 +366,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(HOME)/Documents/FacebookSDK",
+					"$(PROJECT_DIR)/../../../ios",
 					"$(PROJECT_DIR)/../../../ios/Frameworks",
 					"$(PROJECT_DIR)/../../../ios/Pods",
 				);
