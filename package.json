@@ -66,7 +66,7 @@
     "eslint-plugin-react": "7.6.1",
     "eslint-plugin-relay": "0.0.23",
     "eslint": "5.1.0",
-    "flow-bin": "^0.86.0",
+    "flow-bin": "^0.98.0",
     "jest": "^24.8.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "prettier": "^1.15.2",

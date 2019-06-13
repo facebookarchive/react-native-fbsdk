@@ -53,9 +53,7 @@ export default class App extends Component<{}> {
     return (
       <View style={styles.container}>
         <LoginButton />
-        <TouchableHighlight
-          style={styles.share}
-          onPress={this._shareLinkWithShareDialog}>
+        <TouchableHighlight onPress={this._shareLinkWithShareDialog}>
           <Text style={styles.shareText}>Share link with ShareDialog</Text>
         </TouchableHighlight>
       </View>
