@@ -79,17 +79,6 @@ public class MainApplication extends Application implements ReactApplication {
     //...
 ```
 
-If you want to use AppEventsLogger to log events, override `onCreate()` method and add
-
-```java
-@Override
-public void onCreate() {
-  super.onCreate();
-  AppEventsLogger.activateApp(this);
-  //...
-}
-```
-
 Register SDK package in method `getPackages()`.
 
 ```java
