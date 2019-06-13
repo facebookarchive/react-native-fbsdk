@@ -20,16 +20,13 @@
 
 package com.facebook.reactnative.androidsdk;
 
-import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.util.Log;
-
-import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
+import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.share.widget.LikeView;
+
+import androidx.annotation.Nullable;
 
 
 public class FBLikeViewManager extends SimpleViewManager<RCTLikeView> {
