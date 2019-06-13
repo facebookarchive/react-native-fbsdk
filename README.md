@@ -161,7 +161,7 @@ The `AppDelegate.m` file can only have one method for `openUrl`. If you're also 
 
 - Make sure that the Facebook SDK frameworks are installed in `~/Documents/FacebookSDK`.
 - Make sure that `FBSDK[Core, Login, Share]Kit.framework` show up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
-- Make sure that `~/Documents/FacebookSDK` is in the **Framework Search Path** of your build target's **Build Settings**.
+- Make sure that `~/Documents/FacebookSDK` is in the **Framework Search Path** of your build target's **Build Settings**. You may have to select the `All` tab to see and search for the **Framework Search Path**.
 
 3. I get build errors like `Warning: Native component for "RCTFBLikeView" does not exist`:
 
