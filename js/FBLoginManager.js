@@ -62,19 +62,10 @@ export type LoginResult = {
 
 module.exports = {
   /**
-   * Logs the user in with the requested read permissions.
+   * Logs the user in with the requested permissions.
    */
-  logInWithReadPermissions(permissions: Array<string>): Promise<LoginResult> {
-    return LoginManager.logInWithReadPermissions(permissions);
-  },
-
-  /**
-   * Logs the user in with the requested publish permissions.
-   */
-  logInWithPublishPermissions(
-    permissions: Array<string>,
-  ): Promise<LoginResult> {
-    return LoginManager.logInWithPublishPermissions(permissions);
+  logInWithPermissions(permissions: Array<string>): Promise<LoginResult> {
+    return LoginManager.logInWithPermissions(permissions);
   },
 
   /**

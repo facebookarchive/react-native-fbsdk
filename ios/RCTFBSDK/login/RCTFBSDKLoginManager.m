@@ -71,30 +71,9 @@ RCT_REMAP_METHOD(getDefaultAudience, getDefaultAudience_resolver:(RCTPromiseReso
   resolve(DefaultAudienceToString([_loginManager defaultAudience]));
 }
 
-RCT_EXPORT_METHOD(logInWithReadPermissions:(NSStringArray *)permissions
+RCT_EXPORT_METHOD(logInWithPermissions:(NSArray<NSString *> *)permissions
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
-{
-  [self _loginWithPermissions:permissions resolver:resolve rejecter:reject];
-};
-
-RCT_EXPORT_METHOD(logInWithPublishPermissions:(NSStringArray *)permissions
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject)
-{
-  [self _loginWithPermissions:permissions resolver:resolve rejecter:reject];
-};
-
-RCT_EXPORT_METHOD(logOut)
-{
-  [_loginManager logOut];
-};
-
-#pragma mark - Helper Methods
-
-- (void)_loginWithPermissions:(NSStringArray *)permissions
-                     resolver:(RCTPromiseResolveBlock)resolve
-                     rejecter:(RCTPromiseRejectBlock)reject
 {
   FBSDKLoginManagerLoginResultBlock requestHandler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
     if (error) {
@@ -105,7 +84,14 @@ RCT_EXPORT_METHOD(logOut)
   };
 
   [_loginManager logInWithPermissions:permissions fromViewController:nil handler:requestHandler];
-}
+};
+
+RCT_EXPORT_METHOD(logOut)
+{
+  [_loginManager logOut];
+};
+
+#pragma mark - Helper Methods
 
 static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *result)
 {

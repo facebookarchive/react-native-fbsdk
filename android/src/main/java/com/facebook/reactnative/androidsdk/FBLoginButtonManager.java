@@ -31,18 +31,14 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
 
     public static final String REACT_CLASS = "RCTFBLoginButton";
 
-    private ReactApplicationContext mReactApplicationContext;
     private CallbackManager mCallbackManager;
 
     public FBLoginButtonManager(ReactApplicationContext reactApplicationContext, CallbackManager callbackManager) {
-        mReactApplicationContext = reactApplicationContext;
         mCallbackManager = callbackManager;
     }
 
@@ -53,8 +49,7 @@ public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
 
     @Override
     public RCTLoginButton createViewInstance(ThemedReactContext context) {
-        RCTLoginButton button = new RCTLoginButton(context, mCallbackManager);
-        return button;
+        return new RCTLoginButton(context, mCallbackManager);
 
     }
 
@@ -68,25 +63,10 @@ public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
         loginButton.setDefaultAudience(DefaultAudience.valueOf(defaultAudience.toUpperCase()));
     }
 
-    @ReactProp(name = "publishPermissions")
-    public void setPublishPermissions(
+    @ReactProp(name = "permissions")
+    public void setPermissions(
             RCTLoginButton loginButton,
             @Nullable ReadableArray publishPermissions) {
-        loginButton.setPublishPermissions(reactArrayToJavaStringCollection(publishPermissions));
-    }
-
-    @ReactProp(name = "readPermissions")
-    public void setReadPermissions(
-            RCTLoginButton loginButton,
-            @Nullable ReadableArray readPermissions){
-        loginButton.setReadPermissions(reactArrayToJavaStringCollection(readPermissions));
-    }
-
-    private static List<String> reactArrayToJavaStringCollection(ReadableArray array) {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < array.size(); i++) {
-            list.add(array.getString(i));
-        }
-        return list;
+        loginButton.setPermissions(Utility.reactArrayToStringList(publishPermissions));
     }
 }

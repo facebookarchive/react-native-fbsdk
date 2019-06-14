@@ -41,9 +41,7 @@ RCT_EXPORT_MODULE(RCTFBLoginButton)
 
 #pragma mark - Properties
 
-RCT_EXPORT_VIEW_PROPERTY(readPermissions, NSStringArray)
-
-RCT_EXPORT_VIEW_PROPERTY(publishPermissions, NSStringArray)
+RCT_EXPORT_VIEW_PROPERTY(permissions, NSStringArray)
 
 RCT_CUSTOM_VIEW_PROPERTY(loginBehaviorIOS, FBSDKLoginBehavior, FBSDKLoginButton)
 {
@@ -70,7 +68,7 @@ RCT_CUSTOM_VIEW_PROPERTY(tooltipBehaviorIOS, FBSDKLoginButtonTooltipBehavior, FB
       @"declinedPermissions": result.isCancelled ? [NSNull null] : result.declinedPermissions.allObjects,
     },
   };
-  
+
   RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"topChange"
                                                              viewTag:loginButton.reactTag
                                                                 body:body];
