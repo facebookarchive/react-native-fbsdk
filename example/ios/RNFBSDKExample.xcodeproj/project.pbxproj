@@ -30,7 +30,6 @@
 		B8B51A8B9E573C31AA602BB8 /* Pods-RNFBSDKExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNFBSDKExample.debug.xcconfig"; path = "Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C91B992100F02D057FFBC015 /* Pods-RNFBSDKExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNFBSDKExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				870A7DD6F7C14CB1ADF66F14 /* libPods-RNFBSDKExample.a */,
 			);
@@ -78,7 +76,6 @@
 				249908D268DE98AF24F835A1 /* Pods-RNFBSDKExample.debug.xcconfig */,
 				C91B992100F02D057FFBC015 /* Pods-RNFBSDKExample.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -189,7 +186,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -200,7 +197,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3AE85C98B0DE57952EBBE93 /* [CP] Check Pods Manifest.lock */ = {
@@ -254,7 +251,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 249908D268DE98AF24F835A1 /* Pods-RNFBSDKExample.debug.xcconfig */;
+			baseConfigurationReference = B8B51A8B9E573C31AA602BB8 /* Pods-RNFBSDKExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -274,7 +271,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C91B992100F02D057FFBC015 /* Pods-RNFBSDKExample.release.xcconfig */;
+			baseConfigurationReference = 0EF5B78486F2856ACDCEA373 /* Pods-RNFBSDKExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
