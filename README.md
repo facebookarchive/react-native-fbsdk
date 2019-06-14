@@ -221,7 +221,7 @@ import { LoginManager } from "react-native-fbsdk";
 // ...
 
 // Attempt a login using the Facebook login dialog asking for default permissions.
-LoginManager.logInWithReadPermissions(["public_profile"]).then(
+LoginManager.logInWithPermissions(["public_profile"]).then(
   function(result) {
     if (result.isCancelled) {
       console.log("Login cancelled");
