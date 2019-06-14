@@ -27,9 +27,5 @@ target 'RNFBSDKExample' do
   pod 'glog', :podspec => '../../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'FBSDKCoreKit', '~> 4.0'
-  pod 'FBSDKLoginKit', '~> 4.0'
-  pod 'FBSDKShareKit', '~> 4.0'
-
   pod 'react-native-fbsdk', :path => '../../'
 end
