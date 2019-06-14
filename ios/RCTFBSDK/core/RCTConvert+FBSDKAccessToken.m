@@ -28,10 +28,12 @@
             initWithTokenString:[RCTConvert NSString:data[@"accessToken"]]
             permissions:[RCTConvert NSStringArray:data[@"permissions"]]
             declinedPermissions:[RCTConvert NSStringArray:data[@"declinedPermissions"]]
+            expiredPermissions:[RCTConvert NSStringArray:data[@"expiredPermissions"]]
             appID:[RCTConvert NSString:data[@"applicationID"]]
             userID:[RCTConvert NSString:data[@"userID"]]
             expirationDate:[RCTConvert NSDate:data[@"expirationTime"]]
-            refreshDate:[RCTConvert NSDate:data[@"lastRefreshTime"]]];
+            refreshDate:[RCTConvert NSDate:data[@"lastRefreshTime"]]
+            dataAccessExpirationDate:[RCTConvert NSDate:data[@"dataAccessExpirationTime"]]];
   }
   return nil;
 }

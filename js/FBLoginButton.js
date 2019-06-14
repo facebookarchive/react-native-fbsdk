@@ -130,12 +130,7 @@ LoginButton.propTypes = {
     'native_only',
     'web_only',
   ]),
-  loginBehaviorIOS: PropTypes.oneOf([
-    'native',
-    'browser',
-    'system_account',
-    'web',
-  ]),
+  loginBehaviorIOS: PropTypes.oneOf(['browser']),
   defaultAudience: PropTypes.oneOf(['only_me', 'friends', 'everyone']),
   tooltipBehaviorIOS: PropTypes.oneOf(['auto', 'force_display', 'disable']),
 };

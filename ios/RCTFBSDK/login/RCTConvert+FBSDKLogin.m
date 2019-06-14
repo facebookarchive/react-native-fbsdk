@@ -21,11 +21,8 @@
 @implementation RCTConvert(FBSDKLogin)
 
 RCT_ENUM_CONVERTER(FBSDKLoginBehavior, (@{
-  @"native": @(FBSDKLoginBehaviorNative),
   @"browser": @(FBSDKLoginBehaviorBrowser),
-  @"system_account": @(FBSDKLoginBehaviorSystemAccount),
-  @"web": @(FBSDKLoginBehaviorWeb),
-}), FBSDKLoginBehaviorNative, unsignedLongValue)
+}), FBSDKLoginBehaviorBrowser, unsignedLongValue)
 
 RCT_ENUM_CONVERTER(FBSDKDefaultAudience, (@{
   @"friends": @(FBSDKDefaultAudienceFriends),

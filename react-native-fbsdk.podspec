@@ -14,17 +14,17 @@ Pod::Spec.new do |s|
   s.dependency      'React'
 
   s.subspec 'Core' do |ss|
-    ss.dependency     'FBSDKCoreKit'
+    ss.dependency     'FBSDKCoreKit', '~> 5.0.0'
     ss.source_files = 'ios/RCTFBSDK/core/*.{h,m}'
   end
 
   s.subspec 'Login' do |ss|
-    ss.dependency     'FBSDKLoginKit'
+    ss.dependency     'FBSDKLoginKit', '~> 5.0.0'
     ss.source_files = 'ios/RCTFBSDK/login/*.{h,m}'
   end
 
   s.subspec 'Share' do |ss|
-    ss.dependency     'FBSDKShareKit'
+    ss.dependency     'FBSDKShareKit', '~> 5.0.0'
     ss.source_files = 'ios/RCTFBSDK/share/*.{h,m}'
   end
 end

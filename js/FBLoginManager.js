@@ -48,16 +48,9 @@ export type LoginBehaviorAndroid =
  * Indicate how Facebook Login should be attempted on iOS.
  */
 export type LoginBehaviorIOS =
-  // Attempts log in through the native Facebook app.
-  // The SDK may still use Safari instead.
-  // See details in https://developers.facebook.com/blog/post/2015/10/29/Facebook-Login-iOS9/
-  | 'native'
   // Attempts log in through the Safari browser.
-  | 'browser'
-  // Attempts log in through the Facebook account currently signed in through Settings.
-  | 'system_account'
-  // Attempts log in through a modal UIWebView pop-up.
-  | 'web';
+  // This is the only behavior supported by the native sdk.
+  'browser';
 /**
  * Shows the results of a login operation.
  */

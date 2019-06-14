@@ -65,12 +65,14 @@ static NSDictionary *RCTBuildAccessTokenDict(FBSDKAccessToken *token)
   }
   return @{
     @"accessToken": token.tokenString,
-    @"applicationID": token.appID,
-    @"userID": token.userID,
     @"permissions": token.permissions.allObjects,
     @"declinedPermissions": token.declinedPermissions.allObjects,
+    @"expiredPermissions": token.expiredPermissions.allObjects,
+    @"applicationID": token.appID,
+    @"userID": token.userID,
     @"expirationTime": @(token.expirationDate.timeIntervalSince1970 * 1000),
     @"lastRefreshTime": @(token.refreshDate.timeIntervalSince1970 * 1000),
+    @"dataAccessExpirationTime": @(token.dataAccessExpirationDate.timeIntervalSince1970 * 1000),
   };
 }
 

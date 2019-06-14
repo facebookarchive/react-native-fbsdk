@@ -59,9 +59,4 @@ export type ShareVideoContent = {
    * Title of the video.
    */
   contentTitle?: string,
-
-  /**
-   * The photo that represents the video.
-   */
-  previewPhoto?: SharePhoto,
 };
