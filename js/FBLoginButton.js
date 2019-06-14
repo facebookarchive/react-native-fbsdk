@@ -22,9 +22,8 @@
  */
 'use strict';
 
-import PropTypes from 'prop-types';
 import * as React from 'react';
-import {requireNativeComponent, StyleSheet, ViewPropTypes} from 'react-native';
+import {requireNativeComponent, StyleSheet} from 'react-native';
 
 import type {
   DefaultAudience,
@@ -110,23 +109,6 @@ class LoginButton extends React.Component<{
     );
   }
 }
-
-/* $FlowFixMe(>=0.43.0) - Remove this comment to see errors found when Flow
- * v0.43.0 was deployed */
-LoginButton.propTypes = {
-  ...ViewPropTypes,
-  permissions: PropTypes.arrayOf(PropTypes.string),
-  onLoginFinished: PropTypes.func,
-  onLogoutFinished: PropTypes.func,
-  loginBehaviorAndroid: PropTypes.oneOf([
-    'native_with_fallback',
-    'native_only',
-    'web_only',
-  ]),
-  loginBehaviorIOS: PropTypes.oneOf(['browser']),
-  defaultAudience: PropTypes.oneOf(['only_me', 'friends', 'everyone']),
-  tooltipBehaviorIOS: PropTypes.oneOf(['auto', 'force_display', 'disable']),
-};
 
 const styles = StyleSheet.create({
   defaultButtonStyle: {

@@ -22,9 +22,8 @@
  */
 'use strict';
 
-import PropTypes from 'prop-types';
 import * as React from 'react';
-import {requireNativeComponent, StyleSheet, ViewPropTypes} from 'react-native';
+import {requireNativeComponent, StyleSheet} from 'react-native';
 
 import type {ShareContent} from './models/FBShareContent';
 
@@ -47,13 +46,6 @@ class SendButton extends React.Component<{
     return <RCTFBSendButton {...this.props} />;
   }
 }
-
-/* $FlowFixMe(>=0.43.0) - Remove this comment to see errors found when Flow
- * v0.43.0 was deployed */
-SendButton.propTypes = {
-  ...ViewPropTypes,
-  shareContent: PropTypes.object,
-};
 
 const styles = StyleSheet.create({
   defaultButtonStyle: {
