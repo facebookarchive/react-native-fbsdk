@@ -134,19 +134,20 @@ Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) instal
 
 The `AppDelegate.m` file can only have one method for `openUrl`. If you're also using `RCTLinkingManager` to handle deep links, you should handle both results in your `openUrl` method.
 
-```
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-    sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+```objc
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  if ([[FBSDKApplicationDelegate sharedInstance] application:app openURL:url options:options]) {
+    return YES;
+  }
 
-  BOOL handledFB = [[FBSDKApplicationDelegate sharedInstance] application:application
-    openURL:url
-    sourceApplication:sourceApplication
-    annotation:annotation
-  ];
+  if ([RCTLinkingManager application:app openURL:url options:options]) {
+    return YES;
+  }
 
-  BOOL handledRCT = [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
-
-  return handledFB || handledRCT;
+  return NO;
 }
 ```
 
