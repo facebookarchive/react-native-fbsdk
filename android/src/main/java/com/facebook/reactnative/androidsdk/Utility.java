@@ -49,6 +49,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import androidx.annotation.Nullable;
+
+
 /**
  * This class is solely for the use of other packages within the React Native Facebook SDK for Android.
  * Use of any of the classes in this package is unsupported, and they may be modified or removed
@@ -61,16 +64,18 @@ public final class Utility {
                 .valueOf(accessTokenMap.getString("accessTokenSource"));
         Date expirationTime = new Date((long) accessTokenMap.getDouble("expirationTime"));
         Date lastRefreshTime = new Date((long) accessTokenMap.getDouble("lastRefreshTime"));
+        Date dataAccessExpirationTime = new Date((long) accessTokenMap.getDouble("dataAccessExpirationTime"));
         return new AccessToken(
                 accessTokenMap.getString("accessToken"),
                 accessTokenMap.getString("applicationID"),
                 accessTokenMap.getString("userID"),
                 reactArrayToStringList(accessTokenMap.getArray("permissions")),
                 reactArrayToStringList(accessTokenMap.getArray("declinedPermissions")),
+                reactArrayToStringList(accessTokenMap.getArray("expiredPermissions")),
                 accessTokenSource,
                 expirationTime,
                 lastRefreshTime,
-                null
+                dataAccessExpirationTime
         );
     }
 
@@ -85,9 +90,13 @@ public final class Utility {
         map.putArray(
             "declinedPermissions",
             Arguments.fromJavaArgs(setToStringArray(accessToken.getDeclinedPermissions())));
+        map.putArray(
+            "expiredPermissions",
+            Arguments.fromJavaArgs(setToStringArray(accessToken.getExpiredPermissions())));
         map.putString("accessTokenSource", accessToken.getSource().name());
         map.putDouble("expirationTime", (double) accessToken.getExpires().getTime());
         map.putDouble("lastRefreshTime", (double) accessToken.getLastRefresh().getTime());
+        map.putDouble("dataAccessExpirationTime", (double) accessToken.getDataAccessExpirationTime().getTime());
         return map;
     }
 
@@ -294,7 +303,10 @@ public final class Utility {
         return null;
     }
 
-    public static List<String> reactArrayToStringList(ReadableArray array) {
+    public static @Nullable List<String> reactArrayToStringList(@Nullable ReadableArray array) {
+        if (array == null) {
+            return null;
+        }
         List<String> list = new ArrayList<>(array.size());
         for (int i = 0; i < array.size(); i++) {
             list.add(array.getString(i));

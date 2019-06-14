@@ -161,6 +161,7 @@ public class FBGraphRequestModule extends ReactContextBaseJavaModule {
                 null,
                 null,
                 null,
+                null,
                 null));
         } else {
             graphRequest.setAccessToken(AccessToken.getCurrentAccessToken());
