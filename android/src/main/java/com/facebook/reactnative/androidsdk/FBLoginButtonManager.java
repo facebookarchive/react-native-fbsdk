@@ -64,7 +64,7 @@ public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
     }
 
     @ReactProp(name = "permissions")
-    public void setPublishPermissions(
+    public void setPermissions(
             RCTLoginButton loginButton,
             @Nullable ReadableArray publishPermissions) {
         loginButton.setPermissions(Utility.reactArrayToStringList(publishPermissions));
