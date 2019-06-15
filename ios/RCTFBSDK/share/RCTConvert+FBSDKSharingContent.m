@@ -111,6 +111,10 @@ static FBSDKShareVideoContent *RCTBuildVideoContent(NSDictionary *contentData)
   NSDictionary *videoData = [RCTConvert NSDictionary:contentData[@"video"]];
   NSURL *videoURL = [RCTConvert NSURL:videoData[@"localUrl"]];
   FBSDKShareVideo *video = [FBSDKShareVideo videoWithVideoURL:videoURL];
+  if (contentData[@"previewPhoto"]) {
+    FBSDKSharePhoto *previewPhoto = RCTBuildPhoto([RCTConvert NSDictionary:contentData[@"previewPhoto"]]);
+    video.previewPhoto = previewPhoto;
+  }
   videoContent.video = video;
   videoContent.contentURL = [RCTConvert NSURL:contentData[@"contentUrl"]];
   return videoContent;
