@@ -132,9 +132,8 @@ static FBSDKShareOpenGraphContent *RCTBuildOpenGraphContent(NSDictionary *conten
 static FBSDKShareOpenGraphAction *RCTBuildOpenGraphAction(NSDictionary *actionData)
 {
   FBSDKShareOpenGraphAction *action = nil;
-  NSString *actionType = nil;
   if (actionData) {
-    actionType = [RCTConvert NSString:actionData[@"actionType"]];
+    NSString *actionType = [RCTConvert NSString:actionData[@"actionType"]];
     action = [[FBSDKShareOpenGraphAction alloc] initWithActionType:actionType];
     NSString *actionDataKey = actionData[@"_properties"] ? @"_properties" : @"$ShareOpenGraphValueContainer_properties";
     NSDictionary *properties = [RCTConvert NSDictionary:actionData[actionDataKey]];
