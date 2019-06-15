@@ -41,7 +41,6 @@ public class FBSDKPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(
             ReactApplicationContext reactContext) {
-        InternalSettings.setCustomUserAgent(VERSION_TO_RELEASE);
         return Arrays.<NativeModule>asList(
                 new FBAccessTokenModule(reactContext),
                 new FBAppEventsLoggerModule(reactContext),
