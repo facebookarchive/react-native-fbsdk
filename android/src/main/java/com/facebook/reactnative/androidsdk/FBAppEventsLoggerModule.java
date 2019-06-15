@@ -20,7 +20,7 @@
 
 package com.facebook.reactnative.androidsdk;
 
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 
 import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
