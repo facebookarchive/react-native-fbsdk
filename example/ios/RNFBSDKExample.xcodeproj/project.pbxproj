@@ -186,7 +186,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh",
 				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -197,7 +197,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E3AE85C98B0DE57952EBBE93 /* [CP] Check Pods Manifest.lock */ = {
@@ -251,7 +251,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8B51A8B9E573C31AA602BB8 /* Pods-RNFBSDKExample.debug.xcconfig */;
+			baseConfigurationReference = 249908D268DE98AF24F835A1 /* Pods-RNFBSDKExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -271,7 +271,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0EF5B78486F2856ACDCEA373 /* Pods-RNFBSDKExample.release.xcconfig */;
+			baseConfigurationReference = C91B992100F02D057FFBC015 /* Pods-RNFBSDKExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
