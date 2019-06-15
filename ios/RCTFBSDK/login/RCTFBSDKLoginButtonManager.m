@@ -19,7 +19,6 @@
 #import "RCTFBSDKLoginButtonManager.h"
 
 #import <React/RCTBridge.h>
-#import <React/RCTComponentEvent.h>
 #import <React/RCTEventDispatcher.h>
 #import <React/RCTUtils.h>
 #import <React/UIView+React.h>
@@ -59,8 +58,9 @@ RCT_CUSTOM_VIEW_PROPERTY(tooltipBehaviorIOS, FBSDKLoginButtonTooltipBehavior, FB
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
 {
-  NSDictionary *body = @{
+  NSDictionary *event = @{
     @"type": @"loginFinished",
+    @"target": loginButton.reactTag,
     @"error": error ? RCTJSErrorFromNSError(error) : [NSNull null],
     @"result": error ? [NSNull null] : @{
       @"isCancelled": @(result.isCancelled),
@@ -68,23 +68,16 @@ RCT_CUSTOM_VIEW_PROPERTY(tooltipBehaviorIOS, FBSDKLoginButtonTooltipBehavior, FB
       @"declinedPermissions": result.isCancelled ? [NSNull null] : result.declinedPermissions.allObjects,
     },
   };
-
-  RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"topChange"
-                                                             viewTag:loginButton.reactTag
-                                                                body:body];
-  [self.bridge.eventDispatcher sendEvent:event];
+  [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
 {
-  NSDictionary *body = @{
+  NSDictionary *event = @{
+    @"target": loginButton.reactTag,
     @"type": @"logoutFinished",
   };
-
-  RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"topChange"
-                                                             viewTag:loginButton.reactTag
-                                                                body:body];
-  [self.bridge.eventDispatcher sendEvent:event];
+  [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
 }
 
 @end
