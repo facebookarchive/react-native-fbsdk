@@ -109,8 +109,6 @@ static NSString *LoginBehaviorToString(FBSDKLoginBehavior loginBehavior)
     case FBSDKLoginBehaviorBrowser:
       result = @"browser";
       break;
-    default:
-      break;
   }
   return result;
 }
