@@ -27,7 +27,9 @@ android {
 dependencies {
     implementation "androidx.appcompat:appcompat:1.0.+"
     api 'com.facebook.react:react-native:+'
-    api "com.facebook.android:facebook-android-sdk:${FACEBOOK_SDK_VERSION}"
+    implementation "com.facebook.android:facebook-core:${FACEBOOK_SDK_VERSION}"
+    implementation "com.facebook.android:facebook-login:${FACEBOOK_SDK_VERSION}"
+    implementation "com.facebook.android:facebook-share:${FACEBOOK_SDK_VERSION}"
 }
 
 repositories {
