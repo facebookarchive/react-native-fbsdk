@@ -20,10 +20,6 @@
 
 package com.facebook.reactnative.androidsdk;
 
-import android.content.Intent;
-import android.util.Log;
-
-import com.facebook.CallbackManager;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -36,7 +32,7 @@ import com.facebook.share.widget.MessageDialog;
 /**
  * Provides functionality to send content via the Facebook Message Dialog
  */
-public class FBMessageDialogModule extends FBSDKDialogBaseJavaModule {
+public class FBMessageDialogModule extends FBSDKCallbackManagerBaseJavaModule {
 
     private class MessageDialogCallback extends ReactNativeFacebookSDKCallback<MessageDialog.Result> {
 
@@ -57,8 +53,8 @@ public class FBMessageDialogModule extends FBSDKDialogBaseJavaModule {
 
     private boolean mShouldFailOnDataError;
 
-    public FBMessageDialogModule(ReactApplicationContext reactContext, CallbackManager callbackManager) {
-        super(reactContext, callbackManager);
+    public FBMessageDialogModule(ReactApplicationContext reactContext) {
+        super(reactContext);
     }
 
     @Override

@@ -22,7 +22,6 @@ package com.facebook.reactnative.androidsdk;
 
 import androidx.annotation.Nullable;
 
-import com.facebook.CallbackManager;
 import com.facebook.login.DefaultAudience;
 import com.facebook.login.LoginBehavior;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -36,10 +35,10 @@ public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
 
     public static final String REACT_CLASS = "RCTFBLoginButton";
 
-    private CallbackManager mCallbackManager;
+    private FBActivityEventListener mActivityEventListener = new FBActivityEventListener();
 
-    public FBLoginButtonManager(ReactApplicationContext reactApplicationContext, CallbackManager callbackManager) {
-        mCallbackManager = callbackManager;
+    public FBLoginButtonManager(ReactApplicationContext reactApplicationContext) {
+        reactApplicationContext.addActivityEventListener(mActivityEventListener);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
 
     @Override
     public RCTLoginButton createViewInstance(ThemedReactContext context) {
-        return new RCTLoginButton(context, mCallbackManager);
+        return new RCTLoginButton(context, mActivityEventListener.getCallbackManager());
 
     }
 

@@ -20,10 +20,7 @@
 
 package com.facebook.reactnative.androidsdk;
 
-import com.facebook.CallbackManager;
-import com.facebook.FacebookException;
 import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
@@ -32,7 +29,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.share.Sharer;
 import com.facebook.share.widget.ShareDialog;
 
-public class FBShareDialogModule extends FBSDKDialogBaseJavaModule {
+public class FBShareDialogModule extends FBSDKCallbackManagerBaseJavaModule {
 
     private class ShareDialogCallback extends ReactNativeFacebookSDKCallback<Sharer.Result> {
 
@@ -54,8 +51,8 @@ public class FBShareDialogModule extends FBSDKDialogBaseJavaModule {
     private ShareDialog.Mode mShareDialogMode;
     private boolean mShouldFailOnError;
 
-    public FBShareDialogModule(ReactApplicationContext reactContext, CallbackManager callbackManager) {
-        super(reactContext, callbackManager);
+    public FBShareDialogModule(ReactApplicationContext reactContext) {
+        super(reactContext);
     }
 
     @Override

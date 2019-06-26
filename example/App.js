@@ -52,7 +52,11 @@ export default class App extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <LoginButton />
+        <LoginButton
+          onLoginFinished={(error, data) => {
+            Alert.alert(JSON.stringify(error || data, null, 2));
+          }}
+        />
         <TouchableHighlight onPress={this._shareLinkWithShareDialog}>
           <Text style={styles.shareText}>Share link with ShareDialog</Text>
         </TouchableHighlight>
