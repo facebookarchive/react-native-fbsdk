@@ -20,7 +20,6 @@
 
 package com.facebook.reactnative.androidsdk;
 
-import com.facebook.CallbackManager;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -34,7 +33,7 @@ import com.facebook.share.widget.GameRequestDialog;
  * Provides functionality to send requests in games.
  * See https://developers.facebook.com/docs/games/requests
  */
-public class FBGameRequestDialogModule extends FBSDKDialogBaseJavaModule {
+public class FBGameRequestDialogModule extends FBSDKCallbackManagerBaseJavaModule {
 
     private class GameRequestDialogCallback extends ReactNativeFacebookSDKCallback<GameRequestDialog.Result> {
 
@@ -54,8 +53,8 @@ public class FBGameRequestDialogModule extends FBSDKDialogBaseJavaModule {
         }
     }
 
-    public FBGameRequestDialogModule(ReactApplicationContext reactContext, CallbackManager callbackManager) {
-        super(reactContext, callbackManager);
+    public FBGameRequestDialogModule(ReactApplicationContext reactContext) {
+        super(reactContext);
     }
 
     @Override

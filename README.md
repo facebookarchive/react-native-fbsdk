@@ -56,32 +56,15 @@ react-native link react-native-fbsdk
 
 Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) installed, open the project with Android Studio.
 
-Go to `MainApplication.java` and `MainActivity.java` under `app/src/main/java/com/<project name>/` to complete setup.
-
-In `MainApplication.java`,
-
-Add an instance variable of type `CallbackManager` and its getter.
-
-```java
-import com.facebook.CallbackManager;
-import com.facebook.FacebookSdk;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.facebook.appevents.AppEventsLogger;
-...
-
-public class MainApplication extends Application implements ReactApplication {
-
-  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
-
-  protected static CallbackManager getCallbackManager() {
-    return mCallbackManager;
-  }
-    //...
-```
+Go to `MainApplication.java` under `app/src/main/java/com/<project name>/` to complete setup.
 
 Register SDK package in method `getPackages()`.
 
 ```java
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+
+// ...
+
 private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
     public boolean getUseDeveloperSupport() {
@@ -92,27 +75,10 @@ private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new FBSDKPackage(mCallbackManager)
+          new FBSDKPackage()
       );
     }
 };
-```
-
-In `MainActivity.java`
-
-Override `onActivityResult()` method
-
-```java
-import android.content.Intent;
-
-public class MainActivity extends ReactActivity {
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        MainApplication.getCallbackManager().onActivityResult(requestCode, resultCode, data);
-    }
-    //...
 ```
 
 Also you need to add in your `settings.gradle`:
