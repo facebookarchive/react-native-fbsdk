@@ -22,6 +22,8 @@ package com.facebook.reactnative.androidsdk;
 
 import android.net.Uri;
 
+import androidx.annotation.Nullable;
+
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenSource;
 import com.facebook.react.bridge.Arguments;
@@ -34,8 +36,8 @@ import com.facebook.share.model.AppGroupCreationContent;
 import com.facebook.share.model.AppInviteContent;
 import com.facebook.share.model.GameRequestContent;
 import com.facebook.share.model.ShareContent;
-import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.ShareOpenGraphAction;
 import com.facebook.share.model.ShareOpenGraphContent;
 import com.facebook.share.model.ShareOpenGraphObject;
@@ -48,8 +50,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
-import androidx.annotation.Nullable;
 
 
 /**
@@ -303,7 +303,8 @@ public final class Utility {
         return null;
     }
 
-    public static @Nullable List<String> reactArrayToStringList(@Nullable ReadableArray array) {
+    public static @Nullable
+    List<String> reactArrayToStringList(@Nullable ReadableArray array) {
         if (array == null) {
             return null;
         }
