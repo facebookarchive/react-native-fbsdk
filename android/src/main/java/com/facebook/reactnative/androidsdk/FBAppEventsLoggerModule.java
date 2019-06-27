@@ -266,3 +266,4 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
         AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
     }
 }
+
