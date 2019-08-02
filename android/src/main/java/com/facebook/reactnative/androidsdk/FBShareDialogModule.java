@@ -26,10 +26,14 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.share.Sharer;
 import com.facebook.share.widget.ShareDialog;
 
+@ReactModule(name = FBShareDialogModule.NAME)
 public class FBShareDialogModule extends FBSDKCallbackManagerBaseJavaModule {
+
+    public static final String NAME = "FBShareDialog";
 
     private class ShareDialogCallback extends ReactNativeFacebookSDKCallback<Sharer.Result> {
 
@@ -57,7 +61,7 @@ public class FBShareDialogModule extends FBSDKCallbackManagerBaseJavaModule {
 
     @Override
     public String getName() {
-        return "FBShareDialog";
+        return NAME;
     }
 
     @ReactMethod

@@ -27,6 +27,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.share.ShareApi;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareContent;
@@ -35,7 +36,10 @@ import com.facebook.share.model.ShareContent;
  * Provides an interface for sharing through the graph API. Using this class requires an access
  * token in AccessToken.currentAccessToken that has been granted the "publish_actions" permission.
  */
+@ReactModule(name = FBShareAPIModule.NAME)
 public class FBShareAPIModule extends ReactContextBaseJavaModule {
+
+    public static final String NAME = "FBShareApi";
 
     private class ShareAPICallback extends ReactNativeFacebookSDKCallback<Sharer.Result> {
 
@@ -60,7 +64,7 @@ public class FBShareAPIModule extends ReactContextBaseJavaModule {
 
     @Override
     public String getName() {
-        return "FBShareApi";
+        return NAME;
     }
 
     /**

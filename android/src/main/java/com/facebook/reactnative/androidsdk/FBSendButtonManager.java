@@ -20,8 +20,6 @@
 
 package com.facebook.reactnative.androidsdk;
 
-import android.util.Log;
-
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.SimpleViewManager;

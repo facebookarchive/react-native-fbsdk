@@ -26,6 +26,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.share.model.GameRequestContent;
 import com.facebook.share.widget.GameRequestDialog;
 
@@ -33,7 +34,10 @@ import com.facebook.share.widget.GameRequestDialog;
  * Provides functionality to send requests in games.
  * See https://developers.facebook.com/docs/games/requests
  */
+@ReactModule(name = FBGameRequestDialogModule.NAME)
 public class FBGameRequestDialogModule extends FBSDKCallbackManagerBaseJavaModule {
+
+    public static final String NAME = "FBGameRequestDialog";
 
     private class GameRequestDialogCallback extends ReactNativeFacebookSDKCallback<GameRequestDialog.Result> {
 
@@ -59,7 +63,7 @@ public class FBGameRequestDialogModule extends FBSDKCallbackManagerBaseJavaModul
 
     @Override
     public String getName() {
-        return "FBGameRequestDialog";
+        return NAME;
     }
 
     /**

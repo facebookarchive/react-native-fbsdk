@@ -35,13 +35,17 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 
 import java.util.Set;
 
 /**
  * This is a {@link NativeModule} that allows JS to use LoginManager of Facebook Android SDK.
  */
+@ReactModule(name = FBLoginManagerModule.NAME)
 public class FBLoginManagerModule extends FBSDKCallbackManagerBaseJavaModule {
+
+    public static final String NAME = "FBLoginManager";
 
     private class LoginManagerCallback extends ReactNativeFacebookSDKCallback<LoginResult> {
 
@@ -72,7 +76,7 @@ public class FBLoginManagerModule extends FBSDKCallbackManagerBaseJavaModule {
 
     @Override
     public String getName() {
-        return "FBLoginManager";
+        return NAME;
     }
 
     /**
