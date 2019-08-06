@@ -26,15 +26,17 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 
 public abstract class FBSDKCallbackManagerBaseJavaModule extends ReactContextBaseJavaModule {
 
-    private FBActivityEventListener mActivityEventListener = new FBActivityEventListener();
+//    private FBActivityEventListener mActivityEventListener = new FBActivityEventListener();
+    private FBActivityEventListener mActivityEventListener;
 
     protected CallbackManager getCallbackManager()  {
         return mActivityEventListener.getCallbackManager();
     }
 
-    protected FBSDKCallbackManagerBaseJavaModule(ReactApplicationContext reactContext) {
+    protected FBSDKCallbackManagerBaseJavaModule(ReactApplicationContext reactContext, FBActivityEventListener activityEventListener) {
         super(reactContext);
 
+        this.mActivityEventListener = activityEventListener;
         reactContext.addActivityEventListener(mActivityEventListener);
     }
 }

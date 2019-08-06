@@ -29,18 +29,21 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FBSDKPackage implements ReactPackage {
+
+    private FBActivityEventListener mActivityEventListener = new FBActivityEventListener();
+
     @Override
     public List<NativeModule> createNativeModules(
             ReactApplicationContext reactContext) {
         return Arrays.<NativeModule>asList(
                 new FBAccessTokenModule(reactContext),
                 new FBAppEventsLoggerModule(reactContext),
-                new FBGameRequestDialogModule(reactContext),
+                new FBGameRequestDialogModule(reactContext, mActivityEventListener),
                 new FBGraphRequestModule(reactContext),
-                new FBLoginManagerModule(reactContext),
-                new FBMessageDialogModule(reactContext),
+                new FBLoginManagerModule(reactContext, mActivityEventListener),
+                new FBMessageDialogModule(reactContext, mActivityEventListener),
                 new FBShareAPIModule(reactContext),
-                new FBShareDialogModule(reactContext)
+                new FBShareDialogModule(reactContext, mActivityEventListener)
         );
     }
 
