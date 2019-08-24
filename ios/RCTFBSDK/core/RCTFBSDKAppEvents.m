@@ -18,6 +18,8 @@
 
 #import "RCTFBSDKAppEvents.h"
 
+#import <React/RCTUtils.h>
+
 #import "RCTConvert+FBSDKAccessToken.h"
 
 @implementation RCTConvert (RCTFBSDKAppEvents)
@@ -83,16 +85,16 @@ RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters)
 
 RCT_EXPORT_METHOD(setUserData:(NSDictionary *)userData)
 {
-  [FBSDKAppEvents setUserEmail:userData[@"email"]
-                     firstName:userData[@"firstName"]
-                      lastName:userData[@"lastName"]
-                         phone:userData[@"phone"]
-                   dateOfBirth:userData[@"dateOfBirth"]
-                        gender:userData[@"gender"]
-                          city:userData[@"city"]
-                         state:userData[@"state"]
-                           zip:userData[@"zip"]
-                       country:userData[@"country"]];
+  [FBSDKAppEvents setUserEmail:RCTNilIfNull(userData[@"email"])
+                     firstName:RCTNilIfNull(userData[@"firstName"])
+                      lastName:RCTNilIfNull(userData[@"lastName"])
+                         phone:RCTNilIfNull(userData[@"phone"])
+                   dateOfBirth:RCTNilIfNull(userData[@"dateOfBirth"])
+                        gender:RCTNilIfNull(userData[@"gender"])
+                          city:RCTNilIfNull(userData[@"city"])
+                         state:RCTNilIfNull(userData[@"state"])
+                           zip:RCTNilIfNull(userData[@"zip"])
+                       country:RCTNilIfNull(userData[@"country"])];
 }
 
 RCT_EXPORT_METHOD(setFlushBehavior:(FBSDKAppEventsFlushBehavior)flushBehavior)
