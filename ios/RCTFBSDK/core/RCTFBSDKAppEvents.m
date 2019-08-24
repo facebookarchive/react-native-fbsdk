@@ -75,10 +75,17 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getUserID)
   return [FBSDKAppEvents userID];
 }
 
-RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters)
+RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters
+                  resolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-  [FBSDKAppEvents updateUserProperties:parameters
-                               handler:nil];
+  [FBSDKAppEvents updateUserProperties:parameters handler:^(FBSDKGraphRequestConnection * _Nullable connection, id  _Nullable result, NSError * _Nullable error) {
+    if (error != nil) {
+      reject(@"FacebookSDK", error.userInfo[FBSDKErrorDeveloperMessageKey], error);
+    } else {
+      resolve(nil);
+    }
+  }];
 }
 
 RCT_EXPORT_METHOD(setUserData:(NSDictionary *)userData)

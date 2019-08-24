@@ -20,11 +20,16 @@
 
 package com.facebook.reactnative.androidsdk;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.facebook.FacebookRequestError;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -122,7 +127,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     }
 
     @Override
-    public String getName() {
+    public @NonNull String getName() {
         return NAME;
     }
 
@@ -202,7 +207,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      */
      @ReactMethod
      public void setUserID(final String userID) {
-         mAppEventLogger.setUserID(userID);
+         AppEventsLogger.setUserID(userID);
      }
 
      /**
@@ -213,7 +218,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      @ReactMethod(isBlockingSynchronousMethod = true)
      @Nullable
      public String getUserID() {
-       return mAppEventLogger.getUserID();
+       return AppEventsLogger.getUserID();
      }
 
      /**
@@ -223,11 +228,21 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
       * @param parameters Key-value pairs representing user properties and their values.
       */
      @ReactMethod
-     public void updateUserProperties(ReadableMap parameters) {
-       mAppEventLogger.updateUserProperties(Arguments.toBundle(parameters), null);
+     public void updateUserProperties(ReadableMap parameters, final Promise promise) {
+       AppEventsLogger.updateUserProperties(Arguments.toBundle(parameters), new GraphRequest.Callback() {
+         @Override
+         public void onCompleted(GraphResponse response) {
+           FacebookRequestError error = response.getError();
+           if (error != null) {
+             promise.reject(String.valueOf(error.getErrorCode()), error.getErrorMessage());
+           } else {
+             promise.resolve(null);
+           }
+         }
+       });
      }
 
-    private @Nullable String getNullableString(ReadableMap data, String key) {
+    private static @Nullable String getNullableString(ReadableMap data, String key) {
       return data.hasKey(key) ? data.getString(key) : null;
     }
 

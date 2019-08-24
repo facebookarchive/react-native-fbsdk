@@ -130,8 +130,8 @@ module.exports = {
    * Sends a request to update the properties for the current user, set by
    * setUserID. You must call setUserID before making this call.
    */
-  updateUserProperties(parameters: Params) {
-    AppEventsLogger.updateUserProperties(parameters);
+  updateUserProperties(parameters: Params): Promise<void> {
+    return AppEventsLogger.updateUserProperties(parameters);
   },
 
   /**
