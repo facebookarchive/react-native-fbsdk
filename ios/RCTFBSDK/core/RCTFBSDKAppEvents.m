@@ -18,6 +18,8 @@
 
 #import "RCTFBSDKAppEvents.h"
 
+#import <React/RCTUtils.h>
+
 #import "RCTConvert+FBSDKAccessToken.h"
 
 @implementation RCTConvert (RCTFBSDKAppEvents)
@@ -44,6 +46,8 @@ RCT_EXPORT_METHOD(logEvent:(NSString *)eventName
                 valueToSum:(nonnull NSNumber *)valueToSum
                 parameters:(NSDictionary *)parameters)
 {
+  parameters = RCTDictionaryWithoutNullValues(parameters);
+
   [FBSDKAppEvents logEvent:eventName
                 valueToSum:valueToSum
                 parameters:parameters
@@ -54,6 +58,8 @@ RCT_EXPORT_METHOD(logPurchase:(double)purchaseAmount
                      currency:(NSString *)currency
                    parameters:(NSDictionary *)parameters)
 {
+  parameters = RCTDictionaryWithoutNullValues(parameters);
+
   [FBSDKAppEvents logPurchase:purchaseAmount
                      currency:currency
                    parameters:parameters
@@ -77,12 +83,15 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getUserID)
 
 RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters)
 {
-  [FBSDKAppEvents updateUserProperties:parameters
-                               handler:nil];
+  parameters = RCTDictionaryWithoutNullValues(parameters);
+
+  [FBSDKAppEvents updateUserProperties:parameters handler:nil];
 }
 
 RCT_EXPORT_METHOD(setUserData:(NSDictionary *)userData)
 {
+  userData = RCTDictionaryWithoutNullValues(userData);
+
   [FBSDKAppEvents setUserEmail:userData[@"email"]
                      firstName:userData[@"firstName"]
                       lastName:userData[@"lastName"]
@@ -108,6 +117,18 @@ RCT_EXPORT_METHOD(flush)
 RCT_EXPORT_METHOD(setPushNotificationsDeviceToken:(NSString *)deviceToken)
 {
   [FBSDKAppEvents setPushNotificationsDeviceToken:[RCTConvert NSData:deviceToken]];
+}
+
+static NSDictionary<NSString *, id> *RCTDictionaryWithoutNullValues(NSDictionary<NSString *, id> *input)
+{
+  if (input == nil) {
+    return nil;
+  }
+  NSMutableDictionary<NSString *, id> *result = [[NSMutableDictionary alloc] initWithCapacity:[input count]];
+  [input enumerateKeysAndObjectsUsingBlock:^(NSString *key, id item, __unused BOOL *stop) {
+    result[key] = RCTNilIfNull(item);
+  }];
+  return result;
 }
 
 @end
