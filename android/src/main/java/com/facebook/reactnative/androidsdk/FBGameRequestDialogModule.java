@@ -57,7 +57,7 @@ public class FBGameRequestDialogModule extends FBSDKCallbackManagerBaseJavaModul
         }
     }
 
-    public FBGameRequestDialogModule(ReactApplicationContext reactContext,FBActivityEventListener activityEventListener) {
+    public FBGameRequestDialogModule(ReactApplicationContext reactContext, FBActivityEventListener activityEventListener) {
         super(reactContext, activityEventListener);
     }
 
