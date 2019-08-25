@@ -56,8 +56,8 @@ public class FBMessageDialogModule extends FBSDKCallbackManagerBaseJavaModule {
 
     private boolean mShouldFailOnDataError;
 
-    public FBMessageDialogModule(ReactApplicationContext reactContext) {
-        super(reactContext);
+    public FBMessageDialogModule(ReactApplicationContext reactContext, FBActivityEventListener activityEventListener) {
+        super(reactContext, activityEventListener);
     }
 
     @Override

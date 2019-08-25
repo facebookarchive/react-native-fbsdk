@@ -55,8 +55,8 @@ public class FBShareDialogModule extends FBSDKCallbackManagerBaseJavaModule {
     private ShareDialog.Mode mShareDialogMode;
     private boolean mShouldFailOnError;
 
-    public FBShareDialogModule(ReactApplicationContext reactContext) {
-        super(reactContext);
+    public FBShareDialogModule(ReactApplicationContext reactContext, FBActivityEventListener activityEventListener) {
+        super(reactContext, activityEventListener);
     }
 
     @Override

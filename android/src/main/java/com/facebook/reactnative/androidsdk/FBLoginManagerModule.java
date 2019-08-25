@@ -70,8 +70,8 @@ public class FBLoginManagerModule extends FBSDKCallbackManagerBaseJavaModule {
         }
     }
 
-    public FBLoginManagerModule(ReactApplicationContext reactContext) {
-        super(reactContext);
+    public FBLoginManagerModule(ReactApplicationContext reactContext, FBActivityEventListener activityEventListener) {
+        super(reactContext, activityEventListener);
     }
 
     @Override
