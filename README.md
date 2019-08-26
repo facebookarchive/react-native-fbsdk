@@ -140,17 +140,11 @@ The `AppDelegate.m` file can only have one method for `openUrl`. If you're also 
 - Make sure you added the code snippet in step 3.1.
 - Make sure you set up a Facebook app and updated the `AndroidManifest.xml` and `res/values/strings.xml` with Facebook app settings.
 
-2. I get a build error stating that one of the Facebook SDK files was not found -- eg. `FBSDKLoginKit/FBSDKLoginKit.h file not found`.
+2. Duplicate symbol errors
 
-- Make sure that the Facebook SDK frameworks are installed in `~/Documents/FacebookSDK`.
-- Make sure that `FBSDK[Core, Login, Share]Kit.framework` show up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
-- Make sure that `~/Documents/FacebookSDK` is in the **Framework Search Path** of your build target's **Build Settings**. You may have to select the `All` tab to see and search for the **Framework Search Path**.
+- Make sure that `FBSDK[Core, Login, Share]Kit.framework` are **NOT** in `Link Binary with Libraries` for your **root project** when using cocoapods.
 
-3. I get build errors like `Warning: Native component for "RCTFBLikeView" does not exist`:
-
-- Make sure that `libRCTFBSDK.a` shows up in the **Link Binary with Libraries** section of your build target's **Build Phases**.
-
-4. I get this build error: `no type or protocol named UIApplicationOpenURLOptionsKey`:
+3. I get this build error: `no type or protocol named UIApplicationOpenURLOptionsKey`:
 
 - Your Xcode version is too old. Upgrade to Xcode 10.0+.
 
