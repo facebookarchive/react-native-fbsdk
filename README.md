@@ -108,7 +108,7 @@ Before you can run the project, follow the [Getting Started Guide](https://devel
 
 #### 3.2 iOS
 
-Follow ***all the steps*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS.
+Follow ***all the steps except step 2 if you are already using cocoapods*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS.
 
 **If you're using React Native's RCTLinkingManager**
 
