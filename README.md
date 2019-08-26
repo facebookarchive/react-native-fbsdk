@@ -13,88 +13,102 @@ Functionality is provided through one single npm package so you can use it for b
 
 ## Installation
 
-You will need either [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com) in order to install the SDK and configure the Android and iOS projects.
+### 1. Install the library
 
-### 1. Create React Native project
+using either Yarn:
 
-First create a React Native project:
-
-```bash
-react-native init YourApp
 ```
-
-### 2. Install JavaScript packages
-
-Run `yarn` (or `npm install`, if using npm) inside your new `YourApp` directory:
-
-```bash
-cd YourApp
-yarn
-```
-
-Then, install the `react-native-fbsdk` package:
-
-```bash
 yarn add react-native-fbsdk
 ```
 
-> Or, if using npm:
+or npm:
 
-```bash
-npm install react-native-fbsdk
+```
+npm install --save react-native-fbsdk
 ```
 
-Finally, link the SDK to configure the iOS and Android projects:
+### 2. Link
+
+- **React Native 0.60+**
+
+
+[CLI autolink feature](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md) links the module while building the app. 
+
+
+- **React Native <= 0.59**
+
 
 ```bash
-react-native link react-native-fbsdk
+$ react-native link react-native-fbsdk
 ```
+
+*Note* For `iOS` using `cocoapods`, run:
+
+```bash
+$ cd ios/ && pod install
+```
+
+If you can't or don't want to use the CLI tool, you can also manually link the library using the instructions below (click on the arrow to show them):
+
+<details>
+<summary>Manually link the library on iOS</summary>
+
+Either follow the [instructions in the React Native documentation](https://facebook.github.io/react-native/docs/linking-libraries-ios#manual-linking) to manually link the framework or link using [Cocoapods](https://cocoapods.org) by adding this to your `Podfile`:
+
+```ruby
+pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+```
+
+</details>
+
+<details>
+<summary>Manually link the library on Android</summary>
+
+Make the following changes:
+
+#### `android/settings.gradle`
+```groovy
+include ':react-native-fbsdk'
+project(':react-native-fbsdk').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbsdk/android')
+```
+
+#### `android/app/build.gradle`
+```groovy
+dependencies {
+   ...
+   implementation project(':react-native-fbsdk')
+}
+```
+
+#### `android/app/src/main/.../MainApplication.java`
+On top, where imports are:
+
+```java
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+```
+
+Add the `FBSDKPackage` class to your list of exported packages.
+
+```java
+@Override
+protected List<ReactPackage> getPackages() {
+    return Arrays.asList(
+            new MainReactPackage(),
+            new FBSDKPackage()
+    );
+}
+```
+</details>
 
 ### 3. Configure projects
 
 #### 3.1 Android
 
-Assuming you have [Android Studio](http://developer.android.com/sdk/index.html) installed, open the project with Android Studio.
-
-Go to `MainApplication.java` under `app/src/main/java/com/<project name>/` to complete setup.
-
-Register SDK package in method `getPackages()`.
-
-```java
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-
-// ...
-
-private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
-
-    @Override
-    protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-          new FBSDKPackage()
-      );
-    }
-};
-```
-
-Also you need to add in your `settings.gradle`:
-
-```
-include ':react-native-fbsdk'
-project(':react-native-fbsdk').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fbsdk/android')
-```
-
 Before you can run the project, follow the [Getting Started Guide](https://developers.facebook.com/docs/android/getting-started/) for Facebook Android SDK to set up a Facebook app. You can skip the build.gradle changes since that's taken care of by the rnpm link step above, but **make sure** you follow the rest of the steps such as updating `strings.xml` and `AndroidManifest.xml`.
 
 #### 3.2 iOS
 
-The `react-native-fbsdk` has been linked by `react-native link`. The next step will be downloading and linking the native Facebook SDK for iOS.
-
-Make sure you have the latest [Xcode](https://developer.apple.com/xcode/) installed. Open the .xcodeproj in Xcode found in the `ios` subfolder from your project's root directory. Now, follow ***all the steps except the pod install (Step 2)*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS. Along with `FBSDKCoreKit.framework`, don't forget to import `FBSDKShareKit.framework` and `FBSDKLoginKit.framework` into your Xcode project.
+Follow ***all the steps*** in the [Getting Started Guide](https://developers.facebook.com/docs/ios/getting-started/) for Facebook SDK for iOS.
 
 **If you're using React Native's RCTLinkingManager**
 
