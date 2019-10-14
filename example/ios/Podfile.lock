@@ -1,15 +1,19 @@
 PODS:
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
-  - FBSDKCoreKit (5.0.2):
-    - FBSDKCoreKit/Basics (= 5.0.2)
-    - FBSDKCoreKit/Core (= 5.0.2)
-  - FBSDKCoreKit/Basics (5.0.2)
-  - FBSDKCoreKit/Core (5.0.2):
+  - FBSDKCoreKit (5.8.0):
+    - FBSDKCoreKit/Basics (= 5.8.0)
+    - FBSDKCoreKit/Core (= 5.8.0)
+  - FBSDKCoreKit/Basics (5.8.0)
+  - FBSDKCoreKit/Core (5.8.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.0.2):
+  - FBSDKLoginKit (5.8.0):
+    - FBSDKLoginKit/Login (= 5.8.0)
+  - FBSDKLoginKit/Login (5.8.0):
     - FBSDKCoreKit (~> 5.0)
-  - FBSDKShareKit (5.0.2):
+  - FBSDKShareKit (5.8.0):
+    - FBSDKShareKit/Share (= 5.8.0)
+  - FBSDKShareKit/Share (5.8.0):
     - FBSDKCoreKit (~> 5.0)
   - Folly (2018.10.22.00):
     - boost-for-react-native
@@ -67,19 +71,19 @@ PODS:
     - React-cxxreact (= 0.60.0-rc.1)
     - React-jsi (= 0.60.0-rc.1)
   - React-jsinspector (0.60.0-rc.1)
-  - react-native-fbsdk (1.0.0-rc.0):
+  - react-native-fbsdk (1.0.4):
     - React
-    - react-native-fbsdk/Core (= 1.0.0-rc.0)
-    - react-native-fbsdk/Login (= 1.0.0-rc.0)
-    - react-native-fbsdk/Share (= 1.0.0-rc.0)
-  - react-native-fbsdk/Core (1.0.0-rc.0):
-    - FBSDKCoreKit (~> 5.0.0)
+    - react-native-fbsdk/Core (= 1.0.4)
+    - react-native-fbsdk/Login (= 1.0.4)
+    - react-native-fbsdk/Share (= 1.0.4)
+  - react-native-fbsdk/Core (1.0.4):
+    - FBSDKCoreKit (~> 5.5)
     - React
-  - react-native-fbsdk/Login (1.0.0-rc.0):
-    - FBSDKLoginKit (~> 5.0.0)
+  - react-native-fbsdk/Login (1.0.4):
+    - FBSDKLoginKit (~> 5.5)
     - React
-  - react-native-fbsdk/Share (1.0.0-rc.0):
-    - FBSDKShareKit (~> 5.0.0)
+  - react-native-fbsdk/Share (1.0.4):
+    - FBSDKShareKit (~> 5.5)
     - React
   - React-RCTActionSheet (0.60.0-rc.1):
     - React-Core (= 0.60.0-rc.1)
@@ -133,8 +137,9 @@ DEPENDENCIES:
   - yoga (from `../../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - boost-for-react-native
+  trunk:
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
@@ -190,32 +195,32 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
-  FBSDKCoreKit: 3e41c402eb64ea7799c71833ff9e5690f27b9c42
-  FBSDKLoginKit: a88f36da648e4c5d60eb261c63eac067abb97130
-  FBSDKShareKit: 8695bbb97c18a381bbf2851a3f24f95a59121b82
+  FBSDKCoreKit: e7dcac0aabcfb09d0166998edd95fe3b05a0ce5d
+  FBSDKLoginKit: 1b0cf04df0370b37404213157b060d6666ede814
+  FBSDKShareKit: abc29e1bb4f9f59f679adf1ae191006d68455f96
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  React: c438ccc7e14e86d4702bb92d7e262f549ffaa995
-  React-Core: c76495f5c14e73c0f803b89c3fa83f804da61bd6
-  React-cxxreact: f64bc64cf4682d6ea5a064f6017da72482858682
-  React-DevSupport: 30336bca00f72681eac995d21a31b963e7d5cfec
-  React-fishhook: 73dc8058ca42828cc92e8fbba6cd9571100e10ca
-  React-jsi: 40f467ff088c811c6630acccb4aea57ea7ccb1b5
-  React-jsiexecutor: e4b4717060a0cd8d0270323b5655a68c95432efd
-  React-jsinspector: 044105eea064aec81adc5e4d777a8f6589e7d094
-  react-native-fbsdk: 73370971d27ac3c73716e9431093e1a4388289cc
-  React-RCTActionSheet: 08864c609d9f959abf3d51fdd93f8bc6e91f21eb
-  React-RCTAnimation: a4547e9fac2627ded3df9d302f5558b475faf819
-  React-RCTBlob: 62d5c263a2adb8f7a2cafd601beba18a2d99cbbb
-  React-RCTImage: 963859de2b05d2037d1b7842cdbddc8d7f3a2f3b
-  React-RCTLinking: 5998a7db9a6156ed112b006d01f76b2d1cc83d98
-  React-RCTNetwork: 0b676e8194f3f893db813007d37e37e9820173a3
-  React-RCTSettings: fdd7606f1b6050eced69fc6046d5db6768aefd57
-  React-RCTText: 36c0532feb5521cb295ba80e7e44b70cf1c36fc7
-  React-RCTVibration: dabb8d59bb47e1d9124b3f77bfdc1b33d42b0a74
-  React-RCTWebSocket: f32b93e0953d7c07fd5dd45305406282cfdc95cf
-  yoga: 88c514f310aff89b94a14c5fbf44b95735af0cb7
+  React: 771da41f95c2938a4268d0064dae874efca76d47
+  React-Core: c6be9e64310cda9bded86059005a2be9cfcd83d1
+  React-cxxreact: 17ab2493f0071b3587a2fa8874d374ab6df17d91
+  React-DevSupport: e47afce62e4d32d81df53ec593bf490101954c63
+  React-fishhook: 689293b246ac0d2aa2aae7bac08719d69ff4b6db
+  React-jsi: 6d2a594ad2281e6646fa3ac665b95554d0e3c0b1
+  React-jsiexecutor: 418cedeadc8ae5096574e6b199a6b025734397d5
+  React-jsinspector: 3d54eec4e664fad1fe6ecf3fb2554b53d379fb9f
+  react-native-fbsdk: 45e28bbab3e905cbc635c0bdd3444b372e933ae9
+  React-RCTActionSheet: 37f59304f286148e9bf0fdd8683e6d959998bd58
+  React-RCTAnimation: 43948fbaed6ac32285130d0bf6543d685d271d01
+  React-RCTBlob: f7614a4b3631c8c0048516972cb48ab21e3229f7
+  React-RCTImage: 0af567e4ecc3fe76469ccd93e25f8403aa953917
+  React-RCTLinking: c26bd5665a0226654e7d33f674bb0083a5f8822b
+  React-RCTNetwork: 467aab0787fb8d940be0767de88f18c6d3fbda24
+  React-RCTSettings: 79d28ecf44cf144432c1001bbca2e93d4d7a4e7f
+  React-RCTText: 1b3e71979b7de522c797d5c437107897f0f8aa48
+  React-RCTVibration: d3a10d7c6c55df9021432a0a33507331757a302b
+  React-RCTWebSocket: ea37aa224c6c3dab458b142c0d17c42b3f80e989
+  yoga: 6cc9ed1b0509efe6b6519dc5f44af3c7b9dfb7a5
 
 PODFILE CHECKSUM: 166764d2c07190c305e293455e6e35c162854eb0
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4
