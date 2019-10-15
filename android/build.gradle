@@ -1,45 +1,56 @@
-apply plugin: 'com.android.library'
-
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
 }
 
-def DEFAULT_COMPILE_SDK_VERSION             = 28
-def DEFAULT_BUILD_TOOLS_VERSION             = "28.0.3"
-def DEFAULT_MIN_SDK_VERSION                 = 16
-def DEFAULT_TARGET_SDK_VERSION              = 28
-def DEFAULT_FACEBOOK_SDK_VERSION            = "[5.0,6.0["
-
-def FACEBOOK_SDK_VERSION = safeExtGet('facebookSdkVersion', DEFAULT_FACEBOOK_SDK_VERSION)
-android {
-    compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
-    buildToolsVersion safeExtGet('buildToolsVersion', DEFAULT_BUILD_TOOLS_VERSION)
-
-    defaultConfig {
-        minSdkVersion safeExtGet('minSdkVersion', DEFAULT_MIN_SDK_VERSION)
-        targetSdkVersion safeExtGet('targetSdkVersion', DEFAULT_TARGET_SDK_VERSION)
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+buildscript {
+    if (project == rootProject) {
+        // The Android Gradle plugin is only required when opening the android folder stand-alone.
+        // This avoids unnecessary downloads and potential conflicts when the library is included as a
+        // module dependency in an application project.
+        repositories {
+            google()
+            jcenter()
+        }
+        dependencies {
+            classpath 'com.android.tools.build:gradle:3.5.2'
         }
     }
 }
 
-dependencies {
-    implementation "androidx.appcompat:appcompat:1.0.+"
-    api 'com.facebook.react:react-native:+'
-    implementation "com.facebook.android:facebook-core:${FACEBOOK_SDK_VERSION}"
-    implementation "com.facebook.android:facebook-login:${FACEBOOK_SDK_VERSION}"
-    implementation "com.facebook.android:facebook-share:${FACEBOOK_SDK_VERSION}"
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion safeExtGet('compileSdkVersion', 28)
+    buildToolsVersion safeExtGet('buildToolsVersion', '28.0.3')
+    defaultConfig {
+        minSdkVersion safeExtGet('minSdkVersion', 16)
+        targetSdkVersion safeExtGet('targetSdkVersion', 28)
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 repositories {
-    mavenCentral()
-    jcenter()
+    mavenLocal()
     maven {
-        url 'https://maven.google.com/'
-        name 'Google'
+        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        url "$rootDir/../node_modules/react-native/android"
     }
+    maven {
+        // Android JSC is installed from npm
+        url "$rootDir/../node_modules/jsc-android/dist"
+    }
+    google()
+    jcenter()
+}
+
+def FACEBOOK_SDK_VERSION = safeExtGet('facebookSdkVersion', '[5.0,6.0[')
+
+dependencies {
+    //noinspection GradleDynamicVersion
+    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "com.facebook.android:facebook-core:${FACEBOOK_SDK_VERSION}"
+    implementation "com.facebook.android:facebook-login:${FACEBOOK_SDK_VERSION}"
+    implementation "com.facebook.android:facebook-share:${FACEBOOK_SDK_VERSION}"
 }

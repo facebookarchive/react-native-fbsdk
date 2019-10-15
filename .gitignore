@@ -20,7 +20,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
 
 # Android/IntelliJ
 #
@@ -29,12 +28,12 @@ build/
 .gradle
 local.properties
 *.iml
-
-# Cocoapods
-#
-Pods/
+android/gradle/
+android/gradlew
+android/gradlew.bat
 
 # node.js
 #
 node_modules/
 npm-debug.log
+yarn-error.log
