@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.license       = package['license']
   s.homepage      = package['homepage']
   s.source        = { :git => 'https://github.com/facebook/react-native-fbsdk.git', :tag => "v#{package['version']}" }
-  s.platform      = :ios, '7.0'
+  s.platform      = :ios, '8.0'
   s.dependency      'React'
 
   s.subspec 'Core' do |ss|
