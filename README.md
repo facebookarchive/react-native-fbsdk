@@ -13,6 +13,14 @@ Functionality is provided through one single npm package so you can use it for b
 
 ## Installation
 
+## React Native Compatibility
+To use this library you need to ensure you match up with the correct version of React Native you are using.
+
+| `react-native-fbsdk` version | Required React Native Version                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------------------- |
+| `>= 1.0.0`                                   | `>= 0.60`                                                                     |
+| `<= 0.10`                                   | `<= 0.59.x`                                                                         |
+
 ### 1. Install the library
 
 using either Yarn:
