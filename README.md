@@ -18,7 +18,7 @@ To use this library you need to ensure you match up with the correct version of 
 
 | `react-native-fbsdk` version | Required React Native Version                                                     |
 | ----------------------------------------- | --------------------------------------------------------------------------------- |
-| `>= 1.0.0rc0`                                   | `>= 0.60`                                                                     |
+| `>= 1.0.0`                                   | `>= 0.60`                                                                     |
 | `<= 0.10`                                   | `<= 0.59.x`                                                                         |
 
 ### 1. Install the library
