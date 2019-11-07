@@ -25,6 +25,9 @@
 
 const AccessToken = require('react-native').NativeModules.FBAccessToken;
 
+const NativeEventEmitter = require('react-native').NativeEventEmitter;
+const eventEmitter = new NativeEventEmitter(AccessToken);
+
 type AccessTokenMap = {
   accessToken: string,
   permissions: Array<string>,
@@ -138,6 +141,26 @@ class FBAccessToken {
    */
   static refreshCurrentAccessTokenAsync(): Promise<any> {
     return AccessToken.refreshCurrentAccessTokenAsync();
+  }
+
+  /**
+   * Adds a listener for when the access token changes. Returns a functions which removes the
+   * listener when called.
+   */
+  static addListener(
+    listener: (accessToken: ?FBAccessToken) => void,
+  ): () => void {
+    const subscription = eventEmitter.addListener(
+      'fbsdk.accessTokenDidChange',
+      (tokenMap: AccessTokenMap) => {
+        if (tokenMap) {
+          listener(new FBAccessToken(tokenMap));
+        } else {
+          listener(null);
+        }
+      },
+    );
+    return () => subscription.remove();
   }
 
   /**

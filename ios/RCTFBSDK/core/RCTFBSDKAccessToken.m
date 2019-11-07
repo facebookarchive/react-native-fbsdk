@@ -22,7 +22,11 @@
 
 #import "RCTConvert+FBSDKAccessToken.h"
 
-@implementation RCTFBSDKAccessToken
+static NSString *const kFBSDKAccessTokenDidChangeEvent = @"fbsdk.accessTokenDidChange";
+
+@implementation RCTFBSDKAccessToken {
+  BOOL _isObserving;
+}
 
 RCT_EXPORT_MODULE(FBAccessToken);
 
@@ -54,6 +58,38 @@ RCT_EXPORT_METHOD(refreshCurrentAccessTokenAsync:(RCTPromiseResolveBlock)resolve
       resolve(result);
     }
   }];
+}
+
+#pragma mark - Event Methods
+
+- (NSArray *)supportedEvents
+{
+  return @[kFBSDKAccessTokenDidChangeEvent];
+}
+
+- (void)startObserving
+{
+  _isObserving = YES;
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(accessTokenDidChange:)
+                                               name:FBSDKAccessTokenDidChangeNotification
+                                             object:nil];
+}
+
+- (void)stopObserving
+{
+  _isObserving = NO;
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:FBSDKAccessTokenDidChangeNotification
+                                                object:nil];
+}
+
+- (void)accessTokenDidChange:(NSNotification*)notification
+{
+  if ([notification.name isEqualToString:FBSDKAccessTokenDidChangeNotification] && _isObserving) {
+    NSDictionary *body = RCTBuildAccessTokenDict([FBSDKAccessToken currentAccessToken]);
+    [self sendEventWithName:kFBSDKAccessTokenDidChangeEvent body:body ?: [NSNull null]];
+  }
 }
 
 #pragma mark - Helper Functions
