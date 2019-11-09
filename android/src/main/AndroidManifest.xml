@@ -18,7 +18,6 @@
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
     package="com.facebook.reactnative.androidsdk">
-    <application />
 </manifest>

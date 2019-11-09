@@ -54,3 +54,6 @@ debug.keystore
 
 # Bundle artifact
 *.jsbundle
+
+# CocoaPods
+/ios/Pods/
