@@ -47,9 +47,11 @@ public class FBAccessTokenModule extends ReactContextBaseJavaModule {
     private final AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
         @Override
         protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-            mReactContext
-                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                    .emit(CHANGE_EVENT_NAME, currentAccessToken == null ? null : Utility.accessTokenToReactMap(currentAccessToken));
+            if (mReactContext.hasActiveCatalystInstance()) {
+                mReactContext
+                        .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                        .emit(CHANGE_EVENT_NAME, currentAccessToken == null ? null : Utility.accessTokenToReactMap(currentAccessToken));
+            }
         }
     };
 
