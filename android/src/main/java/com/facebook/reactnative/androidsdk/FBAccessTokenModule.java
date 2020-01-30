@@ -44,14 +44,7 @@ public class FBAccessTokenModule extends ReactContextBaseJavaModule {
     public static final String CHANGE_EVENT_NAME = "fbsdk.accessTokenDidChange";
 
     private final ReactApplicationContext mReactContext;
-    private final AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
-        @Override
-        protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-            mReactContext
-                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                    .emit(CHANGE_EVENT_NAME, currentAccessToken == null ? null : Utility.accessTokenToReactMap(currentAccessToken));
-        }
-    };
+    private AccessTokenTracker accessTokenTracker;
 
     public FBAccessTokenModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -60,6 +53,26 @@ public class FBAccessTokenModule extends ReactContextBaseJavaModule {
 
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public void initialize() {
+        super.initialize();
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                mReactContext
+                        .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                        .emit(CHANGE_EVENT_NAME, currentAccessToken == null ? null : Utility.accessTokenToReactMap(currentAccessToken));
+            }
+        };
+
+    }
+
+    @Override
+    public void onCatalystInstanceDestroy() {
+        super.onCatalystInstanceDestroy();
+        accessTokenTracker.stopTracking();
     }
 
     /**
