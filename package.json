@@ -50,7 +50,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "react-native": ">=0.60.0"
+    "react-native": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
