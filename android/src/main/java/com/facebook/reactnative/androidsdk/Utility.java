@@ -24,6 +24,7 @@ import android.net.Uri;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenSource;
+import com.facebook.FacebookSdk;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
@@ -329,5 +330,10 @@ public final class Utility {
             array[i++] = e;
         }
         return array;
+    }
+
+    public static void autoInitialize() {
+        FacebookSdk.setAutoInitEnabled(true);
+        FacebookSdk.fullyInitialize();
     }
 }
