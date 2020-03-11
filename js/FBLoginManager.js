@@ -97,6 +97,13 @@ module.exports = {
   },
 
   /**
+   * Re-authorizes the user to regain data access.
+   */
+  reauthorizeDataAccess(): Promise<LoginResult> {
+    return LoginManager.reauthorizeDataAccess();
+  },
+
+  /**
    * Logs out the user.
    */
   logOut() {

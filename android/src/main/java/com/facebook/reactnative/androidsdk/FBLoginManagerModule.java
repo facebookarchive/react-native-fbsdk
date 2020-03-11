@@ -146,6 +146,20 @@ public class FBLoginManagerModule extends FBSDKCallbackManagerBaseJavaModule {
         }
     }
 
+    /**
+     * Attempts a re-authorization to regain data access.
+     * @param promise Use promise to pass re-authorization result to JS after re-authorization finish.
+     */
+    @ReactMethod
+    public void reauthorizeDataAccess(final Promise promise) {
+        final LoginManager loginManager = LoginManager.getInstance();
+        loginManager.registerCallback(getCallbackManager(), new LoginManagerCallback(promise));
+        Activity activity = getCurrentActivity();
+        if (activity != null) {
+            loginManager.reauthorizeDataAccess(activity);
+        }
+    }
+
     private WritableArray setToWritableArray(Set<String> set) {
         WritableArray array = Arguments.createArray();
         for (String e: set) {

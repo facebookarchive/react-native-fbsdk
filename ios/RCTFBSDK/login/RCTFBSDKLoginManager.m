@@ -86,6 +86,19 @@ RCT_EXPORT_METHOD(logInWithPermissions:(NSArray<NSString *> *)permissions
   [_loginManager logInWithPermissions:permissions fromViewController:nil handler:requestHandler];
 };
 
+RCT_REMAP_METHOD(reauthorizeDataAccess, reauthorizeDataAccess_resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
+{
+    FBSDKLoginManagerLoginResultBlock requestHandler = ^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+      if (error) {
+        reject(@"FacebookSDK", @"Reauthorization Failed", error);
+      } else {
+        resolve(RCTBuildResultDictionary(result));
+      }
+    };
+    
+    [_loginManager reauthorizeDataAccess:nil handler:requestHandler];
+};
+
 RCT_EXPORT_METHOD(logOut)
 {
   [_loginManager logOut];
