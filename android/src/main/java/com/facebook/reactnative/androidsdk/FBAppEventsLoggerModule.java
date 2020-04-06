@@ -33,6 +33,7 @@ import com.facebook.react.module.annotations.ReactModule;
 
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.Locale;
 
 /**
  * <p>
@@ -133,7 +134,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      */
     @ReactMethod
     public void setFlushBehavior(String flushBehavior) {
-        AppEventsLogger.setFlushBehavior(AppEventsLogger.FlushBehavior.valueOf(flushBehavior.toUpperCase()));
+        AppEventsLogger.setFlushBehavior(AppEventsLogger.FlushBehavior.valueOf(flushBehavior.toUpperCase(Locale.ROOT)));
     }
 
     /**
