@@ -57,9 +57,6 @@ module.exports = {
   get MessageDialog() {
     return require('./FBMessageDialog');
   },
-  get ShareApi() {
-    return require('./FBShareApi');
-  },
   get ShareDialog() {
     return require('./FBShareDialog');
   },

@@ -20,10 +20,6 @@
 
 @implementation RCTConvert(FBSDKLogin)
 
-RCT_ENUM_CONVERTER(FBSDKLoginBehavior, (@{
-  @"browser": @(FBSDKLoginBehaviorBrowser),
-}), FBSDKLoginBehaviorBrowser, unsignedLongValue)
-
 RCT_ENUM_CONVERTER(FBSDKDefaultAudience, (@{
   @"friends": @(FBSDKDefaultAudienceFriends),
   @"everyone": @(FBSDKDefaultAudienceEveryone),

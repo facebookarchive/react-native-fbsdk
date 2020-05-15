@@ -43,11 +43,6 @@ RCT_EXPORT_MODULE(RCTFBLoginButton)
 
 RCT_EXPORT_VIEW_PROPERTY(permissions, NSStringArray)
 
-RCT_CUSTOM_VIEW_PROPERTY(loginBehaviorIOS, FBSDKLoginBehavior, FBSDKLoginButton)
-{
-  [view setLoginBehavior:json ? [RCTConvert FBSDKLoginBehavior:json] : FBSDKLoginBehaviorBrowser];
-}
-
 RCT_EXPORT_VIEW_PROPERTY(defaultAudience, FBSDKDefaultAudience)
 
 RCT_CUSTOM_VIEW_PROPERTY(tooltipBehaviorIOS, FBSDKLoginButtonTooltipBehavior, FBSDKLoginButton)

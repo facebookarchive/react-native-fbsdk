@@ -51,19 +51,10 @@ RCT_EXPORT_MODULE(FBLoginManager);
 
 #pragma mark - React Native Methods
 
-RCT_EXPORT_METHOD(setLoginBehavior:(FBSDKLoginBehavior)behavior)
-{
-  _loginManager.loginBehavior = behavior;
-}
 
 RCT_EXPORT_METHOD(setDefaultAudience:(FBSDKDefaultAudience)audience)
 {
   _loginManager.defaultAudience = audience;
-}
-
-RCT_REMAP_METHOD(getLoginBehavior, getLoginBehavior_resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-{
-  resolve(LoginBehaviorToString([_loginManager loginBehavior]));
 }
 
 RCT_REMAP_METHOD(getDefaultAudience, getDefaultAudience_resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
@@ -101,20 +92,6 @@ static NSDictionary *RCTBuildResultDictionary(FBSDKLoginManagerLoginResult *resu
     @"declinedPermissions": result.isCancelled ? [NSNull null] : result.declinedPermissions.allObjects,
   };
 }
-
-static NSString *LoginBehaviorToString(FBSDKLoginBehavior loginBehavior)
-{
-  NSString *result = nil;
-  switch (loginBehavior) {
-    case FBSDKLoginBehaviorBrowser:
-      result = @"browser";
-      break;
-    default:
-      break;
-  }
-  return result;
-}
-
 
 static NSString *DefaultAudienceToString(FBSDKDefaultAudience defaultAudience)
 {

@@ -22,7 +22,8 @@
  */
 'use strict';
 
-const LoginManager = require('react-native').NativeModules.FBLoginManager;
+const {NativeModules, Platform} = require('react-native');
+const LoginManager = NativeModules.FBLoginManager;
 /**
  * Indicates which default audience to use for sessions that post data to Facebook.
  */
@@ -72,13 +73,20 @@ module.exports = {
    * Getter for the login behavior.
    */
   getLoginBehavior(): Promise<LoginBehavior> {
-    return LoginManager.getLoginBehavior();
+    if (Platform.OS === 'ios') {
+      return Promise.resolve('browser');
+    } else {
+      return LoginManager.getLoginBehavior();
+    }
   },
 
   /**
    * Setter for the login behavior.
    */
   setLoginBehavior(loginBehavior: LoginBehavior) {
+    if (Platform.OS === 'ios') {
+      return;
+    }
     LoginManager.setLoginBehavior(loginBehavior);
   },
 

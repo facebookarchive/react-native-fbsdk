@@ -25,6 +25,5 @@ typedef id<FBSDKSharingContent> RCTFBSDKSharingContent;
 @interface RCTConvert(FBSDKSharingContent)
 
 + (RCTFBSDKSharingContent)RCTFBSDKSharingContent:(id)json;
-+ (FBSDKShareOpenGraphObject *)FBSDKShareOpenGraphObject:(id)json;
 
 @end

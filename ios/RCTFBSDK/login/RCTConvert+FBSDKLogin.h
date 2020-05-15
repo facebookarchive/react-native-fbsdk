@@ -22,7 +22,6 @@
 
 @interface RCTConvert (FBSDKLogin)
 
-+ (FBSDKLoginBehavior)FBSDKLoginBehavior:(id)json;
 + (FBSDKDefaultAudience)FBSDKDefaultAudience:(id)json;
 + (FBSDKLoginButtonTooltipBehavior)FBSDKLoginButtonTooltipBehavior:(id)json;
 

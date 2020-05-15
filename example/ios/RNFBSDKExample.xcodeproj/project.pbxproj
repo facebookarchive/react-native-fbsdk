@@ -11,6 +11,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		19B66B92246F512800628AB1 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B66B91246F512800628AB1 /* File.swift */; };
 		346ACB765037DC39A863189B /* libPods-RNFBSDKExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 870A7DD6F7C14CB1ADF66F14 /* libPods-RNFBSDKExample.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -23,6 +24,8 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RNFBSDKExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RNFBSDKExample/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RNFBSDKExample/main.m; sourceTree = "<group>"; };
+		19B66B90246F512700628AB1 /* RNFBSDKExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNFBSDKExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		19B66B91246F512800628AB1 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = File.swift; path = RNFBSDKExample/File.swift; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		870A7DD6F7C14CB1ADF66F14 /* libPods-RNFBSDKExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNFBSDKExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		99F281F6E6DCAC235749C4DC /* Pods-RNFBSDKExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNFBSDKExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNFBSDKExample/Pods-RNFBSDKExample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -52,6 +55,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				19B66B91246F512800628AB1 /* File.swift */,
+				19B66B90246F512700628AB1 /* RNFBSDKExample-Bridging-Header.h */,
 			);
 			name = RNFBSDKExample;
 			sourceTree = "<group>";
@@ -103,8 +108,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RNFBSDKExample" */;
 			buildPhases = (
-				19DAAD19246F43AA00C80F9C /* Start Packager */,
 				E3AE85C98B0DE57952EBBE93 /* [CP] Check Pods Manifest.lock */,
+				19DAAD19246F43AA00C80F9C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -128,6 +133,11 @@
 			attributes = {
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Facebook;
+				TargetAttributes = {
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1140;
+					};
+				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "RNFBSDKExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -242,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				19B66B92246F512800628AB1 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +277,7 @@
 			baseConfigurationReference = 99F281F6E6DCAC235749C4DC /* Pods-RNFBSDKExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = RNFBSDKExample/Info.plist;
@@ -277,6 +289,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNFBSDKExample;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNFBSDKExample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -286,6 +301,7 @@
 			baseConfigurationReference = C10E104DB653CE36B9B956A3 /* Pods-RNFBSDKExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = RNFBSDKExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -296,6 +312,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = RNFBSDKExample;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNFBSDKExample-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
