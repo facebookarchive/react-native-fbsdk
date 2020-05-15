@@ -2,7 +2,10 @@
   "name": "react-native-fbsdk",
   "version": "1.1.2",
   "description": "Facebook SDK support for React Native apps.",
-  "main": "./js/index.js",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "react-native": "src/index.js",
+  "sideEffects": false,
   "author": {
     "name": "Zhuowen Deng"
   },
@@ -15,6 +18,9 @@
     },
     {
       "name": "Cody Winton"
+    },
+    {
+      "name": "Janic Duplessis"
     }
   ],
   "repository": {
@@ -34,16 +40,20 @@
   "license": "Facebook Platform License",
   "scripts": {
     "start": "react-native start",
+    "prepare": "bob build",
     "flow": "flow",
-    "lint": "eslint .",
-    "prettier": "prettier \"./**/*.js\" --write"
+    "lint": "eslint ./src",
+    "prettier": "prettier \"./src/**/*.js\" --write",
+    "example:ios": "cd ./example && react-native run-ios",
+    "example:android": "cd ./example && react-native run-android --no-jetifier"
   },
   "files": [
     "android/src/main/AndroidManifest.xml",
     "android/src/main/java/",
     "android/build.gradle",
     "ios",
-    "js",
+    "lib",
+    "src",
     "LICENSE.txt",
     "README.md",
     "react-native-fbsdk.podspec"
@@ -53,27 +63,20 @@
     "react-native": ">=0.60.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/runtime": "^7.4.5",
-    "babel-eslint": "^10.0.1",
-    "babel-jest": "^24.8.0",
-    "eslint-config-fb-strict": "22.1.0",
-    "eslint-plugin-babel": "^5.2.1",
-    "eslint-plugin-flowtype": "2.43.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jest": "21.8.0",
-    "eslint-plugin-jsx-a11y": "6.0.3",
-    "eslint-plugin-prettier": "2.6.0",
-    "eslint-plugin-react": "7.6.1",
-    "eslint-plugin-relay": "0.0.23",
-    "eslint": "5.1.0",
-    "flow-bin": "^0.98.0",
-    "jest": "^24.8.0",
-    "metro-react-native-babel-preset": "^0.54.1",
-    "prettier": "^1.15.2",
-    "react-native": "0.60.0-rc.1",
-    "react-test-renderer": "16.8.3",
-    "react": "16.8.6"
+    "@react-native-community/bob": "^0.14.2",
+    "@react-native-community/eslint-config": "^1.1.0",
+    "@babel/core": "^7.9.6",
+    "@babel/runtime": "^7.9.6",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "7.0.0",
+    "flow-bin": "^0.125.0",
+    "jest": "^26.0.1",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "prettier": "^2.0.5",
+    "react-native": "^0.63.0-rc.1",
+    "react-test-renderer": "16.13.1",
+    "react": "16.13.1"
   },
   "prettier": {
     "requirePragma": true,
@@ -82,5 +85,13 @@
     "bracketSpacing": false,
     "jsxBracketSameLine": true,
     "parser": "flow"
+  },
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      ["commonjs", {"copyFlow": true}],
+      "module"
+    ]
   }
 }

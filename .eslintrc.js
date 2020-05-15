@@ -22,25 +22,5 @@
 'use strict';
 
 module.exports = {
-  env: {
-    node: true,
-  },
-  extends: 'eslint-config-fb-strict',
-  plugins: ['babel', 'flowtype', 'import', 'prettier'],
-  parser: 'babel-eslint',
-  rules: {
-    'babel/quotes': ['error', 'single', 'avoid-escape'],
-    'consistent-return': 'error',
-    'import/no-extraneous-dependencies': 'error',
-    'lint/extra-arrow-initializer': 'off',
-    'max-len': 'off',
-    'no-alert': 'error',
-    'no-console': 'error',
-    'no-unused-vars': 'error',
-    'no-var': 'off',
-    'prefer-arrow-callback': 'off',
-    'prefer-const': ['warn', {destructuring: 'all'}],
-    'prettier/prettier': ['error', 'fb', '@format'],
-    'sort-keys': 'off',
-  },
+  extends: '@react-native-community',
 };
