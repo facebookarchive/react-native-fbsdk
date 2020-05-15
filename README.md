@@ -40,7 +40,7 @@ npm install --save react-native-fbsdk
 - **React Native 0.60+**
 
 
-[CLI autolink feature](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md) links the module while building the app. 
+[CLI autolink feature](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md) links the module while building the app.
 
 
 - **React Native <= 0.59**
@@ -397,18 +397,14 @@ new GraphRequestManager().addRequest(infoRequest).start();
 
 ## Example app
 
-- Run `yarn start` in the repo root to start the packager for the example app
-
 ### iOS
 
 - Run `pod install` in `example/ios`
-- Open `example/ios/RNFBSDKExample.xcworkspace` with xcode
-- Run the example app
+- Run `yarn example:ios`
 
 ### Android
 
-- Start a simulator
-- Run `./gradlew installDebug` in `example/android`
+- Run `yarn example:android`
 
 ## Join the React Native community
 
