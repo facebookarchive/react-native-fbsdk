@@ -118,7 +118,7 @@ class FBAccessToken {
    */
   static getCurrentAccessToken(): Promise<?FBAccessToken> {
     return new Promise((resolve, reject) => {
-      AccessToken.getCurrentAccessToken(tokenMap => {
+      AccessToken.getCurrentAccessToken((tokenMap) => {
         if (tokenMap) {
           resolve(new FBAccessToken(tokenMap));
         } else {
