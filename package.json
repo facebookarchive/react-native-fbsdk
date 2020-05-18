@@ -63,7 +63,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "react-native": ">=0.60.0"
+    "react-native": ">=0.59.0"
   },
   "devDependencies": {
     "@react-native-community/bob": "^0.14.2",
