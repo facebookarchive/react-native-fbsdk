@@ -54,10 +54,7 @@ export default class App extends Component<{}> {
       <View style={styles.container}>
         <LoginButton
           onLoginFinished={(error, data) => {
-            console.log('AAAA');
-            setTimeout(() => {
-              Alert.alert(JSON.stringify(error || data, null, 2));
-            }, 1000);
+            Alert.alert(JSON.stringify(error || data, null, 2));
           }}
         />
         <TouchableHighlight onPress={this._shareLinkWithShareDialog}>
