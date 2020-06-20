@@ -42,18 +42,18 @@ npm install --save react-native-fbsdk
 
 [CLI autolink feature](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md) links the module while building the app.
 
+*Note* For `iOS` using `cocoapods`, run:
+
+```bash
+$ cd ios/ && pod install
+```
+
 
 - **React Native <= 0.59**
 
 
 ```bash
 $ react-native link react-native-fbsdk
-```
-
-*Note* For `iOS` using `cocoapods`, run:
-
-```bash
-$ cd ios/ && pod install
 ```
 
 If you can't or don't want to use the CLI tool, you can also manually link the library using the instructions below (click on the arrow to show them):
@@ -155,6 +155,10 @@ The `AppDelegate.m` file can only have one method for `openUrl`. If you're also 
 3. I get this build error: `no type or protocol named UIApplicationOpenURLOptionsKey`:
 
 - Your Xcode version is too old. Upgrade to Xcode 10.0+.
+
+4. After **facebook-ios-sdk v7** you need to create a swift file into the main project folder:
+
+- [File.Swift](https://github.com/facebook/react-native-fbsdk/blob/master/example/ios/RNFBSDKExample/File.swift)
 
 ## Usage
 
