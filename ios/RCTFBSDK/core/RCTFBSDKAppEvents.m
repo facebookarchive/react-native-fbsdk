@@ -21,6 +21,7 @@
 #import <React/RCTUtils.h>
 
 #import "RCTConvert+FBSDKAccessToken.h"
+#import "FBSDKCoreKit/FBSDKAppEventsUtility.h"
 
 @implementation RCTConvert (RCTFBSDKAppEvents)
 
@@ -79,6 +80,16 @@ RCT_EXPORT_METHOD(setUserID:(NSString *)userID)
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getUserID)
 {
   return [FBSDKAppEvents userID];
+}
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getAnonymousID)
+{
+  return [FBSDKAppEvents anonymousID];
+}
+
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getAdvertiserID)
+{
+  return [FBSDKAppEventsUtility advertiserID];
 }
 
 RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters)

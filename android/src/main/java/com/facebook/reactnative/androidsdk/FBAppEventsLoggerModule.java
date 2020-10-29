@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 
 import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.internal.AttributionIdentifiers;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -109,6 +110,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     public static final String NAME = "FBAppEventsLogger";
 
     private AppEventsLogger mAppEventLogger;
+    private AttributionIdentifiers mAttributionIdentifiers;
     private ReactApplicationContext mReactContext;
 
     public FBAppEventsLoggerModule(ReactApplicationContext reactContext) {
@@ -119,6 +121,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     @Override
     public void initialize() {
         mAppEventLogger = AppEventsLogger.newLogger(mReactContext);
+        mAttributionIdentifiers = AttributionIdentifiers.getAttributionIdentifiers(mReactContext);
     }
 
     @Override
@@ -214,6 +217,40 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      @Nullable
      public String getUserID() {
        return mAppEventLogger.getUserID();
+     }
+
+     /**
+      * Each app/device pair gets an GUID that is sent back with App Events and persisted with this
+      * app/device pair.
+      *
+      * @return The GUID for this app/device pair.
+      */
+     @ReactMethod(isBlockingSynchronousMethod = true)
+     @Nullable
+     public String getAnonymousID() {
+       return mAppEventLogger.getAnonymousAppDeviceGUID(mReactContext);
+     }
+
+     /**
+      * Returns the advertiser id or null if not set
+      *
+      * @return The advertiser ID or null
+      */
+     @ReactMethod(isBlockingSynchronousMethod = true)
+     @Nullable
+     public String getAdvertiserID() {
+       return mAttributionIdentifiers.getAndroidAdvertiserId();
+     }
+
+     /**
+      * Returns the attribution id or null if not set
+      *
+      * @return The attribution ID or null
+      */
+     @ReactMethod(isBlockingSynchronousMethod = true)
+     @Nullable
+     public String getAttributionID() {
+       return mAttributionIdentifiers.getAttributionId();
      }
 
      /**
