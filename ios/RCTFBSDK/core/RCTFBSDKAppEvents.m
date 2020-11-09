@@ -82,14 +82,28 @@ RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getUserID)
   return [FBSDKAppEvents userID];
 }
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getAnonymousID)
+RCT_EXPORT_METHOD(getAnonymousID:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-  return [FBSDKAppEvents anonymousID];
+  @try {
+    NSString *anonymousID = [FBSDKAppEvents anonymousID];
+    resolve(anonymousID);
+  }
+  @catch (NSError *error) {
+    reject(@"E_ANONYMOUS_ID_ERROR", @"Can not get anonymousID", error);
+  }
 }
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getAdvertiserID)
+RCT_EXPORT_METHOD(getAdvertiserID:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-  return [FBSDKAppEventsUtility advertiserID];
+  @try {
+    NSString *advertiserID = [FBSDKAppEventsUtility advertiserID];
+    resolve(advertiserID);
+  }
+  @catch (NSError *error) {
+    reject(@"E_ADVERTISER_ID_ERROR", @"Can not get advertiserID", error);
+  }
 }
 
 RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters)

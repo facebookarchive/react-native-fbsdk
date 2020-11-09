@@ -26,6 +26,7 @@ import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.internal.AttributionIdentifiers;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -225,32 +226,37 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
       *
       * @return The GUID for this app/device pair.
       */
-     @ReactMethod(isBlockingSynchronousMethod = true)
-     @Nullable
-     public String getAnonymousID() {
-       return mAppEventLogger.getAnonymousAppDeviceGUID(mReactContext);
+     @ReactMethod
+     public void getAnonymousID(Promise promise) {
+       try {
+         promise.resolve(mAppEventLogger.getAnonymousAppDeviceGUID(mReactContext));
+       } catch (Exception e) {
+         promise.reject("E_ANONYMOUS_ID_ERROR", "Can not get anonymousID", e);
+       }
      }
 
      /**
       * Returns the advertiser id or null if not set
-      *
-      * @return The advertiser ID or null
       */
-     @ReactMethod(isBlockingSynchronousMethod = true)
-     @Nullable
-     public String getAdvertiserID() {
-       return mAttributionIdentifiers.getAndroidAdvertiserId();
+     @ReactMethod
+     public void getAdvertiserID(Promise promise) {
+       try {
+         promise.resolve(mAttributionIdentifiers.getAndroidAdvertiserId());
+       } catch (Exception e) {
+         promise.reject("E_ADVERTISER_ID_ERROR", "Can not get advertiserID", e);
+       }
      }
 
      /**
       * Returns the attribution id or null if not set
-      *
-      * @return The attribution ID or null
       */
-     @ReactMethod(isBlockingSynchronousMethod = true)
-     @Nullable
-     public String getAttributionID() {
-       return mAttributionIdentifiers.getAttributionId();
+     @ReactMethod
+     public void getAttributionID(Promise promise) {
+       try {
+         promise.resolve(mAttributionIdentifiers.getAttributionId());
+       } catch (Exception e) {
+         promise.reject("E_ATTRIBUTION_ID_ERROR", "Can not get attributionID", e);
+       }
      }
 
      /**
