@@ -24,7 +24,9 @@ import androidx.annotation.Nullable;
 
 import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.internal.AttributionIdentifiers;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -109,6 +111,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     public static final String NAME = "FBAppEventsLogger";
 
     private AppEventsLogger mAppEventLogger;
+    private AttributionIdentifiers mAttributionIdentifiers;
     private ReactApplicationContext mReactContext;
 
     public FBAppEventsLoggerModule(ReactApplicationContext reactContext) {
@@ -119,6 +122,7 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     @Override
     public void initialize() {
         mAppEventLogger = AppEventsLogger.newLogger(mReactContext);
+        mAttributionIdentifiers = AttributionIdentifiers.getAttributionIdentifiers(mReactContext);
     }
 
     @Override
@@ -214,6 +218,45 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
      @Nullable
      public String getUserID() {
        return mAppEventLogger.getUserID();
+     }
+
+     /**
+      * Each app/device pair gets an GUID that is sent back with App Events and persisted with this
+      * app/device pair.
+      *
+      * @return The GUID for this app/device pair.
+      */
+     @ReactMethod
+     public void getAnonymousID(Promise promise) {
+       try {
+         promise.resolve(mAppEventLogger.getAnonymousAppDeviceGUID(mReactContext));
+       } catch (Exception e) {
+         promise.reject("E_ANONYMOUS_ID_ERROR", "Can not get anonymousID", e);
+       }
+     }
+
+     /**
+      * Returns the advertiser id or null if not set
+      */
+     @ReactMethod
+     public void getAdvertiserID(Promise promise) {
+       try {
+         promise.resolve(mAttributionIdentifiers.getAndroidAdvertiserId());
+       } catch (Exception e) {
+         promise.reject("E_ADVERTISER_ID_ERROR", "Can not get advertiserID", e);
+       }
+     }
+
+     /**
+      * Returns the attribution id or null if not set
+      */
+     @ReactMethod
+     public void getAttributionID(Promise promise) {
+       try {
+         promise.resolve(mAttributionIdentifiers.getAttributionId());
+       } catch (Exception e) {
+         promise.reject("E_ATTRIBUTION_ID_ERROR", "Can not get attributionID", e);
+       }
      }
 
      /**

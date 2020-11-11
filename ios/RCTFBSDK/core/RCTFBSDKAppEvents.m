@@ -21,6 +21,7 @@
 #import <React/RCTUtils.h>
 
 #import "RCTConvert+FBSDKAccessToken.h"
+#import "FBSDKCoreKit/FBSDKAppEventsUtility.h"
 
 @implementation RCTConvert (RCTFBSDKAppEvents)
 
@@ -79,6 +80,30 @@ RCT_EXPORT_METHOD(setUserID:(NSString *)userID)
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(getUserID)
 {
   return [FBSDKAppEvents userID];
+}
+
+RCT_EXPORT_METHOD(getAnonymousID:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+  @try {
+    NSString *anonymousID = [FBSDKAppEvents anonymousID];
+    resolve(anonymousID);
+  }
+  @catch (NSError *error) {
+    reject(@"E_ANONYMOUS_ID_ERROR", @"Can not get anonymousID", error);
+  }
+}
+
+RCT_EXPORT_METHOD(getAdvertiserID:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject)
+{
+  @try {
+    NSString *advertiserID = [FBSDKAppEventsUtility advertiserID];
+    resolve(advertiserID);
+  }
+  @catch (NSError *error) {
+    reject(@"E_ADVERTISER_ID_ERROR", @"Can not get advertiserID", error);
+  }
 }
 
 RCT_EXPORT_METHOD(updateUserProperties:(NSDictionary *)parameters)
