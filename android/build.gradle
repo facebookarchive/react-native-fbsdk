@@ -53,5 +53,4 @@ dependencies {
     implementation "com.facebook.android:facebook-core:${FACEBOOK_SDK_VERSION}"
     implementation "com.facebook.android:facebook-login:${FACEBOOK_SDK_VERSION}"
     implementation "com.facebook.android:facebook-share:${FACEBOOK_SDK_VERSION}"
-    implementation "com.facebook.android:facebook-applinks:${FACEBOOK_SDK_VERSION}"
 }
