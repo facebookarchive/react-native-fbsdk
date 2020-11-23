@@ -21,16 +21,16 @@ RCT_EXPORT_MODULE(FBSettings);
 
 #pragma mark - React Native Methods
 
-RCT_EXPORT_METHOD(getAdvertiserTrackingEnabled:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(getAdvertiserTrackingEnabled:(RCTPromiseResolveBlock)resolve rejector:(RCTPromiseRejectBlock)reject)
 {
   BOOL ATE = [FBSDKSettings isAdvertiserTrackingEnabled];
-  callback(@[@(ATE)]);
+  resolve(@(ATE));
 }
 
-RCT_EXPORT_METHOD(setAdvertiserTrackingEnabled:(BOOL)ATE callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(setAdvertiserTrackingEnabled:(BOOL)ATE resolver:(RCTPromiseResolveBlock)resolve rejector:(RCTPromiseRejectBlock)reject)
 {
   BOOL result = [FBSDKSettings setAdvertiserTrackingEnabled:ATE];
-  callback(@[@(result)]);
+  resolve(@(result));
 }
 
 RCT_EXPORT_METHOD(setDataProcessingOptions:(nullable NSStringArray *)options)

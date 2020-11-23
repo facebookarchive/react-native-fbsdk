@@ -11,6 +11,8 @@
 
 'use strict';
 
+import { Platform } from 'react-native';
+
 const Settings = require('react-native').NativeModules.FBSettings;
 
 module.exports = {
@@ -19,22 +21,26 @@ module.exports = {
    * @platform ios
    */
   getAdvertiserTrackingEnabled(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      Settings.getAdvertiserTrackingEnabled((result) => {
-        resolve(result);
+    if (Platform.OS === 'ios') {
+      return Settings.getAdvertiserTrackingEnabled();
+    } else {
+      return new Promise((resolve, reject) => {
+        resolve(true);
       });
-    });
+    }
   },
   /**
    * For iOS only, set AdvertiserTrackingEnabled status, only works in iOS 14 and above.
    * @platform ios
    */
   setAdvertiserTrackingEnabled(ATE: boolean): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      Settings.setAdvertiserTrackingEnabled(ATE, (result) => {
-        resolve(result);
+    if (Platform.OS === 'ios') {
+      return Settings.setAdvertiserTrackingEnabled(ATE);
+    } else {
+      return new Promise((resolve, reject) => {
+        resolve(false);
       });
-    });
+    }
   },
   /**
    * Set data processing options

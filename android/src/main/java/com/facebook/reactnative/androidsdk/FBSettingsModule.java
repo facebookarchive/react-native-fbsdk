@@ -13,14 +13,21 @@ import androidx.annotation.Nullable;
 import com.facebook.FacebookSdk;
 import com.facebook.react.bridge.BaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.module.annotations.ReactModule;
 
+/**
+ * This is a {@link NativeModule} that allows JS to use SDK settings in Facebook Android SDK.
+ */
+@ReactModule(name = FBSettingsModule.NAME)
 public class FBSettingsModule extends BaseJavaModule {
+
+    public static final String NAME = "FBSettings";
 
     public FBSettingsModule() {}
 
     @Override
     public String getName() {
-        return "FBSettings";
+        return NAME;
     }
 
     /**
