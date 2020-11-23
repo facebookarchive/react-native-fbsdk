@@ -24,9 +24,7 @@ module.exports = {
     if (Platform.OS === 'ios') {
       return Settings.getAdvertiserTrackingEnabled();
     } else {
-      return new Promise((resolve, reject) => {
-        resolve(true);
-      });
+      return Promise.resolve(true);
     }
   },
   /**
@@ -37,9 +35,7 @@ module.exports = {
     if (Platform.OS === 'ios') {
       return Settings.setAdvertiserTrackingEnabled(ATE);
     } else {
-      return new Promise((resolve, reject) => {
-        resolve(false);
-      });
+      return Promise.resolve(false);
     }
   },
   /**
