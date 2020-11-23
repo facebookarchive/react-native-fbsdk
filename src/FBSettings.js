@@ -11,7 +11,7 @@
 
 'use strict';
 
-import { Platform } from 'react-native';
+import {Platform} from 'react-native';
 
 const Settings = require('react-native').NativeModules.FBSettings;
 
