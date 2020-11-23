@@ -42,6 +42,9 @@ module.exports = {
   get AppEventsLogger() {
     return require('./FBAppEventsLogger');
   },
+  get AppLink() {
+    return require('./FBAppLink');
+  },
   get GameRequestDialog() {
     return require('./FBGameRequestDialog');
   },
