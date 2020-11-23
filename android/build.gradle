@@ -45,12 +45,10 @@ repositories {
     jcenter()
 }
 
-def FACEBOOK_SDK_VERSION = safeExtGet('facebookSdkVersion', '[7.0,8.0[')
+def FACEBOOK_SDK_VERSION = safeExtGet('facebookSdkVersion', '[7.1.0, 9)')
 
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation "com.facebook.android:facebook-core:${FACEBOOK_SDK_VERSION}"
-    implementation "com.facebook.android:facebook-login:${FACEBOOK_SDK_VERSION}"
-    implementation "com.facebook.android:facebook-share:${FACEBOOK_SDK_VERSION}"
+    implementation "com.facebook.android:facebook-android-sdk:${FACEBOOK_SDK_VERSION}"
 }
