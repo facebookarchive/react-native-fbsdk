@@ -156,4 +156,38 @@ static NSDictionary<NSString *, id> *RCTDictionaryWithoutNullValues(NSDictionary
   return result;
 }
 
+- (NSDictionary *)constantsToExport {
+  return @{
+    @"StandardEvents": @{
+      @"AchievedLevel": FBSDKAppEventNameAchievedLevel,
+      @"AdClick": FBSDKAppEventNameAdClick,
+      @"AdImpression": FBSDKAppEventNameAdImpression,
+      @"AddedPaymentInfo": FBSDKAppEventNameAddedPaymentInfo,
+      @"AddedToCart": FBSDKAppEventNameAddedToCart,
+      @"AddedToWishlist": FBSDKAppEventNameAddedToWishlist,
+      @"CompletedRegistration": FBSDKAppEventNameCompletedRegistration,
+      @"CompletedTutorial": FBSDKAppEventNameCompletedTutorial,
+      @"Contact": FBSDKAppEventNameContact,
+      @"CustomizeProduct": FBSDKAppEventNameCustomizeProduct,
+      @"Donate": FBSDKAppEventNameDonate,
+      @"FindLocation": FBSDKAppEventNameFindLocation,
+      @"InitiatedCheckout": FBSDKAppEventNameInitiatedCheckout,
+      @"Purchased": FBSDKAppEventNamePurchased,
+      @"Rated": FBSDKAppEventNameRated,
+      @"Searched": FBSDKAppEventNameSearched,
+      @"SpentCredits": FBSDKAppEventNameSpentCredits,
+      @"Schedule": FBSDKAppEventNameSchedule,
+      @"StartTrial": FBSDKAppEventNameStartTrial,
+      @"SubmitApplication": FBSDKAppEventNameSubmitApplication,
+      @"Subscribe": FBSDKAppEventNameSubscribe,
+      @"UnlockedAchievement": FBSDKAppEventNameUnlockedAchievement,
+      @"ViewedContent": FBSDKAppEventNameViewedContent,
+    }
+  };
+}
+
++ (BOOL)requiresMainQueueSetup {
+  return YES;
+}
+
 @end

@@ -182,4 +182,6 @@ module.exports = {
   setPushNotificationsRegistrationId(registrationId: string) {
     AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
   },
+
+  StandardEvents: AppEventsLogger.StandardEvents,
 };
