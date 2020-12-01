@@ -35,6 +35,8 @@ import com.facebook.react.module.annotations.ReactModule;
 
 import java.math.BigDecimal;
 import java.util.Currency;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -311,5 +313,36 @@ public class FBAppEventsLoggerModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setPushNotificationsRegistrationId(String registrationId) {
         AppEventsLogger.setPushNotificationsRegistrationId(registrationId);
+    }
+
+    @Override
+    public Map<String, Object> getConstants() {
+        final Map<String, Object> constants = new HashMap<>();
+        final Map<String, Object> standardEvents = new HashMap<>();
+        standardEvents.put("AchievedLevel", AppEventsConstants.EVENT_NAME_ACHIEVED_LEVEL);
+        standardEvents.put("AdClick", AppEventsConstants.EVENT_NAME_AD_CLICK);
+        standardEvents.put("AdImpression", AppEventsConstants.EVENT_NAME_AD_IMPRESSION);
+        standardEvents.put("AddedPaymentInfo", AppEventsConstants.EVENT_NAME_ADDED_PAYMENT_INFO);
+        standardEvents.put("AddedToCart", AppEventsConstants.EVENT_NAME_ADDED_TO_CART);
+        standardEvents.put("AddedToWishlist", AppEventsConstants.EVENT_NAME_ADDED_TO_WISHLIST);
+        standardEvents.put("CompletedRegistration", AppEventsConstants.EVENT_NAME_COMPLETED_REGISTRATION);
+        standardEvents.put("CompletedTutorial", AppEventsConstants.EVENT_NAME_COMPLETED_TUTORIAL);
+        standardEvents.put("Contact", AppEventsConstants.EVENT_NAME_CONTACT);
+        standardEvents.put("CustomizeProduct", AppEventsConstants.EVENT_NAME_CUSTOMIZE_PRODUCT);
+        standardEvents.put("Donate", AppEventsConstants.EVENT_NAME_DONATE);
+        standardEvents.put("FindLocation", AppEventsConstants.EVENT_NAME_FIND_LOCATION);
+        standardEvents.put("InitiatedCheckout", AppEventsConstants.EVENT_NAME_INITIATED_CHECKOUT);
+        standardEvents.put("Purchased", AppEventsConstants.EVENT_NAME_PURCHASED);
+        standardEvents.put("Rated", AppEventsConstants.EVENT_NAME_RATED);
+        standardEvents.put("Searched", AppEventsConstants.EVENT_NAME_SEARCHED);
+        standardEvents.put("SpentCredits", AppEventsConstants.EVENT_NAME_SPENT_CREDITS);
+        standardEvents.put("Schedule", AppEventsConstants.EVENT_NAME_SCHEDULE);
+        standardEvents.put("StartTrial", AppEventsConstants.EVENT_NAME_START_TRIAL);
+        standardEvents.put("SubmitApplication", AppEventsConstants.EVENT_NAME_SUBMIT_APPLICATION);
+        standardEvents.put("Subscribe", AppEventsConstants.EVENT_NAME_SUBSCRIBE);
+        standardEvents.put("UnlockedAchievement", AppEventsConstants.EVENT_NAME_UNLOCKED_ACHIEVEMENT);
+        standardEvents.put("ViewedContent", AppEventsConstants.EVENT_NAME_VIEWED_CONTENT);
+        constants.put("StandardEvents", standardEvents);
+        return constants;
     }
 }
