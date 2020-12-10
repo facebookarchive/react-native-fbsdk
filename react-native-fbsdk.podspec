@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.homepage      = package['homepage']
   s.source        = { :git => 'https://github.com/facebook/react-native-fbsdk.git', :tag => "v#{package['version']}" }
   s.platforms     = { :ios => "9.0", :tvos => "9.2" }
-  s.dependency      'React'
+  s.dependency      'React-Core'
 
   s.subspec 'Core' do |ss|
     ss.dependency     'FBSDKCoreKit', '~> 8.1'
