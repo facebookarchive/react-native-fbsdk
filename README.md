@@ -276,7 +276,7 @@ shareLinkWithShareDialog() {
 
 #### Share Photos
 
-See [SharePhotoContent](/js/models/FBSharePhotoContent.js) and [SharePhoto](/js/models/FBSharePhoto.js) to refer other options.
+See [SharePhotoContent](/src/models/FBSharePhotoContent.js) and [SharePhoto](/src/models/FBSharePhoto.js) to refer other options.
 
 ```js
 const FBSDK = require('react-native-fbsdk');
@@ -297,7 +297,7 @@ ShareDialog.show(tmp.state.sharePhotoContent);
 
 #### Share Videos
 
-See [ShareVideoContent](/js/models/FBShareVideoContent.js) and [ShareVideo](/js/models/FBShareVideo.js) to refer other options.
+See [ShareVideoContent](/src/models/FBShareVideoContent.js) and [ShareVideo](/src/models/FBShareVideo.js) to refer other options.
 
 ```js
 const FBSDK = require('react-native-fbsdk');
