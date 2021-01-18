@@ -49,4 +49,13 @@ public class FBSettingsModule extends BaseJavaModule {
     public static void setDataProcessingOptionsExtra(@Nullable String[] options, int country, int state) {
         FacebookSdk.setDataProcessingOptions(options, country, state);
     }
+
+    /**
+     * Sets auto log events flag
+     * @param enabled flag setting
+     */
+    @ReactMethod
+    public static void setAutoLogAppEventsEnabled(boolean enabled) {
+        FacebookSdk.setAutoLogAppEventsEnabled(enabled);
+    }
 }
