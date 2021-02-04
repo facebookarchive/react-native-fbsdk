@@ -43,7 +43,6 @@ repositories {
     }
     google()
     jcenter()
-    mavenCentral()
 }
 
 def FACEBOOK_SDK_VERSION = safeExtGet('facebookSdkVersion', '9.0.+')
