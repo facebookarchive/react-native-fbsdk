@@ -179,7 +179,7 @@ export default class Login extends Component {
           onLoginFinished={
             (error, result) => {
               if (error) {
-                console.log("login has error: " + result.error);
+                console.log("login has error: " + error);
               } else if (result.isCancelled) {
                 console.log("login is cancelled.");
               } else {
