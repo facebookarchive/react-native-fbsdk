@@ -43,4 +43,9 @@ RCT_EXPORT_METHOD(setDataProcessingOptions:(nullable NSStringArray *)options cou
   [FBSDKSettings setDataProcessingOptions:options country:country state:state];
 }
 
+RCT_EXPORT_METHOD(initializeSDK)
+{
+  [FBSDKApplicationDelegate initializeSDK:nil];
+}
+
 @end
