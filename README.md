@@ -281,7 +281,7 @@ See [SharePhotoContent](/js/models/FBSharePhotoContent.js) and [SharePhoto](/js/
 ```js
 const FBSDK = require('react-native-fbsdk');
 const {
-  ShareApi,
+  ShareDialog,
 } = FBSDK;
 
 const photoUri = 'file://' + '/path/of/photo.png'
@@ -302,7 +302,7 @@ See [ShareVideoContent](/js/models/FBShareVideoContent.js) and [ShareVideo](/js/
 ```js
 const FBSDK = require('react-native-fbsdk');
 const {
-  ShareApi,
+  ShareDialog,
 } = FBSDK;
 
 const videoUri = 'file://' + '/path/of/video.mp4'
