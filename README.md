@@ -274,9 +274,7 @@ shareLinkWithShareDialog() {
 }
 ```
 
-#### Share Photos (Removed from `react-native-fbsdk` 1.1.2)
-
-* Use [Share dialogs](#Sharing) instead.
+#### Share Photos
 
 See [SharePhotoContent](/js/models/FBSharePhotoContent.js) and [SharePhoto](/js/models/FBSharePhoto.js) to refer other options.
 
@@ -297,9 +295,7 @@ const sharePhotoContent = {
 ShareDialog.show(tmp.state.sharePhotoContent);
 ```
 
-#### Share Videos (Removed from `react-native-fbsdk` 1.1.2)
-
-* Use [Share dialogs](#Sharing) instead.
+#### Share Videos
 
 See [ShareVideoContent](/js/models/FBShareVideoContent.js) and [ShareVideo](/js/models/FBShareVideo.js) to refer other options.
 
