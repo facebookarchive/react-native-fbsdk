@@ -49,4 +49,13 @@ public class FBSettingsModule extends BaseJavaModule {
     public static void setDataProcessingOptionsExtra(@Nullable String[] options, int country, int state) {
         FacebookSdk.setDataProcessingOptions(options, country, state);
     }
+
+    /**
+     * Initialize the sdk
+     * [FB SDK Best Practices for GDPR Compliance](https://developers.facebook.com/docs/app-events/gdpr-compliance/)
+     */
+    @ReactMethod
+    public static void initializeSDK() {
+        FacebookSdk.fullyInitialize();
+    }
 }

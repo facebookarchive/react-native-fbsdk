@@ -52,4 +52,10 @@ module.exports = {
     }
     Settings.setDataProcessingOptions(options, country, state);
   },
+  /**
+   * Initialize the sdk
+   */
+  initializeSDK() {
+    Settings.initializeSDK();
+  },
 };
