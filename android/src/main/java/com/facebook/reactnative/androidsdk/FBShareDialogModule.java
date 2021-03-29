@@ -30,6 +30,8 @@ import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.share.Sharer;
 import com.facebook.share.widget.ShareDialog;
 
+import java.util.Locale;
+
 @ReactModule(name = FBShareDialogModule.NAME)
 public class FBShareDialogModule extends FBSDKCallbackManagerBaseJavaModule {
 
@@ -96,7 +98,7 @@ public class FBShareDialogModule extends FBSDKCallbackManagerBaseJavaModule {
 
     @ReactMethod
     public void setMode(String mode) {
-        mShareDialogMode = ShareDialog.Mode.valueOf(mode.toUpperCase());
+        mShareDialogMode = ShareDialog.Mode.valueOf(mode.toUpperCase(Locale.ROOT));
     }
 
     @ReactMethod

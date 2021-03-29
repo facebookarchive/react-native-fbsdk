@@ -30,6 +30,8 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 
+import java.util.Locale;
+
 
 public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
 
@@ -54,12 +56,12 @@ public class FBLoginButtonManager extends SimpleViewManager<RCTLoginButton> {
 
     @ReactProp(name = "loginBehaviorAndroid")
     public void setLoginBehavior(RCTLoginButton loginButton, @Nullable String loginBehavior) {
-        loginButton.setLoginBehavior(LoginBehavior.valueOf(loginBehavior.toUpperCase()));
+        loginButton.setLoginBehavior(LoginBehavior.valueOf(loginBehavior.toUpperCase(Locale.ROOT)));
     }
 
     @ReactProp(name = "defaultAudience")
     public void setDefaultAudience(RCTLoginButton loginButton, @Nullable String defaultAudience) {
-        loginButton.setDefaultAudience(DefaultAudience.valueOf(defaultAudience.toUpperCase()));
+        loginButton.setDefaultAudience(DefaultAudience.valueOf(defaultAudience.toUpperCase(Locale.ROOT)));
     }
 
     @ReactProp(name = "permissions")

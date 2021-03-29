@@ -47,6 +47,7 @@ import com.facebook.share.model.ShareVideoContent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import androidx.annotation.Nullable;
@@ -145,12 +146,12 @@ public final class Utility {
         String actionType = getValueOrNull(gameRequestContentMap, "actionType");
         if (actionType != null) {
             gameRequestContentBuilder.setActionType(
-                    GameRequestContent.ActionType.valueOf(actionType.toUpperCase()));
+                    GameRequestContent.ActionType.valueOf(actionType.toUpperCase(Locale.ROOT)));
         }
         String filters = getValueOrNull(gameRequestContentMap, "filters");
         if (filters != null) {
             gameRequestContentBuilder.setFilters(
-                    GameRequestContent.Filters.valueOf(filters.toUpperCase()));
+                    GameRequestContent.Filters.valueOf(filters.toUpperCase(Locale.ROOT)));
         }
         gameRequestContentBuilder.setMessage(gameRequestContentMap.getString("message"));
         if (gameRequestContentMap.hasKey("recipients")) {
